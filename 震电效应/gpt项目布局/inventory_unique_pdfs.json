@@ -1,0 +1,808 @@
+[
+  {
+    "hash": "739435ecbd5b1907067d737fd00fd3756df0c430302c31c08757f4e576962a12",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\01-Seismoelectric reflection and transmission at a fluid_porous-medium interface.pdf"
+    ],
+    "size": 261432,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\01-Seismoelectric reflection and transmission at a fluid_porous-medium interface.pdf",
+    "filename": "01-Seismoelectric reflection and transmission at a fluid_porous-medium interface.pdf",
+    "relative": "uploaded_files\\01_classical_theory_foundational_papers\\01-Seismoelectric reflection and transmission at a fluid_porous-medium interface.pdf",
+    "pages": 9,
+    "metadata_title": "",
+    "text_chars": 51850,
+    "est_tokens": 12962,
+    "encrypted": false
+  },
+  {
+    "hash": "4454af3475e422be1a9c6787171ee1fa16de3fe4975cf436ec3f1ba4cf26562f",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\02_Schakel_2011_JAP_laboratory_theory.pdf"
+    ],
+    "size": 274084,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\02_Schakel_2011_JAP_laboratory_theory.pdf",
+    "filename": "02_Schakel_2011_JAP_laboratory_theory.pdf",
+    "relative": "uploaded_files\\01_classical_theory_foundational_papers\\02_Schakel_2011_JAP_laboratory_theory.pdf",
+    "pages": 5,
+    "metadata_title": "untitled",
+    "text_chars": 23129,
+    "est_tokens": 5782,
+    "encrypted": false
+  },
+  {
+    "hash": "83927c4326f0fb7258dec47b30a990333de0cf13393a6445ac9f762f326228c6",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\03_Liu_2018_finite_offset_VSEP.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Liu_et_al_2018_finite_offset_VSEP.pdf"
+    ],
+    "size": 1803686,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\03_Liu_2018_finite_offset_VSEP.pdf",
+    "filename": "03_Liu_2018_finite_offset_VSEP.pdf",
+    "relative": "uploaded_files\\01_classical_theory_foundational_papers\\03_Liu_2018_finite_offset_VSEP.pdf",
+    "pages": 7,
+    "metadata_title": "",
+    "text_chars": 24786,
+    "est_tokens": 6196,
+    "encrypted": false
+  },
+  {
+    "hash": "becf3fda8243eefa2d347c105bbf2d678ea3fd69398d6f679b5c55f8e2bac066",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\04_Schakel_2011_Geophysics_interface_forward_model.pdf"
+    ],
+    "size": 816024,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\04_Schakel_2011_Geophysics_interface_forward_model.pdf",
+    "filename": "04_Schakel_2011_Geophysics_interface_forward_model.pdf",
+    "relative": "uploaded_files\\01_classical_theory_foundational_papers\\04_Schakel_2011_Geophysics_interface_forward_model.pdf",
+    "pages": 8,
+    "metadata_title": "untitled",
+    "text_chars": 30849,
+    "est_tokens": 7712,
+    "encrypted": false
+  },
+  {
+    "hash": "5e5729cb7c59a1c0893614746bc8f74e3b73494e2a3a6df3ef8f8186ae620ea3",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\Electroseismic wave properties.pdf"
+    ],
+    "size": 328031,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\Electroseismic wave properties.pdf",
+    "filename": "Electroseismic wave properties.pdf",
+    "relative": "uploaded_files\\01_classical_theory_foundational_papers\\Electroseismic wave properties.pdf",
+    "pages": 15,
+    "metadata_title": "",
+    "text_chars": 68162,
+    "est_tokens": 17040,
+    "encrypted": false
+  },
+  {
+    "hash": "e48ea689c572424343d7bd456a1c27049d624ee2435bcb9cdce739b368401f33",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\Governing equations for the coupled electromagnetics and acoustics of porous media.pdf"
+    ],
+    "size": 853206,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\Governing equations for the coupled electromagnetics and acoustics of porous media.pdf",
+    "filename": "Governing equations for the coupled electromagnetics and acoustics of porous media.pdf",
+    "relative": "uploaded_files\\01_classical_theory_foundational_papers\\Governing equations for the coupled electromagnetics and acoustics of porous media.pdf",
+    "pages": 19,
+    "metadata_title": "Governing equations for the coupled electromagnetics and acoustics of porous media",
+    "text_chars": 71301,
+    "est_tokens": 17825,
+    "encrypted": false
+  },
+  {
+    "hash": "c4a80b9ce6638c1dad9dcd71b5dfa2731f3d09d7dc3ee56b477d8d5c7032c5cc",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\pride2005.pdf"
+    ],
+    "size": 486371,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\pride2005.pdf",
+    "filename": "pride2005.pdf",
+    "relative": "uploaded_files\\01_classical_theory_foundational_papers\\pride2005.pdf",
+    "pages": 10,
+    "metadata_title": "Electroseismic Wave Theory of Frenkel and More Recent Developments",
+    "text_chars": 54157,
+    "est_tokens": 13539,
+    "encrypted": false
+  },
+  {
+    "hash": "efd4c08524e2ab6354e85e36afffd7f3d7ea435d156a81a599f1f215e4b1c290",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\The SeismoelectricMethodTheory and applications revil.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2015_Revil_Jardani_Sava_Haas_The_Seismoelectric_Method_book.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\The SeismoelectricMethodTheory and applications revil.pdf"
+    ],
+    "size": 50943144,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\01_classical_theory_foundational_papers\\The SeismoelectricMethodTheory and applications revil.pdf",
+    "filename": "The SeismoelectricMethodTheory and applications revil.pdf",
+    "relative": "uploaded_files\\01_classical_theory_foundational_papers\\The SeismoelectricMethodTheory and applications revil.pdf",
+    "pages": 298,
+    "metadata_title": "",
+    "text_chars": 877267,
+    "est_tokens": 219316,
+    "encrypted": false
+  },
+  {
+    "hash": "3f1be17c3d6d08a8e185244953cd036a5820c5f68421ec5800658c648dbc0e52",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\01_Martins-Gomes_2026_layer_thickness_conductivity.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Martins-Gomes_et_al_2026_layer_thickness_fluid_conductivity_seismoelectric.pdf"
+    ],
+    "size": 9416647,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\01_Martins-Gomes_2026_layer_thickness_conductivity.pdf",
+    "filename": "01_Martins-Gomes_2026_layer_thickness_conductivity.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\01_Martins-Gomes_2026_layer_thickness_conductivity.pdf",
+    "pages": 20,
+    "metadata_title": "The effect of layer thickness and fluid conductivity contrasts on seismoelectric signals : insights from laboratory experiments and numerical simulations",
+    "text_chars": 98271,
+    "est_tokens": 24567,
+    "encrypted": false
+  },
+  {
+    "hash": "a14e82376e3637f2ba187d5d78d5b44dbbba99e3b9534a3dd4befc0ceca5017d",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\02_Block_Harris_2006_conductivity_dependence.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2006_Block_Harris_conductivity_dependence_seismoelectric_wave_phenomena.pdf"
+    ],
+    "size": 437953,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\02_Block_Harris_2006_conductivity_dependence.pdf",
+    "filename": "02_Block_Harris_2006_conductivity_dependence.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\02_Block_Harris_2006_conductivity_dependence.pdf",
+    "pages": 12,
+    "metadata_title": "Conductivity dependence of seismoelectric wave phenomena in fluidsaturated sediments",
+    "text_chars": 59550,
+    "est_tokens": 14887,
+    "encrypted": false
+  },
+  {
+    "hash": "faba227b6e2e78f2b75033c49b885848f6b4ae9c0d87ed9f848a6e7f8fe41919",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\03_Peng_2019_permeability_porosity.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Peng_et_al_2019_permeability_porosity_seismoelectric_conversion.pdf"
+    ],
+    "size": 1507817,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\03_Peng_2019_permeability_porosity.pdf",
+    "filename": "03_Peng_2019_permeability_porosity.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\03_Peng_2019_permeability_porosity.pdf",
+    "pages": 34,
+    "metadata_title": "The effect of rock permeability and porosity on seismoelectric conversion: experiment and analytical modelling",
+    "text_chars": 82679,
+    "est_tokens": 20669,
+    "encrypted": false
+  },
+  {
+    "hash": "daf94691a1cd87dff95198b0b9f21cb92fa8ad97015ca418daa33df3a7ad9014",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\04_Martins-Gomes_2023_interface_full_waveform.pdf"
+    ],
+    "size": 4509995,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\04_Martins-Gomes_2023_interface_full_waveform.pdf",
+    "filename": "04_Martins-Gomes_2023_interface_full_waveform.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\04_Martins-Gomes_2023_interface_full_waveform.pdf",
+    "pages": 21,
+    "metadata_title": "Seismoelectric wave conversions at an interface: a quantitative comparison between laboratory data and full-waveform modelling",
+    "text_chars": 93493,
+    "est_tokens": 23373,
+    "encrypted": false
+  },
+  {
+    "hash": "8cedabbd5af95e22977c22ff9e9c032c58a9224c247463d30629e4e85d7dfcbf",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\07_Holzhauer_2017_conductivity_saturation_loose_sand.pdf"
+    ],
+    "size": 1917969,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\07_Holzhauer_2017_conductivity_saturation_loose_sand.pdf",
+    "filename": "07_Holzhauer_2017_conductivity_saturation_loose_sand.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\07_Holzhauer_2017_conductivity_saturation_loose_sand.pdf",
+    "pages": 33,
+    "metadata_title": "Experimental quantification of the seismoelectric transfer function and its dependence on conductivity and saturation in loose sand",
+    "text_chars": 112801,
+    "est_tokens": 28200,
+    "encrypted": false
+  },
+  {
+    "hash": "e31ba301432c40508d4243ebe36d9163f9bc192dd13e1c71a7c72cd051678cae",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\09a_Zhu_Toksoz_1996_author_technical_report.pdf"
+    ],
+    "size": 601709,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\09a_Zhu_Toksoz_1996_author_technical_report.pdf",
+    "filename": "09a_Zhu_Toksoz_1996_author_technical_report.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\09a_Zhu_Toksoz_1996_author_technical_report.pdf",
+    "pages": 30,
+    "metadata_title": "",
+    "text_chars": 32817,
+    "est_tokens": 8204,
+    "encrypted": false
+  },
+  {
+    "hash": "eeef1837995fb3fe15c52efac9b2394ed9cf7a5df2f9d2a64dd1393750174229",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\09b_Zhu_et_al_1997_author_technical_report.pdf"
+    ],
+    "size": 463263,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\09b_Zhu_et_al_1997_author_technical_report.pdf",
+    "filename": "09b_Zhu_et_al_1997_author_technical_report.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\09b_Zhu_et_al_1997_author_technical_report.pdf",
+    "pages": 22,
+    "metadata_title": "",
+    "text_chars": 26614,
+    "est_tokens": 6653,
+    "encrypted": false
+  },
+  {
+    "hash": "ef70b9849584d391149c80473d79022e62da20e46f816a3dfdca47020706f1d1",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\10_Hu_2023_JGR_spectral_ratios.pdf"
+    ],
+    "size": 3870899,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\10_Hu_2023_JGR_spectral_ratios.pdf",
+    "filename": "10_Hu_2023_JGR_spectral_ratios.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\10_Hu_2023_JGR_spectral_ratios.pdf",
+    "pages": 29,
+    "metadata_title": "Water Table and Permeability Estimation From Multi‐Channel Seismoelectric Spectral Ratios",
+    "text_chars": 119924,
+    "est_tokens": 29981,
+    "encrypted": false
+  },
+  {
+    "hash": "ef50452b012159f631183d408935d96d1429a321f606957d48fe33748e237b24",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\12_Schakel_2012_fluid_porous_interface.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2012_Haines_Pride_seismoelectric_interface_response_model.pdf"
+    ],
+    "size": 325865,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\12_Schakel_2012_fluid_porous_interface.pdf",
+    "filename": "12_Schakel_2012_fluid_porous_interface.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\12_Schakel_2012_fluid_porous_interface.pdf",
+    "pages": 12,
+    "metadata_title": "",
+    "text_chars": 35181,
+    "est_tokens": 8795,
+    "encrypted": false
+  },
+  {
+    "hash": "b0c244a3af74c4d9124d48c5f2f4309edf2762559ebefdf2448d1e077270ddb9",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\18_Zhu_Burns_Toksoz_2008_water_tank.pdf"
+    ],
+    "size": 2401642,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\18_Zhu_Burns_Toksoz_2008_water_tank.pdf",
+    "filename": "18_Zhu_Burns_Toksoz_2008_water_tank.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\18_Zhu_Burns_Toksoz_2008_water_tank.pdf",
+    "pages": 25,
+    "metadata_title": "Microsoft Word - zhu_revised.doc",
+    "text_chars": 37809,
+    "est_tokens": 9452,
+    "encrypted": false
+  },
+  {
+    "hash": "1254c6c2bdc62ca2e1a3ae9df7035457c205b2ac402ded72e2707959cc1cc1b3",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\22_Wapenaar_2012_experimental_validation_interferometry.pdf"
+    ],
+    "size": 3687433,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\22_Wapenaar_2012_experimental_validation_interferometry.pdf",
+    "filename": "22_Wapenaar_2012_experimental_validation_interferometry.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\22_Wapenaar_2012_experimental_validation_interferometry.pdf",
+    "pages": 24,
+    "metadata_title": "",
+    "text_chars": 100902,
+    "est_tokens": 25225,
+    "encrypted": false
+  },
+  {
+    "hash": "cfed4677ecfc0c379e21e8ff18b20ba3b3544bca803dad54ddbb04c9ea8de584",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\23_Tardif_2011_frequency_dependent_Ottawa_sand.pdf"
+    ],
+    "size": 1684658,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\23_Tardif_2011_frequency_dependent_Ottawa_sand.pdf",
+    "filename": "23_Tardif_2011_frequency_dependent_Ottawa_sand.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\23_Tardif_2011_frequency_dependent_Ottawa_sand.pdf",
+    "pages": 15,
+    "metadata_title": "jb008053 1..15",
+    "text_chars": 53094,
+    "est_tokens": 13273,
+    "encrypted": false
+  },
+  {
+    "hash": "55839f4da85f814a1aecbe9b7041ac2b1eaa165e9132add9342dd03d77501094",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\25_Jouniaux_2020_frequency_dependent_permeability_streaming.pdf"
+    ],
+    "size": 3375124,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\25_Jouniaux_2020_frequency_dependent_permeability_streaming.pdf",
+    "filename": "25_Jouniaux_2020_frequency_dependent_permeability_streaming.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\25_Jouniaux_2020_frequency_dependent_permeability_streaming.pdf",
+    "pages": 29,
+    "metadata_title": "Experimental Measurement of Frequency-Dependent Permeability and Streaming Potential of Sandstones",
+    "text_chars": 73190,
+    "est_tokens": 18297,
+    "encrypted": false
+  },
+  {
+    "hash": "8f9393c5a90e67d644ac04c26f44aae52319c918e2b4232219cb54a3d78d41e9",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\27_Garambois_Dietrich_2002_full_waveform.pdf"
+    ],
+    "size": 2199718,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\27_Garambois_Dietrich_2002_full_waveform.pdf",
+    "filename": "27_Garambois_Dietrich_2002_full_waveform.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\27_Garambois_Dietrich_2002_full_waveform.pdf",
+    "pages": 19,
+    "metadata_title": "Full waveform numerical simulations of seismoelectromagnetic wave conversions in fluid‐saturated stratified porous media",
+    "text_chars": 78687,
+    "est_tokens": 19671,
+    "encrypted": false
+  },
+  {
+    "hash": "3895d145f398cc508b0b825b976acf1a109528c2a308fcbe72425e94d4af2bc0",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\31_Jouniaux_Zyserman_2016_seismoelectric_review.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2016_Jouniaux_Zyserman_review_seismo_electrics_electro_seismics.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Jouniaux_Zyserman_2016_SE_review.pdf"
+    ],
+    "size": 16406283,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\31_Jouniaux_Zyserman_2016_seismoelectric_review.pdf",
+    "filename": "31_Jouniaux_Zyserman_2016_seismoelectric_review.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\31_Jouniaux_Zyserman_2016_seismoelectric_review.pdf",
+    "pages": 36,
+    "metadata_title": "",
+    "text_chars": 174761,
+    "est_tokens": 43690,
+    "encrypted": false
+  },
+  {
+    "hash": "bb85a7da158ef5e9609aaad0047d2ee11ddf2d4965b0579fa8412fe2ec8d5b56",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\Seismoelectric interface electromagnetic wave characteristics for the finite offset Vertical Seismoelectric Profiling configuration_ Theoretical modeling and experiment verification.pdf"
+    ],
+    "size": 1712036,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\Seismoelectric interface electromagnetic wave characteristics for the finite offset Vertical Seismoelectric Profiling configuration_ Theoretical modeling and experiment verification.pdf",
+    "filename": "Seismoelectric interface electromagnetic wave characteristics for the finite offset Vertical Seismoelectric Profiling configuration_ Theoretical modeling and experiment verification.pdf",
+    "relative": "uploaded_files\\02_recent_seismoelectric_research_experiments_simulations\\Seismoelectric interface electromagnetic wave characteristics for the finite offset Vertical Seismoelectric Profiling configuration_ Theoretical modeling and experiment verification.pdf",
+    "pages": 7,
+    "metadata_title": "",
+    "text_chars": 23899,
+    "est_tokens": 5974,
+    "encrypted": false
+  },
+  {
+    "hash": "b7beb0bc37c4a9ffffb59e35e280869bf894e8bd3e8cc6977d28dad33c6db3d8",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\03_previous_reactive_transport_research\\29_Rembert_2022_calcite_reactive_transport_SP.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\SP_reactive_transport_calcite_dissolution_precipitation_2022.pdf"
+    ],
+    "size": 4370595,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\03_previous_reactive_transport_research\\29_Rembert_2022_calcite_reactive_transport_SP.pdf",
+    "filename": "29_Rembert_2022_calcite_reactive_transport_SP.pdf",
+    "relative": "uploaded_files\\03_previous_reactive_transport_research\\29_Rembert_2022_calcite_reactive_transport_SP.pdf",
+    "pages": 31,
+    "metadata_title": "Interpreting Self-Potential Signal during Reactive Transport: Application to Calcite Dissolution and Precipitation",
+    "text_chars": 93666,
+    "est_tokens": 23416,
+    "encrypted": false
+  },
+  {
+    "hash": "a0a9946d4ad597132b84c1bd97d98f946be86f1c083f61ee154e765b391b349a",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\03_previous_reactive_transport_research\\30_Soulaine_2017_pore_scale_dissolution_wormholing.pdf",
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Soulaine_et_al_2017_mineral_dissolution_wormholing.pdf"
+    ],
+    "size": 1482219,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\03_previous_reactive_transport_research\\30_Soulaine_2017_pore_scale_dissolution_wormholing.pdf",
+    "filename": "30_Soulaine_2017_pore_scale_dissolution_wormholing.pdf",
+    "relative": "uploaded_files\\03_previous_reactive_transport_research\\30_Soulaine_2017_pore_scale_dissolution_wormholing.pdf",
+    "pages": 27,
+    "metadata_title": "",
+    "text_chars": 83632,
+    "est_tokens": 20908,
+    "encrypted": false
+  },
+  {
+    "hash": "65d09cbea1073ca58796d072edc7f7c38800def7383b4fd8527f0ec82fc16d3f",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\03_previous_reactive_transport_research\\manuscript.pdf"
+    ],
+    "size": 2427139,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\03_previous_reactive_transport_research\\manuscript.pdf",
+    "filename": "manuscript.pdf",
+    "relative": "uploaded_files\\03_previous_reactive_transport_research\\manuscript.pdf",
+    "pages": 18,
+    "metadata_title": "",
+    "text_chars": 63026,
+    "est_tokens": 15756,
+    "encrypted": false
+  },
+  {
+    "hash": "ef59b62cf6c0f3c0b7b0b68a83ce99429d208e26a689f01b00906b92bbbbf6bd",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\03_previous_reactive_transport_research\\supporting information.pdf"
+    ],
+    "size": 6463411,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\03_previous_reactive_transport_research\\supporting information.pdf",
+    "filename": "supporting information.pdf",
+    "relative": "uploaded_files\\03_previous_reactive_transport_research\\supporting information.pdf",
+    "pages": 27,
+    "metadata_title": "",
+    "text_chars": 31371,
+    "est_tokens": 7842,
+    "encrypted": false
+  },
+  {
+    "hash": "d07f474139134cb1aa69530941c53655425cd9e42004b356445eae09daf40430",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2001_Reppert_Morgan_Lesmes_Jouniaux_frequency_dependent_streaming_potentials.pdf"
+    ],
+    "size": 126026,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2001_Reppert_Morgan_Lesmes_Jouniaux_frequency_dependent_streaming_potentials.pdf",
+    "filename": "2001_Reppert_Morgan_Lesmes_Jouniaux_frequency_dependent_streaming_potentials.pdf",
+    "relative": "uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2001_Reppert_Morgan_Lesmes_Jouniaux_frequency_dependent_streaming_potentials.pdf",
+    "pages": 10,
+    "metadata_title": "Frequency-Dependent Streaming Potentials",
+    "text_chars": 39794,
+    "est_tokens": 9948,
+    "encrypted": true
+  },
+  {
+    "hash": "a43cf01f943e5a0deb103b206ef632754941c3e24e485221e72df5f8f899d5cc",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2003_Zhu_Toksoz_effects_saturant_conductivity_seismoelectric_conversion.pdf"
+    ],
+    "size": 159693,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2003_Zhu_Toksoz_effects_saturant_conductivity_seismoelectric_conversion.pdf",
+    "filename": "2003_Zhu_Toksoz_effects_saturant_conductivity_seismoelectric_conversion.pdf",
+    "relative": "uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2003_Zhu_Toksoz_effects_saturant_conductivity_seismoelectric_conversion.pdf",
+    "pages": 8,
+    "metadata_title": "",
+    "text_chars": 47278,
+    "est_tokens": 11819,
+    "encrypted": false
+  },
+  {
+    "hash": "2bc22394d9749eeffbfd407c11dfb45d8991b17e8356b1dde8935a7676684833",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2016_IFP_whitepaper_seismo_electromagnetic_method.pdf"
+    ],
+    "size": 1308997,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2016_IFP_whitepaper_seismo_electromagnetic_method.pdf",
+    "filename": "2016_IFP_whitepaper_seismo_electromagnetic_method.pdf",
+    "relative": "uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2016_IFP_whitepaper_seismo_electromagnetic_method.pdf",
+    "pages": 14,
+    "metadata_title": "",
+    "text_chars": 30556,
+    "est_tokens": 7639,
+    "encrypted": true
+  },
+  {
+    "hash": "dc209af46a701b230d89039fa0b0c75b63b4b199229e8caa3c6a8e8279431873",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2018_Glover_Walker_modelling_pH_microstructure_streaming_zeta_potentials.pdf"
+    ],
+    "size": 3655502,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2018_Glover_Walker_modelling_pH_microstructure_streaming_zeta_potentials.pdf",
+    "filename": "2018_Glover_Walker_modelling_pH_microstructure_streaming_zeta_potentials.pdf",
+    "relative": "uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2018_Glover_Walker_modelling_pH_microstructure_streaming_zeta_potentials.pdf",
+    "pages": 26,
+    "metadata_title": "Modelling pH-Dependent and Microstructure-Dependent Streaming Potential Coefficient and Zeta Potential of Porous Sandstones",
+    "text_chars": 66248,
+    "est_tokens": 16562,
+    "encrypted": false
+  },
+  {
+    "hash": "da62c11d3ff3c30394050cbed7c5334855453c7434e8c2c7a32417e63afd2532",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2018_Walker_Glover_microstructure_pH_streaming_zeta_potentials_sandstones.pdf"
+    ],
+    "size": 3395017,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2018_Walker_Glover_microstructure_pH_streaming_zeta_potentials_sandstones.pdf",
+    "filename": "2018_Walker_Glover_microstructure_pH_streaming_zeta_potentials_sandstones.pdf",
+    "relative": "uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2018_Walker_Glover_microstructure_pH_streaming_zeta_potentials_sandstones.pdf",
+    "pages": 24,
+    "metadata_title": "Measurements of the Relationship Between Microstructure, pH, and the Streaming and Zeta Potentials of Sandstones",
+    "text_chars": 64711,
+    "est_tokens": 16177,
+    "encrypted": false
+  },
+  {
+    "hash": "4a5564f18f465928bbd9ba4af8db823d9f9cd282c83882a796002bdc29fe75e0",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2020_Peng_Di_Glover_seismo_electric_conversion_shale.pdf"
+    ],
+    "size": 2486340,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2020_Peng_Di_Glover_seismo_electric_conversion_shale.pdf",
+    "filename": "2020_Peng_Di_Glover_seismo_electric_conversion_shale.pdf",
+    "relative": "uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2020_Peng_Di_Glover_seismo_electric_conversion_shale.pdf",
+    "pages": 44,
+    "metadata_title": "Seismo-electric conversion in shale: experiment and analytical modelling",
+    "text_chars": 100038,
+    "est_tokens": 25009,
+    "encrypted": false
+  },
+  {
+    "hash": "5e429f444ace07f3debccba0c1c8aefa76f40bf7650c69c0286e53d9387a1086",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2026_Glover_temperature_salinity_pH_electrokinetic_properties_porous_media_AAM.pdf"
+    ],
+    "size": 2028938,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2026_Glover_temperature_salinity_pH_electrokinetic_properties_porous_media_AAM.pdf",
+    "filename": "2026_Glover_temperature_salinity_pH_electrokinetic_properties_porous_media_AAM.pdf",
+    "relative": "uploaded_files\\literature_review\\conductivity_electrolyte_seismoelectric\\2026_Glover_temperature_salinity_pH_electrokinetic_properties_porous_media_AAM.pdf",
+    "pages": 48,
+    "metadata_title": "Modified theoretical model for temperature-dependent electro-kinetic properties of porous media",
+    "text_chars": 101720,
+    "est_tokens": 25430,
+    "encrypted": false
+  },
+  {
+    "hash": "2b3c33f406cae0171e94ce2e6e645b583d592e0ade93026bff717c379d9855d2",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Pore_merging_reactive_transport_mineral_dissolution_2021.pdf"
+    ],
+    "size": 6755274,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Pore_merging_reactive_transport_mineral_dissolution_2021.pdf",
+    "filename": "Pore_merging_reactive_transport_mineral_dissolution_2021.pdf",
+    "relative": "uploaded_files\\literature_review\\Pore_merging_reactive_transport_mineral_dissolution_2021.pdf",
+    "pages": 16,
+    "metadata_title": "Pore-merging methodology for reactive transport and mineral dissolution in pore-network models",
+    "text_chars": 85223,
+    "est_tokens": 21305,
+    "encrypted": false
+  },
+  {
+    "hash": "ecbb70e3a9043170d1e69245f4aba9c8bfcc3ae33414fbcd595e7662ac60c577",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Pride_1994_governing_equations.pdf"
+    ],
+    "size": 2793691,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\Pride_1994_governing_equations.pdf",
+    "filename": "Pride_1994_governing_equations.pdf",
+    "relative": "uploaded_files\\literature_review\\Pride_1994_governing_equations.pdf",
+    "pages": 19,
+    "metadata_title": "",
+    "text_chars": 0,
+    "est_tokens": 17100,
+    "encrypted": false
+  },
+  {
+    "hash": "0dd101b50d7d8abb5a85c502f1e1ec43f1b28f0a6ad15152e9528b986eb9381f",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2007_Revil_Linde_Cerepi_electrokinetic_coupling_unsaturated_porous_media.pdf"
+    ],
+    "size": 816318,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2007_Revil_Linde_Cerepi_electrokinetic_coupling_unsaturated_porous_media.pdf",
+    "filename": "2007_Revil_Linde_Cerepi_electrokinetic_coupling_unsaturated_porous_media.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2007_Revil_Linde_Cerepi_electrokinetic_coupling_unsaturated_porous_media.pdf",
+    "pages": 45,
+    "metadata_title": "Paper-v7",
+    "text_chars": 59267,
+    "est_tokens": 14816,
+    "encrypted": false
+  },
+  {
+    "hash": "b5fdf19378bb124d847de2459ef07518969e1c82c281ed42da5b8b6533fb1d24",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2010_Jardani_Revil_Slob_Sollner_stochastic_joint_inversion_Geophysics.pdf"
+    ],
+    "size": 720998,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2010_Jardani_Revil_Slob_Sollner_stochastic_joint_inversion_Geophysics.pdf",
+    "filename": "2010_Jardani_Revil_Slob_Sollner_stochastic_joint_inversion_Geophysics.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2010_Jardani_Revil_Slob_Sollner_stochastic_joint_inversion_Geophysics.pdf",
+    "pages": 13,
+    "metadata_title": "Stochastic joint inversion of 2D seismic and seismoelectric signals in linear poroelastic materials: A numerical investigation",
+    "text_chars": 78085,
+    "est_tokens": 19521,
+    "encrypted": false
+  },
+  {
+    "hash": "504667876730f67e75f61b77a67df15bd6ec03d675973ea1f75164cb840d1709",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2010_Revil_Jardani_seismoelectric_response_heavy_oil_reservoirs.pdf"
+    ],
+    "size": 538557,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2010_Revil_Jardani_seismoelectric_response_heavy_oil_reservoirs.pdf",
+    "filename": "2010_Revil_Jardani_seismoelectric_response_heavy_oil_reservoirs.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2010_Revil_Jardani_seismoelectric_response_heavy_oil_reservoirs.pdf",
+    "pages": 17,
+    "metadata_title": "gji_4439_LR",
+    "text_chars": 74747,
+    "est_tokens": 18686,
+    "encrypted": false
+  },
+  {
+    "hash": "62fca4b81e5c03154720b85b4e346df366b75cbc17c9c61a84499d9c5423c410",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2012_Araji_Revil_Jardani_Minsley_crosshole_seismoelectric_tomography_GJI.pdf"
+    ],
+    "size": 4920844,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2012_Araji_Revil_Jardani_Minsley_crosshole_seismoelectric_tomography_GJI.pdf",
+    "filename": "2012_Araji_Revil_Jardani_Minsley_crosshole_seismoelectric_tomography_GJI.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2012_Araji_Revil_Jardani_Minsley_crosshole_seismoelectric_tomography_GJI.pdf",
+    "pages": 18,
+    "metadata_title": "Imaging with crosshole seismoelectric tomography",
+    "text_chars": 69795,
+    "est_tokens": 17448,
+    "encrypted": false
+  },
+  {
+    "hash": "3b9d77f90f8ff70ca2d67a275e4bba8e5ce5725c4f4e8887fdd2a9d41a075828",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2012_Sava_Revil_virtual_electrode_current_injection.pdf"
+    ],
+    "size": 911076,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2012_Sava_Revil_virtual_electrode_current_injection.pdf",
+    "filename": "2012_Sava_Revil_virtual_electrode_current_injection.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2012_Sava_Revil_virtual_electrode_current_injection.pdf",
+    "pages": 5,
+    "metadata_title": "Virtual electrode current injection using seismic focusing and seismoelectric conversion",
+    "text_chars": 24399,
+    "est_tokens": 6099,
+    "encrypted": false
+  },
+  {
+    "hash": "62df23bc14ce3ab5b482e56d976ed6f780a861582653569f7f6284ecbd301869",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2013_Mahardika_Revil_water_oil_boundary_SEG.pdf"
+    ],
+    "size": 779889,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2013_Mahardika_Revil_water_oil_boundary_SEG.pdf",
+    "filename": "2013_Mahardika_Revil_water_oil_boundary_SEG.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2013_Mahardika_Revil_water_oil_boundary_SEG.pdf",
+    "pages": 6,
+    "metadata_title": "Seismoelectric conversion generated from water-oil boundary in unsaturated porous media",
+    "text_chars": 20324,
+    "est_tokens": 5081,
+    "encrypted": false
+  },
+  {
+    "hash": "4e5311b11b5d891abca98ce791ecd1287b3999b5d5fda45b80f3f2423cfea696",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2013_Revil_Mahardika_coupled_hydromechanical_electromagnetic_unsaturated.pdf"
+    ],
+    "size": 9554917,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2013_Revil_Mahardika_coupled_hydromechanical_electromagnetic_unsaturated.pdf",
+    "filename": "2013_Revil_Mahardika_coupled_hydromechanical_electromagnetic_unsaturated.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2013_Revil_Mahardika_coupled_hydromechanical_electromagnetic_unsaturated.pdf",
+    "pages": 23,
+    "metadata_title": "Coupled hydromechanical and electromagnetic disturbances in unsaturated porous materials",
+    "text_chars": 95853,
+    "est_tokens": 23963,
+    "encrypted": false
+  },
+  {
+    "hash": "bee4da5d1a4d1fbb6496b63d44a13b650ed932b2f9a13b9295b2afaf7ca10eda",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2014_Revil_Barnier_Karaoulis_Sava_unsaturated_porous_media.pdf"
+    ],
+    "size": 8985744,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2014_Revil_Barnier_Karaoulis_Sava_unsaturated_porous_media.pdf",
+    "filename": "2014_Revil_Barnier_Karaoulis_Sava_unsaturated_porous_media.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2014_Revil_Barnier_Karaoulis_Sava_unsaturated_porous_media.pdf",
+    "pages": 18,
+    "metadata_title": "",
+    "text_chars": 71483,
+    "est_tokens": 17870,
+    "encrypted": false
+  },
+  {
+    "hash": "837e21fb48ea6873e2cedc3cb6bc2bb7f0f64ba63ed181dfe4e979f84794f97b",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2014_Sava_Revil_Karaoulis_crosswell_resistivity_seismoelectric_focusing.pdf"
+    ],
+    "size": 4874045,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2014_Sava_Revil_Karaoulis_crosswell_resistivity_seismoelectric_focusing.pdf",
+    "filename": "2014_Sava_Revil_Karaoulis_crosswell_resistivity_seismoelectric_focusing.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2014_Sava_Revil_Karaoulis_crosswell_resistivity_seismoelectric_focusing.pdf",
+    "pages": 15,
+    "metadata_title": "Print",
+    "text_chars": 54167,
+    "est_tokens": 13541,
+    "encrypted": false
+  },
+  {
+    "hash": "699af2561529d1e66635658fca31f91b043e82bd05fdd3bb059a40eb4f23075f",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2015_ElKhoury_Revil_Sava_seismoelectric_beamforming_sensitivity.pdf"
+    ],
+    "size": 9811668,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2015_ElKhoury_Revil_Sava_seismoelectric_beamforming_sensitivity.pdf",
+    "filename": "2015_ElKhoury_Revil_Sava_seismoelectric_beamforming_sensitivity.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2015_ElKhoury_Revil_Sava_seismoelectric_beamforming_sensitivity.pdf",
+    "pages": 20,
+    "metadata_title": "",
+    "text_chars": 60974,
+    "est_tokens": 15243,
+    "encrypted": false
+  },
+  {
+    "hash": "b02cb5b2555d592a43969b47a64250c2a52540703869a473363989fd4a8f89c2",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2015_Jardani_Revil_two_immiscible_fluid_phases.pdf"
+    ],
+    "size": 1718991,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2015_Jardani_Revil_two_immiscible_fluid_phases.pdf",
+    "filename": "2015_Jardani_Revil_two_immiscible_fluid_phases.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2015_Jardani_Revil_two_immiscible_fluid_phases.pdf",
+    "pages": 21,
+    "metadata_title": "",
+    "text_chars": 71793,
+    "est_tokens": 17948,
+    "encrypted": false
+  },
+  {
+    "hash": "41138bde85b8c33d8d6e2667d7e1eae997887aa94dfb50f8feac1cfb92acd06b",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2020_Grobbe_et_al_Seismoelectric_Exploration_chp1-2.pdf"
+    ],
+    "size": 1634839,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2020_Grobbe_et_al_Seismoelectric_Exploration_chp1-2.pdf",
+    "filename": "2020_Grobbe_et_al_Seismoelectric_Exploration_chp1-2.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2020_Grobbe_et_al_Seismoelectric_Exploration_chp1-2.pdf",
+    "pages": 43,
+    "metadata_title": "",
+    "text_chars": 160139,
+    "est_tokens": 40034,
+    "encrypted": false
+  },
+  {
+    "hash": "b4e3127060b00dcb68994c5e8c3c4802f5f4315ad7c00d03ea7e4e1a780dba78",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2020_Grobbe_et_al_Seismoelectric_Exploration_full_book.pdf"
+    ],
+    "size": 65444980,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\literature_review\\revil_seismoelectric\\2020_Grobbe_et_al_Seismoelectric_Exploration_full_book.pdf",
+    "filename": "2020_Grobbe_et_al_Seismoelectric_Exploration_full_book.pdf",
+    "relative": "uploaded_files\\literature_review\\revil_seismoelectric\\2020_Grobbe_et_al_Seismoelectric_Exploration_full_book.pdf",
+    "pages": 472,
+    "metadata_title": "",
+    "text_chars": 1848138,
+    "est_tokens": 462034,
+    "encrypted": false
+  },
+  {
+    "hash": "25b442c3e4d4d32c463b04854637d66c34ecb21398f9070f3cc2b452fb8cae45",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\zeta-calcite\\JGR Solid Earth - 2019 - Cherubini - Influence of CO2 on the Electrical Conductivity and Streaming Potential of Carbonate.pdf"
+    ],
+    "size": 10094046,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\zeta-calcite\\JGR Solid Earth - 2019 - Cherubini - Influence of CO2 on the Electrical Conductivity and Streaming Potential of Carbonate.pdf",
+    "filename": "JGR Solid Earth - 2019 - Cherubini - Influence of CO2 on the Electrical Conductivity and Streaming Potential of Carbonate.pdf",
+    "relative": "uploaded_files\\zeta-calcite\\JGR Solid Earth - 2019 - Cherubini - Influence of CO2 on the Electrical Conductivity and Streaming Potential of Carbonate.pdf",
+    "pages": 18,
+    "metadata_title": "Influence of CO2 on the Electrical Conductivity and Streaming Potential of Carbonate Rocks",
+    "text_chars": 72760,
+    "est_tokens": 18190,
+    "encrypted": false
+  },
+  {
+    "hash": "fc5399675feb5a74468590cff8ede150245ea86289e4332d3c6cae9cad345e13",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\zeta-calcite\\Zeta potential of artifi cial and natural calcite in aqueous solution.pdf"
+    ],
+    "size": 1092341,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\zeta-calcite\\Zeta potential of artifi cial and natural calcite in aqueous solution.pdf",
+    "filename": "Zeta potential of artifi cial and natural calcite in aqueous solution.pdf",
+    "relative": "uploaded_files\\zeta-calcite\\Zeta potential of artifi cial and natural calcite in aqueous solution.pdf",
+    "pages": 17,
+    "metadata_title": "Zeta potential of artificial and natural calcite in aqueous solution",
+    "text_chars": 106925,
+    "est_tokens": 26731,
+    "encrypted": false
+  },
+  {
+    "hash": "39c86fd8229078beadf785669a725f939005b6eabf8d1eb9f78d9f085ffe3cb7",
+    "paths": [
+      "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\zeta-calcite\\Zeta Potential of Intact Natural Limestone.pdf"
+    ],
+    "size": 555753,
+    "primary_path": "C:\\Users\\imgw\\Documents\\Codex\\震电模拟\\uploaded_files\\zeta-calcite\\Zeta Potential of Intact Natural Limestone.pdf",
+    "filename": "Zeta Potential of Intact Natural Limestone.pdf",
+    "relative": "uploaded_files\\zeta-calcite\\Zeta Potential of Intact Natural Limestone.pdf",
+    "pages": 51,
+    "metadata_title": "",
+    "text_chars": 80632,
+    "est_tokens": 20158,
+    "encrypted": false
+  }
+]
