@@ -1,0 +1,57 @@
+{
+  "output": "C:\\Users\\imgw\\Documents\\Codex\\gpt项目管理\\NMR\\gpt项目布局",
+  "bundles": [
+    {
+      "file": "01_NMR_application_general.pdf",
+      "pages": 159,
+      "token_est": 200822,
+      "bytes": 49618743
+    },
+    {
+      "file": "02_NMR_application_pore_coupling.pdf",
+      "pages": 65,
+      "token_est": 65997,
+      "bytes": 11514120
+    },
+    {
+      "file": "03_NMR_measurement_modeling_2D_maps.pdf",
+      "pages": 207,
+      "token_est": 88119,
+      "bytes": 17062937
+    },
+    {
+      "file": "04_NMR_simulation_echo_FEM_LBM.pdf",
+      "pages": 183,
+      "token_est": 166028,
+      "bytes": 51303598
+    },
+    {
+      "file": "05_NMR_simulation_machine_learning_matrix.pdf",
+      "pages": 153,
+      "token_est": 151412,
+      "bytes": 18955845
+    },
+    {
+      "file": "06_NMR_simulation_random_walk.pdf",
+      "pages": 382,
+      "token_est": 248132,
+      "bytes": 39068839
+    },
+    {
+      "file": "07_NMR_theory_review_core.pdf",
+      "pages": 241,
+      "token_est": 228887,
+      "bytes": 33369063
+    },
+    {
+      "file": "08_NMR_theory_review_books_Coates_Dunn.pdf",
+      "pages": 543,
+      "token_est": 142582,
+      "bytes": 22630610
+    }
+  ],
+  "included_unique_pdfs": 91,
+  "valid_pdfs": 95,
+  "duplicates_skipped": 4,
+  "invalid_skipped": 23
+}
