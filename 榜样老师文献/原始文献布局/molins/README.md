@@ -5,12 +5,12 @@ Sergi Molins（Lawrence Berkeley National Laboratory）一组的四篇论文，�
 
 ## 一览
 
-| 文件（论文名称） | 年份 / 期刊 | 我的印象 |
-|---|---|---|
-| An investigation of the effect of pore scale flow on average geochemical reaction rates using direct numerical simulation | 2012, WRR | Molins 把孔隙尺度代码（Chombo）和真实化学反应库（CrunchFlow）耦合起来的奠基论文 |
-| Mineralogical and transport controls on the evolution of porous media texture using direct numerical simulation | 2017, WRR | 在 2012 代码基础上加入颗粒几何演化、用完整化学做的代码；我们正在复现的就是这篇 |
-| Simulation of mineral dissolution at the pore scale with evolving fluid-solid interfaces: review of approaches and benchmark problem set | 2021, Comput. Geosci. | Molins 牵头的基准集合：多种方法 + 一阶线性反应速率 + 一个实验；我们的 TST 线性速率与它最对应 |
-| Determination of mineral dissolution regimes using flow-through time-resolved analysis (FT-TRA) and numerical simulation | 2016, Chem. Geol. | 实验论文：UBC 做单颗方解石流通实验，Molins 用他自己的孔隙尺度模型做三维模拟去拟合 |
+| 文件（论文名称） | 年份 / 期刊 | 我的印象 | PDF |
+|---|---|---|---|
+| An investigation of the effect of pore scale flow on average geochemical reaction rates using direct numerical simulation | 2012, WRR | Molins 把孔隙尺度代码（Chombo）和真实化学反应库（CrunchFlow）耦合起来的奠基论文 | [PDF](./Water%20Resources%20Research%20-%202012%20-%20Molins%20-%20An%20investigation%20of%20the%20effect%20of%20pore%20scale%20flow%20on%20average%20geochemical.pdf) |
+| Mineralogical and transport controls on the evolution of porous media texture using direct numerical simulation | 2017, WRR | 在 2012 代码基础上加入颗粒几何演化、用完整化学做的代码；我们正在复现的就是这篇 | [PDF](./Water%20Resources%20Research%20-%202017%20-%20Molins%20-%20Mineralogical%20and%20transport%20controls%20on%20the%20evolution%20of%20porous%20media%20texture.pdf) |
+| Simulation of mineral dissolution at the pore scale with evolving fluid-solid interfaces: review of approaches and benchmark problem set | 2021, Comput. Geosci. | Molins 牵头的基准集合：多种方法 + 一阶线性反应速率 + 一个实验；我们的 TST 线性速率与它最对应 | [PDF](./Simulation%20of%20mineral%20dissolution%20at%20the%20pore%20scale%20with%20evolving%20fluid-solid%20interfaces%20review%20of%20approaches%20and%20benchmark%20problem%20set.pdf) |
+| Determination of mineral dissolution regimes using flow-through time-resolved analysis (FT-TRA) and numerical simulation | 2016, Chem. Geol. | 实验论文：UBC 做单颗方解石流通实验，Molins 用他自己的孔隙尺度模型做三维模拟去拟合 | [PDF](./Determination%20of%20mineral%20dissolution%20regimes%20using%20flow-throughtime-resolved%20analysis%20%28FT-TRA%29%20and%20numerical%20simulation.pdf) |
 
 ## 逐篇说明
 

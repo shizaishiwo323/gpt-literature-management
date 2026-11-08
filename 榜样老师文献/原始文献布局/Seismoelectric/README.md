@@ -5,13 +5,13 @@
 
 ## 一览
 
-| 文件（论文名称） | 年份 / 期刊 | 我的印象 |
-|---|---|---|
-| Governing equations for the coupled electromagnetics and acoustics of porous media | 1994, Phys. Rev. B | 震电效应中 Pride 理论的基石论文 |
-| Electroseismic wave properties | 1996, JASA | 震电效应中 Pride 理论的基石论文 |
-| Seismoelectric reflection and transmission at a fluid/porous-medium interface | 2010, JASA | 刘老师数值模拟所使用的理论公式的来源 |
-| Laboratory measurements and theoretical modeling of seismoelectric interface response and coseismic wave fields | 2011, J. Appl. Phys. | Schakel 2011 实验和模拟的论文，适合做基石 |
-| Seismoelectric interface electromagnetic wave characteristics for the finite offset Vertical Seismoelectric Profiling configuration: Theoretical modeling and experiment verification | 2018, JASA | 刘老师的数值模拟工作和实验工作，是我复现的来源 |
+| 文件（论文名称） | 年份 / 期刊 | 我的印象 | PDF |
+|---|---|---|---|
+| Governing equations for the coupled electromagnetics and acoustics of porous media | 1994, Phys. Rev. B | 震电效应中 Pride 理论的基石论文 | [PDF](./Governing%20equations%20for%20the%20coupled%20electromagnetics%20and%20acoustics%20of%20porous%20media.pdf) |
+| Electroseismic wave properties | 1996, JASA | 震电效应中 Pride 理论的基石论文 | [PDF](./Electroseismic%20wave%20properties.pdf) |
+| Seismoelectric reflection and transmission at a fluid/porous-medium interface | 2010, JASA | 刘老师数值模拟所使用的理论公式的来源 | [PDF](./Seismoelectric%20reflection%20and%20transmission%20at%20a%20fluid_porous-medium%20interface.pdf) |
+| Laboratory measurements and theoretical modeling of seismoelectric interface response and coseismic wave fields | 2011, J. Appl. Phys. | Schakel 2011 实验和模拟的论文，适合做基石 | [PDF](./Laboratory%20measurements%20and%20theoretical%20modeling%20of%20seismoelectric%20interface%20response%20and%20coseismic%20wave%20fields.pdf) |
+| Seismoelectric interface electromagnetic wave characteristics for the finite offset Vertical Seismoelectric Profiling configuration: Theoretical modeling and experiment verification | 2018, JASA | 刘老师的数值模拟工作和实验工作，是我复现的来源 | [PDF](./Seismoelectric%20interface%20electromagnetic%20wave%20characteristics%20for%20the%20finite%20offset%20Vertical%20Seismoelectric%20Profiling%20configuration_%20Theoretical%20modeling%20and%20experiment%20verification.pdf) |
 
 ## 逐篇说明
 
