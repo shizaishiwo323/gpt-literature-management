@@ -1,0 +1,630 @@
+RESEARCH LETTER                            Bubble Coarsening Kinetics in Porous Media
+10.1029/2022GL100757
+                                           Yuehongjiang Yu1, Chuanxi Wang1            , Junning Liu2, Sheng Mao2, Yashar Mehmani3, and Ke Xu1,4
+Yuehongjiang Yu and Chuanxi Wang
+contributed equally to this work.
+                                           1
+                                            Department of Energy and Resources Engineering, College of Engineering, Peking University, Beijing, China, 2Department
+                                           of Mechanics and Engineering Sciences, College of Engineering, Peking University, Beijing, China, 3Department of Energy
+Key Points:                                and Mineral Engineering, The Pennsylvania State University, University Park, PA, USA, 4Institute of Energy, Peking
+• B ubbles in subsurface porous media     University, Beijing, China
+   coarsen toward equilibrium, which
+   modifies local thermodynamics,
+   transport, and reactive properties      Abstract Bubbles in subsurface porous media spontaneously coarsen to reduce free energy. Bubble
+• Classical Lifshitz-Slyozov-Wagner       coarsening dramatically changes surface area and pore occupancy, which affect the hydraulic conductivity,
+   theory fails for bubbles coarsening
+   in porous media, as porous geometry
+                                           mass and heat transfer coefficients, and chemical reactions. Coarsening kinetics in porous media is thus critical
+   reshapes the concentration profile      in modeling geologic CO2 sequestration, hydrogen subsurface storage, hydrate reservoir recovery, and other
+• A new theory is derived that predicts   relevant geophysical problems. We show that bubble coarsening kinetics in porous media fundamentally
+   the bubble population evolution
+   during coarsening, which helps in
+                                           deviates from classical Lifshitz-Slyozov-Wagner theory, because porous structure quantizes the space and
+   modeling complex subsurface flow        rescales the mass transfer coefficient. We develop a new coarsening theory that agrees well with numerical
+                                           simulations. We identify a pseudo-equilibrium time proportional to the cubic of pore size. In a typical CO2
+Supporting Information:                    sequestration scenario, local equilibrium can be achieved in 1s for media consisting of sub-micron pores, while
+Supporting Information may be found in     in decades for media consisting of 1 mm pores. This work provides new insights in modeling complex fluid
+the online version of this article.        behaviors in subsurface environment.
+
+Correspondence to:                         Plain Language Summary In modeling fluid behaviors during geologic CO2 sequestration,
+K. Xu,                                     hydrogen subsurface storage, hydrocarbon recovery and magma kinetics, the evolution of bubbles in subsurface
+kexu1989@pku.edu.cn                        porous media should be resolved to quantify hydraulic conductivity, mass and heat transfer coefficients, and
+                                           reactional surface area. However, classical Lifshitz-Slyozov-Wagner theory qualitatively fails to predict bubbles'
+Citation:                                  coarsening kinetics, as porous structure fundamentally reshapes the mass transfer pattern. A new coarsening
+Yu, Y., Wang, C., Liu, J., Mao, S.,        theory is derived that perfectly matches numerical simulation. The evolution of free energy, pore occupancy,
+Mehmani, Y., & Xu, K. (2023).
+Bubble coarsening kinetics in porous
+                                           and surface area can be predicted, and an equilibrium time is identified that determines the validity of the
+media. Geophysical Research Letters,       local thermodynamic equilibrium presumption. This work helps to model complex fluid behaviors in many
+50, e2022GL100757. https://doi.            geophysical applications.
+org/10.1029/2022GL100757
+
+Received 6 AUG 2022
+Accepted 16 DEC 2022
+                                           1. Introduction
+                                           Trapped bubbles are ubiquitous in natural subsurface porous strata. Since they block a portion of the void space
+Author Contributions:                      and contribute significant fluid–fluid interfacial area, they can have a sizable impact on the hydraulic conductiv-
+Conceptualization: Ke Xu                   ity (Anton & Hilfer, 1999; Bear, 1996), mass and heat transfer coefficients (Ehlers & Häberle, 2016; Ozgumus &
+Formal analysis: Yuehongjiang Yu,
+                                           Mobedi, 2015), and chemical reaction rate (Lay et al., 1996; Yortsos & Stubos, 2001) in a porous medium. As a
+Ke Xu
+Funding acquisition: Ke Xu                 result, the distribution and morphology of a population of bubbles are of significant interest in oil and gas recov-
+Investigation: Yuehongjiang Yu,            ery (Gao et al., 2021; Geistlinger et al., 2015; A. Mehmani et al., 2019) and geologic CO2 storage (Fu et al., 2013;
+Chuanxi Wang, Ke Xu
+                                           Huppert & Neufeld, 2014; Joewondo et al., 2021; Juanes et al., 2006; Li et al., 2020; Lyu et al., 2021).
+Methodology: Ke Xu
+Project Administration: Ke Xu
+                                           After bubbles emerge after direct gas injection, heating, depressurization, or chemical reactions (Danov
+Software: Junning Liu, Sheng Mao,
+Yashar Mehmani                             et al., 2003; Holocher et al., 2003; Lay et al., 1996; Yortsos & Stubos, 2001), they are not immediately at equilib-
+Supervision: Ke Xu                         rium, and would spontaneously evolve via ripening to reduce total free energy. Ripening is the process by which
+Visualization: Yuehongjiang Yu,
+                                           bubbles with a high capillary pressure (Pc) dissolve into the wetting phase and transfer their mass, by molecu-
+Chuanxi Wang, Junning Liu
+                                           lar diffusion, to bubbles with a low Pc. No external forcing is required. An initial distribution of bubbles with
+                                           different sizes will therefore evolve toward a new distribution that has minimum interfacial free energy (Wang
+                                           et al., 2021). For example, when bubbles are spherical, capillary pressure follows
+                                                                                                                            𝐴𝐴      𝐴𝐴𝑐𝑐 = 2𝜎𝜎∕𝑅𝑅, where
+                                                                                                                                                   𝐴𝐴    𝐴𝐴 is the
+© 2022. The Authors.
+This is an open access article under       surface tension𝐴𝐴 and 𝐴𝐴 is the radius of the bubble. This means smaller bubbles have a larger capillary pressure. As
+the terms of the Creative Commons          a result, the ripening of spherical bubbles leads to coarsening, a process where small bubbles dissolve and feed
+Attribution License, which permits use,    into large bubbles. In bulk fluids (Figure 1a), coarsening is unabated and continues until all bubbles merge into
+distribution and reproduction in any
+medium, provided the original work is      one. For an infinitely sparse bubble population, the ripening kinetics are predicted by the Lifshitz-Slyozov-Wagner
+properly cited.                            (LSW) theory (Lifshitz & Slyozov, 1961; Voorhees, 1985; Wagner, 1961), which states that the average bubble
+
+
+YU ET AL.                                                                                                                                                    1 of 9
+                                                                                                                                                                   19448007, 2023, 1, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL100757, Wiley Online Library on [08/02/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                             Geophysical Research Letters                                                      10.1029/2022GL100757
+
+
+Writing – original draft: Yuehongjiang   radius (rc) scales with time 𝐴𝐴(t) as 𝐴𝐴3𝑐𝑐 ∼ 𝑡𝑡. Note that the classical LSW theory only deals with ripening in three
+Yu, Chuanxi Wang
+Writing – review & editing: Yashar
+                                         dimensions. In two dimensions, nevertheless, similar scaling is also derived (Bray, 2002; Rogers & Desai, 1989;
+Mehmani, Ke Xu                           Yao et al., 1993). Moreover, each bubble transfers mass with the surrounding mean field (Bray, 2002; Lifshitz &
+                                         Slyozov, 1961; Yao et al., 1993) as follows:
+                                                            (         )
+                                         𝑑𝑑𝑑𝑑                  1    1
+                                         (1)  = 𝐶𝐶LSW 𝑅𝑅𝑅𝑅       −     ,
+                                          𝑑𝑑𝑑𝑑                𝑅𝑅𝑐𝑐 𝑅𝑅
+
+                                         where
+                                         𝐴𝐴     𝐴𝐴LSW = 8𝜋𝜋𝜋𝜋𝜋𝜋∞ 𝐷𝐷∕𝑘𝑘𝐵𝐵 𝑇𝑇 is a constant that contains the atomic volume ν of the solute, the concentration
+                                         of the saturated solution
+                                                            𝐴𝐴      𝐴𝐴∞, the diffusivity of the solute in the solution D, the Boltzmann constant kB, and the
+                                         temperature T. Equation (1) implies that the driving force 𝐴𝐴 is 𝐴𝐴(1∕𝑅𝑅𝑐𝑐 − 1∕𝑅𝑅) and the characteristic mass transfer
+                                            𝐴𝐴 is 𝐴𝐴. Note that for a dissolving bubble, the driving force increases while simultaneously the characteristic
+                                         length
+                                         length decreases.
+
+                                         In a porous medium, however, the bubble size and the mass transfer length are decoupled. Figures 1b and 1c
+                                         shows the void space can be divided into chambers, or pores, connected by converging-diverging segments, or
+                                         throats. Collectively, these define a graph of admissible diffusion pathways for the dissolved solute. The concen-
+                                         tration of the solute in each pore is approximately uniform, because of the larger mass transfer resistance imposed
+                                         by the surrounding throats (Y. Mehmani et al., 2014). The characteristic length associated with mass transport
+                                         is therefore dictated by the lattice spacing, L0. Due to the decoupling of bubble size from mass transfer length,
+                                         LSW theory and Equation (1) become invalid for porous-media applications. Simple remedies of correcting the
+                                         diffusion coefficient, as done by earlier works (Schmelzer et al., 1995; Slezov et al., 1993), fall inadequate. A new
+                                         theory is required to capture the physics of bubble coarsening in porous media.
+
+                                         In this letter, we aim at (a) numerically demonstrating and rationalizing the failure of LSW theory for bubble
+                                         coarsening in porous media; (b) theoretically deriving kinetic laws for bubbles coarsening in porous media; and
+                                         (c) analyzing the time scale for the coarsening in porous media and discussing its implications in geophysical
+                                         applications.
+
+
+
+                                         2. Numerical Simulation in Homogenous Porous Media
+                                         We first demonstrate the failure of LSW in porous media by numerical simulations using a recently developed
+                                         pore-network model (PNM) that has already been validated experimentally (Y. Mehmani & Xu, 2022a, 2022b).
+
+                                         In the PNM, the complex void geometry of a porous medium is replaced by an interconnected network of pores
+                                         and throats. The PNM is quasi-static, fully implicit, and employs adaptive time stepping. The PNM can model
+                                         mass transport by diffusion following Fick’s law, while no convection is included. The PNM is sufficient to
+                                         model the ripening process in this paper. The quasi-static hypothesis is rationalized in Supporting Information.
+                                         The PNM has been validated against published micromodel experiments (K. Xu et al., 2017). The PNM is not
+                                         limited to the geometrical structure.
+
+                                         We simulate the ripening of 40,000 bubbles inside a 200 × 200 lattice pore network. Each pore is connected to
+                                         four neighboring pores through the throats. The pores are cubic in shape for simplicity. The lattice spacing L0 is
+                                         10 μm, which is equal to the sum of the throat length, Lt (8 μm), and the pore-body length, 2Lp (2 μm). Each pore
+                                         initially contains one bubble as multiple small bubbles in the same pore will quickly fuse into one (rationalized
+                                         in Supporting Information S1), and the average bubble volume
+                                                                                                    𝐴𝐴     𝑉𝑉 0 is 3.78 × 10 −1 μm 3, which is set to be smaller
+                                         than the volume of the largest inscribed sphere in the pore, Vins, which is 4.18 μm 3. The latter corresponds to the
+                                         minimum curvature a bubble can assume in a pore. Detailed parameters of the simulation are chosen to be typical
+                                         of geologic CO2 sequestration operations and are listed in the Supporting Information S1.
+
+                                         Figure 2a shows the evolution of every bubble’s volume in this demonstration, where we can identify two ripen-
+                                         ing stages:
+                                         •   C
+                                              oarsening stage. It happens at early time. In the coarsening stage, small bubbles dissolve and absorb into
+                                             large bubbles. The ripening direction is the same as classical LSW ripening in bulk fluid, as the bubbles are
+                                             still spherical and larger bubbles are of lower pressure. However, Figure 2b shows that the rc 3 − t scaling from
+                                             LSW theory fails in this stage, and a much slower scaling of coarsening is observed. Because the driving
+
+
+YU ET AL.                                                                                                                                                2 of 9
+                                                                                                                                                                                   19448007, 2023, 1, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL100757, Wiley Online Library on [08/02/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                 Geophysical Research Letters                                                                10.1029/2022GL100757
+
+
+
+
+Figure 1. (a) Direct numerical simulation result of concentration field during bubble ripening in a bulk fluid in the absence of convection; copyright obtained from
+(Sun & Beckermann, 2010); (b) Schematic of bubbles in a porous medium, with geometric parameters annotated. Note that bubbles are confined in pore bodies, while
+they can exchange mass with neighboring pores through throats; (c) Concentration field during four bubble ripening in porous media using a phase-field method
+(Shimizu & Tanaka, 2017). Note that the concentration along the throat is approximately linear as shown in the inserted concentration profile along the throat, while
+concentration inside the pore body is relatively uniform.
+
+
+                                                force of ripening is the same as that in LSW theory, the deviation from LSW theory must be a result of mass
+                                                transfer kinetics.
+                                            •   Anti-coarsening stage. It happens at late times when coarsening stops so bubbles cease to disappear. In this
+                                                 stage, the ripening direction reverses until they attain identical capillary pressure. The transition from coarsen-
+                                                 ing to anti-coarsening is attributed to the non-monotonicity in the Pc – Vb relation of bubbles. Anti-coarsening
+                                                kinetics have been well-studied recently (de Chalendar et al., 2018; K. Xu et al., 2017).
+
+                                            It is worth noting that, almost all changes associated with interfacial free energy and spatial redistribution of
+                                            bubbles occur during the coarsening stage, as shown in Figure 2c. By contrast, changes during the anti-coarsening
+                                            stage are negligible, although it takes much longer time and gets much attention in recent years (de Chalendar
+                                            et al., 2018; Xu et al., 2017). It is therefore reasonable to approximate the equilibrium state of a bubble population
+                                            as that immediately preceding the anti-coarsening stage. In other words, it is the kinetics of the coarsening stage
+                                            that determines the equilibrium configuration of bubbles in a porous medium—but classical LSW theory cannot
+                                            predict this coarsening process.
+
+
+                                            3. Theory of Coarsening Kinetics in Porous Media
+                                            3.1. Assumptions
+                                            Here, we focus on a homogenous porous medium for simplicity and comparison with the above numerical mode-
+                                            ling. All pores are of identical size, shape, and connectivity to neighbors. We assume bubbles are perfectly
+                                            non-wetting. The initial condition is assumed to consist of bubbles immediately after nucleation, which implies
+                                            there are no bubbles that span multiple pores. All bubbles thus share identical Pc−Vb relation. In addition, we
+
+
+
+
+Figure 2. Ripening kinetics of 40,000 bubbles over time in the demonstrative case. Bubbles are trapped inside a 200 × 200 lattice pore network. (a) The evolution of
+every bubble’s volume over time. (b) Comparison between simulation results                        𝐴𝐴 the 𝐴𝐴3𝑐𝑐 ∼ 𝑡𝑡 scaling from LSW theory. Note the evolution
+                                                                            𝐴𝐴 of 𝐴𝐴3𝑐𝑐 evolution and                                                      𝐴𝐴 of 𝐴𝐴3𝑐𝑐 overtime
+is sublinear, that is, is slower than LSW theory. (c) Evolution of the fraction of bubble count over time. Overlaid is the total interfacial surface area (proportional to
+surface free energy) over time. For all three plots, dramatic change of mode emerges at te as represented by the vertical dashed lines.
+
+
+YU ET AL.                                                                                                                                                                 3 of 9
+                                                                                                                                                          19448007, 2023, 1, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL100757, Wiley Online Library on [08/02/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                      Geophysical Research Letters                                                                10.1029/2022GL100757
+
+
+                 assume that throat width is much narrower than the pore body so the major mass transfer resistance is along
+                 throats; otherwise, if the grain is small enough compared to the throat (which is not realistic in subsurface envi-
+                 ronment), the kinetics will be regressed to LSW theory. We assume the conservation of gas saturation, S, the ratio
+                 of total bubble volume over total void space volume. This assumption is valid when Pc is much smaller than the
+                 ambient pressure that holds for most subsurface scenarios (Bauget & Lenormand, 2010). We leave the impacts of
+                 heterogeneity, wettability, and multi-pore spanning bubbles to future work.
+
+
+
+                 3.2. Single Bubble Evolution
+
+                 Before resolving the collective evolution of the bubble population during the coarsening stage, we first revisit the
+                 evolution kinetics of a single bubble in a porous medium. For a single bubble exchanging mass with its surround-
+                 ing fluid, two length scales are relevant:
+
+                 •    he length scale associated with the mass transfer between the bubble and a “mean field” or infinitely far
+                     T
+                     environment,
+                              𝐴𝐴      𝐴𝐴𝑐𝑐_env. In a bulk fluid, this is proportional to the bubble radius, but in a porous medium, it is
+                     proportional to the pore size𝐴𝐴(i.e., 𝐴𝐴𝑐𝑐_env ∝ 𝐿𝐿0) as pore-throat structure “quantizes” the space, as we discussed
+                     in introduction.
+                  • The length scale associated with the mass transfer between the bubble and its neighboring bubbles,       𝐴𝐴     𝐴𝐴𝑐𝑐_int .
+                     This depends on the average bubble-to-bubble distance, which can be expressed at fixed total bubble volume
+                 𝐴𝐴 as 𝐴𝐴𝑐𝑐_int ∝ 𝑅𝑅𝑐𝑐 where Rc is the characteristic radius of the bubble population and d is the problem dimension
+                                    3∕𝑑𝑑
+
+                    (two for 2D pore-network, and three for 3D pore-network).
+
+                 The evolution kinetics of a single bubble is determined by the characteristic mass transfer distance Lc =
+                                                                                                                         𝐴𝐴 min[𝐴𝐴𝑐𝑐_env;
+            𝐴𝐴   𝐴𝐴𝑐𝑐_int ]. That is, when bubbles are densely packed, bubble-bubble interactions dominate, but when bubbles are
+                 sparsely packed, they can be approximated as exchanging mass with an infinite mean field. In both cases, the
+                 evolution of the bubble’s volume is described by:
+                               (        )
+                 𝑑𝑑𝑑𝑑𝑏𝑏    𝐶𝐶 ∗ 1     1
+                 (2)   =−          −
+                  𝑑𝑑𝑑𝑑     𝐿𝐿𝑐𝑐 𝑅𝑅𝑐𝑐 𝑅𝑅
+
+                 where C* is a constant that incorporates the effects of solubility, surface tension, Henry’s constant, and pore
+                 geometry. Explicit formulas for both Lc and C* are derived in the Supporting Information S1.
+
+
+
+                 3.3. Bubble Population Evolution
+
+                 Substituting Equation (2) into the total bubble volume conservation,                            = 0, yields              𝑖𝑖 (1∕𝑅𝑅𝑖𝑖 ).
+                                                                                                   ∑ 𝑑𝑑𝑑𝑑𝑏𝑏𝑏𝑏𝑏                            ∑
+                                                                              𝐴𝐴                         𝑑𝑑𝑑𝑑
+                                                                                                                      𝐴𝐴     𝐴𝐴𝑐𝑐 = 𝑁𝑁∕
+                                                                                                    𝑖𝑖
+                 Notice that Rc is the harmonic mean of bubble radii, not equal to rc from LSW theory which is the arithmetic
+                 mean (Bray, 2002).
+
+                 The next step is to write down a probability distribution function for the bubble 𝐴𝐴radii, 𝐴𝐴(𝑅𝑅𝑅 𝑅𝑅), defined as the
+                 derivative of the number density of bubbles with respect to R. We expect a self-similar expression for n(R,t),
+                 similar to the classical LSW theory (Bray, 2002). We thus decompose
+                                                                                 𝐴𝐴    𝐴𝐴(𝑅𝑅𝑅 𝑅𝑅) into a time-dependent term and a
+                                     𝐴𝐴 as 𝐴𝐴(𝑅𝑅𝑅 𝑅𝑅) = 𝑓𝑓 (𝑥𝑥) ⋅ 𝑅𝑅−4
+                 time-independent term                                       where 𝐴𝐴 = 𝑅𝑅∕𝑅𝑅𝑐𝑐 and f(x) is the probability density function of
+                                                                    𝑐𝑐 (𝑡𝑡), 𝐴𝐴
+                 x. We substitute this into the continuity equation for n(R, t):
+
+                 𝜕𝜕𝜕𝜕(𝑅𝑅𝑅 𝑅𝑅)    𝜕𝜕
+                 (3)         +      (𝑛𝑛(𝑅𝑅𝑅 𝑅𝑅)𝑣𝑣(𝑅𝑅)) = 0
+                     𝜕𝜕𝜕𝜕       𝜕𝜕𝜕𝜕
+
+                 to obtain:
+                                                           (            )       [ (           ) (          )]
+                 (4)                         𝐿𝑐 𝑅̇ 𝑐 𝑅3𝑐 𝑥𝑓 ′ + 4𝑓 ′ = 𝐶 ⋅ 𝑓 ′ 𝑥−2 − 𝑥−3 + 𝑓 −2𝑥−3 + 3𝑥−4
+                                                 (                 )
+                 where 𝐴𝐴(𝑅𝑅) = 𝑑𝑑𝑑𝑑
+                 𝐴𝐴              𝑑𝑑𝑑𝑑
+                                      =   𝐶𝐶
+                                        𝐿𝐿 𝑅𝑅2 ⋅      1
+                                                   𝑅𝑅 𝑅𝑅 2
+                                                            −  1
+                                                              𝑅𝑅 3
+                                                                     according to Equation (2).
+                                          𝑐𝑐   𝑐𝑐   𝑐𝑐
+
+
+                 Note that f(x) is not a function of time. Given that Rc and f(x) are independent, we can𝐴𝐴write 𝐴𝐴𝑐𝑐 𝑅𝑅̇ 𝑐𝑐 𝑅𝑅3𝑐𝑐 = 𝐶𝐶1 𝐶𝐶 where
+                                                                       ∞
+                 C1 = 27/256. After imposing the constraint  𝐴𝐴 that ∫0 𝑓𝑓 (𝑥𝑥) = 1, we arrive at the relative bubble-size distribution:
+
+
+YU ET AL.                                                                                                                                     4 of 9
+                                                                                                                                                                                      19448007, 2023, 1, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL100757, Wiley Online Library on [08/02/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                Geophysical Research Letters                                                                 10.1029/2022GL100757
+
+
+
+
+Figure 3. Comparison between theory and numerical simulations. (a) The evolution of the bubbles’ harmonic mean radius with time, for three different cases:
+bubbles in a 200 × 200 matrix with gas saturation S = 5 × 10 −4 (yellow circles); bubbles in a 200 × 200 matrix with gas saturation S = 5 × 10 −2 (red circles); bubbles
+in a 30 × 30 matrix with gas saturation S = 5 × 10 −2 (blue circles). Note that the scaling matches well with the theoretical prediction, independent of model size.
+(b) Comparison between the analytical solution of f(x) and numerical simulation results at time 0, 0.1 te, 0.3 te. Note that f(x) is independent of initial bubble size
+distributions (drawn), Equation (5) well matches the simulation, and LSW theory fails.
+
+
+                                                                                                      [           √      (      )]
+                                                                         19
+                                                                        − (                  )− 23         2       2 −1 3𝑥𝑥 + 4
+                                           (5)
+                                           𝑓𝑓 (𝑥𝑥) = 9190𝑥𝑥 3
+                                                              (4 − 3𝑥𝑥)  6  3𝑥𝑥 2
+                                                                                  + 8𝑥𝑥 + 16    12 exp          −    tan
+                                                                                                        3𝑥𝑥 − 4   12
+                                                                                                                            √
+                                                                                                                           4 2
+
+                                           Surprisingly,
+                                                   𝐴𝐴        𝐴𝐴 (𝑥𝑥) does not depend on either Lc or d. The evolution kinetics for Rc can now be derived by substi-
+                                           tuting Equation (5) into Equation (4), provided an expression for Lc is available. For a densely packed bubble
+                                           population,
+                                                 𝐴𝐴        𝐴𝐴𝑐𝑐 = 𝐿𝐿𝑐𝑐_int ∝ 𝑅𝑅𝑐𝑐 , and
+                                                                               3∕𝑑𝑑
+                                                                                        𝐴𝐴 so 𝐴𝐴𝑐𝑐 𝑅𝑅̇ 𝑐𝑐 𝑅𝑅3𝑐𝑐 = 𝐶𝐶1 𝐶𝐶 and Rc 4+3/d ∼ t. For a sparsely packed bubble population,
+                                   𝐴𝐴      𝐴𝐴𝑐𝑐 = 𝐿𝐿𝑐𝑐_env ∝ 𝐿𝐿0, and𝐴𝐴 so 𝐴𝐴𝑐𝑐 𝑅𝑅̇ 𝑐𝑐 𝑅𝑅3𝑐𝑐 = 𝐶𝐶1 𝐶𝐶 and Rc 4 ∼ t. Exact expressions for these two scenarios can be derived
+                                           respectively:
+
+                                              3           3                                  )(       )1
+                                           (6)
+                                                 +4          +4   27𝐷𝐷𝑚𝑚 𝑥𝑥0 𝜎𝜎𝜎𝜎𝑡𝑡 𝑉𝑉mb 3
+                                                                                        (
+                                                                                                3 𝑉𝑉 0 𝑑𝑑
+                                              𝑑𝑑          𝑑𝑑
+                                           𝑅𝑅𝑐𝑐 (𝑡𝑡) − 𝑅𝑅𝑐𝑐 (0) =                          +4             𝑡𝑡
+                                                                  512𝜋𝜋𝜋𝜋𝑝𝑝𝑝𝑝 𝐿𝐿𝑡𝑡 𝑉𝑉mw 𝑑𝑑      4𝑎𝑎𝑎𝑎
+
+                                           for densely packed bubbles, and
+
+                                                                    27𝐷𝐷𝑚𝑚 𝑥𝑥0 𝜎𝜎𝜎𝜎𝑡𝑡 𝑀𝑀𝑏𝑏 𝑉𝑉mw
+                                           (7)
+                                           𝑅𝑅4𝑐𝑐 (𝑡𝑡) − 𝑅𝑅4𝑐𝑐 (0) =                             𝑡𝑡
+                                                                     64𝜋𝜋𝜋𝜋𝑝𝑝𝑝𝑝 𝐿𝐿𝑝𝑝 𝑀𝑀𝑤𝑤 𝑉𝑉mb
+
+                                           for sparsely packed bubbles. Here, Dm is the Fickian diffusion coefficient, Kpx Henry's constant, At the
+                                           cross-sectional area of each throat, x0 is the saturated mole fraction of the bubble component dissolved in the
+                                           surrounding liquid phase,
+                                                                𝐴𝐴    𝐴𝐴mb the molar volume of the non-wetting phase,
+                                                                                                                 𝐴𝐴     𝐴𝐴mw the molar volume of the wetting
+                                           phase,
+                                           𝐴𝐴                                                         𝐴𝐴 and 𝐴𝐴𝑤𝑤 the molecular weight of the wetting phase.
+                                                  𝐴𝐴𝑏𝑏 is the molecular weight of the non-wetting phase,
+                                           The details of the above derivation are given in Supporting Information S1.
+
+                                           We next validate the above derivation using PNM simulations (Y. Mehmani & Xu, 2022a, 2022b). If we set the
+                                                                  𝐴𝐴 to 𝑉𝑉 0 ≪ 𝑉𝑉ins, the spatial distribution of bubbles would become more and more sparse
+                                           initial mean bubble volume
+                                           as they coarsen. We would therefore expect Rc 4 ∼ t. 𝐴𝐴But if 𝑉𝑉 0 is relatively large (but the bubble is still spherical),
+                                           bubbles transfer mass primarily with neighboring bubbles, and an Rc 4+3/d ∼ t scaling is expected. We note that in
+                                           our simulations, the pore-network is 2D so d = 2, so 4 + 3/d = 5.5. Figure 3a shows that our theoretical predic-
+                                           tion is in excellent agreement with PNM simulations. Figure 3b compares simulated bubble-size distributions at
+                                           different times with different initial distributions, against the analytical solution in Equation (5). Here too, the
+                                           agreement is very good regardless of the initial distribution 𝐴𝐴 and 𝑉𝑉 0. Note the predictions are also very different
+                                           from that of LSW theory.
+
+
+YU ET AL.                                                                                                                                                                  5 of 9
+                                                                                                                                                                               19448007, 2023, 1, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL100757, Wiley Online Library on [08/02/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                              Geophysical Research Letters                                                                 10.1029/2022GL100757
+
+
+
+
+Figure 4. (a) The numerical time required for bubble populations to reach thermodynamic stability when changing the pore-network lattice L0 from 1 μm to 10 mm
+and changing the gas saturation S from 0.0002 to 0.2. (b) The numerical time required for bubble populations to reach thermodynamic stability when changing the gas
+saturation S from 0.0002 to 0.2 with Lp = 100 μm and Lp = 50 μm (see Supporting Information S1 for data of more Lp values).
+
+
+
+                                         4. Equilibrium Time and Its Practical Implication
+                                         We note that the coarsening toward quasi-equilibrium in porous media is local, as both Equations (6) and (7)
+                                         contain no variable correlated to the problem size. This claim is supported by the simulation results that Rc
+                                         evolution in a 200 × 200 lattice pore network overlaps with that in a 30 × 30 lattice pore network (Figure 3a). It
+                                         is distinct from the anti-coarsening stage in porous media that kinetics is strongly correlated to the scale of the
+                                         system (Li et al., 2021). As a result, the time for the system to reach thermodynamic quasi-equilibrium (transition
+                                         from coarsening to anti-coarsening), te, is local and determined only by pore-scale geometry and fluid properties.
+
+                                         We therefore define te the moment of 𝑅𝑐𝐴𝐴
+                                                                                (𝑡𝑒 ) = 𝐴𝐴ins, which is the radius of a spherical bubble with volume Vins, into
+                                         Equations (6) and (7). For both densely and sparsely distributed bubbles, it can be estimated that:
+
+                                         (8)
+                                         𝑡𝑡𝑒𝑒 = 𝐹𝐹 𝐹𝐹𝐹𝐹𝑠𝑠 𝑡𝑡𝑑𝑑
+
+                                         where F is a scale-free coefficient that only depends on fluids' properties and the pore-throat shape (not size), G
+                                                                                                                  ( )( )(             )
+                                                                                                                    𝑅𝑅2
+                                                                                                      𝐴𝐴 that 𝐴𝐴 = 𝐴𝐴ins
+                                         is a function of dimension and gas saturation S. Easy to derive                                for both limits, while
+                                                                                                                           𝑅𝑅ins 𝑉𝑉mw
+                                                                                                                            𝐿𝐿   𝑉𝑉𝑡𝑡      𝑡𝑡    mb
+
+                                                                ( 𝑉𝑉       )1    1                                                ( 𝐿𝐿 )( )(        )2
+                                                                            𝑑𝑑 −
+                                                                                                                      𝐴𝐴 G = 64𝜋𝜋
+                                                                              𝑆𝑆 𝑑𝑑 for densely distributed bubbles and                                for sparsely distrib-
+                                                   512𝜋𝜋           pore                                                               𝑝𝑝 𝑀𝑀𝑤𝑤  𝑉𝑉mb
+                                  𝐴𝐴     𝐴𝐴 = (          )
+                                                108 + 81
+                                                      𝑑𝑑
+                                                          𝑥𝑥0      𝑉𝑉ins                                                      27    𝐿𝐿𝑡𝑡 𝑀𝑀𝑏𝑏 𝑉𝑉mw
+
+                                         uted bubbles.
+                                                𝐴𝐴      𝐴𝐴𝑠𝑠 = 𝑅𝑅ins 𝐾𝐾px ∕𝜎𝜎 ∝ 𝐿𝐿0 is minimum extra solubility due to capillary pressure,
+                                                                                                                                    𝐴𝐴     𝐴𝐴𝑑𝑑 = 𝐿𝐿2𝑡𝑡 ∕𝐷𝐷𝑚𝑚 ∝ 𝐿𝐿20 is
+                                         characteristic diffusion time between two neighboring pores.
+
+                                         According to the above analytical derivation or equilibrium time, we can infer that, (a) with a fixed porous shape
+                                                                    𝐴𝐴 G), 𝐴𝐴𝑒𝑒 ∝ 𝐿𝐿30; and (b) with fixed F, Ds, and td, te is independent of S at the sparse limit
+                                         and fluid system (fixed F and
+                                         and is negatively correlated to𝐴𝐴 S as 𝐴𝐴𝑒𝑒 ∝ 𝑆𝑆 −1∕𝑑𝑑 at the dense limit. We then conduct numerical simulations with
+                                         different
+                                            𝐴𝐴     𝐴𝐴0 (from 0.1 μm to 10 mm) and gas saturation S (from 0.0002 to 0.2) to validate the above analytical
+                                         expression and discussion of equilibrium time. As shown in Figures 4a and 4b, the numerically measured te well
+                                         matches our theoretical estimation for both dense and sparse cases.
+
+
+
+                                         5. Implications
+                                         5.1. Critical Saturation
+                                         The critical saturation, Scrit, for bubble population to transient from “dense” to “sparse” can be estimated by
+                                         equating te in two scenarios. It yields:
+
+
+
+YU ET AL.                                                                                                                                                            6 of 9
+                                                                                                                                               19448007, 2023, 1, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL100757, Wiley Online Library on [08/02/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Geophysical Research Letters                                                         10.1029/2022GL100757
+
+
+
+                                                                                               𝑑𝑑
+                          ⎡⎛          ⎞( )(             )⎤ (       )
+                                27    ⎟ 𝐿𝐿𝑡𝑡 𝑉𝑉𝑚𝑚𝑚𝑚
+                                                2
+                                                    𝑀𝑀𝑏𝑏 ⎥ 𝑉𝑉pore
+                 (9)
+                          ⎢⎜
+                 𝑆𝑆crit = ⎢⎜                                         .
+                          ⎢⎜ 108 + 81 ⎟ 𝐿𝐿𝑝𝑝 𝑉𝑉𝑚𝑚𝑚𝑚 𝑀𝑀𝑤𝑤 ⎥   𝑉𝑉ins
+                                      ⎟         2        ⎥
+                          ⎣⎝       𝑑𝑑 ⎠                  ⎦
+
+                 We note that this critical S is not relevant to exact pore size, but a function of dimension, pore shape, and fluid
+                 properties. In our demonstrative case, Scrit = 0.008, which is well supported by numerical simulation as shown in
+                 Figure 4b. For subsurface CO2-water system in a 3-D pore network, it is easy to conclude that bubbles in porous
+                 media should always be “dense” when gas saturation is of practical significance.
+
+
+                 5.2. Equilibrium Time
+                 The value of te is highly sensitive to pore size
+                                                             𝐴𝐴 as 𝐴𝐴𝑒𝑒 ∝ 𝐿𝐿30, which could fall in a very wide interval for different natu-
+                 ral porous media, as presented in Figures 4a and 4b. For the demonstrative fluid system, te could be as short as
+                 milli-seconds when L0 = 1 μm (common for fine sandstone and shale (Zou et al., 2015)), and as long as 30 years
+                 when L0 = 1 mm (not rare in coarse limestone).
+
+                 Comparison between te against the characteristic time of any other concerned physical process (Cugliandolo, 2010;
+                 Ngamsaad et al., 2010) determines whether the local thermodynamic equilibrium presumption is valid. When te
+                 is comparably short, bubbles can be considered as equilibria immediately when they are nucleated, which ration-
+                 alizes recent experimental observation (Berg et al., 2020) that only non-spherical large bubbles are observed
+                 quickly after bubble nucleation in a rock sample. In contrast, if te is comparably large, the thermodynamic equi-
+                 librium of bubbles may be invalid.
+
+
+                 5.3. Limitations
+
+                 As a preliminary effort to theoretically identify the coarsening kinetics of bubbles in porous media, this work
+                 adopts highly ideal assumptions, such as uniform pore size and shape, completely non-wetting bubbles, and
+                 the absence of external field. These simplifications allow simple analytical solutions. Nevertheless, in further
+                 practical investigations relevant to bubble evolution in subsurface porous media, these simplifications should be
+                 removed. Specifically, theories for the ripening of large bubbles spanning multiple pores should be constructed in
+                 the future, based on some preliminary numerical results (Singh et al., 2022; Y. Mehmani & Xu, 2022a).
+
+                 In addition, we believe future experimental work, including microfluidic experiments and X-ray tomography and
+                 image analysis (Berg et al., 2020; Bultreys et al., 2020; Spurin et al., 2020), would be very helpful in validating
+                 our theory and extending it in identifying bubble’s spatial distribution, especially in heterogeneous media.
+
+
+                 6. Conclusion
+                 We numerically demonstrate that bubbles in porous media coarsen toward thermodynamic equilibrium, but the
+            𝐴𝐴   𝐴𝐴3𝑐𝑐 ∼ 𝑡𝑡 scaling from classical LSW theory fails to describe its kinetics. The failure of LSW theory in porous media
+                 is that the porous structure decouples the bubble size and its mass transfer length scale. This separation of scales
+                 results in two much slower coarsening kinetics,
+                                                             𝐴𝐴
+                                                                       3∕𝑑𝑑+4
+                                                                     𝐴𝐴𝑐𝑐     ∼ 𝑡𝑡 and Rc 4 ∼ t, for densely and sparsely distributed bubble
+                 populations, respectively, with the former practically more important in subsurface environment. Theoretical
+                 solution for bubble coarsening and bubble size distribution perfectly matches the PNM simulations.
+
+                 We define bubbles’ thermodynamic equilibrium time, te, as the end of coarsening stage, during which majority of
+                 energy dissipation completes. After te, the system’s pore occupancy and interfacial area are determined, which are
+                 crucial parameters in characterizing and predicting multiphase flow and transport in porous media (Armstrong
+                 et al., 2018). In addition, the magnitude of te may be as small as sub-seconds and as large as thousands of years
+                 in different typical subsurface porous media, so it is necessary to compare the kinetics of ripening against other
+                 processes of interest to examine the local capillary equilibrium assumption, in applications such as geologic CO2
+                 sequestration, oil and gas recovery, and groundwater systems.
+
+
+
+
+YU ET AL.                                                                                                                            7 of 9
+                                                                                                                                                                                                   19448007, 2023, 1, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL100757, Wiley Online Library on [08/02/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                 Geophysical Research Letters                                                                          10.1029/2022GL100757
+
+
+                                            More generally, this work reveals that mass transfer is fundamentally altered in porous media, by decoupling
+                                            the mass transfer coefficient from details inside the pore body. Following recent findings that porous struc-
+                                            ture deforms the interface and thus modifies mass transfer driving force (Blunt, 2022; Ke Xu et al., 2019; K.
+                                            Xu et al., 2017; Wang et al., 2021), we are now one step further toward finally understanding the evolution of
+                                            multi-phase fluid systems in subsurface porous media.
+
+
+                                            Data Availability Statement
+                                            Parameters and derivations applied in this work are shown in Supporting Information S1. Information of numer-
+                                            ical simulation is demonstrated in detail in our earlier publication (Y. Mehmani et al., 2014). Data presented in
+                                            figures are publicly available through zenodo.org (https://doi.org/10.5281/zenodo.6967314).
+
+
+Acknowledgments                             References
+We gratefully acknowledge the financial
+support and funding provided by the         Anton, L., & Hilfer, R. (1999). Trapping and mobilization of residual fluid during capillary desaturation in porous media. Physical Review E,
+National Key Research and Develop-             Statistical Physics, Plasmas, Fluids, and Related Interdisciplinary Topics, 59(6), 6819–6823. https://doi.org/10.1103/physreve.59.6819
+ment Program of China under Grant           Armstrong, R. T., McClure, J. E., Robins, V., Liu, Z., Arns, C. H., Schlüter, S., & Berg, S. (2018). Porous media characterization using
+2021YFA0717200, by the National                minkowski functionals: Theories, applications and future directions. Transport in Porous Media, 130(1), 305–335. https://doi.org/10.1007/
+Natural Science Foundation of China            s11242-018-1201-4
+under Grant 12172010, and by the CNPC       Bauget, F., & Lenormand, R. (2010). Mechanisms of bubble formation by pressure decline in porous media: A critical review. SOCAR Proceed-
+Research Institute of Petroleum Explo-         ings, 2010(3).
+ration and Development for the project      Bear, J. (1996). Modeling phenomena of flow and transport in porous media (Vol. 31). Springer International Publishing.
+“Key Fluid Mechanisms of CO2-EOR for        Berg, S., Gao, Y., Georgiadis, A., Brussee, N., Coorn, A., Van derLinde, H., et al. (2020). Determination of critical gas saturation by micro-CT.
+Gu-Long Shale Oil Development.” Yashar         Petrophysics. The SPWLA Journal of Formation Evaluation and Reservoir Description, 61(2), 133–150. https://doi.org/10.30632/
+Mehmani acknowledges the Department            pjv61n2-2020a1
+of Energy and Mineral Engineering           Blunt, M. J. (2022). Ostwald ripening and gravitational equilibrium: Implications for long-term subsurface gas storage. Physical Review E,
+(EME) and the College of Earth and             106(4), 045103. https://doi.org/10.1103/physreve.106.045103
+Mineral Sciences (EMS) for providing the    Bray, A. J. (2002). Theory of phase-ordering kinetics. Advances in Physics, 51(2), 481–587. https://doi.org/10.1080/00018730110117433
+funds for this project. The authors thank   Bultreys, T., Singh, K., Raeini, A. Q., Ruspini, L. C., Øren, P. E., Berg, S., et al. (2020). Verifying pore network models of imbibition in rocks
+Dr. Sally Benson for helpful discussions       using time-resolved synchrotron imaging. Water Resources Research, 56(6). https://doi.org/10.1029/2019wr026587
+during AGU2019 conference.                  Cugliandolo, L. F. (2010). Topics in coarsening phenomena. Physica A: Statistical Mechanics and its Applications, 389(20), 4360–4373. https://
+                                               doi.org/10.1016/j.physa.2009.12.036
+                                            Danov, K. D., Valkovska, D. S., & Kralchevsky, P. A. (2003). Hydrodynamic instability and coalescence in trains of emulsion drops or gas bubbles
+                                               moving through a narrow capillary. Journal of Colloid and Interface Science, 267(1), 243–258. https://doi.org/10.1016/s0021-9797(03)00596-4
+                                            de Chalendar, J. A., Garing, C., & Benson, S. M. (2018). Pore-scale modelling of Ostwald ripening. Journal of Fluid Mechanics, 835, 363–392.
+                                               https://doi.org/10.1017/jfm.2017.720
+                                            Ehlers, W., & Häberle, K. (2016). Interfacial mass transfer during gas–liquid phase change in deformable porous media with heat transfer. Trans-
+                                               port in Porous Media, 114(2), 525–556. https://doi.org/10.1007/s11242-016-0674-2
+                                            Fu, X., Cueto-Felgueroso, L., & Juanes, R. (2013). Pattern formation and coarsening dynamics in three-dimensional convective mixing in porous
+                                               media. Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences, 371(2004), 20120355. https://
+                                               doi.org/10.1098/rsta.2012.0355
+                                            Gao, Y., Georgiadis, A., Brussee, N., Coorn, A., vander Linde, H., Dietderich, J., et al. (2021). Capillarity and phase-mobility of a hydrocarbon
+                                               gas–liquid system. Oil & Gas Science and Technology–Revue d’IFP Energies nouvelles, 76, 43. https://doi.org/10.2516/ogst/2021025
+                                            Geistlinger, H., Ataei-Dadavi, I., Mohammadian, S., & Vogel, H. J. (2015). The impact of pore structure and surface roughness on capillary
+                                               trapping for 2-D and 3-D porous media: Comparison with percolation theory. Water Resources Research, 51(11), 9094–9111. https://doi.
+                                               org/10.1002/2015wr017852
+                                            Holocher, J., Peeters, F., Aeschbach-Hertig, W., Kinzelbach, W., & Kipfer, R. (2003). Kinetic model of gas bubble dissolution in groundwater
+                                               and its implications for the dissolved gas composition. Environmental Science & Technology, 37(7), 1337–1343. https://doi.org/10.1021/
+                                               es025712z
+                                            Huppert, H. E., & Neufeld, J. A. (2014). The fluid mechanics of carbon dioxide sequestration. Annual Review of Fluid Mechanics, 46(1),
+                                               255–272. https://doi.org/10.1146/annurev-fluid-011212-140627
+                                            Joewondo, N., Garbin, V., & Pini, R.-M. (2021). Direct imaging of bubble ripening in two-dimensional porous media micromodels. Paper
+                                               presented at the Proceedings of the 15th Greenhouse Gas Control Technologies Conference.
+                                            Juanes, R., Spiteri, E. J., Orr, F. M., & Blunt, M. J. (2006). Impact of relative permeability hysteresis on geological CO2 storage. Water Resources
+                                               Research, 42(12). https://doi.org/10.1029/2005wr004806
+                                            Lay, J.-J., Miyahara, T., & Noike, T. (1996). Methane release rate and methanogenic bacterial populations in lake sediments. Water Research,
+                                               30(4), 901–908. https://doi.org/10.1016/0043-1354(95)00254-5
+                                            Lifshitz, I. M., & Slyozov, V. V. (1961). The kinetics of precipitation from supersaturated solid solutions. Journal of Physics and Chemistry of
+                                               Solids, 19(1–2), 35–50. https://doi.org/10.1016/0022-3697(61)90054-3
+                                            Li, Y., Garing, C., & Benson, S. M. (2020). A continuum-scale representation of Ostwald ripening in heterogeneous porous media. Journal of
+                                               Fluid Mechanics, 889, A14. https://doi.org/10.1017/jfm.2020.53
+                                            Li, Y., Orr, F. M., & Benson, S. M. (2021). Long-term redistribution of residual gas due to non-convective transport in the aqueous phase. Trans-
+                                               port in Porous Media, 141(1), 231–253. https://doi.org/10.1007/s11242-021-01722-y
+                                            Lyu, X., Voskov, D., & Rossen, W. R. (2021). Numerical investigations of foam-assisted CO2 storage in saline aquifers. International Journal of
+                                               Greenhouse Gas Control, 108, 103314. https://doi.org/10.1016/j.ijggc.2021.103314
+                                            Mehmani, A., Kelly, S., Torres-Verdín, C., & Balhoff, M. (2019). Capillary trapping following imbibition in porous media: Microfluidic quanti-
+                                               fication of the impact of pore-scale surface roughness. Water Resources Research, 55(11), 9905–9925. https://doi.org/10.1029/2019wr025170
+
+
+
+YU ET AL.                                                                                                                                                                               8 of 9
+                                                                                                                                                                 19448007, 2023, 1, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL100757, Wiley Online Library on [08/02/2026]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                 Geophysical Research Letters                                                                         10.1029/2022GL100757
+
+
+            Mehmani, Y., Oostrom, M., & Balhoff, M. T. (2014). A streamline splitting pore-network approach for computationally inexpensive and accurate
+               simulation of transport in porous media. Water Resources Research, 50(3), 2488–2517. https://doi.org/10.1002/2013wr014984
+            Mehmani, Y., & Xu, K. (2022a). Capillary equilibration of trapped ganglia in porous media: A pore-network modeling approach. Advances in
+               Water Resources, 166, 104223. https://doi.org/10.1016/j.advwatres.2022.104223
+            Mehmani, Y., & Xu, K. (2022b). Pore-network modeling of Ostwald ripening in porous media: How do trapped bubbles equilibrate? Journal of
+               Computational Physics, 457, 111041. https://doi.org/10.1016/j.jcp.2022.111041
+            Ngamsaad, W., Yojina, J., & Triampo, W. (2010). Theoretical studies of phase-separation kinetics in a Brinkman porous medium. Journal of
+               Physics A: Mathematical and Theoretical, 43(20), 202001. https://doi.org/10.1088/1751-8113/43/20/202001
+            Ozgumus, T., & Mobedi, M. (2015). Effect of pore to throat size ratio on interfacial heat transfer coefficient of porous media. Journal of Heat
+               Transfer, 137(1). https://doi.org/10.1115/1.4028764
+            Rogers, T. M., & Desai, R. C. (1989). Numerical study of late-stage coarsening for off-critical quenches in the Cahn-Hilliard equation of phase
+               separation. Physical Review B, 39(16), 11956–11964. https://doi.org/10.1103/physrevb.39.11956
+            Schmelzer, J., Möller, J., & slezov, V. V. (1995). Ostwald ripening in porous materials: The case of arbitrary pore size distributions. Journal of
+               Physics and Chemistry of Solids, 56(8), 1013–1022. https://doi.org/10.1016/0022-3697(95)00021-6
+            Shimizu, R., & Tanaka, H. (2017). Impact of complex topology of porous media on phase separation of binary mixtures. Science Advances, 3(12),
+               eaap9570. https://doi.org/10.1126/sciadv.aap9570
+            Singh, D., Friis, H. A., Jettestuen, E., & Helland, J. O. (2022). A level set approach to Ostwald ripening of trapped gas bubbles in porous media.
+               Transport in Porous Media.
+            Slezov, V. V., Schmelzer, J., & Möller, J. (1993). Ostwald ripening in porous materials. Journal of Crystal Growth, 132(3–4), 419–426. https://
+               doi.org/10.1016/0022-0248(93)90067-7
+            Spurin, C., Bultreys, T., Rücker, M., Garfi, G., Schlepütz, C. M., Novak, V., et al. (2020). Real-time imaging reveals distinct pore-scale dynam-
+               ics during transient and equilibrium subsurface multiphase flow. Water Resources Research, 56(12). https://doi.org/10.1029/2020wr028287
+            Sun, Y., & Beckermann, C. (2010). Phase-field modeling of bubble growth and flow in a Hele–Shaw cell. International Journal of Heat and Mass
+               Transfer, 53(15–16), 2969–2978. https://doi.org/10.1016/j.ijheatmasstransfer.2010.03.036
+            Voorhees, P. W. (1985). The theory of Ostwald ripening. Journal of Statistical Physics, 38(1), 231–252. https://doi.org/10.1007/bf01017860
+            Wagner, C. (1961). Theorie der alterung von niederschlägen durch umlösen (Ostwald-reifung). Zeitschrift für Elektrochemie, Berichte der
+               Bunsengesellschaft für physikalische Chemie, 65(7–8), 581–591. https://doi.org/10.1002/bbpc.19610650704
+            Wang, C., Mehmani, Y., & Xu, K. (2021). Capillary equilibrium of bubbles in porous media. Proceedings of the National Academy of Sciences,
+               118(17), e2024069118. https://doi.org/10.1073/pnas.2024069118
+            Xu, K., Bonnecaze, R., & Balhoff, M. (2017). Egalitarianism among bubbles in porous media: An Ostwald ripening derived anticoarsening
+               phenomenon. Physical Review Letters, 119(26), 264502. https://doi.org/10.1103/physrevlett.119.264502
+            Xu, K., Mehmani, Y., Shang, L., & Xiong, Q. (2019). Gravity-induced bubble ripening in porous media and its impact on capillary trapping
+               stability. Geophysical Research Letters, 46(23), 13804–13813. https://doi.org/10.1029/2019gl085175
+            Yao, J. H., Elder, K. R., Guo, H., & Grant, M. (1993). Theory and simulation of Ostwald ripening. Physical Review B, 47(21), 14110–14125.
+               https://doi.org/10.1103/physrevb.47.14110
+            Yortsos, Y. C., & Stubos, A. K. (2001). Phase change in porous media. Current Opinion in Colloid & Interface Science, 6(3), 208–216. https://
+               doi.org/10.1016/s1359-0294(01)00085-1
+            Zou, C., Jin, X., Zhu, R., Gong, G., Sun, L., Dai, J., et al. (2015). Do shale pore throats have a threshold diameter for oil storage? Scientific
+               Reports, 5(1), 13619. https://doi.org/10.1038/srep13619
+
+
+
+
+YU ET AL.                                                                                                                                             9 of 9
+

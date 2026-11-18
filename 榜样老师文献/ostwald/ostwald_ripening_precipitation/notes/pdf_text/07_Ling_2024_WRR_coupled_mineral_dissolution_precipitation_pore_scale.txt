@@ -1,0 +1,1016 @@
+Lawrence Berkeley National Laboratory
+LBL Publications
+
+Title
+Pore‐Scale Modeling of Reactive Transport with Coupled Mineral Dissolution and
+Precipitation
+
+Permalink
+https://escholarship.org/uc/item/0dc1n4pj
+
+Journal
+Water Resources Research, 60(6)
+
+ISSN
+0043-1397
+
+Authors
+Wang, Ziyan
+Hu, Mengsu
+Steefel, Carl
+
+Publication Date
+2024-06-01
+
+DOI
+10.1029/2023wr036122
+
+Copyright Information
+This work is made available under the terms of a Creative Commons Attribution License,
+available at https://creativecommons.org/licenses/by/4.0/
+
+
+Peer reviewed
+
+
+
+
+ eScholarship.org                               Powered by the California Digital Library
+                                                                University of California
+RESEARCH ARTICLE                            Pore‐Scale Modeling of Reactive Transport with Coupled
+10.1029/2023WR036122
+                                            Mineral Dissolution and Precipitation
+Key Points:
+                                            Ziyan Wang1         , Mengsu Hu1       , and Carl Steefel1
+• A new pore‐scale model is developed
+  for multicomponent reactive flow with     1
+                                                Energy Geosciences Division, Lawrence Berkeley National Laboratory, Berkeley, CA, USA
+  coupled mineral dissolution and
+  precipitation
+• The proposed model is validated
+  against analytical solutions and
+                                            Abstract We present a new pore‐scale model for multicomponent advective‐diffusive transport with
+  reference simulations, and then applied   coupled mineral dissolution and precipitation. Both dissolution and precipitation are captured simultaneously by
+  to realistic rocks                        introducing a phase transformation vector field representing the direction and magnitude of the overall phase
+• Three dissolution‐precipitation
+  coupling regimes with different flow
+                                            change. An effective viscosity model is adopted in simulating fluid flow during mineral dissolution‐
+  patterns and porosity‐permeability re-    precipitation that can accurately capture the velocity field without introducing any empirical parameters. The
+  lationships have been identified          proposed approach is validated against analytical solutions and interface tracking simulations in simplified
+                                            structures. After validation, the proposed approach is employed in modeling realistic rocks where mineral
+Correspondence to:                          dissolution and precipitation are dominant at different locations. We have identified three regimes for mineral
+Z. Wang,                                    dissolution‐precipitation coupling: (a) compact dissolution‐precipitation where dissolution is dominant near the
+ziyanw@lbl.gov                              inlet and precipitation is dominant near the outlet, (b) wormhole dissolution with clustered precipitation where
+                                            dissolution generates wormholes in the main flow paths and precipitation clogs the secondary flow paths, and
+Citation:                                   (c) dissolution dominant where all solid grains are gradually dissolved. In the three regimes, the proposed
+Wang, Z., Hu, M., & Steefel, C. (2024).     approach provides reliable porosity‐permeability relationships that cannot be described well by traditional
+Pore‐scale modeling of reactive transport
+with coupled mineral dissolution and        macroscale models. We find that the permeability can increase while the overall porosity decreases when the
+precipitation. Water Resources Research,    main flow paths are expanded by dissolution and adjacent pore spaces are clogged by precipitation.
+60, e2023WR036122. https://doi.org/10.
+1029/2023WR036122
+
+Received 23 AUG 2023
+Accepted 3 MAY 2024                         1. Introduction
+                                            Coupled mineral dissolution‐precipitation during reactive transport is important in many applications with water‐
+                                            rock interaction such as geological CO2 sequestration (Kampman et al., 2014; Sabo & Beckingham, 2021; R. Xu
+                                            et al., 2017), enhanced geothermal systems (Rabemanana et al., 2005), and contamination treatment in
+                                            groundwater resources (Burns & Klingensmith, 2006). Mineral dissolution and precipitation occur because the
+                                            local fluid is chemically undersaturated or supersaturated with respect to equilibrium. This can be caused by the
+                                            change of solubility depending on temperature (Hu & Rutqvist, 2020; Steefel & Lasaga, 1990) and pressure (i.e.,
+                                            pressure solution, Gratier et al., 2009; Yasuhara et al., 2005), or by introducing additional chemical species, for
+                                            example, acid injection (Singurindy & Berkowitz, 2005; Xie et al., 2015). In porous media, mineral dissolution‐
+                                            precipitation typically alters the pore space geometry, thus affecting the pathways for fluid flow and solute
+                                            transport (Ling et al., 2022; Steefel et al., 2013; Steefel & Hu, 2022). Due to the complex geometric features and
+                                            the coupling of multiple physical processes, it is challenging to describe the impact of mineral dissolution‐
+                                            precipitation on flow and transport properties of a porous medium. One common scenario is that the dissolu-
+                                            tion of one phase drives the precipitation of another, where dissolution and precipitation can be dominant at
+                                            different locations, for example, the reaction of calcite with acidic, sulfate‐bearing solutions to form gypsum
+                                            (Singurindy & Berkowitz, 2005; Xie et al., 2015). Such examples are the primary focus of this paper, while we
+                                            can also employ the proposed model in scenarios where mineral dissolution and precipitation are driven by
+                                            temperature or pressure differences.
+                                            Macroscale models describe a porous structure as an effective medium with evolving porosity and permeability
+© 2024. The Authors. Water Resources
+Research published by Wiley Periodicals     during mineral dissolution‐precipitation (Borgia et al., 2012; Deng et al., 2016). Typically, the porosity can be
+LLC on behalf of American Geophysical       updated based on the amount of minerals being dissolved or precipitated. The permeability, on the other hand, is
+Union.
+                                            much more difficult to evaluate. For example, previous studies have reported that the rock permeability can
+This is an open access article under the
+terms of the Creative Commons               decrease while the porosity increases during simultaneous mineral dissolution and precipitation (Sabo &
+Attribution License, which permits use,     Beckingham, 2021). Traditional permeability models, such as the Carman‐Kozeny equation (Carman, 1997), may
+distribution and reproduction in any
+                                            not be applicable in this case as the permeability‐porosity relationship can vary with the relative significance
+medium, provided the original work is
+properly cited.                             between dissolution and precipitation. Therefore, pore‐scale models may offer an improved understanding as they
+
+
+WANG ET AL.                                                                                                                                            1 of 18
+                                                                                                                                        19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                      10.1029/2023WR036122
+
+
+              can explicitly resolve the evolving pore space geometry as a result of coupled fluid flow, solute transport, and
+              mineral reactions.
+
+              Many pore‐scale models have been developed to describe the moving interface during mineral reactions (Molins
+              et al., 2021). They can be divided into two categories: interface tracking and interface capturing approaches (Ge
+              et al., 2012). In interface tracking approaches, a fluid‐solid interface is treated as a computational boundary and
+              boundary‐fitted mesh is employed to follow the interface movement (Juric & Tryggvason, 1996; Starchenko
+              et al., 2016; Starchenko & Ladd, 2018). One example is the Arbitrary‐Lagrangian‐Eulerian method, which has
+              been adopted to model fracture and grain dissolution (Oltean et al., 2013; Starchenko et al., 2016). For complex
+              porous structures, however, adapting the mesh to account for moving interfaces can be challenging, especially
+              when the topology of the structure changes. In interface capturing approaches, an indicator function is defined in
+              both fluid and solid phases to represent the interface location. Commonly adopted indicator functions include the
+              level‐set function (X. Li et al., 2010; Ray et al., 2019), the phase fraction function (e.g., in the micro‐continuum
+              method, Soulaine & Tchelepi, 2016; Soulaine et al., 2017; Yang et al., 2021 and the phase field method, Z. Xu &
+              Meakin, 2008; Z. Xu et al., 2012), and the binarize function that distinguishes fluid and solid (e.g., in the lattice
+              Boltzmann method, Kang et al., 2003; Huber et al., 2014; Poonoosamy et al., 2019). Hybrid models are also
+              developed to take advantage of different methods, for example, dissolution modeling with lattice Boltzmann,
+              finite volume and surface rescaling methods (Gray & Boek, 2016; Gray et al., 2016, 2018, 2021). These methods
+              generally work on fixed meshes, avoiding costly mesh updates that may perform better for modeling complex
+              porous structures.
+              The pore‐scale models are usually developed with a focus on either dissolution or precipitation, although mineral
+              reactions often involve both coupled together (Li et al., 2017; Maher et al., 2009; Steefel & Van Cappellen, 1990;
+              Steefel & Yang, 2021). In the literature, the pore‐scale models that can capture dissolution and precipitation
+              simultaneously are much more limited. The lattice Boltzmann method has been employed to solve the coupled
+              dissolution‐precipitation problems (Chen et al., 2014; Jiang et al., 2021). In the lattice Boltzmann method, each
+              computational cell represents pure fluid or solid, and the switch of the cell state represents dissolution or pre-
+              cipitation. One challenge is to design the criteria when the cell state switches, as there is no a priori rule, and the
+              criteria can significantly affect the dissolution‐precipitation pattern (Chen et al., 2014). Recently, Deng
+              et al. (2022) developed a micro‐continuum model for mineral growth with co‐dissolution, while the porous
+              structure is simplified as a slit and mineral precipitation is dominant over dissolution. A fully coupled dissolution‐
+              precipitation model in complex porous structures is still desired.
+              In this study, we have developed a new pore‐scale model for coupled mineral dissolution and precipitation in
+              which the phase fraction field is adopted to capture the fluid‐solid interface movement. A major challenge is to
+              properly describe the interface growing and retreating during the precipitation and dissolution of different
+              minerals, for example, the dissolution of calcite and the precipitation of gypsum at different locations (Figure 1).
+              We introduce a phase transformation vector field to represent the direction and magnitude of the dissolution‐
+              precipitation process and update the phase fraction field accordingly. In addition, an effective viscosity model
+              is adopted to immobilize fluid flow at fluid‐solid interfaces, which captures the velocity field accurately without
+              introducing any empirical parameters. For the case of coupled dissolution and precipitation, we investigate the
+              resulting porosity‐permeability relationships, which have not been comprehensively described by macroscale
+              models.
+              The manuscript is organized as follows. Section 2 presents the physical model of the reactive system we consider.
+              Section 3 describes the proposed computational model, including the interface capturing approach and the
+              associated numerical methods. In Section 4, the model is validated against analytical solutions and interface
+              tracking simulations in simplified structures, and then applied in realistic rocks. Section 5 contains the discussion
+              of the results and the conclusions.
+
+              2. Physical Model
+              We consider a reactive flow system with multiple reactive species. Fluid flow at the pore scale is governed by the
+              Navier‐Stokes equations for incompressible Newtonian fluid:
+
+                                                                    ∇·u = 0,                                                    (1a)
+
+
+
+WANG ET AL.                                                                                                                  2 of 18
+                                                                                                                                                                     19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                   Water Resources Research                                                       10.1029/2023WR036122
+
+
+
+                                                                                                        ∂u
+                                                                                                   ρ f [ + ∇ · (uu)] = − ∇p + ∇ · (μ f ∇u),                  (1b)
+                                                                                                        ∂t
+
+                                                                                 where u (x, t)=(u (x, t), v(x, t), w (x, t)), p (x, t), ρf and μf are the fluid's
+                                                                                 velocity, pressure, density, and dynamic viscosity, respectively. Here the fluid
+                                                                                 density ρf is assumed to be constant and independent of the solute concen-
+                                                                                 tration. The transport of multiple solute components is described by the
+                                                                                 advection‐diffusion equation:
+
+                                                                                                          ∂ci
+                                                                                                              + ∇ · (uci ) = ∇ · (Di ∇ci ),                   (2)
+                                                                                                          ∂t
+
+                                                                                 where ci is the concentration of solute component i and Di is the corre-
+                                                                                 sponding diffusivity. We assume there are no homogeneous reactions (e.g.,
+                                                                                 aqueous complexation) taking place in the fluid phase.
+
+                                                                                 At fluid‐solid interfaces, the solute or solutes undergoes a heterogeneous
+Figure 1. A schematic representation of coupled calcite dissolution and          reaction that consists of mineral dissolution or precipitation. This is described
+gypsum precipitation at different locations in a granular porous structure. In   by boundary conditions on the fluid‐solid interfaces:
+some case, the secondary mineral may not completely cover the dissolving
+primary phase.
+                                                                                                       n · (− Di ∇ci + u|Γ ci − UΓ ci ) = Ri ,               (3a)
+
+                                                                                                n · UΓ = Q,                                                  (3b)
+
+                                                                                                 t · UΓ = 0,                                                 (3c)
+
+                                           where n is the unit normal vector pointing from fluid to solid, t the unit tangent vector, Ri the reaction rate (per
+                                           area of mineral) for solute component i, and Q is a signed dissolution‐precipitation rate (per area of mineral),
+                                           which is positive for dissolution and negative for precipitation. Explicit expressions for Ri and Q will be provided
+                                           through a specific reactive system in Section 3. The velocity u|Γ is the fluid velocity at the interface, while UΓ is
+                                           the interface velocity due to mineral dissolution‐precipitation. We note that the two velocities u|Γ and UΓ should
+                                           be distinguished (L. Li et al., 2021), and they both contribute to the mass conservation Equation 3a. The fluid
+                                           velocity is non‐zero when there is an overall volumetric change after mineral dissolution‐precipitation. If the
+                                           overall volume decreases, n ⋅ u|Γ > 0, and vice versa. The velocity u|Γ is generally much less than the average flow
+                                           velocity. For simplicity, we assume u|Γ = 0 in the computational modeling in Section 3.
+
+
+                                           3. Computational Model
+                                           Directly solving the governing equations in Section 2 requires explicitly tracking the location of fluid‐solid in-
+                                           terfaces and updating the mesh in the fluid domain to fit the moving boundary. This interface tracking approach
+                                           works well for simple geometries. However, for complex porous structures, especially those that might involve
+                                           multiple minerals, a more efficient approach is to introduce an indicator function, which implicitly captures the
+                                           interface location. Because of the additional indicator function, a different set of governing equations is con-
+                                           structed that is designed to recover the solution of Equations 1–3. The model presented in this section is inspired
+                                           by the micro‐continuum approach (Soulaine et al., 2017; Soulaine & Tchelepi, 2016). However, instead of
+                                           modeling the fluid‐solid interface as a porous layer, we adopt effective properties in the interface. The two ap-
+                                           proaches are compared later in Section 4.2.
+                                           We employ the fluid phase fraction ϕ as the indicator function to distinguish fluid and solid phases, where ϕ = 0
+                                           and ϕ = 1 indicate pure solid and fluid, respectively. The interface is modeled as a smooth transitional region
+                                           (0 < ϕ < 1) that can spread over several grid cells. A single set of equations is solved in the entire computational
+                                           domain, including both fluid and solid. For fluid flow, the momentum equation is obtained through volume
+                                           averaging:
+
+
+
+
+WANG ET AL.                                                                                                                                               3 of 18
+                                                                                                                                        19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                          10.1029/2023WR036122
+
+
+
+                                                  ρ f ∂u      uu
+                                                     [ + ∇ · ( )] = − ∇p + ∇ · ( μef f ∇u),                                     (4a)
+                                                  ϕ ∂t        ϕ
+                                                                               μf
+                                                                     μef f =      ,                                             (4b)
+                                                                               ϕ
+
+              We assume the solid phase is not transported and thus u = ϕuf, where u and uf are the superficial and intrinsic
+              fluid velocity, respectively. To improve numerical stability, the phase fraction has a lower bound of ϕ = 1 × 10− 5
+              in the pure solid phase.
+
+              The multi‐component solute transport with mineral reactions is described as follows (Deng et al., 2021, 2022;
+              Soulaine et al., 2017, 2021; Yang et al., 2021):
+
+                                                   ∂(ϕci )
+                                                           + ∇ · (uci ) = ∇ · (ϕDi,ef f ∇ci ) − ri ,                            (5a)
+                                                     ∂t
+
+                                                                   Di,ef f = ϕDi ,                                              (5b)
+
+                                                                    ri = Ri |∇ϕ|.                                               (5c)
+
+              Since the fluid‐solid interface is modeled as a smooth transitional region, the interfacial reaction rate Ri in
+              Equation 3a is transformed into a volumetric reaction rate ri, which is non‐zero only in the transitional region.
+              Here |∇ϕ| represents the reactive interface area per unit volume in the smooth transitional region. For mineral
+              dissolution and precipitation, we have (Soulaine et al., 2017; Soulaine & Tchelepi, 2016):
+
+                                                                   ∂ϕ
+                                                                      = Q|∇ϕ|.                                                   (6)
+                                                                   ∂t
+
+              Similar to Eq. (3), we neglect the fluid velocity on the interface, so ∇ · u = 0 is satisfied in the entire compu-
+              tational domain.
+
+              To explicitly express the reaction rate Ri and the dissolution‐precipitation rate Q, we consider a specific reactive
+              system:
+
+                                                       A(s) + 2B(aq) → C(aq) + D(aq),                                           (7a)
+
+                                                              C(aq) + E(aq) → F(s).                                             (7b)
+
+              For example, the reactive system can represent calcite dissolution and gypsum precipitation (Figure 1):
+
+                                               CaCO3 (s) + 2H+ (aq) → Ca2+ (aq) + H2 CO3 (aq),                                  (8a)
+
+                                                      Ca2+ (aq) + SO2−
+                                                                    4 (aq) → CaSO4 (s).                                         (8b)
+
+              This system was considered in 2D reactive flow and transport simulations in Xie et al. (2015). In our case, we
+              assume the reactive system is far from equilibrium, so the backward reactions are not considered. We focus on
+              scenarios in which dissolution and precipitation are dominant at different locations (Figure 1). This generally
+              occurs when the precipitation rate is lower or comparable to the dissolution rate. If precipitation is much faster
+              than dissolution, the dissolved ions can precipitate instantaneously at the same location, for example, in celestite
+              dissolution and barite precipitation (Deng et al., 2022). Since this has been investigated in the literature, our focus
+              is the non‐localized dissolution‐precipitation coupling, which shows a more complicated behavior.
+
+              In the reactive system, we focus on the concentrations of three components that control the reaction rates
+              (i = 1,2,3):
+
+                                                               c1 = c(B) (=[H+ ]),                                              (9a)
+
+
+
+
+WANG ET AL.                                                                                                                  4 of 18
+                                                                                                                                          19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                         10.1029/2023WR036122
+
+
+
+                                                               c2 = c(E) (=[SO2−
+                                                                              4 ]),                                               (9b)
+
+                                                                c3 = c(C) (=[Ca2+ ]).                                             (9c)
+
+              The interfacial and volumetric reaction rates in Equation 5 are:
+
+                                                         R1 = 2k1 c1 ,      r1 = 2k1 c1 |∇ϕ|,                                    (10a)
+
+                                                       R2 = k23 c2 c3 ,     r2 = k23 c2 c3 |∇ϕ|,                                 (10b)
+
+                                         R3 = − k1 c1 + k23 c2 c3 ,       r3 = − k1 c1 |∇ϕ| + k23 c2 c3 |∇ϕ|,                    (10c)
+
+              where k1 and k23 are reaction rate constants. Here the dissolution reaction (Equation 7a and Equation 8a) is
+              assumed to be first order with respect to the component B (H+), based on calcite dissolution experiments
+              (Alkattan et al., 1998; Buhmann & Dreybrodt, 1985), and the precipitation reaction is second order overall,
+              assuming elementary reaction kinetics. The mineral dissolution‐precipitation process is described by:
+
+                                                       ∂ϕ
+                                                          = k1 V 1 c1 |∇ϕ|− k23 V 23 c2 c3 |∇ϕ|,                                  (11)
+                                                       ∂t
+
+              where V1 and V23 are the molar volume of the dissolved species A and the precipitated species F, respectively.
+              The governing equations in the computational model are discretized and solved by OpenFOAM (Weller
+              et al., 1998), which is an open‐source C++ library for computational fluid dynamics. A major challenge is to
+              properly discretize Equation 11 so that the phase fraction ϕ is always bounded between 0 and 1 while the interface
+              moves. For example, when mineral precipitation occurs, a pure fluid grid should be able to transform to a solid
+              phase through mineral precipitation (∂ϕ
+                                                   ∂t < 0), which indicates |∇ϕ| > 0 in Equation 11. Mathematically, this
+              condition is:
+
+                                                             ∃x,ϕ(x) = 1 and |∇ϕ|>0 .                                             (12)
+
+              On the other hand, when dissolution occurs, all pure fluid grid cells should remain in a fluid state (∂ϕ
+                                                                                                                    ∂t = 0).
+              According to Equation 11, this indicates:
+
+                                                             ∀ x s.t. ϕ(x) = 1,|∇ϕ|= 0.                                           (13)
+
+              The two conditions (12) and (13) contradict each other, so ∇ϕ needs to be computed based on the local state of
+              dissolution or precipitation.
+              We define a phase transformation vector field:
+
+                                                    q = Q∇ϕ = k1 V 1 c1 ∇ϕ − k23 V 23 c2 c3 ∇ϕ.                                   (14)
+
+              The direction of q represents the direction of phase transformation: q pointing from solid to fluid indicates
+              dissolution, and q pointing from fluid to solid indicates precipitation. The magnitude of q represents the volu-
+              metric rate of phase transformation. The term ∇ϕ is computed as follows. First, we compute a temporary ∇ϕ by
+              traditional central differencing. Next, we substitute the temporary ∇ϕ in Equation 14 to calculate q. Finally, we
+              compute ∇ϕ again following the downwind differencing scheme, with the wind direction given by q.
+
+              To demonstrate the algorithm, we construct a fluid‐solid interface perpendicular to the x axis, with solid in the x−
+              direction and fluid in the x+ direction. We consider three adjacent computational grid cells located at xj− 1 < xj < xj+1
+              (Figure 2). Since the fluid is in the x + direction, the fluid phase fraction satisfies ϕj− 1 ≤ ϕj ≤ ϕj+1. When mineral
+              precipitation occurs, the phase transformation vector q points from fluid to solid, that is, in the x− direction.
+              Following the downwind differencing scheme and applying Equation 6, we have:
+
+
+
+
+WANG ET AL.                                                                                                                    5 of 18
+                                                                                                                                              19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                            10.1029/2023WR036122
+
+
+
+
+              Figure 2. Three adjacent grid cells in the transitional region between fluid and solid phases. The discretization of |∇ϕ|
+              involves different grid connections for dissolution and precipitation, the choice of which depends on the direction of the
+              phase transformation vector q.
+
+
+                                                                       ϕj − ϕj− 1     ϕj
+                                                            |∇ϕ| j =              ≤          ,                                        (15a)
+                                                                       xj − xj− 1 xj − xj− 1
+
+                                                             ∂ϕj                   ϕj
+                                                                 = Q|∇ϕ| j ≥ Q            .                                           (15b)
+                                                              ∂t               xj − xj− 1
+
+              Since Q is negative for mineral precipitation, Equation 15b ensures ϕj can only decrease and is always positive.
+              Equation 15 also shows that ϕj can decrease from 1 as long as ϕj− 1 < ϕj. On the other hand, when mineral
+              dissolution occurs, q is in the x + direction. Similarly, we have:
+
+                                                                       ϕj+1 − ϕj 1 − ϕj
+                                                            |∇ϕ| j =            ≤          ,                                          (16a)
+                                                                       xj+1 − xj xj+1 − xj
+
+                                                             ∂ϕj                1 − ϕj
+                                                                 = Q|∇ϕ| j ≤ Q           .                                            (16b)
+                                                              ∂t               xj+1 − xj
+
+              For mineral dissolution, Q is positive, so Equation 16b guarantees that ϕj can only increase and is always bounded
+              by 1. In conclusion, the phase transformation vector field q allows us to properly discretize the term ∇ϕ, so that ϕ
+              is always bounded between 0 and 1 for both dissolution and precipitation scenarios.
+
+              For two‐dimensional and three‐dimensional problems, the discretization of ∇ϕ follows the same downwind
+              differencing scheme, with the wind direction given by q. As an example, we consider a grid cell (i,j) in a two‐
+              dimensional system where ϕi,j− 1 ≤ ϕi,j ≤ ϕi,j+1 and ϕi− 1,j ≤ ϕi,j ≤ ϕi+1,j (this can be modified following the
+              interface direction). For mineral precipitation, we have:
+
+                                                                   ϕi,j − ϕi,j− 1 ϕi,j − ϕi− 1,j
+                                                        (∇ϕ)i,j = (               ,               ).                                   (17)
+                                                                    xi,j − xi,j− 1 xi,j − xi− 1,j
+
+              For mineral dissolution, we have:
+
+                                                                   ϕi,j+1 − ϕi,j ϕi+1,j − ϕi,j
+                                                        (∇ϕ)i,j = (              ,              ).                                     (18)
+                                                                    xi,j+1 − xi,j xi+1,j − xi,j
+
+
+
+WANG ET AL.                                                                                                                         6 of 18
+                                                                                                                                                19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                             10.1029/2023WR036122
+
+
+
+
+              Figure 3. A schematic representation of the mineral dissolution‐precipitation systems for model validation, where the white
+              region represents the fluid and the gray region represents the solid at the initial state: (a) one‐component diffusion‐reaction
+              problem in Section 4.1; (b) multicomponent reactive flow problem in Section 4.2, where the dashed lines indicate that the
+              channel is much longer than shown here.
+
+
+              4. Results
+              To validate the model, we first consider a one‐component diffusion‐reaction problem, where analytical solutions
+              exist for comparison (Section 4.1). Next, a multi‐component reactive flow problem is solved, in which the
+              proposed model is compared with a reference interface tracking approach (Section 4.2). Finally, the proposed
+              model is applied in a realistic rock structure, where different dissolution‐precipitation patterns are identified
+              (Section 4.3).
+
+
+              4.1. Model Validation Against Analytical Solutions
+              To validate the computational model in Section 3, we start by considering a one‐component diffusion‐reaction
+              system with coupled dissolution and precipitation. The reaction rate in Equation 5 and the dissolution‐
+              precipitation Equation 6 are explicitly expressed as:
+
+                                                                   r = k(c − ceq )|∇ϕ|,                                                 (19a)
+
+                                                               ∂ϕ
+                                                                  = − k(c − ceq ) V|∇ϕ|,                                                (19b)
+                                                               ∂t
+
+              where ceq is an equilibrium concentration which will be given in Equation 20. For simplicity, we investigate a
+              one‐dimensional problem, in which a fluid domain is located between two solid domains at the top and bottom
+              (Figure 3a). The top half of the domain is set to have a higher ceq than the bottom half, for example, due to a
+              temperature difference:
+
+                                                              ceq ( y) = 1      y ∈ [0,H/2],                                            (20a)
+
+                                                            ceq ( y) = 0      y ∈ [ − H /2,0),                                          (20b)
+
+              where H is the domain height. Because of the different equilibrium concentration, the mineral gradually dissolves
+              at the top fluid‐solid interface and then precipitates at the bottom interface. Transport is by diffusion only (no fluid
+              flow). We set the initial concentration to be 0, and the geometric and physical parameters of the system are listed
+              in Table 1. The computational domain is meshed uniformly with a 1 × 150 grid resolution, including both fluid
+              and solid phases.
+              The modeling results are compared with analytical solutions. To derive the analytical solutions, we apply
+              Equations 2 and 3 to the one‐component system and obtain the following ordinary differential equations:
+
+                                                   ∂[c(H − h1 − h2 )]
+                                                                      = − k( c − ceq            eq
+                                                                                  1 ) − k( c − c2 )
+                                                                                                    ,                                   (21a)
+                                                          ∂t
+
+
+
+WANG ET AL.                                                                                                                           7 of 18
+                                                                                                                                            19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                        10.1029/2023WR036122
+
+
+
+               Table 1
+               Modeling Parameters in the Simulations
+               Modeling parameters                                                                                     Value
+                                 2
+               Diffusivity (D, m /s)                                                                                  1 × 10− 9
+                                             2
+               Kinematic viscosity (μf /ρf, m /s)                                                                     1 × 10− 6
+               Section 4.1: Diffusion‐reaction system
+                 Domain height (H, μm)                                                                                   30
+                 Initial fluid height (h0, μm)                                                                           20
+                 Reaction rate constant (k, m/s)                                                                      1 × 10− 8
+                 Molar volume (V, 1/[C])                                                                                0.05
+               Section 4.2: Multicomponent reactive flow
+                 Domain height (H, μm)                                                                                   15
+                 Initial fluid height (h0, μm)                                                                           10
+                 Domain length (L, mm)                                                                                   3
+                 Reaction rate constant (k1, m/s)                                                                     1 × 10− 8
+                 Reaction rate constant (k23, m/s/[C])                                                                1 × 10− 8
+                 Molar volume for dissolved mineral (V1, 1/[C])                                                        0.025
+                 Molar volume for precipitated mineral (V2, 1/[C])                                                      0.1
+               Section 4.3: Realistic rock
+                 Domain height (H, μm)                                                                                  576
+                 Domain length (L, μm)                                                                                  870
+                 Reaction rate constant (k1, m/s)                                                               − 7
+                                                                                                          1 × 10 ,1 × 10− 6,1 × 10− 5
+                 Reaction rate constant (k23, m/s/[C])                                                    1 × 10− 7,1 × 10− 6,1 × 10− 5
+                 Molar volume for dissolved mineral (V1, 1/[C])                                                        0.025
+                 Molar volume for precipitated mineral (V2, 1/[C])                                                      0.1
+
+
+                                                                  ∂h1
+                                                                      = k( c − ceq
+                                                                                1 )V
+                                                                                     ,                                             (21b)
+                                                                   ∂t
+
+                                                                  ∂h2
+                                                                      = k( c − ceq
+                                                                                2 ) V,
+                                                                                                                                   (21c)
+                                                                   ∂t
+
+              where h1(t) and h2(t) are the solid thicknesses at the top and bottom, respectively, and c(t) is an averaged con-
+              centration in the fluid. Here we assume that diffusion is much faster than reaction, so the spatial variation of
+              concentration is small. The equilibrium concentration at the top fluid‐solid interface ceq
+                                                                                                      1 = 1, and at the bottom
+              interface ceq
+                         2  = 0, according to Equation  20.
+
+              The computational model in Section 3 is compared with the analytical solution of Equation 21 in Figure 4. The
+              circles and the dashed line in Figure 4 (a), which are obtained from the proposed model and the analytical solution,
+              represent the solid domain thickness at the top where mineral dissolution occurs. The crosses (proposed model)
+              and the solid line (analytical solution) show the bottom solid domain thickness during mineral precipitation. We
+              observe that at the beginning, the precipitation is slower than the dissolution because there is no solute at the initial
+              state to trigger the precipitation reaction. Figure 4 (b) shows the averaged concentration in the fluid domain. The
+              concentration is stabilized at 0.5 when the precipitation rate equals the dissolution rate. In Figure 4, the proposed
+              model agrees very well with the analytical solution in predicting both the solid domain thicknesses and the
+              concentration.
+
+              4.2. Model Validation Against Interface Tracking Simulations
+
+              In this section, we investigate a multicomponent dissolution‐precipitation problem with fluid flow. The chemical
+              components and the reactions are described in Equations 7–11. A two‐dimensional channel is considered in which
+
+
+WANG ET AL.                                                                                                                       8 of 18
+                                                                                                                                               19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                            10.1029/2023WR036122
+
+
+
+
+              Figure 4. Comparison between the proposed computational model and the analytical solution: (a) thicknesses of the solid
+              domain at the top and the bottom, where mineral dissolution and precipitation occur, respectively; (b) averaged concentration
+              in the fluid domain.
+
+              reactive fluid is injected at the inlet and mineral dissolution‐precipitation occurs on the channel walls (Figure 3b).
+              The system is a simplified model for calcite dissolution and gypsum precipitation during acid injection in a
+              fracture. At the inlet, fixed concentration boundary conditions (c1 = c2 = 1 and c3 = 0) are applied, while zero
+              gradient concentration boundary conditions (∂ci /∂x = 0, i = 1, 2, 3) are applied at the outlet. A pressure drop Δp is
+              also applied between the inlet and outlet to drive fluid flow. Initially, there is no solute in the channel (ci
+              (t = 0) = 0, i = 1, 2, 3), while the velocity field is initialized to be a parabolic steady‐state profile corresponding to
+              Δp. The geometric and physical parameters of the problem are listed in Table 1. The secondary (precipitated)
+              mineral is selected to have a higher molar volume than the dissolving mineral, which corresponds to the case of
+              calcite and gypsum described above. The computational domain is meshed uniformly with a 300 × 120 grid
+              resolution, including both fluid and solid phases.
+              The multicomponent reactive flow system is solved by the computational model in Section 3. Separately, we also
+              model the system through an interface tracking approach (Wang & Battiato, 2020, 2021), which serves as a
+              reference solution. The interface tracking method solves the governing Equations 1–3 in the fluid domain, that is,
+              the physical model in Section 2 is directly solved. The fluid domain is meshed by boundary‐fitted grid cells and is
+              constantly remeshed to follow the fluid‐solid interface during mineral dissolution‐precipitation. Since only the
+              fluid domain is meshed, the grid resolution is 300 × 80, which results in an initial grid size that is the same as in
+              our computational model.
+              The results obtained from the two approaches are compared. Figure 5 plots the concentration profiles along the
+              channel centerline at = 5,000 s, where the symbols represent the proposed model and the lines represent the
+              reference interface tracking simulation. Four pressure drop values are adopted and we employ the Péclet number
+              to characterize the relative importance of advection versus diffusion:
+
+                                                                        u0 h0   h3 Δp
+                                                                 Pe =         = 0     ,                                                 (22)
+                                                                         D     12DμL
+
+              where u0 is the average fluid velocity at the initial state and h0 is the initial fluid height (i.e., initial channel
+              aperture). Here we assume all the chemical components have the same diffusivity D (Table 1). In Figure 5 (a), (b)
+              and (c), the concentration c1 decreases with x, as the corresponding component B (H+) is gradually consumed
+              through mineral dissolution. The dissolution releases the component C (Ca2+), so the corresponding concen-
+              tration c3 = c(C) increases with x near the channel inlet. Then, the component C (Ca2+) reacts with the component
+              E ( SO2−
+                     4 ) , which causes mineral precipitation. Thus, the concentration c2 = c(E) decreases with x, while c3 = c(C)
+              may decrease or increase, depending on the dissolution and precipitation reaction rates. Figure 5 (d) presents an
+              extreme case where the flow rate is very high and the solute is quickly flushed through the channel, so flat
+              concentration profiles (no gradient) are observed.
+
+
+WANG ET AL.                                                                                                                          9 of 18
+                                                                                                                                            19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                          10.1029/2023WR036122
+
+
+
+
+                                                                                                                   2+
+              Figure 5. Concentration profiles, that is, c1 = c(B) (=[H+]); c2 = c(E) (=[SO2−4 ]) ; c3 = c(C) (=[Ca ]), along the channel
+              centerline at t = 5,000 s: (a) Pe = 0.011, (b) Pe = 0.022, (c) Pe = 0.11, (d) Pe = 11. The symbols are computed by the
+              proposed model and the lines are results from the reference interface tracking simulation.
+
+              Figure 6 shows the channel aperture variation for the four Pe values. We find dissolution is always enhanced as Pe
+              increases because more solute is injected. On the other hand, the amount of precipitated mineral increases at first,
+              then decreases with Pe. This is because the precipitation reaction relies on the component C (Ca2+), which is
+              released through dissolution. In the low Pe range, the precipitation benefits from the enhanced dissolution, as
+              more reactant C (Ca2+) is generated for the precipitation reaction. In the high Pe range, the dissolved mineral is
+              quickly flushed away, thus the amount of precipitation decreases.
+              The velocity profiles along the channel centerline at t = 5,000 s are plotted in Figure 7. Good agreement is
+              observed between the model and the reference interface tracking approach for predicting concentration, channel
+              aperture, and velocity, which indicates the accuracy of our proposed model. We also compare the proposed model
+              with a micro‐continuum method, which introduces a drag force in the momentum equation (Soulaine et al., 2017;
+              Voller & Prakash, 1987):
+
+                                              ρ f ∂u      uu        1
+                                                 [ + ∇ · ( )] = ∇p + ∇ · (μ f ∇u) − μ f K − 1 u ,                                   (23a)
+                                              ϕ ∂t        ϕ         ϕ
+
+                                                                               ϕ3
+                                                                 K = K CK            ,                                              (23b)
+                                                                            (1 − ϕ)2
+
+              where KCK is an empirical parameter that controls the drag force. The selection of KCK affects the accuracy of the
+              micro‐continuum method. Figure 8 plots the velocity profiles across the channel at t = 3,000 s and t = 5,000 s. The
+
+
+
+WANG ET AL.                                                                                                                      10 of 18
+                                                                                                                                                                          19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                  Water Resources Research                                                          10.1029/2023WR036122
+
+
+                                                                                 case with Pe = 11 is considered as the velocity along the channel is uniform
+                                                                                 (Figure 7d). We compare the proposed model, the reference interface tracking
+                                                                                 simulation, and the micro‐continuum approach. For the micro‐continuum
+                                                                                 approach, the velocity decreases with KCK, as a lower KCK provides a
+                                                                                 larger drag force in Equation 23. For our problem setup, the best agreement to
+                                                                                 the reference simulation is observed at KCK = 5 × 10− 14 m2. On the other
+                                                                                 hand, the effective viscosity model Equation 4 compares well with the
+                                                                                 reference simulation without introducing any empirical parameters.
+
+
+                                                                                 4.3. Coupled Mineral Dissolution and Precipitation in Realistic Rocks
+
+                                                                                 After validation, the proposed model is used to analyze mineral dissolution‐
+                                                                                 precipitation processes in more realistic pore structures. Similar to Sec-
+                                                                                 tion 4.2, we consider the multicomponent reactive system described in
+                                                                                 Equations 7–11. A pore‐scale rock structure is modeled in which mineral
+                                                                                 dissolution and precipitation occur on the solid grain interfaces. We apply
+                                                                                 fixed concentration boundary conditions (c1 = c2 = 1 and c3 = 0) on the left
+Figure 6. Concentration profiles along the channel centerline at t = 5,000 s:    boundary of the rock structure, and zero gradient concentration boundary
+(a) Pe = 0.011, (b) Pe = 0.022, (c) Pe = 0.11, (d) Pe = 11. The symbols are      conditions (∂ci /∂x = 0, i = 1, 2, 3) at the right boundary. Between the two
+computed using the proposed model and the lines are results from the             boundaries, a pressure drop Δp is applied to drive fluid flow. Initially, there is
+reference interface tracking simulation.                                         no solute in the rock (ci (t = 0) = 0, i = 1, 2, 3), and the velocity is at the steady
+                                                                                 state corresponding to Δp and the initial rock structure.
+
+
+
+
+                                          Figure 7. Velocity profiles along the channel centerline at t = 5,000 s: (a) Pe = 0.011, (b) Pe = 0.022, (c) Pe = 0.11,
+                                          (d) Pe = 11. The circles represent the proposed model and the lines represent the reference interface tracking simulation.
+
+
+WANG ET AL.                                                                                                                                                   11 of 18
+                                                                                                                                                  19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                      Water Resources Research                                                              10.1029/2023WR036122
+
+
+
+
+              Figure 8. Velocity profiles across the channel with Pe = 11: (a) t = 3,000 s, (b) t = 5,000 s. The circles represent the proposed
+              model and other symbols are results from the micro‐continuum approach with different KCK. The lines represent the interface
+              tracking simulation for reference.
+
+              The rock structure is constructed based on a sandstone image (Figure 9a). The image is first binarized, and then it
+              is smoothed by a Gauss filter to eliminate the noise in the image. Finally, the grains at the left boundary are
+              removed to provide a clear boundary for fluid injection (Figure 9b). The geometric parameters of the structure and
+              the physical parameters are listed in Table 1. The rock structure is meshed uniformly with a resolution 426 × 282,
+              which is the same as the resolution of the processed image in Figure 9 (b). To ensure that the rock grains do not
+              move with fluid flow, a drag term is added in Equation 4a:
+
+                                                   ρ f ∂u      uu
+                                                      [ + ∇ · ( )] = ∇p + ∇ · ( μef f ∇u) − Cu ,                                          (24a)
+                                                   ϕ ∂t        ϕ
+
+                                                         C = 1 × 1020 s− 1 if        ϕ ∈ [0,0.01] ,                                       (24b)
+
+                                                               C=0          if ϕ ∈ (0.01,1] .                                             (24c)
+
+              The drag term is only applied in the solid phase where ϕ < 0.01 to immobilize the solid grains. We note that the
+              value of C does not affect the modeling results when it is large enough, and the drag term is not necessary if the
+              solid phase is already attached to static boundaries (e.g., in Section 4.2).
+              We investigate the mineral dissolution‐precipitation with various flow rates and reaction rate constants. The
+              Péclet number and two Damköhler numbers (DaI = DaII/Pe, Soulaine et al., 2017) are introduced to represent the
+              relative importance of advection, diffusion, and reaction:
+
+
+
+
+              Figure 9. The pore‐scale rock structure employed in mineral dissolution‐precipitation modeling: (a) a rock thin section
+              impregnated with epoxy, where blue represents pore space and white represents grains (image courtesy: Stanford SUPRI‐A
+              research group), (b) the image after binarization and smoothing. The image size is 870 × 576 μm.
+
+
+WANG ET AL.                                                                                                                           12 of 18
+                                                                                                                                               19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                            10.1029/2023WR036122
+
+
+
+
+              Figure 10. (Regime: compact dissolution‐precipitation) The phase fraction maps (left) and the velocity fields (right) at three
+              different times with Pe = 2.52 × 10− 2 and DaII = 2.37 × 10− 3. The green and yellow lines in the phase fraction maps
+              represent the initial and final grain boundaries.
+
+
+                                                                              u0 h0
+                                                                       Pe =         ,                                                  (25a)
+                                                                               D
+                                                                                k1
+                                                                       DaI =       ,                                                   (25b)
+                                                                                u0
+
+                                                                               k1 h0
+                                                                      DaII =         ,                                                 (25c)
+                                                                                D
+                                                                             K 0 Δp
+                                                                      u0 =          ,                                                  (25d)
+                                                                             μϕ0 L
+                                                                          √̅̅̅̅̅̅̅̅̅̅̅
+                                                                           12K 0
+                                                                     h0 =              ,                                               (25e)
+                                                                              ϕ0
+
+              Where K0 = 2.615 × 10− 11 m2 and ϕ0 = 0.561 are the computed rock permeability and porosity at the initial state.
+              Figure 10 shows the modeling results with Pe = 2.52 × 10− 2 and DaII = 2.37 × 10− 3, where the snapshots of
+              phase fraction fields and velocity fields are presented at three different times. We observe a compact dissolution‐
+              precipitation pattern, in which the grains near the inlet are gradually dissolved and precipitation is dominant for
+              the grains far from the inlet. Because all the downstream flow paths are gradually clogged by the precipitation, the
+              velocity field in the entire domain generally decreases. A different regime of dissolution‐precipitation coupling is
+              observed in Figure 11 when Pe = 0.886 and DaII = 2.37 × 10− 2. With the higher flow and reaction rates, mineral
+              dissolution creates wormholes along the main flow paths, while precipitation exhibits a clustered distribution in
+              the pore space next to the main flow paths, clogging the secondary flow paths. Thus, the velocity increases in the
+              main flow paths, while it decreases in the secondary flow paths. Finally, we observe a third regime where
+              dissolution is dominant over precipitation (Figure 12, with Pe = 0.127 and DaII = 2.37 × 10− 3). This occurs when
+              advection is much faster than reaction (small DaI), and the dissolved mineral is flushed away quickly before being
+              able to precipitate. All the grains in the domain are gradually dissolved and the flow velocity increases as the flow
+              paths are widened.
+
+
+WANG ET AL.                                                                                                                        13 of 18
+                                                                                                                                                19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                     Water Resources Research                                                             10.1029/2023WR036122
+
+
+
+
+              Figure 11. (Regime: wormhole dissolution with clustered precipitation) The phase fraction maps (left) and the velocity fields
+              (right) at three different times with Pe = 0.886 and DaII = 2.37 × 10− 2. The green and yellow lines in the phase fraction maps
+              represent the initial and final grain boundaries.
+
+              To conclude, we have identified three regimes of dissolution‐precipitation coupling: (a) compact dissolution‐
+              precipitation, (b) wormhole dissolution with clustered precipitation, and (c) dissolution dominant. The three
+              regimes are classified by Pe and DaI in Figure 13. Laboratory experiments have found dissolution‐precipitation
+              patterns similar to the first and third regimes (Singurindy & Berkowitz, 2005). The second regime is observed
+              when 0.01 < DaI < 0.1, which also agrees with the condition for wormhole occurrence in dissolution experiments
+              (0.01 < DaI < 1) (Fredd & Fogler, 1998; Li et al., 2019). For coupled dissolution‐precipitation, the precipitation
+              can block the main flow paths at the downstream. In such scenarios, we may observe the compact dissolution‐
+              precipitation regime rather than wormholes, for example, when 0.1< DaI < 1. We also note that a precipita-
+              tion dominant regime can exist when the precipitation is much faster than dissolution, that is, the dissolved ion
+              instantaneously precipitates at the same location (Deng et al., 2022; Singurindy & Berkowitz, 2005). This is not
+              pursued here because we assume the precipitation and dissolution have similar rates, and the scenario has been
+              investigated in the literature (Deng et al., 2022).
+              The three regimes demonstrate different behavior in the permeability‐porosity relationship during mineral
+              dissolution‐precipitation. We compute porosity by integrating the phase fraction field in the entire computational
+              domain, and permeability by recording the flow rate and using Darcy's law. Both porosity and permeability are
+              calculated at several time instances to track their variations. Figure 14 plots the permeability‐porosity curves for
+              DaII = 2.37 × 10− 3 and DaII = 2.37 × 10− 2 under various Pe, where all the curves begin at the initial porosity‐
+              permeability value (0.561, 2.615 × 10− 11 m2). The Pe and DaII values in Figure 14 (a) correspond to the linear
+              distributed points at the bottom in Figure 13, which are in the “compact dissolution‐precipitation” regime and the
+              “dissolution dominant” regime. In the “compact dissolution‐precipitation” regime, both porosity and permeability
+              decrease from the initial porosity‐permeability value, as the precipitation clogs all the flow paths. In the
+              “dissolution dominant” regime, both porosity and permeability increase, since all the flow paths are widened by
+              dissolution. The Pe and DaII in Figure 14 (b) correspond to the linear distributed points at the middle in Figure 13,
+              where all the three regimes exist. In the “wormhole dissolution with clustered precipitation” regime, the
+              permeability can increase while the overall porosity decreases. The permeability increases because the main flow
+              paths are widened by the wormhole dissolution, while the overall porosity decrease is caused by the clustered
+              precipitation in the pore space next to the main flow paths.
+
+
+
+WANG ET AL.                                                                                                                         14 of 18
+                                                                                                                                                                             19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                   Water Resources Research                                                             10.1029/2023WR036122
+
+
+
+
+                                           Figure 12. (Regime: dissolution dominant) The phase fraction maps (left) and the velocity fields (right) at three different
+                                           times with Pe = 0.127 and DaII = 2.37 × 10− 3. The green and yellow lines in the phase fraction maps represent the initial and
+                                           final grain boundaries.
+
+
+
+                                           The dissolution‐precipitation regimes have not been fully conformed in laboratory experiments yet. However,
+                                           Singurindy and Berkowitz (2005) have presented experiments of coupled dissolution and precipitation in frac-
+                                           tures of carbonate rocks. Dominant dissolution at the upstream and dominant precipitation at the downstream
+                                           have been observed, which is the same as the “compact dissolution‐precipitation” regime. A dissolution dominant
+                                           regime is also observed at high acid concentrations. The “wormhole dissolution with clustered precipitation”
+                                           regime, on the other hand, cannot be observed in a single fracture. Microfluidic chips with embedded realistic
+                                           rocks (Ling et al., 2022) could be a promising approach for further investigation. The microfluidic devices allow
+                                                                                accurate measurements of the moving fluid‐solid interfaces, thus the disso-
+                                                                                lution dominant and precipitation dominant regions can be identified.
+
+
+                                                                                   5. Conclusions
+                                                                                   We have developed a pore‐scale model for multicomponent reactive flow
+                                                                                   with coupled mineral dissolution and precipitation. A phase transformation
+                                                                                   vector field is introduced, with its direction indicating whether dissolution or
+                                                                                   precipitation occurs. Based on the phase transformation vector, the
+                                                                                   dissolution‐precipitation equation is solved with the downwind differencing
+                                                                                   scheme, which ensures the phase fraction is always bounded between 0 and 1.
+                                                                                   We also employ an effective viscosity model in the momentum equation to
+                                                                                   immobilize the flow at fluid‐solid interfaces, which is compared with a micro‐
+                                                                                   continuum approach where an empirical parameter associated with drag
+                                                                                   forces needs to be carefully selected. Major conclusions of this work are
+                                                                                   summarized as follows.
+                                                                                   •   A diffusion‐reaction problem is investigated, where mineral dissolution
+Figure 13. The classification of the three regimes of dissolution‐precipitation        and precipitation occur on two opposing fluid‐solid interfaces, respec-
+coupling, where the points represent the modeling conditions we have                   tively. The proposed model achieves an excellent match with the analyt-
+employed.                                                                              ical solution in predicting interface movement and concentration profiles.
+
+
+WANG ET AL.                                                                                                                                                       15 of 18
+                                                                                                                                                                                               19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                  Water Resources Research                                                                        10.1029/2023WR036122
+
+
+
+
+                                         Figure 14. The permeability‐porosity relationship during mineral dissolution‐precipitation in the rock structure:
+                                         (a) DaII = 2.37 × 10− 3, (b) DaII = 2.37 × 10− 2.
+
+                                         •   Multicomponent reactive flow in a channel with mineral dissolution‐precipitation is modeled by the proposed
+                                             approach and an interface tracking approach for reference. The two approaches agree well in predicting
+                                             concentration, interface movement, and velocity.
+                                         •   The proposed model can accurately predict the parabolic velocity profile in channel flow without introducing
+                                             empirical parameters. For the drag force model in the micro‐continuum approach, different values of the
+                                             empirical parameter KCK are investigated and the best match is only observed when KCK = 5 × 10− 14 m2 with
+                                             our problem setup.
+                                         •   Coupled mineral dissolution and precipitation in realistic rocks is modeled and three coupling regimes are
+                                             identified: (a) compact dissolution‐precipitation, (b) wormhole dissolution with clustered precipitation, and
+                                             (c) dissolution dominant. The three regimes exhibit different behavior in terms of the permeability‐porosity
+                                             relationship.
+
+                                         Although the rock structure investigated in this work is two dimensional, the proposed model is also applicable in
+                                         three dimensional geometries. This requires more computational resources, as capturing moving interfaces
+                                         generally needs higher grid resolution than flow and transport modeling. In future work, we expect to implement
+                                         more sophisticated reaction models, such as the blockage effects and nucleation processes of mineral precipi-
+                                         tation. This can help to obtain more accurate the dissolution and precipitation rates, for example, the precipitation
+                                         rate can be affected by the nucleation possibilities on different mineral surfaces.
+
+                                         Data Availability Statement
+                                         The data in this work is available at http://doi.org/10.5281/zenodo.10729574.
+
+
+Acknowledgments                          References
+This work was funded by the US
+Department of Energy (DOE), the Office   Alkattan, M., Oelkers, E. H., Dandurand, J. L., & Schott, J. (1998). An experimental study of calcite and limestone dissolution rates as a function
+of Basic Energy Sciences, Chemical         of pH from − 1 to 3 and temperature from 25 to 80 C. Chemical Geology, 151(1–4), 199–214. https://doi.org/10.1016/s0009‐2541(98)00080‐1
+Sciences, Geosciences, and Biosciences   Borgia, A., Pruess, K., Kneafsey, T. J., Oldenburg, C. M., & Pan, L. (2012). Numerical simulation of salt precipitation in the fractures of a CO2‐
+Division under Contract Number DE‐         enhanced geothermal system. Geothermics, 44, 13–22. https://doi.org/10.1016/j.geothermics.2012.06.002
+AC02‐05CH11231 with Lawrence             Buhmann, D., & Dreybrodt, W. (1985). The kinetics of calcite dissolution and precipitation in geologically relevant situations of karst areas: 1.
+Berkeley National Laboratory.              Open system. Chemical Geology, 48(1–4), 189–211. https://doi.org/10.1016/0009‐2541(85)90046‐4
+                                         Burns, P. C., & Klingensmith, A. L. (2006). Uranium mineralogy and neptunium mobility. Elements, 2(6), 351–356. https://doi.org/10.2113/
+                                           gselements.2.6.351
+                                         Carman, P. C. (1997). Fluid flow through granular beds. Chemical Engineering Research and Design, 75, S32–S48. https://doi.org/10.1016/
+                                           s0263‐8762(97)80003‐2
+                                         Chen, L., Kang, Q., Carey, B., & Tao, W. (2014). Pore‐scale study of diffusion–reaction processes involving dissolution and precipitation using
+                                           the lattice Boltzmann method. International Journal of Heat and Mass Transfer, 75, 483–496. https://doi.org/10.1016/j.ijheatmasstransfer.
+                                           2014.03.074
+                                         Deng, H., Molins, S., Steefel, C., DePaolo, D., Voltolini, M., Yang, L., & Ajo‐Franklin, J. (2016). A 2.5 D reactive transport model for fracture
+                                           alteration simulation. Environmental Science & Technology, 50(14), 7564–7571. https://doi.org/10.1021/acs.est.6b02184
+
+
+
+
+WANG ET AL.                                                                                                                                                                     16 of 18
+                                                                                                                                                                           19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                       Water Resources Research                                                                              10.1029/2023WR036122
+
+
+              Deng, H., Poonoosamy, J., & Molins, S. (2022). A reactive transport modeling perspective on the dynamics of interface‐coupled dissolution‐
+                 precipitation. Applied Geochemistry, 137, 105207. https://doi.org/10.1016/j.apgeochem.2022.105207
+              Deng, H., Tournassat, C., Molins, S., Claret, F., & Steefel, C. I. (2021). A pore‐scale investigation of mineral precipitation driven diffusivity
+                 change at the column‐scale. Water Resources Research, 57(5), e2020WR028483. https://doi.org/10.1029/2020wr028483
+              Fredd, C. N., & Fogler, H. S. (1998). Influence of transport and reaction on wormhole formation in porous media. AIChE Journal, 44(9),
+                 1933–1949. https://doi.org/10.1002/aic.690440902
+              Ge, Q., Yap, Y., Vargas, F., Zhang, M., & Chai, J. (2012). A total concentration method for modeling of deposition. Numerical Heat Transfer, Part
+                 B: Fundamentals, 61(4), 311–328. https://doi.org/10.1080/10407790.2012.670582
+              Gratier, J. P., Guiguet, R., Renard, F., Jenatton, L., & Bernard, D. (2009). A pressure solution creep law for quartz from indentation experiments.
+                 Journal of Geophysical Research, 114(B3). https://doi.org/10.1029/2008jb005652
+              Gray, F., Anabaraonye, B. U., Crawshaw, J. P., & Boek, E. S. (2021). Pore‐scale dissolution mechanisms in calcite‐CO2‐brine systems: The
+                 impact of non‐linear reaction kinetics and coupled ion transport. Geochimica et Cosmochimica Acta, 305, 323–338. https://doi.org/10.1016/j.
+                 gca.2021.04.002
+              Gray, F., Anabaraonye, B. U., Shah, S., Boek, E. S., & Crawshaw, J. P. (2018). Chemical mechanisms of dissolution of calcite by HCl in porous
+                 media: Simulations and experiment. Advances in Water Resources, 121, 369–387. https://doi.org/10.1016/j.advwatres.2018.09.007
+              Gray, F., & Boek, E. S. (2016). Enhancing computational precision for lattice Boltzmann schemes in porous media flows. Computation, 4(1), 11.
+                 https://doi.org/10.3390/computation4010011
+              Gray, F., Cen, J., & Boek, E. S. (2016). Simulation of dissolution in porous media in three dimensions with lattice Boltzmann, finite‐volume, and
+                 surface‐rescaling methods. Physical Review E, 94(4), 043320. https://doi.org/10.1103/physreve.94.043320
+              Hu, M., & Rutqvist, J. (2020). Finite volume modeling of coupled thermo‐hydro‐mechanical processes with application to brine migration in salt.
+                 Computational Geosciences, 24(5), 1751–1765. https://doi.org/10.1007/s10596‐020‐09943‐8
+              Huber, C., Shafei, B., & Parmigiani, A. (2014). A new pore‐scale model for linear and nonlinear heterogeneous dissolution and precipitation.
+                 Geochimica et Cosmochimica Acta, 124, 109–130. https://doi.org/10.1016/j.gca.2013.09.003
+              Jiang, M., Xu, Z., & Zhou, Z. (2021). Pore‐scale investigation on reactive flow in porous media considering dissolution and precipitation by LBM.
+                 Journal of Petroleum Science and Engineering, 204, 108712. https://doi.org/10.1016/j.petrol.2021.108712
+              Juric, D., & Tryggvason, G. (1996). A front‐tracking method for dendritic solidification. Journal of Computational Physics, 123(1), 127–148.
+                 https://doi.org/10.1006/jcph.1996.0011
+              Kampman, N., Bickle, M., Wigley, M., & Dubacq, B. (2014). Fluid flow and CO2–fluid–mineral interactions during CO2‐storage in sedimentary
+                 basins. Chemical Geology, 369, 22–50. https://doi.org/10.1016/j.chemgeo.2013.11.012
+              Kang, Q., Zhang, D., & Chen, S. (2003). Simulation of dissolution and precipitation in porous media. Journal of Geophysical Research, 108(B10),
+                 2505. https://doi.org/10.1029/2003jb002504
+              Li, L., Rivas, E., Gracie, R., & Dusseault, M. B. (2021). Methodology for the nonlinear coupled multi‐physics simulation of mineral dissolution.
+                 International Journal for Numerical and Analytical Methods in Geomechanics, 45(15), 2193–2213. https://doi.org/10.1002/nag.3262
+              Li, Q., Steefel, C. I., & Jun, Y. S. (2017). Incorporating nanoscale effects into a continuum‐scale reactive transport model for CO2‐deteriorated
+                 cement. Environmental Science & Technology, 51(18), 10861–10871. https://doi.org/10.1021/acs.est.7b00594
+              Li, W., Einstein, H. H., & Germaine, J. T. (2019). An experimental study of matrix dissolution and wormhole formation using gypsum core flood
+                 tests: 1. Permeability evolution and wormhole geometry analysis. Journal of Geophysical Research: Solid Earth, 124(11), 11055–11073.
+                 https://doi.org/10.1029/2018jb017238
+              Li, X., Huang, H., & Meakin, P. (2010). A three‐dimensional level set simulation of coupled reactive transport and precipitation/dissolution.
+                 International Journal of Heat and Mass Transfer, 53(13–14), 2908–2923. https://doi.org/10.1016/j.ijheatmasstransfer.2010.01.044
+              Ling, B., Sodwatana, M., Kohli, A., Ross, C. M., Jew, A., Kovscek, A. R., & Battiato, I. (2022). Probing multiscale dissolution dynamics in natural
+                 rocks through microfluidics and compositional analysis. Proceedings of the National Academy of Sciences, 119(32), e2122520119. https://doi.
+                 org/10.1073/pnas.2122520119
+              Maher, K., Steefel, C. I., White, A. F., & Stonestrom, D. A. (2009). The role of reaction affinity and secondary minerals in regulating chemical
+                 weathering rates at the Santa Cruz Soil Chronosequence, California. Geochimica et Cosmochimica Acta, 73(10), 2804–2831. https://doi.org/10.
+                 1016/j.gca.2009.01.030
+              Molins, S., Soulaine, C., Prasianakis, N. I., Abbasi, A., Poncet, P., Ladd, A. J., et al. (2021). Simulation of mineral dissolution at the pore scale with
+                 evolving fluid‐solid interfaces: Review of approaches and benchmark problem set. Computational Geosciences, 25(4), 1285–1318. https://doi.
+                 org/10.1007/s10596‐019‐09903‐x
+              Oltean, C., Golfier, F., & Bues, M. A. (2013). Numerical and experimental investigation of buoyancy‐driven dissolution in vertical fracture.
+                 Journal of Geophysical Research: Solid Earth, 118(5), 2038–2048. https://doi.org/10.1002/jgrb.50188
+              Poonoosamy, J., Westerwalbesloh, C., Deissmann, G., Mahrous, M., Curti, E., Churakov, S. V., et al. (2019). A microfluidic experiment and pore
+                 scale modelling diagnostics for assessing mineral precipitation and dissolution in confined spaces. Chemical Geology, 528, 119264. https://doi.
+                 org/10.1016/j.chemgeo.2019.07.039
+              Rabemanana, V., Vuataz, F. D., Kohl, T., & Andre, L. (2005). Simulation of mineral precipitation and dissolution in the 5‐km deep enhanced
+                 geothermal reservoir at Soultz‐sous‐Forets, France. Proceedings World Geothermal Congress.
+              Ray, N., Oberlander, J., & Frolkovic, P. (2019). Numerical investigation of a fully coupled micro‐macro model for mineral dissolution and
+                 precipitation. Computational Geosciences, 23(5), 1173–1192. https://doi.org/10.1007/s10596‐019‐09876‐x
+              Sabo, M. S., & Beckingham, L. E. (2021). Porosity‐permeability evolution during simultaneous mineral dissolution and precipitation. Water
+                 Resources Research, 57(6), e2020WR029072. https://doi.org/10.1029/2020wr029072
+              Singurindy, O., & Berkowitz, B. (2005). The role of fractures on coupled dissolution and precipitation patterns in carbonate rocks. Advances in
+                 Water Resources, 28(5), 507–521. https://doi.org/10.1016/j.advwatres.2005.01.002
+              Soulaine, C., Pavuluri, S., Claret, F., & Tournassat, C. (2021). PorousMedia4Foam: Multiscale open‐source platform for hydro‐geochemical
+                 simulations with OpenFOAM®. Environmental Modelling and Software, 145, 105199. https://doi.org/10.1016/j.envsoft.2021.105199
+              Soulaine, C., Roman, S., Kovscek, A., & Tchelepi, H. A. (2017). Mineral dissolution and wormholing from a pore‐scale perspective. Journal of
+                 Fluid Mechanics, 827, 457–483. https://doi.org/10.1017/jfm.2017.499
+              Soulaine, C., & Tchelepi, H. A. (2016). Micro‐continuum approach for pore‐scale simulation of subsurface processes. Transport in Porous Media,
+                 113(3), 431–456. https://doi.org/10.1007/s11242‐016‐0701‐3
+              Starchenko, V., & Ladd, A. J. (2018). The development of wormholes in laboratory‐scale fractures: Perspectives from three‐dimensional sim-
+                 ulations. Water Resources Research, 54(10), 7946–7959. https://doi.org/10.1029/2018wr022948
+              Starchenko, V., Marra, C. J., & Ladd, A. J. (2016). Three‐dimensional simulations of fracture dissolution. Journal of Geophysical Research: Solid
+                 Earth, 121(9), 6421–6444. https://doi.org/10.1002/2016jb013321
+
+
+
+WANG ET AL.                                                                                                                                                 17 of 18
+                                                                                                                                                                   19447973, 2024, 6, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2023WR036122, Wiley Online Library on [15/07/2024]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                       Water Resources Research                                                                        10.1029/2023WR036122
+
+
+              Steefel, C. I., & Hu, M. (2022). Reactive transport modeling of mineral precipitation and carbon trapping in discrete fracture networks. Water
+                 Resources Research, 58(9), e2022WR032321. https://doi.org/10.1029/2022wr032321
+              Steefel, C. I., & Lasaga, A. C. (1990). Evolution of dissolution patterns: Permeability change due to coupled flow and reaction. Chemical
+                 Modeling of Aqueous Systems II, Chapter, 16, 212–225.
+              Steefel, C. I., Molins, S., & Trebotich, D. (2013). Pore scale processes associated with subsurface CO2 injection and sequestration. Reviews in
+                 Mineralogy and Geochemistry, 77(1), 259–303. https://doi.org/10.2138/rmg.2013.77.8
+              Steefel, C. I., & Van Cappellen, P. (1990). A new kinetic approach to modeling water‐rock interaction: The role of nucleation, precursors, and
+                 Ostwald ripening. Geochimica et Cosmochimica Acta, 54(10), 2657–2677. https://doi.org/10.1016/0016‐7037(90)90003‐4
+              Steefel, C. I., & Yang, L. (2021). Secondary magnesite formation from forsterite under CO2 sequestration conditions via coupled heterogeneous
+                 nucleation and crystal growth. Geochimica et Cosmochimica Acta, 311, 29–42. https://doi.org/10.1016/j.gca.2021.07.030
+              Voller, V. R., & Prakash, C. (1987). A fixed grid numerical modelling methodology for convection‐diffusion mushy region phase‐change
+                 problems. International Journal of Heat and Mass Transfer, 30(8), 1709–1719. https://doi.org/10.1016/0017‐9310(87)90317‐6
+              Wang, Z., & Battiato, I. (2020). Patch‐based multiscale algorithm for flow and reactive transport in fracture‐microcrack systems in shales. Water
+                 Resources Research, 56(2), e2019WR025960. https://doi.org/10.1029/2019wr025960
+              Wang, Z., & Battiato, I. (2021). Upscaling reactive transport and clogging in shale microcracks by deep learning. Water Resources Research,
+                 57(4), e2020WR029125. https://doi.org/10.1029/2020wr029125
+              Weller, H. G., Tabor, G., Jasak, H., & Fureby, C. (1998). A tensorial approach to computational continuum mechanics using object‐oriented
+                 techniques. Computers in Physics, 12(6), 620–631. https://doi.org/10.1063/1.168744
+              Xie, M., Mayer, K. U., Claret, F., Alt‐Epping, P., Jacques, D., Steefel, C., et al. (2015). Implementation and evaluation of permeability‐porosity
+                 and tortuosity‐porosity relationships linked to mineral dissolution‐precipitation. Computational Geosciences, 19(3), 655–671. https://doi.org/
+                 10.1007/s10596‐014‐9458‐3
+              Xu, R., Li, R., Ma, J., He, D., & Jiang, P. (2017). Effect of mineral dissolution/precipitation and CO2 exsolution on CO2 transport in geological
+                 carbon storage. Accounts of Chemical Research, 50(9), 2056–2066. https://doi.org/10.1021/acs.accounts.6b00651
+              Xu, Z., Huang, H., Li, X., & Meakin, P. (2012). Phase field and level set methods for modeling solute precipitation and/or dissolution. Computer
+                 Physics Communications, 183(1), 15–19. https://doi.org/10.1016/j.cpc.2011.08.005
+              Xu, Z., & Meakin, P. (2008). Phase‐field modeling of solute precipitation and dissolution. The Journal of Chemical Physics, 129(1), 014705.
+                 https://doi.org/10.1063/1.2948949
+              Yang, F., Stack, A. G., & Starchenko, V. (2021). Micro‐continuum approach for mineral precipitation. Scientific Reports, 11(1), 1–14. https://doi.
+                 org/10.1038/s41598‐021‐82807‐y
+              Yasuhara, H., Marone, C., & Elsworth, D. (2005). Fault zone restrengthening and frictional healing: The role of pressure solution. Journal of
+                 Geophysical Research, 110(B6). https://doi.org/10.1029/2004jb003327
+
+
+
+
+WANG ET AL.                                                                                                                                         18 of 18
+

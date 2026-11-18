@@ -1,0 +1,822 @@
+                                                      Time-dependent pore-network modelling of Ostwald ripening in porous media
+
+                                                                 Ademola Isaac Adebimpe,1, 2, ∗ Sajjad Foroughi,1 Branko Bijeljic,1 and Martin J. Blunt1
+                                                             1
+                                                                 Department of Earth Science and Engineering, Imperial College London, London, SW7 2BP, UK.
+                                                                         2
+                                                                           Department of Chemical Engineering, Obafemi Awolowo University, Nigeria.
+                                                                                                   (Dated: April 24, 2026)
+                                                                 We present a time-dependent pore-network model that couples transient mass transfer in the
+                                                              aqueous phase, capillary pressure heterogeneity, and realistic pore-throat geometries to capture the
+                                                              dynamic evolution of gas clusters during Ostwald ripening in porous media. The model is applied
+                                                              to Bentheimer sandstone to study Ostwald ripening after imbibition to residual gas saturation.
+                                                              Both imbibition (shrinkage) and drainage (growth) events occur as the local capillary pressure in
+                                                              trapped gas clusters approaches equilibrium. The model tracks event statistics, capillary pressure
+arXiv:2605.10955v1 [cond-mat.soft] 30 Apr 2026
+
+
+
+
+                                                              equilibration, cluster volume distributions, and spatial saturation profiles over 48 hours. While the
+                                                              volume-weighted average capillary pressure is constant, there is a rapid initial decline in average
+                                                              number-weighted cluster pressure and a shift in cluster size distributions toward fewer, larger ganglia,
+                                                              consistent with pore-scale imaging studies. Pore and throat occupancy analysis reveal persistent
+                                                              gas trapping in larger pore spaces. Since growth is by drainage, the pore-scale configuration of fluid
+                                                              is different from that predicted by an equilibrium percolation-without-trapping model that only
+                                                              allows imbibition events. The model reproduces displacement and ganglion rearrangement during
+                                                              time-limited laboratory experiments, and can then provide predictions of trapped saturation, relative
+                                                              permeability and capillary pressure under field-scale conditions with application to hydrogen, natural
+                                                              gas and carbon dioxide storage in the subsurface.
+
+
+                                                                    I.   INTRODUCTION                               sandstone, noting that over a 12-hour period without
+                                                                                                                    flow, smaller hydrogen ganglia dissolved while larger ones
+                                                    The global transition toward a low-carbon economy               grew, indicative of Ostwald ripening, which led to re-
+                                                 hinges on the reliable storage and efficient use of re-            duced capillary pressure hysteresis and suggested more
+                                                 newable energy carriers such as hydrogen, as well as               efficient injection and withdrawal favorable for hydrogen
+                                                 the effective sequestration of carbon dioxide. Subsur-             storage [9]. Goodarzi et al. performed pore-scale imag-
+                                                 face technologies, including underground hydrogen stor-            ing studies on trapping, hysteresis, and Ostwald ripen-
+                                                 age (UHS), natural gas storage, and geological carbon              ing in hydrogen storage, finding that Ostwald ripening
+                                                 sequestration (GCS) offer promising solutions for large-           led to less hysteresis and better connectivity than pre-
+                                                 scale energy storage and greenhouse gas mitigation [1–3].          viously assumed, implying that traditional assessments
+                                                 However, the long-term success of these technologies de-           of hydrocarbon flow and trapping may need revision to
+                                                 pends on our ability to predict and control the behavior           incorporate these effects [10]. Adebimpe et al. investi-
+                                                 of multiphase fluids in porous media [4–6]. In particu-            gated the impact of Ostwald ripening during two-phase
+                                                 lar, the redistribution of gas and liquid phases over time,        displacement in porous media using pore network mod-
+                                                 driven by mechanisms such as Ostwald ripening, plays a             eling, demonstrating that conventional measurements,
+                                                 crucial role in determining storage efficiency, gas deliver-       which often neglect this process, can overestimate cap-
+                                                 ability, and residual trapping [7].                                illary trapping by 20–25% [11]. A deeper understand-
+                                                    Ostwald ripening is a thermodynamically driven pro-             ing of these processes is therefore essential for optimizing
+                                                 cess where differences in capillary pressure between               subsurface storage strategies.
+                                                 trapped bubbles cause gas dissolved in the aqueous phase              The classical theory of Ostwald ripening, developed by
+                                                 to diffuse from higher to lower-pressure clusters. Re-             Lifshitz & Slyozov, and Wagner (LSW theory), describes
+                                                 cent experimental studies have provided valuable insights          how mass transfer between dispersed droplets leads to
+                                                 into Ostwald ripening at the pore scale. Garing et al.             coarsening, with larger droplets growing at the expense
+                                                 employed multi-scale X-ray microtomography to analyze              of smaller ones due to differences in Laplace (capillary)
+                                                 pore-scale capillary pressure in air/brine systems, ob-            pressure [12, 13]. This theory has been widely applied
+                                                 serving that capillary pressure differences among trapped          to bulk systems and colloidal dispersions [14]. However,
+                                                 ganglia could lead to remobilization of the non-wetting            its applicability to porous media is limited by key as-
+                                                 phase, providing insights into the potential for Ostwald           sumptions, including an unconfined environment, uni-
+                                                 ripening to affect the stability of trapping [8]. Zhang            form curvature-driven growth, and negligible interactions
+                                                 et al. conducted X-ray microtomography experiments to              with solid surfaces [15, 16].
+                                                 observe hydrogen trapping and migration in Bentheimer                 In response to these limitations, several pore-scale
+                                                                                                                    models have been developed to incorporate confinement
+                                                                                                                    effects and heterogeneous geometries [17–21]. de Chal-
+                                                                                                                    endar et al. developed a pore-scale model to study
+                                                 ∗ Corresponding author: a.adebimpe21@imperial.ac.uk
+                                                                                                                    Ostwald ripening in rocks where they introduced a se-
+                                                                                                                      2
+
+quential algorithm to simulate the evolution of gas gan-      of the time-dependent model do not necessarily converge
+glia in capillary-dominated regimes within porous media       to the predictions from percolation without trapping at
+[17]. They highlighted that unlike in open systems where      late time, which has consequences for the interpretation
+gas aggregates into a single large bubble, porous media       of experimental studies of Ostwald ripening.
+can reach equilibrium with multiple disconnected gan-
+glia, highly dependent on initial conditions and the solid
+structure [17]. Singh et al. simulated Ostwald ripening of        II. MODEL OF ADVECTIVE-DIFFUSIVE
+gas bubbles, combining a conservative level-set approach           TRANSPORT IN A POROUS NETWORK
+for capillary-controlled displacement with a ghost-bubble
+technique to compute mass transfer based on chemical            We wish to solve the advection-diffusion equation in a
+potential differences [18]. Their methodology enabled         pore network. We start from a definition of the flux of
+the simulation of bubble ripening in complex pore ge-         solute [23],
+ometries, accounting for gas type, compressibility, and
+local capillary pressure [18]. Mehmani and Xu developed                            F = vC − D∇C.                    (1)
+a pore-network model to simulate the temporal evolution
+of partially miscible trapped bubbles undergoing Ostwald      where C is the concentration of the solute (dissolved gas)
+ripening. Their study provided insights into how bubble       in the aqueous phase with units of moles per unit volume,
+size distributions evolve toward equilibrium states within    v is the fluid velocity with unit of length per unit time,
+the constraints of the porous structure [19]. Zhang et al.    and D is the molecular diffusion coefficient with units of
+employed a three-dimensional pore network model to in-        length squared divided by time. The flux has units of
+vestigate the ripening characteristics of bubbles in porous   moles per unit area per unit time. Conservation of moles
+media. Their study examined the effects of medium het-        gives:
+erogeneity on the ripening process and provided insights                           ∂C
+for predicting CO2 evolution during geological storage                                + ∇ · F = 0,                  (2)
+[20]. Bueno et al. developed a kinetic theory for predict-                         ∂t
+ing the statistical evolution of bubble states in porous      and substituting Eq. (1) we obtain
+media. The theory accounts for non-spherical bubbles
+within heterogeneous microstructures [21]. Laku et al.                         ∂C
+                                                                                  + v · ∇C = D∇2 C                  (3)
+developed an image-based pore network model that is                            ∂t
+not limited to single-pore ganglia and does not assume
+idealized pore shapes. They validated the model against       where t is time.
+a 2D sandstone-patterned micromodel where they ob-              We will solve Eq. (3) on a discrete lattice, the pore
+served a two-stage ripening dynamic (fast local equili-       network. In integral form, using Gauss’ theorem, Eq. (2)
+bration followed by slow global diffusion) and formulated     becomes:
+a continuum model to predict gas saturation [22]. While                      Z
+                                                                                ∂C
+                                                                                          Z
+these models have advanced our understanding of Ost-                                dV + F · dS = 0,               (4)
+                                                                                ∂t
+wald ripening in porous media at the pore-scale, we do
+not have a time-dependent Ostwald ripening model that         where we integrate over a volume V surrounded by a
+could be used to reproduce findings from experiments,         surface S. In difference form, where we will consider some
+either because they have limited applicability to realistic   volume element connected to other elements, labeled j
+rock structures, or due to the high computational cost of     with cross-sectional area Aj we can write Eq. (4) as:
+simulating transport in thousands of pores.
+                                                                                   ∂C X
+   In our previous work [11], we demonstrated that two-                        V      +   Aj Fj = 0.                (5)
+phase displacement involving partially miscible fluids,                            ∂t   j
+such as brine/CO2 and brine/H2 systems, relevant to
+UHS and GCS applications, can be modeled as percola-            We will construct a solution for the number of moles of
+tion without trapping for slow flow where the local cap-      gas in the aqueous phase, m, rather than concentration
+illary pressure is constant. We showed that conventional      directly. The concentration is defined by:
+measurements, which do not properly account for Ost-                                        m
+wald ripening, overestimate capillary trapping by 20–25%                               C=     .                     (6)
+                                                                                            V
+at equilibrium.
+   In the present study, we introduce a numerical, time-      where V is volume. Then we can write Eq. (5) as:
+dependent model to simulate Ostwald ripening during
+two-phase flow in porous media. The important differ-                           ∂m X
+                                                                                   +   Aj Fj = 0.                   (7)
+ence is that both drainage and imbibition events occur                          ∂t   j
+over time, unlike in the equilibrium percolation without
+trapping model that only considered imbibition. Hys-            We will now solve Eq. (7) on a network, as shown in
+teresis in local capillary pressure means that the results    Fig. 1. We label the throat that connects two pores i
+                                                                                                                                                 3
+
+                                                                       For a throat, the equivalent to Eq. (10) is simpler, as
+                                                                    it is only connected to two pores labeled i and j:
+                                                                                                  (
+                                                                                                                  mntij
+                                                                                                          n
+                                                                                                           mj
+                                                                                                                        
+                                                                                 n+1       n
+                                                                               mtij = mtij + ∆t Qij            −          −
+                                                                                                            Vj    Vtij
+                                                                          "                                             #) (11)
+                                                                            Litij + Ljtij mntij   Litij mni    Ljtij mnj
+                                                                      D                         −           −
+                                                                                   Vtij              Vi           Vj
+
+                                                                    for Qij > 0 where Ljtij represents the ratio of area to
+                                                                    length, using Eq. (9) but between throat tij and pore j.
+                                                                    For flow in the other direction, Qij < 0 we have:
+FIG. 1. Schematic diagram of a porous medium showing nar-
+rower regions, a throat, connecting wider regions, pores. The
+throat tij has length ltij while the pores have radii ri and rj .                                     (
+                                                                                                                     mntij       mni
+                                                                                                                                      
+                                .                                               mn+1    n
+                                                                                 tij = mtij + ∆t           Qij               −             −
+                                                                                                                     Vtij        Vi
+                                                                          "                                                           #) (12)
+and j as tij . We will solve for the number of moles in                       Litij + Ljtij mntij     Litij mni   Ljtij mnj
+                                                                      D                             −           −
+both pores and throats. We solve for mn+1 i   in a pore i or                         Vtij                Vi          Vj
+mn+1
+   tij  for throat tij where n is the  time level:  the time
+step between levels n and n+1 is ∆t. We will assume that              To ensure that the solution obtained from this explicit
+we have solved for the flow field (Q = Av) and know the             scheme is stable and convergent, the choice of the time
+fluid flux Qij between pores i and j with units of volume           step ∆t should be carefully chosen such that:
+per unit time. For a throat, Q into a throat is the same
+as that leaving it. We also define a molar flux with units                                         D∆t
+                                                                                                        ≤1                                     (13)
+of moles per unit time: M = AF .                                                                  (∆x)2
+   We first define the flux Mitij between the center of
+pore i to the center of throat tij using a discretized form         where (∆x)2 in this study is equivalent to:
+of Eq. (1) and the definition of concentration, Eq. (6):
+                                                                                                            Vi
+                       mnu
+                                     n
+                                      mi     mntij
+                                                                                                (∆x)2 ≡                                       (14)
+             n
+          Mitij = Qij n − DLitij          −               (8)                                              Litij
+                       Vu             Vi     Vtij
+                                                                    All the possible combinations of pore i and throat tij are
+where we define a positive flux as going from the throat            to be considered in the choice of ∆t.
+to the pore, or from pore j to pore i. n is the time
+level and u represents the upstream direction. If the fluid
+flux, computed from the flow field, between pores i and              III.      SIMULATION OF OSTWALD RIPENING
+j, Qij > 0 (this implies that flow is into pore i from pore
+j and that the pressure Pj > Pi ), the u ≡ tij whereas if                                   A.   Multiphase flow
+Qij < 0, u ≡ i.
+   Litij is the ratio of the cross-sectional area of the region
+between the center of throat tij and pore i to the distance            We first consider multiphase flow, with dissolved gas in
+between the pore and throat centers, which we calculate             the aqueous phase in equilibrium with a gaseous phase.
+as:                                                                 We will describe a general case where they may be fluid
+                                                                    flow, as well as a connected cluster of gas from inlet to
+                      1      ri   lt                                outlet. However, in this initial study, only cases without
+                           =    + ij                         (9)
+                     Litij   Ai  2Atij                              flow and an initial condition where all the gas is trapped,
+                                                                    will be presented.
+where ri is the radius of pore i and Ai is its cross-sectional         There are two fluid phases in the pore space, a denser,
+area. ltij is the length of throat tij and Atij is its cross-       aqueous, phase, labeled 1, and a less dense, gaseous,
+sectional area.                                                     phase, 2. The capillary pressure, Pc = P2 − P1 , is im-
+  Eqs. (4) and (8) are used to write an equation to up-             posed by setting the pressures in each phase. The capil-
+date the moles in pore i:                                           lary pressure is constant for infinitesimal flow rates where
+                     ni 
+                                                      mntij         the phases are connected to the inlet or outlet. We also
+                             mnu
+                                             n             
+  n+1        n
+                    X                          mi
+mi     = mi + ∆t         Qij n − DLitij            −                treat gas ganglia: a gas ganglion is a collection of one
+                    j=1
+                             Vu                Vi     Vtij          or more pores and/or throats whose centers are occu-
+                                                    (10)            pied by gas and connected to each other and which are
+The sum is over all pores j directly connected to pore i            completely surrounded by water-filled elements. We la-
+via throats tij : there are ni such pores.                          bel each ganglion with the label k. Here, the capillary
+                                                                                                                         4
+
+pressure is not imposed externally but is determined by         in phase 1 is given by Henry’s law:
+the capillary pressure at which the ganglion was trapped
+(completely surrounded by water-filled elements), which                             C = H(P + Pck ),                  (16)
+then changes as material is exchanged between the gas           where P is the prevailing pressure in the aqueous phase 1
+in the ganglion and dissolved gas in the aqueous phase,         and H is the Henry’s law’s constant. Pck is the capillary
+as described below.                                             pressure of cluster k.
+   While the capillary pressure of the event that trapped          For elements (pores and throats) which are fully oc-
+a ganglion can be easily tracked during the simulation          cupied by phase 1, the initial concentration of dissolved
+of imbibition, the value of the actual capillary pressure       phase 2 is also given by Henry’s law in Eq. (16) with
+in each ganglion is uncertain because, after trapping, the      Pc replaced with Pci where Pci is the average volume-
+gas rearranges in the pore space in such a way as to min-       weighted capillary pressure of gas ganglia in the network
+imize surface energy. X-ray imaging shows that trapped          at the initial conditions.
+ganglia can change shape and curvature after trapping              The following boundary and initial conditions are im-
+as the interface relaxes [24].                                  posed on the system before solving for the concentration
+   As a result, the capillary pressure in a trapped ganglion    field:
+is not uniquely defined by the trapping event alone, but                             0
+depends on the extent of this post-trapping rearrange-             1. C = H(P + Pck    ) at t = 0 for all elements whose
+ment, which occurs through complex and rapid pore-scale               centers are occupied by phase 2; phase 1 is in the
+dynamics that cannot be predicted a priori in a pore-                 corners.
+network model. This might lead to the trapped ganglion             2. C = H(P + Pci ) at t = 0 for all elements filled by
+assuming a higher capillary pressure after trapping than              phase 1.
+the capillary pressure at which it was trapped, as ob-
+served in imaging studies [24]. However, the ganglion              3. There is no diffusive flux across the boundaries:
+should assume a capillary pressure lower than or equal                ∇C = 0 for x = 0 (at the inlet) and x = 1 (at
+to the entry capillary pressure necessary for phase 2 to              the outlet).
+invade an adjacent element (“toDrain” element). There-
+fore, a ganglion after being trapped will likely assume a          4. Q = 0 if we consider a system at rest, and Q ̸= 0 if
+capillary pressure between the capillary pressure of the              we consider a system with finite flow.
+imbibition event that led to it being trapped and the
+capillary pressure of the next drainage (growth) event.             C.   Assigning moles of gas to each ganglion
+To represent this uncertainty, we introduce an empiri-
+cal interpolation for the initial capillary pressure of each
+ganglion given by                                                  We identify all the elements in each trapped cluster
+                                                                that are adjacent to a water-filled element. The moles
+               0            trapped                             of gas in each ganglion k, mk is assigned using the ideal
+              Pck = (1 − α)Pck      + αPcG ,            (15)
+                                                                gas law for simplicity, but this could be replaced by any
+         trapped
+                                                                equation of state.
+where Pck         is the capillary pressure of the imbibition                                    n
+event that trapped the ganglion, PcG is the lowest entry                                    P + Pck
+                                                                                    mnk =           Vkn               (17)
+capillary pressure of the connected pores and throats for                                     RT
+a growth event (drainage), and α is a tuning parameter          where R is the universal gas constant, T is the absolute
+between 0 to 1 that represents the degree of capillary          temperature, P is the imposed pressure in the aqueous
+pressure relaxation after trapping due to ganglion rear-        phase, Vkn is the volume of gas contained in the ganglion,
+rangement. The saturation of a trapped phase in a pore          and n indicates the time level. Pckn
+                                                                                                     is capillary pressure
+or throat is a function of the capillary pressure that the      of ganglion k. Since the initial capillary pressure is dif-
+phase assumes after trapping. Because Ostwald ripening          ferent for each ganglion, the concentrations of dissolved
+does not modify the overall saturation, consistent with         gas in gas-occupied elements are different, Eq. (16). We
+conservation of moles, as demonstrated in experimental          ignore the contribution of dissolved material in the cor-
+studies [10], the value of α is chosen to preserve the pre-     ners: more than 95 % of the moles of gas are contained
+ripening saturation, providing the only physically con-         in phase 2 and, in any event, the corners only occupy a
+sistent initialization of the capillary pressures of all gas    small volume, so this is a third-order effect.
+ganglia in the network.                                            We can determine the net flux into a ganglion by sum-
+                                                                ming the flux into each member of the ganglion (given in
+                                                                Eq. (8)) and the moles of phase 2 at the next time-step
+         B.   Initial and boundary conditions                   can be obtained according to this relation:
+                                                                                      k
+                                                                                    Nc
+                                                                                    X
+  For elements (pores and throats) whose centers are oc-         mn+1 = mkn + ∆t          Qij Cun − DLitij Cln − Cjn , (18)
+                                                                                                                    
+                                                                  k
+cupied by phase 2, the concentration of dissolved material                          l=1
+                                                                                                                          5
+
+where the sum is over all elements l containing phase 2 in      gas assigned to the ganglion prior to the growth, to con-
+cluster k, The upstream direction u is the direction away       serve the moles of gas. The new neighboring water-filled
+from the cluster. Cun = Cjn where j labels the water-filled     elements are identified and the ganglion is assigned a
+pore or throat adjacent to the cluster if the flow is from      new “toDrain” element. If one of the neighboring ele-
+element l to j; otherwise Cun = H(P +Pck  n
+                                            ) (the solubility   ments contains gas and is associated with another gan-
+boundary condition). If the fluid flux, computed from the       glion, these two ganglia coalesce to form a single larger
+flow field, between pores i and j, Qij > 0 (this implies        ganglion and this single larger ganglion is assigned the
+that flow is into pore i from pore j and that the pressure      sum of the moles of gas in the individual ganglia together
+Pj > Pi ), the u ≡ tij whereas if Qij < 0, u ≡ i.               with the dissolved moles of gas in the “toDrain” element.
+   At every timestep n, the total number of moles of gas        Since the members of the ganglion have changed after a
+in the domain is fixed if there is no flow since there is no    growth event, the “toImbibe” element is also updated
+flux transfer across the boundaries of the network.             to be a member of the ganglion with the highest entry
+                                                                capillary pressure for imbibition.
+                                                                   When the condition for a ganglion shrinkage has been
+ D.   Conditions for ganglion growth and shrinkage
+                                                                met, the “toImbibe” element is removed from the gan-
+                                                                glion. A shrinkage event can either lead to a disappear-
+                                                                ance of the ganglion, or a cleavage of the ganglion into
+   A gas ganglion is allowed to shrink or grow when             two or more smaller ganglia, or it could lead to a mere
+its capillary pressure reaches the threshold for imbi-          reduction in the size of the ganglion. If the ganglion
+bition and drainage respectively. For each ganglion,            was a one-member ganglion before shrinkage, allowing
+the “toDrain” element is the adjacent water-filled pore         shrinkage implies the disappearance of the ganglion af-
+or throat with the lowest entry capillary pressure for          ter the shrinkage event. In this case, the moles of gas in
+             G
+drainage, Pck  , while the “toImbibe” element is part of        the ganglion becomes the dissolved moles of gas in the
+the ganglion (pore or throat) with the highest capillary        “toImbibe” element that is now water-filled.
+                                       S
+pressure for an imbibition event, Pck    . This is the nec-        Whenever the shrinkage event does not lead to dis-
+essary condition for shrinkage or growth to occur in a          appearance of the ganglion, the “toImbibe” element is
+                  G
+gas ganglion. Pck   is the capillary pressure at which the      assigned a dissolved concentration H(P + Pck ). The gan-
+                                                    S
+ganglion will experience a growth event and Pck        is the   glion after shrinkage retains its assigned moles of gas be-
+capillary pressure at which the ganglion will experience        fore the shrinkage event less the dissolved moles assigned
+a shrinkage event.                                              to the “toImbibe” element.
+   In simulating Ostwald ripening, it is expected that gas         Whenever a shrinkage event leads to the cleavage of
+ganglia with lower capillary pressure than the average          a ganglion for each of the newly formed ganglion, the
+volume-weighted capillary pressure of gas ganglia in the        “toImbibe” and “toDrain” elements for the newly formed
+network at initial condition, Pci , will grow while those       ganglia are updated together with their corresponding
+with higher capillary pressure shrink, such that the capil-                 S
+                                                                values of Pck        G
+                                                                               and Pck . For each ganglion, the volume of
+lary pressures of gas ganglia in the network after reaching                                    S
+                                                                gas at capillary pressures of Pck and PckG
+                                                                                                           , Vkmax and Vkmin
+equilibrium is uniform (given by Pci ). Hence growth is         respectively are determined. Vk   max
+                                                                                                       is the volume of gas
+only allowed if the capillary pressure of that gas ganglion     in ganglion k when its capillary pressure is Pck    G
+                                                                                                                      and it
+is lower than or equal to the value of Pci . Similarly, a gas   denotes the maximum volume of gas that ganglion k can
+ganglion is only allowed to shrink if its capillary pressure    contain above which a growth event would occur, while
+is higher than or equal to Pci .                                Vkmin is the volume of gas in ganglion k when its capillary
+   A growth or shrinkage event occurs when the moles in                        S
+                                                                pressure is Pck  and it denotes the minimum volume of
+a ganglion, computed using Eq. (18) reaches the value           gas that ganglion k could contain below which shrinkage
+consistent with the number of moles in the ganglion af-         would occur.
+                                                            G
+ter the event using Eq. (17) at capillary pressures of Pck         Subsequently, the corresponding maximum and mini-
+     S
+or Pck as appropriate. How moles are assigned between           mum number of moles in each ganglion are determined:
+fragmented clusters and how a consistent volume is com-
+                                                                                               max
+puted is described next.                                                             (Pimp + Pck   ) max
+                                                                              mmax
+                                                                               k   =                Vk
+                                                                                           RT                          (19)
+                                                                                               min
+                                                                                      (Pimp + Pck  ) min
+                                                                              mmin
+                                                                               k   =                Vk
+             E.   Ganglion rearrangement                                                   RT
+                                                                where mmax
+                                                                         k   is the maximum moles of gas that a ganglion
+   At each timestep n, every ganglion is considered to see      k could contain, above which growth would occur and
+whether the condition for ganglion growth or shrinkage          mmin
+                                                                  k    is the minimum moles of gas that a ganglion k
+has been met. When the condition for ganglion growth            could contain, below which shrinkage would occur.
+has been met, the “toDrain” element is added to the               If we assume that ganglion k experienced a shrink-
+ganglion and the dissolved moles of gas in the “toDrain”        age event which led to fragmentation to form Nc smaller
+element is added to the number of undissolved moles of          ganglia at timestep n and mnj is the moles of gas in gan-
+                                                                                                                                    6
+
+glion j prior to the shrinkage event, then the moles of                            G.    Tuning of the α parameter
+gas assigned to each of the newly formed gas ganglion k
+is computed as follows:                                                   Executing the time-dependent Ostwald ripening sim-
+           PN
+   If mnj ≥ i c mmin
+                  i   :                                                ulation multiple times for various values of α is compu-
+                                                                       tationally expensive, particularly for large networks. We
+mn+1
+ k   = mmin
+        k                                                              have therefore developed an equilibrium approach to tune
+                                                   Nc
+                                                               !
+                     mmax − mmin                   X                   the α parameter. This approach is a simplified version
+           + PNc      k      k
+                                       ×   mnj −        mmin
+                                                         i         .   of the time-dependent Ostwald ripening simulation code
+                 i    (mmax
+                        i   − mmin
+                               i   )               i                   that captures the correct sequence of growth and shrink-
+                                                           (20)        age, as well as the equilibrium configuration of fluids.
+                       PNc
+Otherwise if mnj <       i    mmin
+                               i   :                                      We identify gas ganglia which will meet the condi-
+                                                                       tions for a growth or shrinkage event before reaching the
+                        mmin                                           volume-averaged capillary pressure and these events are
+                mn+1
+                 k   = PNck     × mnj .                    (21)
+                           mmin
+                        i   i                                          allowed to occur immediately without tracking the cur-
+                                                                       rent capillary pressure of the ganglion, the moles of gas
+   If we consider a case with a finite flow rate, Q ̸= 0, then         contained in the ganglion, or how long it would take for
+if displacement has occurred, the pore-space arrangement
+of gas is now different and this will affect the flow field.
+The flow field is recomputed using the updated pore oc-
+cupancy.
+
+
+ F.   Updating capillary pressure and volume of gas
+                 for each ganglion
+
+   The volume occupied by gas in the center of each pore
+and throat is a function of the capillary pressure in the
+ganglion, taking into account aqueous phase in the cor-
+ners. An iterative approach is therefore taken here to
+update capillary pressure and the volume of gas, af-
+ter a shrinkage or growth event occurs, or after a pre-
+determined time dt. This involves guessing a capillary
+            guess
+pressure Pck      and obtaining the corresponding volume
+of gas in the ganglion, Vkg at that capillary pressure. Us-
+ing the values of the guessed capillary pressure and the
+corresponding volume, we determine the equivalent moles
+of gas mgk according to:
+                                   guess
+                             (P + Pck    ) g
+                     mgk =                Vk               (22)
+                                 RT
+If mgk is within a set tolerance (± 1 × 10−23 moles, cor-
+responding to a discrepancy in pressure of 10−4 Pa or
+less) to the computed mn+1k  , the iteration is stopped and
+                 guess
+the values of Pck       and Vkg are assigned as the cap-
+illary pressure and volume of gas in the ganglion k at
+timestep n + 1. Otherwise, the iteration continues. The
+                                n+1
+updated capillary pressure, Pck      is used in Eq. (16) to
+determine the equilibrium concentration of dissolved gas
+in the members of the ganglion k.
+   To ensure that the model runs efficiently and consider-
+ing that very small time-steps are involved (∆t ≈ 10−4 s),
+                                                                       FIG. 2. Flowchart for the simulation of time-dependent Ost-
+we update the capillary pressure and volume of each
+                                                                       wald ripening. The start of this simulation could be a fully-
+gas ganglion in the network whenever a shrinkage or                    saturated network or the end of drainage or imbibition. Ini-
+growth event occurred or when the fractional change                    tialization of the ganglia involves initializing the capillary
+in moles of gas in a ganglion from after the last up-                  pressure, volume and moles of gas in each cluster. It also in-
+date, |∆mmk
+           k|
+              > 10−10 , whichever comes first, where mk                volves defining the conditions for cluster shrinkage and growth
+is the moles of gas in a ganglion at the last update and               for each cluster in the medium.
+∆mk = mn+1  k  − mk .                                                                                  .
+                                                                                                                          7
+
+
+                             Table I. Properties of Bentheimer sandstone network and the phases.
+                         Description                                      Value
+                         Dimension (mm)                                   3.0035 × 3.0035 × 3.0035
+                         No. of pores                                     8222
+                         No. of throats                                   19105
+                         Pore radius (µm)                                 22.27 ± 12.56
+                         Throat length (µm)                               56.73 ± 26.37
+                         Throat radius (µm)                               11.70 ± 7.28
+                         Porosity                                         0.220
+                         Absolute permeability (m2 )                      2.792 × 10−12
+                         Diffusivity, D (m2 s−1 )                         4.89 × 10−9
+                         Henry’s constant, H (mol m−3 P a−1 )             7.8 × 10−6
+                         Imposed pressure, P (M P a)                      1
+                         Dynamic viscosity of H2 , (P a.s)                9.4 × 10−6
+                         Dynamic viscosity of Brine, (P a.s)              8.21 × 10−4
+                         Interfacial tension, σ (mN/m)                    72.9
+                         Temperature, T (K)                               298
+                         Initial contact angle distribution (◦ )          0.0
+                         Equilibrium contact angle distribution (◦ )      45.6 ± 20.1
+
+
+this event to occur. The conditions for allowing a shrink-       10−12 m2 ). Brine was phase 1 while hydrogen gas was
+age or growth event to occur in a ganglion are similar to        phase 2. An imposed pressure of 1 M P a and a constant
+those described in Section III D but slightly modified as        temperature of 25◦ C was assumed. The dynamic viscos-
+follows:                                                         ity of gas was 9.4 × 10−6 P a.s with an interfacial tension
+                S                                                of σgw = 7.29 × 10−2 N m−1 with brine[9, 10]. The prop-
+            if Pck > Pci ,      allow shrinkage                  erties of Bentheimer sandstone relevant to this study are
+                G
+                                                        (23)
+            if Pck < Pci ,      allow growth                     presented in Table I.
+                                                                    A fully saturated water-wet network was assumed at
+   We start by guessing a value of α to assign initial cap-      the start of the simulation. Displacement of brine by
+                  0
+illary pressures Pck to all the gas ganglia in the network       hydrogen gas (drainage) was simulated until a capillary
+using Eq. (15). We then compute the volume-weighted              pressure of 1 M P a, after which displacement of hydro-
+average capillary pressure, Pci .                                gen gas by brine (imbibition) was simulated until there
+   Each ganglion is checked against the conditions for al-       was no connected hydrogen gas ganglion across the net-
+lowing a growth or shrinkage event and events are al-            work (at a capillary pressure of 1366 P a). Then Ostwald
+lowed to occur in ganglia where the conditions, Eq. (23)         ripening was simulated for 48 hours with no flow across
+are met. After an event occurs, we identify new ‘toIm-           the network.
+bibe” and “toDrain” elements as described previously.               We make a quantitative comparison of the predicted
+                                  S         G
+Then we update the values of Pck     and Pck   and the pro-      pore occupancy from the time-dependent model with the
+cess is repeated. This continues until no ganglion meets         percolation without trapping code described in [11]. This
+the condition for growth or shrinkage. We then com-              is achieved through the definition of a mean absolute de-
+pute the saturation, assuming a fixed Pci , and compare          viation, MAD, between two pore-space realizations a and
+with the pre-ripening saturation. If the final saturation is     b:
+lower than the initial value, a lower value of α is tried; if                                      n
+higher, higher α is estimated until we obtain a consistent                                     1X
+                                                                                     M AD =          Ii ,              (24)
+value.                                                                                         n i=1
+   Fig. (2) is the flowchart for the simulation of time-
+dependent Ostwald ripening indicating the main steps             where I is an indicator: I = 0 if the occupancy of the
+described in the main text.                                      center of the pore or throat is the same in realizations a
+                                                                 and b, or I = 1 if the occupancies are different. The sum
+                                                                 is over all pores and throats. n is the total number of
+     IV.   CASE STUDY ON A BENTHEIMER                            pores and throats. If the fraction of elements filled with
+            WATER-WET SANDSTONE                                  phase 2 is f and realizations a and b represent random
+                                                                 occupancy, then M AD = 2f (1 − f ). MAD has to be
+  We simulated Ostwald ripening in a network repre-              lower than this value for the two realizations to have any
+senting Bentheimer sandstone [25] that has been widely           real correspondence.
+used as a benchmark for many experimental and model-                The displacement-only algorithm described in Sec-
+ing studies [11, 26]. The total porosity of the sample was       tion III G was used to find the value of α. α was used
+22.0% and the absolute permeability was 2.79D (2.78 ×            to assign the initial capillary pressure for each ganglion,
+                                                                                                                            8
+
+
+Table II. Results of the α tuning using the displacement-only
+equilibrium model described in Section III G.
+               Initial Pressure Initial Gas Final Gas
+          α
+                  Pci (Pa)      Saturation Saturation
+          0.0      1770.73        0.3582     0.3279
+          0.5      3009.27        0.4033     0.3948
+         0.58      3207.31        0.4061     0.4054
+         0.586     3222.16        0.4063     0.4063
+         0.59      3232.06        0.4064     0.4068
+          0.6      3256.80        0.4068     0.4077
+          1.0      4244.92        0.4153     0.4542
+
+
+
+Eq. (15). Table II presents the average initial capillary
+pressure of ganglia for different α values: α = 0.586 led
+to an almost constant saturation and was adopted for the
+subsequent time-dependent simulations.
+
+
+           V.   RESULTS AND DISCUSSION
+
+    A.     Ganglia dynamics and capillary statistics
+
+   Fig. 3 presents the temporal evolution of different event
+types during the simulation of Ostwald ripening. The
+results show that shrinkage events leading to complete
+disappearance of ganglia were the most common event.            FIG. 3. Ganglia event types during a 48-hrs simulation of Ost-
+This was followed by ordinary shrinkage leading only to         wald ripening showing (a) the cumulative number of shrinkage
+reduction in size and shrinkage-induced fragmentation,          and growth events, and (b) the cumulative volume of gan-
+both contributing significantly to the redistribution of        glia where each event types occurred. Shrinkage events lead-
+                                                                ing to disappearance, although the most frequent event, oc-
+gas within the pore structure. Growth-related events,
+                                                                curred mostly in small-sized gas ganglia, while growth of gan-
+including coalescence and ordinary growth, were rela-           glia, though relatively infrequent, occurred mostly in medium
+tively rare, reflecting the slower rate of mass transfer into   and large gas ganglia, reflecting the preferential dissolution
+larger bubbles compared to the rapid disappearance of           of smaller bubbles and gradual growth of larger ones as the
+smaller ones. However, as shown in Fig. 3(b), although          system progressed toward equilibrium.
+these growth events occurred less frequently, they consis-                                      .
+tently involved ganglia with substantially larger volumes
+than those associated with shrinkage. Notably, ordinary
+growth events occupied the highest cluster volumes at ev-       bibition.
+ery observation point, followed closely by growth leading          The number of ganglia decreased throughout the simu-
+to coalescence, indicating that when growth did occur, it       lation period, suggesting that gas ganglia with high cap-
+exerted a disproportionately large influence on the sys-        illary pressure were losing gas molecules and experienc-
+tem’s volumetric distribution. The cumulative number            ing shrinkage leading to disappearance while ganglia with
+of events increased steeply at first, after which the rate      low capillary pressure were gaining molecules of gas and
+of new events plateaued, suggesting that the system pro-        experiencing cluster growth and/or coalescence of two or
+gressively approached a more stable configuration where         more gas ganglia. However, there are local fluctuations
+fewer active ripening events occurred.                          with some clusters also noticeably increasing their cap-
+   Fig. 4 shows the capillary pressure of the different gan-    illary pressure above the average in regions with locally
+glia as a function of volume over time. Flux transfer           higher aqueous phase concentration of gas. The observed
+was allowed on a pore-to-pore basis and cluster proper-         reduction in capillary pressure variability over 48 hours
+ties were updated at each time step, as described above.        (see Fig. 4) indicates a progression toward capillary equi-
+The initial concentration of gas in the aqueous phase was       librium due to Ostwald ripening.
+equivalent to the volume-averaged capillary pressure of            Fig. 5 presents the volume-weighted distribution of gas
+3222 Pa. The model correctly conserves the moles of             ganglia volume at the initial condition and after 48 hours
+gas, with the vast majority being in the gaseous phase.         of storage. The overall changes are minor with some in-
+Initially there is a tendency for the smaller clusters to       crease in larger ganglion sizes as the total number of gan-
+have higher capillary pressures, with lower pressures in        glia in the network decreased from 2140 to 1682 ganglia
+the larger clusters that are trapped near the end of im-        during the same duration as shown in Fig. 4.
+                                                                                                                           9
+
+
+
+
+FIG. 4. Capillary pressure against cluster volume scatter plots over 48 hours.The initial concentration of gas in the aqueous
+phase was set to C = H(P + Pci ) where Pci is the average volume-weighted capillary pressure of gas ganglia in the network
+initially. The total moles of gas in the network was conserved as shown in the plots. The observed reduction in capillary
+pressure variability over 48-hours indicates a progression toward capillary equilibrium among the trapped gas ganglia.
+                                                                                                                               10
+
+
+
+
+FIG. 5. Volume-weighted size distribution of gas ganglia as
+a function of individual ganglion volume at initial condition
+and after 48 hours of storage. A slight leftward and upward
+shift in the distribution is observed with increasing storage
+time.
+                               .
+
+
+       B.   Phase distribution and connectivity
+
+    Fig. 6 presents the gas occupancy within pores and
+throats of varying radii initially and after 48 hours. Gas
+clusters initially occupied a broad range of pore sizes,
+with a preference to occupy more of the larger pores
+(≥ 60µm radii). As the simulation progressed, the
+distribution of gas in pores remained skewed towards
+larger radii, with a slight tendency to see more of the
+larger pores filled, reflecting that larger gas ganglia per-
+sisted while smaller ones were eliminated through shrink-
+age. This observation is corroborated by the probabil-
+ity distributions in Fig. 6(b), which reveal a consistently
+low probability of gas occupying pores below (≤ 40µm             FIG. 6. (a) Probability histogram as a function of radius
+radii) throughout storage. The distribution of water-            showing the gas-filled pores and throats initially and after 48
+filled pores mirrored this behavior, progressively occu-         hours of storage (green). The gray-shaded area shows the size
+pying smaller and intermediate pores as gas clusters re-         distribution of all pores (left plots) and throats (right) in the
+                                                                 Bentheimer network. (b) Pore occupancy (volume fraction)
+arrange in the network.
+                                                                 as a function of pore radius representing the volume fraction
+    Fig. 7 presents the spatial distribution of gas saturation   occupied by gas (green) and water (blue).
+along the Bentheimer network initially and after Ostwald
+ripening. While there are local fluctuations, reflecting
+inhomogeneity in the pore network there is little overall
+change in the profile with the average saturation remain-        note throats containing gas with no neighboring gas-
+ing the same, as demonstrated by the inset showing the           filled pores, while connected gas-filled throats have both
+evolution of saturation as a function of time. Since there       neighboring pores gas-filled. The Euler characteristic de-
+is no flow and moles of gas are conserved the saturation         creases rapidly within the first few hours, indicating a sig-
+is almost exactly constant and equal to the value before         nificant reduction in the number of disconnected ganglia
+ripening: the contribution of dissolved moles of gas is          due to shrinkage, disappearance, and early coalescence
+tiny. This is a consistency check on the simulation.             events, see Fig. 3. Beyond this initial sharp decline, the
+    Fig. 8 presents the Euler characteristic per unit vol-       curve progressively flattens, reflecting a transition to a
+ume as a function of time during Ostwald ripening. The           slower regime where fewer topological changes occur as
+Euler characteristic is a topological metric that quan-          the system approaches a quasi-equilibrium state. Rapid
+tifies the connectivity of the gas ganglia. It was cal-          dissolution of smaller bubbles occurs with gradual coa-
+culated from the predicted pore-and-throat occupancy             lescence, while late-time dynamics involve the slow evo-
+and is the number of gas-filled pores plus the number            lution of large, isolated ganglia. The plateauing of the
+of isolated gas-filled throats minus the number of con-          Euler characteristic suggests that most of the topological
+nected gas-filled throats. Isolated gas-filled throats de-       restructuring of the gas phase occurs rapidly, leaving be-
+                                                                                                                           11
+
+
+
+
+FIG. 7. Gas saturation profiles along the length of the Bentheimer network. The profiles represent cross-sectionally averaged
+gas saturation (Sg ) as a function of dimensionless distance from the inlet (x/L) at the beginning of the storage and after 48
+hours. Inset: Average gas saturation as a function of time. While there is some rearrangement of gas clusters, the overall
+saturation remains almost exactly constant, consistent with conservation of moles.
+
+
+hind a more stable configuration of larger, well-connected       a more stable configuration with fewer active ripening
+ganglia. This trend of a decreasing Euler characteristic         events, the capillary pressures equilibrated, mirroring the
+and improvement of gas phase connectivity has also been          plateau observed in the cumulative number of events
+observed experimentally [9, 10].                                 and further affirming the progressive stabilization of the
+                                                                 phases distribution during Ostwald ripening.
+                                                                    The temporal evolution of the system toward equilib-
+               C.   Macroscopic behavior                         rium during storage following drainage and imbibition is
+                                                                 presented in Fig. 10. From the displacement-only equi-
+                                                                 librium algorithm used in tuning the value of α, we can
+   Fig. 9 illustrates the average capillary pressure as a
+                                                                 determine the number of shrinkage and growth events
+function of time. The arithmetic mean capillary pressure
+                                                                 that should occur in the system before the system reaches
+of the gas ganglia is high initially, reflecting the presence
+                                                                 equilibrium. Therefore, to quantify the progress of the
+of many small high-pressure ganglia. In contrast, the
+                                                                 system towards the equilibrium state, we have defined
+volume-weighted mean capillary pressure of gas ganglia
+                                                                 percent completion as:
+stays approximately constant – the volume-weighted av-
+erage initially will be the final capillary pressure of all                               Actual NEvents
+ganglia in equilibrium eventually. The equivalent pres-                % completion =                     × 100          (25)
+                                                                                         Expected NEvents
+sure in the aqueous phase also converges on the volume-
+weighted average: the spikes in the profile represent lo-        where Actual NEvents refer to the number of growth and
+cally high concentrations after the complete removal of          shrinkage events that has occurred up to time t and Ex-
+small clusters. These pressure dynamics are consistent           pected NEvents refer to the number of growth and shrink-
+with the event-type evolution described in Fig. 3, where         age events that occur before equilibrium is reached as
+shrinkage events dominated the system, particularly in           predicted by the displacement-only equilibrium model.
+the early simulation period. As the system approached              Fig. 10 shows the percentage completion as a function
+                                                                                                                               12
+
+
+
+
+FIG. 8. Evolution of the Euler characteristic of the gas phase    FIG. 10. Percentage completion as a function of storage du-
+per unit volume as a function of time. The rapid initial de-      ration over a 120-hour period shown on a linear timescale,
+crease in the Euler characteristic reflects significant ganglia   illustrating a rapid initial completion rate within the first 24
+disappearance and topological simplification through ganglia      hours.
+shrinkage and coalescence, followed by a gradual stabilization                                    .
+as the system approaches equilibrium. This topological tran-
+sition highlights the dynamic restructuring of gas connectivity
+during long-term subsurface gas storage.                           D.    Comparison with equilibrium and percolation
+                               .                                               without trapping models
+
+                                                                    Finally, Fig. 11 is a quantitative comparison between
+                                                                  the percolation without trapping model [11] run to the
+                                                                  same initial gas saturation as the case presented here with
+                                                                  the results of the time-dependent simulation. The mean
+                                                                  absolute deviation was calculated using Eq. (24); there
+                                                                  are also comparisons between the model and its initial
+                                                                  and equilibrium state. There is a change in pore occu-
+                                                                  pancy over time, reflected in a deviation from the initial
+
+
+
+
+FIG. 9. Capillary pressure as a function of time. The arith-
+metic mean capillary pressure of gas ganglia, the volume-
+weighted mean capillary pressure of gas ganglia, and the
+equivalent average capillary pressure Pc in the aqueous phase
+plots (the capillary pressure such that the average concentra-
+tion C = H(P + Pc )) are shown.
+                                .
+
+                                                                  FIG. 11. Graph showing the mean absolute deviation,
+                                                                  Eq. (24), in occupancy, comparing the different simulation
+                                                                  approaches. The model compares the transient simulation to
+of storage duration over a 120-hour period. A rapid ini-          percolation without trapping (pwt) [11], the initial condition
+tial ripening can be observed within the first 24 hours of        (pre-ripening) and the equilibrium configuration determined
+ripening, after which the ripening process slows down, as         by allowing all possible displacement events.
+evident from the event statistics Fig. 3.                                                        .
+                                                                                                                         13
+
+condition of around 2 % during the simulation time —-           experiments [9, 10], with a tendency for small ganglia to
+this shows that overall the amount of pore-scale rear-          shrink and some growth and coalescence of larger ganglia.
+rangement is modest. The time-dependent model con-              Pore-space rearrangements occurred over a few hours, al-
+verges, at late time, to the predictions of the predicted       though many days would be needed to reach complete
+equilibrium fluid occupancy, consistent with Fig. 10.           equilibrium in local capillary pressure [27]. Overall, the
+   The percolation without trapping model neither rep-          connectivity of the gas phase improved, quantified by a
+resents the pore occupancy accurately at the initial con-       drop in Euler characteristic.
+dition, percolation with trapping, nor the time evolution          One feature that these simulations reveal is that the
+of the trapped clusters, nor the equilibrium fluid occu-        behavior is not similar to that predicted by the equilib-
+pancy determined from the sequence of allowed displace-         rium, percolation without trapping model [11]. If the
+ment events. The time-dependent model involves rapid            aqueous phase concentration of dissolved gas remains
+imbibition leading to trapping, followed by fluid redis-        constant, in the limit of infinitesimally slow displacement,
+tribution at rest, during which both shrinkage (imbibi-         then all the displacement events are imbibition, since per-
+tion) and growth (drainage) events occur, Fig. 3. In con-       colation without trapping assumes continuous rearrange-
+trast, percolation without trapping assumes continuous          ment of fluid to maintain capillary pressure equilibrium.
+rearrangement to maintain capillary pressure equilibrium        However, if instead, as done experimentally, imbibition
+during displacement and therefore only considers imbibi-        first occurs rapidly, followed by allowing the gas phase
+tion. Since there is significant hysteresis between imbibi-     to rearrange while the fluids are at rest, we see both im-
+tion and drainage, these distinct displacement pathways         bibition (shrinkage) and drainage (growth) events. Since
+lead to different pore occupancies at the same saturation.      there is significant hysteresis in capillary entry pressures
+This means that percolation without trapping, while it is       -— the capillary pressure to invade an element during
+the correct model for infinitesimally slow displacement,        drainage is always higher than the corresponding pres-
+does not reproduce the behavior observed in pore-scale          sure for imbibition -— these distinct displacement path-
+imaging experiments of Ostwald ripening when trapped            ways lead to different pore occupancies at the same satu-
+ganglia are left to rearrange [9, 10].                          ration, resulting in a final arrangement of gas in the pore
+                                                                space that is dissimilar to the equilibrium model. This
+                                                                implies that experiments that use a rest period after im-
+                                                                bibition to quantify the connectivity of gas in equilibrium
+                 VI.   CONCLUSIONS                              do not correctly represent slow flows typical of field-scale
+                                                                operations.
+   A quasi-static pore network model was extended to in-           These considerations lead to a valuable application of
+clude time-dependent transport of dissolved gas in the          the pore network model: the model can be validated
+aqueous phase allowing the effect of Ostwald ripening in        through matching the results of imaging experiments, but
+porous media to be predicted. This was achieved through         then used assuming equilibrium, or at least allowing for
+solving an advection-diffusion equation on the unstruc-         Ostwald ripening to occur over time-scales of a month or
+tured network, with explicit time-stepping to solve for         more, to predict the correct residual saturation, capillary
+concentration in each pore and throat. The code con-            pressure and relative permeabilities to use in field-scale
+serves moles of gas and computes the molar flux into or         simulation and design.
+out of trapped ganglia. The change in moles leads to               Future work will provide a quantitative comparison,
+changes in volume and capillary pressure of trapped gas         on a pore-by-pore basis, between the predictions of the
+ganglia. When the capillary pressure either reached the         model presented in this work and experiments of Ostwald
+threshold for an imbibition event, or drainage, the gan-        ripening where the pore-scale occupancy of gas over time
+glion would shrink or grow respectively. This allowed us        was imaged [10].
+to track the arrangement of ganglia in the pore space
+over time.
+   Exemplar simulations were presented for Bentheimer                       VII.    DATA AVAILABILITY
+sandstone where Ostwald ripening was simulated after
+imbibition to leave a residual gas saturation. The results        The code and associated inputs are available on
+were qualitatively similar to those observed in imaging         https://github.com/ImperialCollegeLondon/porescale.
+
+
+
+
+ [1] D. Leeson, N. Mac Dowell, N. Shah, C. Petit, and P. S.      [3] N. Heinemann, J. Alcalde, J. M. Miocic, S. J. Hangx,
+     Fennell, International Journal of Greenhouse Gas Control        J. Kallmeyer, C. Ostertag-Henning, A. Hassanpoury-
+     61, 71 (2017).                                                  ouzband, E. M. Thaysen, G. J. Strobel, C. Schmidt-
+ [2] I. Staffell, D. Scamman, A. V. Abad, P. Balcombe, P. E.         Hattenberger, et al., Energy & Environmental Science
+     Dodds, P. Ekins, N. Shah, and K. R. Ward, Energy &              14, 853 (2021).
+     Environmental Science 12, 463 (2019).
+                                                                                                                             14
+
+ [4] R. Juanes, E. Spiteri, F. Orr Jr, and M. Blunt, Water        [15] M. Sahimi, Flow and transport in porous media and frac-
+     resources research 42 (2006).                                     tured rock: from classical methods to modern approaches
+ [5] S. C. Krevor, R. Pini, B. Li, and S. M. Benson, Geophys-          (John Wiley & Sons, 2011).
+     ical Research Letters 38 (2011).                             [16] K. Xu, R. Bonnecaze, and M. Balhoff, Physical Review
+ [6] M. J. Blunt, B. Bijeljic, H. Dong, O. Gharbi, S. Iglauer,         Letters 119, 264502 (2017).
+     P. Mostaghimi, A. Paluszny, and C. Pentland, Advances        [17] J. A. de Chalendar, C. Garing, and S. M. Benson, Journal
+     in Water resources 51, 197 (2013).                                of Fluid Mechanics 835, 363 (2018).
+ [7] A. Hassanpouryouzband, K. Adie, T. Cowen, E. M.              [18] D. Singh, H. A. Friis, E. Jettestuen, and J. O. Helland,
+     Thaysen, N. Heinemann, I. B. Butler, M. Wilkinson, and            Transport in Porous Media 145, 441 (2022).
+     K. Edlmann, ACS Energy Letters 7, 2203 (2022).               [19] Y. Mehmani and K. Xu, Journal of Computational
+ [8] C. Garing, J. A. de Chalendar, M. Voltolini, J. B. Ajo-           Physics 457, 111041 (2022).
+     Franklin, and S. M. Benson, Advances in Water Re-            [20] M.-A. Zhang, J.-Q. Wang, R. Wu, Z. Feng, M.-X. Zhan,
+     sources 104, 223 (2017).                                          X. Xu, and Z.-H. Chi, ACTA PHYSICA SINICA 72
+ [9] Y. Zhang, B. Bijeljic, Y. Gao, S. Goodarzi, S. For-               (2023).
+     oughi, and M. J. Blunt, Geophysical Research Letters         [21] N. Bueno, L. Ayala, and Y. Mehmani, Advances in Water
+     50, e2022GL102383 (2023).                                         Resources 193, 104826 (2024).
+[10] S. Goodarzi, Y. Zhang, S. Foroughi, B. Bijeljic, and         [22] M. Z. I. Laku, M. Salehpour, T. Lan, B. Zhao, and
+     M. J. Blunt, International Journal of Hydrogen Energy             Y. Mehmani, arXiv preprint arXiv:2604.06581 (2026).
+     56, 1139 (2024).                                             [23] A. Fick, The London, Edinburgh, and Dublin Philosoph-
+[11] A. I. Adebimpe, S. Foroughi, B. Bijeljic, and M. J. Blunt,        ical Magazine and Journal of Science 10, 30 (1855).
+     Physical Review E 110, 035105 (2024).                        [24] M. Andrew, H. Menke, M. J. Blunt, and B. Bijeljic,
+[12] I. M. Lifshitz and V. V. Slyozov, Journal of physics and          Transport in Porous Media 110, 1 (2015).
+     chemistry of solids 19, 35 (1961).                           [25] I. C. L. Porescale Modelling Group, Micro-ct images and
+[13] C. Wagner, Zeitschrift für Elektrochemie, Berichte der           networks (2015).
+     Bunsengesellschaft für physikalische Chemie 65, 581         [26] Q. Lin, B. Bijeljic, R. Pini, M. J. Blunt, and S. Krevor,
+     (1961).                                                           Water Resources Research 54, 7046– (2018).
+[14] P. W. Voorhees, Journal of Statistical Physics 38, 231       [27] M. J. Blunt, Physical Review E 106, 045103 (2022).
+     (1985).
+

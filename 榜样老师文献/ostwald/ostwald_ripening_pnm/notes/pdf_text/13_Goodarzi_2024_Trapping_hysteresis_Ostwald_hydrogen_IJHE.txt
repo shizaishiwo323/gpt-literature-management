@@ -1,0 +1,600 @@
+                                                         International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+                                                                    Contents lists available at ScienceDirect
+
+
+                                                 International Journal of Hydrogen Energy
+                                                             journal homepage: www.elsevier.com/locate/he
+
+
+
+
+Trapping, hysteresis and Ostwald ripening in hydrogen storage: A pore-scale
+imaging study
+Sepideh Goodarzi a ,∗, Yihuai Zhang a,b , Sajjad Foroughi a , Branko Bijeljic a , Martin J. Blunt a
+a
+    Department of Earth Science and Engineering, Imperial College, London, United Kingdom
+b
+    James Watt School of Engineering, University of Glasgow, Glasgow, United Kingdom
+
+
+
+ARTICLE                  INFO                              ABSTRACT
+
+Dataset link: https://zenodo.org/records/1042              Green hydrogen, produced from surplus electricity during peak production, can be injected into subsurface
+6407, https://github.com/ImperialCollegeLond               reservoirs and retrieved during high-demand periods. In this study, X-ray tomography was employed to
+on/porescale                                               examine hysteresis resulting from repeated hydrogen injection and withdrawal. An unsteady state experiment
+Keywords:
+                                                           was performed to evaluate the distribution of hydrogen and brine after drainage and imbibition cycles: images
+Hydrogen storage                                           of the pore-space configuration of fluids were taken immediately once injection had stopped and after waiting
+Gas trapping                                               for a period of 16 h with no flow. A Bentheimer sandstone sample with a length of 60 mm and diameter of
+Hysteresis                                                 12.8 mm was used, and hydrogen was injected at ambient temperature and a pore pressure of 1 MPa. The
+Ostwald ripening                                           gas flow rate was decreased from 2 ml/min to 0.08 ml/min over three cycles of gas injection followed by
+X-ray imaging                                              water flooding, while the brine injection rate was kept constant. The results showed the presence of capillary
+Gas connectivity                                           pressure hysteresis and hydrogen migration through Ostwald ripening due to the diffusion of gas dissolved in
+                                                           the brine. These phenomena were characterized through analysis of interfacial curvature, area, connectivity and
+                                                           pore occupancy. The hydrogen tended to reside in the larger pore spaces, consistent with water-wet conditions.
+                                                           16 h after flow had stopped, the hydrogen aggregated into larger ganglia with a single large connected ganglion
+                                                           dominating the volume. Moreover, the Euler characteristic decreased after 16 h, indicating an improvement in
+                                                           connectivity. The work implies that Ostwald ripening – mass transport of dissolved gas – leads to less hysteresis
+                                                           and better connectivity than would be assumed ignoring this effect, as done in assessments of hydrocarbon
+                                                           flow and trapping.
+
+
+
+1. Introduction                                                                             further research is needed to fully evaluate the potential of specific sites
+                                                                                            and to develop safe and efficient storage methods [8].
+    To prevent dangerous climate change, it is crucial to shift towards                         An underground hydrogen storage project generally follows a cyclic
+low-carbon energy sources such as nuclear, solar, geothermal, wind,                         operation with alternate periods of injection and withdrawal, depend-
+hydro, and biomass, combined with large-scale energy storage [1–3].                         ing on energy demand and the type of storage field used. The timing
+Renewable energy sources, such as solar and wind, have variable and                         of injection and withdrawal can vary based on seasonal energy de-
+unpredictable supply, requiring energy storage to match generation                          mand. These cycles involve primary drainage (hydrogen injection),
+and consumption over both short and long periods. Energy storage can                        secondary imbibition (hydrogen withdrawal), and secondary drainage
+improve grid management and energy security, by balancing supply                            (re-injection) followed by repeated withdrawal and injection. This is
+and demand facilitating the transition to a low-carbon economy [4,5].                       different from carbon dioxide storage, where only primary drainage
+    Hydrogen is an attractive way to store energy with great potential to                   (initial injection) and secondary imbibition (water displacement and
+reduce reliance on non-renewable energy sources. It has numerous uses,                      capillary trapping) occur. The design and management of hydrogen
+including as a fuel for rockets, in boilers, for turbines and in fuel cells                 storage require the consideration of hysteresis during multiple cycles
+to generate electricity, as well as a feedstock for chemicals. Hydrogen                     of drainage and imbibition; this hysteresis controls the amount of
+can be stored as compressed gas, liquid hydrogen, adsorbed in metals                        hydrogen that can be recovered and how much is trapped in the pore
+and other materials, chemically bonded, and through oxidation with                          space [1,7,9,10]. To thoroughly examine hysteresis, it is imperative
+reactive metals [6,7]. For large-scale storage, only underground porous
+                                                                                            to study multiple fluid injection cycles. The reason for this is that
+formations have the required capacity at a reasonable cost; however,
+
+
+     ∗ Corresponding author.
+       E-mail address: sepideh.goodarzi19@imperial.ac.uk (S. Goodarzi).
+
+https://doi.org/10.1016/j.ijhydene.2023.12.029
+Received 31 May 2023; Received in revised form 22 July 2023; Accepted 4 December 2023
+Available online 3 January 2024
+0360-3199/© 2023 The Authors. Published by Elsevier Ltd on behalf of Hydrogen Energy Publications LLC. This is an open access article under the CC BY license
+(http://creativecommons.org/licenses/by/4.0/).
+S. Goodarzi et al.                                                                                       International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+capillary pressure is not solely dependent on saturation, but also on              transport in geological porous, using medical X-ray CT scanning. At
+the saturation history [11–13].                                                    the centimeter scale, the interplay of viscous, capillary and viscous
+    Another aspect of hydrogen storage is that the trapping and move-              forces determines the amount of hydrogen trapping. Jangda et al. [30]
+ment of hydrogen in its own phase might be affected by the transport               studied the trapping of hydrogen after injecting brine that was both pre-
+of dissolved gas. In oilfield operations, it is commonly assumed that              equilibrated and not pre-equilibrated with hydrogen at high pressure
+the dissolution of hydrocarbons is insignificant and that hysteresis is            and high temperature. They found an average contact angle of 54◦
+caused by the displacement between completely immiscible phases.                   and 53◦ when in contact with water after H2 -equilibrated and non-
+This assumption is reflected in the use of hydrocarbon–water properties            H2 -equilibrated brine injection, respectively. Moreover, there was a
+to describe hydrogen storage. However, both with hydrogen and carbon               reduction in the residual saturation with non-H2 -equilibrated brine,
+dioxide, this assumption is not valid [1,14,15].                                   indicating the dissolution of hydrogen may play a role in determin-
+    Ostwald ripening impacts the distribution of fluids in porous me-              ing how much gaseous phase is present. Thaysan et al. [29] showed
+dia. Differences in local capillary pressure lead to differences in the            that during secondary imbibition, hydrogen recovery decreased with
+concentration of dissolved gas from Henry’s law. This in turn results              pressure, with lower recoveries at higher pressures. They suggested
+in concentration gradients in the aqueous phase and diffusion of dis-              that future hydrogen storage operations in porous media should con-
+                                                                                   sider more shallow and lower-pressure sites to optimize recoverability.
+solved gas away from regions of high capillary pressure. Equilibrium is
+                                                                                   Zhang et al. [35] performed high-resolution 3D X-ray imaging to inves-
+reached when the capillary pressure is uniform throughout the system.
+                                                                                   tigate the behavior of hydrogen injection and withdrawal in sandstone
+Several studies have investigated the effect of Ostwald ripening in
+                                                                                   and compared the results to a similar experiment using nitrogen. They
+porous media on the distribution of gases, such as carbon dioxide and
+                                                                                   observed that hydrogen experiences less trapping due to lower initial
+air. For instance, Garing et al. [16] and De-Chalendar et al. [14] con-
+                                                                                   saturation after drainage and a significant rearrangement of trapped
+ducted experimental and theoretical studies, respectively, on the impact
+                                                                                   hydrogen after imbibition, where many smaller ganglia of hydrogen
+of Ostwald ripening on the pore-scale distribution of carbon dioxide.
+                                                                                   disappeared while larger ones expanded, with no overall change in
+Blunt [17] quantified the configuration of gas in capillary–gravity
+                                                                                   gas volume. In contrast, the fluid arrangement of nitrogen remained
+equilibrium and estimated the time-scales to reach these equilibrium               unchanged. They hypothesized that this rearrangement is caused by
+states. These studies have shown that significant rearrangement of gas             concentration gradients in the aqueous phase, Ostwald ripening, and
+can occur over time-scales of hours to months over length-scales of                provided an estimate of the time-scales for this effect to occur.
+millimeters to centimeters. In regular pore networks, Ostwald ripening                 In this paper, we investigate the changes in ganglion size distri-
+can lead to a more uniform distribution of trapped ganglia [18,19], but            bution, interfacial areas, and connectivity of hydrogen after repeated
+this may not be the case in heterogeneous porous rocks forming storage             cycles of injection and withdrawal. Additionally, we study the effects
+sites where multiple positions of equilibrium are possible [14]. Singh             of Ostwald ripening on these changes by taking images 16 h after each
+et al. [20,21] have presented a simulation methodology for Ostwald                 injection cycle had finished. Our study addresses the following scien-
+ripening in arbitrary pore geometries, exploring the influence of gas              tific questions: (1) How does the trapping of hydrogen in porous media
+type, compressibility factor, and local capillary pressure. Their results          evolve during repeated injection and withdrawal cycles, and (2) how
+highlight the significant impact of Ostwald ripening in heterogeneous              does Ostwald ripening influence these changes? We demonstrate that
+or fractured porous structures, with implications for gas storage in the           Ostwald ripening plays a significant role in improving the connectivity
+oil/water transition zone. Wang et al. [22] studied hydrogen transport             of the hydrogen, which can reduce the degree of hysteresis and enhance
+in porous media under different wetting conditions using direct numeri-            hydrogen storage capacity beyond what traditional hydrocarbon-based
+cal simulation. Less water-wet conditions led to less snap-off and higher          models would predict.
+storage efficiency during drainage and larger hydrogen clusters during
+imbibition.                                                                        2. Materials and methods
+    Recently, 3D X-ray microtomography has transformed our ability
+to understand flow in porous media. Advanced techniques and image                  2.1. Rock and fluid properties
+processing algorithms can quantify pore-scale displacement processes,
+measure flow properties, and capture saturation below the image reso-                  We studied a sample of Bentheimer sandstone as it has an easily-
+lution [23,24]. Earlier studies using X-ray imaging focused on studying            resolved pore space and has been used as a benchmark in many flow
+                                                                                   and imaging studies. Bentheimer consists mostly of quartz (95%), with
+unsteady-state two-phase displacement, which provided valuable infor-
+                                                                                   a small percentage of feldspar (4%), and trace amounts of fine clay
+mation on trapping and recovery efficiency for carbon dioxide storage
+                                                                                   (around 1%) [36]. The rock was drilled into a cylindrical sample
+and oil recovery applications, but it is not known if hydrogen behaves
+                                                                                   12.8 mm in diameter and approximately 60 mm in length. Previous
+similarly in subsurface rocks [25–28]. Recent studies have used non-
+                                                                                   studies have found a mean pore radius of approximately 30 μm, which
+invasive high-resolution 3D X-ray imaging to study hydrogen trapped
+                                                                                   means that the pore space can be easily resolved using X-ray imag-
+within rock that is otherwise saturated with water. These studies have
+                                                                                   ing [37,38]. The total porosity of 22.6% was determined through image
+revealed that hydrogen can be trapped to a significant degree, which
+                                                                                   processing, and the absolute permeability was found to be 1.4 ± 0.1
+may impact the effectiveness of storage and retrieval processes [29,30].
+                                                                                   D (1.4 × 10−12 ± 0.1 × 10−12 m2 ), as measured under the experimental
+    Several methods have been employed in recent studies to investigate            conditions.
+hydrogen wettability, such as measuring contact angles, using the tilted               Hydrogen was in the gaseous phase and to enhance the contrast
+plate technique [25], the captive bubble cell approach [26], direct X-             between the phases, Potassium Iodide (KI) was added to deionized
+ray imaging inside the rock [27] and in microfluidics devices [28].                water, a process known as doping. Brine solutions were created by
+These studies have found similar contact angles for hydrogen, methane,             dissolving different weight percentages of KI in deionized water. A
+nitrogen, and carbon dioxide, despite the different multiphase flow                mixture of brine solution and several small pieces of the Bentheimer
+parameters expected for hydrogen and water due to the interplay of                 sample were imaged. The greatest contrast between the phases was
+viscous, capillary, and gravitational forces [28,31–33].                           when KI was dissolved in deionized water with a weight percentage
+    Limited studies have been conducted to observe the distribution of             of 3.5%.
+hydrogen at the pore scale. Higgs et al. [27] and Jha et al. [10] used                 During the experiment, the pore pressure and confining pressure
+X-ray imaging to examine the hydrogen saturation in initially brine-               were maintained at a constant level of 1 MPa and 2 MPa, respectively,
+saturated sandstone. These studies found initial hydrogen saturations of           and the temperature was kept at 25 ◦ C. Under these conditions, the
+up to 65% after primary drainage and a maximum residual saturation of              dynamic viscosity of gas was 8.94 × 10−6 Pa s [39] with an interfacial
+41% after imbibition. Boon and Hajibeygi [34] characterized hydrogen               tension of 𝜎𝑔𝑤 = 7.29 × 10−2 N m−1 with brine [35].
+
+                                                                            1140
+S. Goodarzi et al.                                                                                                    International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 1. A schematic diagram for the two-phase hydrogen–brine experiment conducted with the X-ray microtomography scanner (micro-CT). The arrangement of the core holder,
+pumps, flow lines, valves, and pressure transducer used in the experiment are represented in the diagram. The micro-CT enclosure is indicated by the black dashed line.
+
+
+Table 1                                                                                               was increased after 18 h by 0.5 ml/min and the pressure drop
+Capillary numbers, 𝐶𝑎 = 𝜇𝑞/𝜎, where 𝜇 is the viscosity of the injected fluid, 𝜎 is the
+                                                                                                      was continuously monitored until it stabilized. At this stage,
+interfacial tension and q is the Darcy velocity for the flooding cycles.
+                                                                                                      the sample’s absolute permeability was determined as 1.4 ± 0.1
+ Cycle         Flooding step       Ca[wg]           Ca[gw]            Flow rate
+                                                                      [ml min−1 ]
+                                                                                                      D (1.4 × 10−12 ± 0.1 × 10−12 m2 ) [24,40]. The low flow rate
+                                                                                                      brine injection continued overnight at 0.05 ml/min and the
+ 1             1st Drainage        1.93 × 10−7      -                 2.00
+ 2             2nd Drainage        3.86 × 10−8      -                 0.40                            brine-saturated sample was simultaneously scanned.
+ 3             3rd Drainage        7.72 × 10−9      -                 0.08                         4. Three flooding cycles were conducted consecutively using the
+ 1–3           Imbibition          -                5.79 × 10−9       0.06                            same procedure, with the gas flow rate being reduced. Each cycle
+                                                                                                      began by introducing 10 pore volumes of gas at a specified flow
+                                                                                                      rate. For cycle one the gas flow rate was 2 ml/min, for cycle two
+                                                                                                      was 0.4 ml/min and for cycle 3 was 0.08 ml/min. The duration
+2.2. Experimental procedure
+                                                                                                      of gas injection varied across the cycles, with a time of 2 h for
+                                                                                                      cycle 1, 8 h for cycle 2 and 12 h for cycle 3.
+    The experiment was conducted under capillary-controlled condi-
+                                                                                                   5. Once the gas injection (drainage) was completed after 2 h, the
+tions and with unsteady-state flooding. The capillary number (Ca) is
+                                                                                                      valve was closed, and the gas pump was switched off. A bottom-
+calculated from 𝐶𝑎 = 𝜇𝑞 / 𝜎, where 𝜇 is the viscosity of the displacing
+                                                                                                      to-top scan of the sample was performed for 12 h, with each
+(injected) fluid, 𝜎 is the interfacial tension and q is the Darcy velocity
+                                                                                                      scan divided into six sections overlapping by 25%. Subsequently,
+of the injected phase [24], see Table 1. To investigate the saturation
+                                                                                                      after an additional 4 h had passed, making it a total of 16 h since
+history, the flooding cycles were repeated three times, with the brine
+                                                                                                      the gas injection was stopped, images of sections 2 and 5 were
+flow rate being held constant while the gas flow rate was varied.
+                                                                                                      captured over a period of four hours.
+The protocol for initiating the unsteady-state two-phase flow micro-CT
+                                                                                                   6. Ten pore volumes of brine were then injected (imbibition) at a
+imaging experiment was as follows:
+                                                                                                      steady flow rate of 0.06 ml/min for 6 h, followed by another 12 h
+    1. The sample was dried and then securely enclosed within a                                       bottom-to-top scan of the sample. After a further 4 h, images
+       silicone rubber to prevent any interaction with the surrounding                                were taken of sections 2 and 5.
+       fluid. The top and bottom parts of the rubber were connected                                7. After completing the three cycles (steps 4–6), a scan of the entire
+       to the production and injection pieces, respectively, as shown in                              sample was carried out 24 h later to evaluate the residual gas
+       Fig. 1.                                                                                        content.
+    2. The coreholder was then placed within the micro-CT apparatus
+       (Zeiss Xradia 510 X-ray scanner), and relevant flowlines and                             2.3. Image processing and analysis
+       pumps were employed to introduce the fluid phases and exert
+       the necessary confining and back pressures, 1 MPa and 2 MPa,                                The imaging was performed using the Zeiss Xradia 510 X-ray scan-
+       respectively. The pressure drop across the sample was accurately                         ner equipped with a flat panel detector. The exposure time was set to
+       measured with a differential pressure transducer (Keller PD-                             1.2 s with a total of 3001 projections. The X-ray source was configured
+       33X), which was connected to the sample’s inlet and outlet,                              with a photon energy of 80 keV and a power of 7 W, with a 360◦
+       with a precision of ±0.03 kPa. To minimize the risk of mixing                            rotation angle of the sample. A single air filter was utilized between
+       hydrogen with air, the sample and lines were vacuumed for                                the source and sample. The detector provided three-dimensional images
+       several hours to ensure a pure hydrogen environment.                                     with a voxel size of 5.8 μm. During each scan, a total of six images were
+    3. The initial phase of the experiment involved scanning a dry                              taken with a vertical overlap of 4 mm to ensure the entire length of the
+       sample. Subsequently, brine was introduced into the sample at a                          sample was captured. In total, the images covered 2069 voxels in the
+       flow rate of 0.1 ml/min, starting from the bottom of the sample                          𝑥-direction, 2187 voxels in the 𝑦-direction, and 9594 voxels in the 𝑧-
+       to achieve full saturation of the pore space. The brine flow rate                        direction. We will only discuss the arrangement of gas in the pore space
+
+                                                                                         1141
+S. Goodarzi et al.                                                                                                   International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 2. Two-dimensional cross-sections of three-dimensional raw images of the Bentheimer sample before and after the three cycles of hydrogen and brine injection: the rock, gas,
+brine, and minerals are medium gray, black, light gray, and white, respectively.
+
+
+after drainage and the first two imbibition cycles; after the third cycle                    watershed technique to segment different phases and extract specific
+all the hydrogen dissolved in the brine.                                                     measurements such as ganglion sizes, surface areas, and fluid satura-
+    After acquiring the images, they were reconstructed, normalized,                         tion. This method allowed us to directly identify and separate the gas,
+registered, and stitched together to obtain three-dimensional images of                      brine, and rock phases in our images, see Fig. 3. An additional example
+the rock and fluids at each cycle [41], see Fig. 2. We applied a non-                        of rearrangement in the gas phase, resulting in a change of connectivity
+local mean filter to reduce noise in our images [42]. Next, we used the                      for cycle two, is presented in the Supplementary Information Fig. S1.
+
+                                                                                      1142
+S. Goodarzi et al.                                                                                                    International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 3. Two-dimensional cross-sectional views of the segmented three-dimensional images showing the gas, brine, and rock phases in green, blue, and gray, respectively, for the
+initial state and after 16 h. Dashed lines represent locations where there have been rearrangements of the gas phase with a change in connectivity. (For interpretation of the
+references to color in this figure legend, the reader is referred to the web version of this article.)
+
+
+3. Results and discussion                                                                   provided in the Supplementary Information S2. During the drainage
+                                                                                            stage, hydrogen injection followed by an additional 16-hour waiting
+    In this section, we present our pore-scale findings. In Section 3.1,                    period resulted in the formation of a single, large connected ganglion
+we analyze discrete ganglia to confirm gas movement towards larger                          which is shown in green.
+bubbles after an additional 16 h of waiting. Section 3.2 presents the                           Additionally, we measured the ganglion size distributions in the
+gas saturation profiles measured across the sample during three cycles                      sub-volume shown in Fig. 4, which revealed a significant movement
+of gas injection and water flooding. Additionally, it includes a gas satu-                  of gas bubbles towards larger ganglia, spanning several pores, after
+ration profile for a sub-volume both in its initial state and after 16 h. In                gas injection and imbibition, see Fig. 5. It should be noted that the
+Section 3.3, we provide an analysis of the local capillary pressure after                   total gas volume remains approximately constant. Fig. 6 illustrates
+gas and water injection in three cycles. The measurements of fluid–                         the cumulative volume distribution of ganglia. The graph highlights
+fluid and fluid–solid specific interfacial area are plotted in Section 3.4.                 the phenomenon of bubble rearrangement, as smaller bubbles tend to
+These results are presented in conjunction with the gas connectivity                        disappear and contribute to the larger bubbles [17,20]. After 16 h,
+data discussed in Section 3.5 together with a quantification of the Péclet                  one large ganglion dominates the volume, as evidenced by the ver-
+number. Lastly, in Section 3.6, we present the characterization of pore                     tical portion in the cumulative curve at a large volume. This feature
+occupancy, including details on the distribution and arrangement of the                     permits the withdrawal of hydrogen through a connected pathway,
+fluids within the pore space.                                                               thus highlighting its potential significance in the remobilization of gas.
+                                                                                            This is aligned with the previous studies of gas–brine systems, where a
+3.1. Analysis of discrete ganglia                                                           significant rearrangement of the trapped gas was observed after brine
+                                                                                            injection [16,35].
+    3D images of gas phase ganglia trapped inside the rock are shown
+in Fig. 4. These images were obtained for a sub-volume image size of                        3.2. Saturation profile
+900 × 900 × 1373 voxels located near the top of the sample (this is the
+central part of section 5, shown in Fig. 1). The trapped ganglia were                           The cross-sectionally-averaged gas saturation along the entire sam-
+imaged after injecting gas and water to the initial state and then waiting                  ple length was measured, as depicted in Fig. 7. The flow rate used
+for 16 h for cycle one in Fig. 4. The trapped ganglia for cycle two are                     in the drainage cycles decreased from the first to the second to the
+
+                                                                                     1143
+S. Goodarzi et al.                                                                                                      International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 4. 3D images of hydrogen in the pore space for cycle 1 of gas injection and water flooding. The different colors show discrete gas ganglia: after 16 h of storage these ganglia
+merge leading to better connectivity as indicated in the zoomed-in images on the right where the gas is shown in green. (For interpretation of the references to color in this figure
+legend, the reader is referred to the web version of this article.)
+
+
+third cycle with a consequent decrease in hydrogen saturation. The                             3.4. Measurement of interfacial area
+maximum average gas saturation reached was approximately 30%. The
+residual hydrogen saturation was approximately 10%, but hydrogen                                   We conducted measurements to quantify the specific interfacial
+was dissolved near the inlet and was completely dissolved in brine after                       areas, defined as the area per unit volume (500 × 500 × 500 voxels,
+the third imbibition cycle. We also plotted a gas saturation profile for a                     part of section 5, shown in Fig. 1). We determined the interfacial area
+sub-volume located near the top of the sample (section 5, illustrated in                       between the water and gas, as well as between the fluids and the solid
+                                                                                               rock surface, both at the initial state and after a 16-hour waiting period,
+Fig. 1). A comparison was made between the gas saturation during the
+                                                                                               see Fig. 10. The results showed the sample is water-wet since the water–
+initial cycle and after an additional 16-hour storage period, following
+                                                                                               solid area is much higher than the gas–solid area: water preferentially
+three cycles of fluid injection, as shown in Fig. 8. The analysis indicated
+                                                                                               contacts the solid surface. There is a tendency for the water–rock
+that gas saturation in the studied volume slightly increases after 16 h,
+                                                                                               interfacial area to decrease during the waiting time, but the reduction
+suggesting that a small amount of gas may have migrated upward from                            is not significant. Conversely, the gas–rock area consistently increases.
+lower sections of the sample.                                                                  The gas–water interfacial area is much smaller and experiences a small
+                                                                                               decrease on waiting.
+                                                                                                   The increase in gas–solid interfacial area implies that the gas rear-
+3.3. Capillary pressure analysis
+                                                                                               ranges to contact more of the solid due to Ostwald ripening, possibly
+                                                                                               entering less water-wet regions of the pore space, or occupying larger
+    Fig. 9 presents a visual representation of the distribution of capillary                   ganglia with a greater contact area.
+pressure for all cycles on a sub-volume of 500 × 500 × 500 voxels (part
+of section 5, shown in Fig. 1). The capillary pressure for each stage was                      3.5. Fluid connectivity and Péclet number
+determined by calculating the average of the distribution of curvature
+                                                                                                   Here, we took a closer look at the connectivity of fluids within the
+and then applying the Young–Laplace equation [24]. The measurement
+                                                                                               pore space, evaluating it qualitatively and quantitatively. We achieved
+of capillary pressure provides an average value and showed the capil-
+                                                                                               this by isolating fluids from segmented images and giving each one
+lary pressure after drainage is slightly higher than that after imbibition
+                                                                                               a distinct color in the isolated phase, see Fig. 4. Table 2 provides a
+with no significant difference after the Ostwald ripening process. Never-
+                                                                                               quantitative assessment of fluid connectivity from the Euler character-
+theless, the accuracy of the pressure measurements is limited due to the                       istic, measured in a sub-volume image size of 900 × 900 × 1373 voxels
+inherent uncertainty in the estimation of interfacial curvature from the                       located near the top of the sample (section 5, shown in Fig. 1) as in the
+pore-space images. The analysis of the capillary pressure data did not                         previous section.
+reveal any clear trends between the initial state and the 16-hour waiting                          The Euler characteristic, or Euler number, represents the number
+period, as the results can fluctuate either upward or downward, with                           of objects (ganglia) in a phase, minus the number of redundant loops
+any changes potentially being drowned out by measurement errors.                               within those ganglia. A large positive Euler characteristic indicates that
+
+                                                                                        1144
+S. Goodarzi et al.                                                                                                     International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 5. The volume-weighted size distribution of ganglia is presented for the first (a,b) and second cycles (c,d) of gas and brine injection using a bin size that is uniform in
+logarithmic space. The gray-shaded area shows the volume distribution of all the pores.
+
+
+Table 2                                                                                          number is given by:
+The Euler characteristic of a gas undergoing an unsteady-state two-phase experiment,
+both for the initial state and after 16 h, following three cycles of hydrogen and brine                𝑞⋅𝑙
+                                                                                                 Pe =       ,                                                           (1)
+injection.                                                                                              𝐷
+ Normalized Euler characteristic [mm−3 ]                                                         where 𝑞 is the Darcy velocity (volume of injected fluid flowing per unit
+ Cycle               Flooding step                 Initial              16 h storage             time per unit area), 𝑙 is the average distance between the centers of two
+ 1                   1st Drainage                  −5                   −16                      neighboring pores, and 𝐷 is the diffusion coefficient of the gas in brine,
+ 1                   1st Drainage                  18                   10                       measured outside a porous medium. For the hydrogen–water system, 𝐷
+ 2                   2nd Drainage                  −4                   −8                       is 5.13 × 10−9 m2 ∕s [46] and 𝑙 is 150 μm obtained from a pore-network
+ 2                   2nd Imbibition                30                   14
+                                                                                                 analysis of the pore space described in the next section [47].
+ 3                   3rd Drainage                  −3                   −4
+                                                                                                     Eq. (1) compares the transport of hydrogen in its own phase by
+Note. The Euler characteristic was measured on segmented images of a sub-volume and
+                                                                                                 advection according to Darcy’s law to the timescale for the diffusion-
+normalized to the total volume.
+                                                                                                 driven transport of hydrogen dissolved in the aqueous phase. The
+                                                                                                 values are shown in Table 3. This analysis indicates that even during
+                                                                                                 displacement, transport of dissolved gas can be significant in com-
+the phase is trapped within numerous discrete ganglia, while a large
+                                                                                                 parison with advective displacement. With the exception of the first
+negative Euler characteristic suggests a phase that is interconnected
+                                                                                                 drainage cycle, the time for hydrogen to move a pore length is shorter
+with many loops [43]. To ensure accuracy in our measurements, we
+                                                                                                 by diffusion through brine, than by displacement in its own phase. This
+have filtered out any features smaller than 10 voxels in size. As ex-
+                                                                                                 indicates that in our experiments, with time-scales for displacement of
+pected the Euler characteristic is negative after drainage, when the gas
+is well connected in the pore space, and positive after imbibition when                          order an hour and waiting times of 16 h, diffusive transport in the
+the gas is trapped. In all cases, we see that after waiting 16 h the Euler                       aqueous phase can play a significant role in the redistribution of the
+characteristic decreases: this indicates an improvement in connectivity.                         gas phase.
+This result is consistent with the formation and swelling of a single
+large connected ganglion shown in Fig. 6, and an overall tendency for                            3.6. Pore and throat occupancy
+the gas to congregate in fewer, larger ganglia as a result of Ostwald
+ripening, Fig. 5.                                                                                   Figs. 11 and 12 display the pore and throat size distributions,
+    To understand the nature of displacement and fluid arrangement                               along with the volume-weighted fraction of gas-filled pore elements
+we also calculated the Péclet number, which is defined as the ratio of                           determined using the generalized pore network extraction tool. This
+advective to diffusive transport of gas in a material [44,45]. The Péclet                        method involves using the extracted pore network structures from
+
+                                                                                          1145
+S. Goodarzi et al.                                                                                                    International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 6. The cumulative volume distribution of the ganglia near the top of the sample is shown for the first (a,b) and second cycles (c,d) of gas and brine injection. The vertical
+portion represents a single large ganglion that begins to dominate the volume after 16 h of storage.
+
+
+
+
+Fig. 7. Gas saturation profile measured from segmented images during three cycles of gas injection and water flooding at different gas flow rates and a constant water injection
+rate along the length of a Bentheimer sample. Gas is dissolved near the inlet after the water flooding stages. The subsection studied for further analysis is shown by the black
+dashed line.
+
+
+                                                                                      1146
+S. Goodarzi et al.                                                                                                     International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 8. The gas saturation profile of a sub-volume located near the top of the sample during three cycles of gas and water injection, including both the initial injection and after
+an additional 16-hour storage period. The region considered is indicated by the black dashed box in Fig. 7.
+
+
+
+
+    Fig. 9. Capillary pressure values as a function of water saturation are estimated from the mean interfacial curvature during both gas injection and water flooding steps.
+
+
+
+
+the dry scan image as an image analysis tool, following Foroughi                              et al. [50]. In pores, the largest spheres centered on each pore, which
+et al. [47,48]. Specifically, during pore network extraction from the                         lie completely in the pore space, are identified. In throats, the largest
+dry scans, the inscribed spheres in each pore (a wide region in the                           spheres that can fit in the void space centered on the throat surface are
+void space) and throat (a restriction between pores) identified by                            identified. The inscribed spheres represent the local maxima (dilations)
+the pore network extraction are calculated. These inscribed spheres                           and minima (constrictions) in the distance map of the pore space, which
+were identified using the maximal ball method described by Dong and                           are the locations where a non-wetting phase resides when it has just
+Blunt [49], and the generalized network extraction algorithm of Raeini                        entered a pore or throat during drainage or the last location within
+
+                                                                                       1147
+S. Goodarzi et al.                                                                                                   International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 10. The interfacial areas per unit volume for water–solid, gas–solid and gas–water in a voxel subvolume during three cycles of gas and water injection, including both the
+initial stage and after an additional 16-hour storage period. D stands for drainage and I for imbibition.
+
+
+Table 3                                                                                        4. Conclusions
+The Péclet number, Eq. (1), of gas undergoing an unsteady-state two-phase experiment,
+following three cycles of hydrogen and brine injection.
+                                                                                                  We have studied the distribution of hydrogen in the pore space of
+ Cycle      Flooding step       Darcy velocity   Capillary        Péclet number
+                                                                                               a sandstone during repeated cycles of injection and withdrawal using
+                                [mm s−1 ]        number Ca        Pe
+                                                                                               high-resolution X-ray imaging. We imaged the sample every time either
+ 1          1st Drainage        0.260            1.93 × 10−7      7.61
+ 2          2nd Drainage        0.052            3.86 × 10−8      1.52
+                                                                                               hydrogen or water was injected, and then again 16 h after the flow
+ 3          3rd Drainage        0.010            7.72 × 10−9      0.30                         stopped.
+ 1–3        Imbibition          0.008            5.79 × 10−9      0.23                            The main conclusions of the work are as follows:
+
+                                                                                                  1. Hydrogen is the non-wetting phase and tends to occupy the
+                                                                                                     larger regions of the pore space. It is trapped by the injection
+a pore or throat where it can reside during imbibition. To determine                                 of water in the largest pores.
+which fluid resides in each inscribed sphere, we spatially registered the                         2. Even with no flow there is a significant rearrangement of the hy-
+micro-CT images to each other so that the same voxel in each of the                                  drogen within the pore space over length-scales of a centimeter
+images corresponds to the same physical location in the sample. The                                  and time-scales of 16 h. We hypothesize that this is caused by
+mean square gray-scale value differences between the different images                                Ostwald ripening: the transfer of gas dissolved in the aqueous
+were minimized for this purpose. The images containing the inscribed                                 phase to equilibriate the local capillary pressure.
+spheres labeled with their corresponding pore number or throat number                             3. Ostwald ripening leads to the aggregation of hydrogen in larger
+(as extracted from the dry scan) were then overlaid on each image                                    ganglia with, in most cases, a single large ganglion dominating
+acquired during the flow experiments. Based on the fluid phase which                                 the volume.
+dominantly fills (more than 50%) the inscribed spheres of a pore or                               4. The connectivity of the gas phase also increases after 16 h, as
+throat in the micro-CT image, we considered that phase as occupying                                  quantified by the Euler characteristic.
+the pore or throat.                                                                                Our work implies that there may be less hysteresis in hydrogen
+    Fig. 11 indicates the pore radii range from 20 to 100 μm, while                            storage than implied by the use of models based on hydrocarbons which
+Fig. 12 shows that throat radii range from 15 to 60 μm. After the                              ignore Ostwald ripening. This is favorable for hydrogen injection and
+first drainage, gas displaced brine from the larger and medium-sized                           withdrawal.
+pores, leaving most of the smaller pores filled with brine, consistent                             Future work could extend this study to other rock types, to study
+with the system being water-wet. The resolution of the images is,                              higher, more representative pressures to acquire higher-resolution im-
+however, insufficient to measure contact angle directly. Little change                         ages from which contact angle can be directly measured, and investi-
+in occupancy was seen after 16 h, implying that ganglion rearrange-                            gate the effect of pressure changes on the behavior [51]. Additionally, it
+ment is not principally the migration of gas into larger pores, but                            would be valuable to inject brine that is pre-equilibrated with hydrogen
+instead the aggregation of ganglia to occupy several connected pores.                          to avoid the complicating effects of dissolution. The porous plate tech-
+After imbibition, gas tended to be trapped in some of the larger and                           nique could be used to allow a higher initial hydrogen saturation to be
+medium-sized pores, but again little change in occupancy was observed                          reached in drainage. More accurate measurements of capillary pressure
+after 16 h. As shown in Fig. 12, we noticed a similar trend of gas filling                     over a wide saturation range may allow the determination of a model
+in the throats.                                                                                of capillary pressure hysteresis applicable for hydrogen storage.
+
+                                                                                        1148
+S. Goodarzi et al.                                                                                                    International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 11. (a) Probability histogram of the pore size distribution showing the gas-filled pore elements after gas injection and water flooding for both the initial and 16 h storage
+stages. The gray-shaded area shows the size distribution of all the pores. (b) Pore occupancy (volume fraction) as a function of pore radius representing the volume fraction
+occupied by gas (green) and water (blue). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)
+
+
+
+
+                                                                                      1149
+S. Goodarzi et al.                                                                                                      International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+
+
+Fig. 12. (a) Probability histogram of the throat size distribution showing the gas-filled throat elements after gas injection and water flooding for both the initial and 16 h storage
+stages. The gray-shaded area shows the size distribution of all the throats. (b) Throat occupancy (volume fraction) as a function of throat radius representing the volume fraction
+occupied by gas (green) and water (blue). (For interpretation of the references to color in this figure legend, the reader is referred to the web version of this article.)
+
+
+Declaration of competing interest                                                              Appendix A. Supplementary data
+
+    The authors declare that they have no known competing finan-                                   Supplementary material related to this article can be found online
+cial interests or personal relationships that could have appeared to                           at https://doi.org/10.1016/j.ijhydene.2023.12.029.
+influence the work reported in this paper.
+                                                                                               References
+Data availability
+                                                                                                [1] Hematpur H, Abdollahi R, Rostami S, Haghighi M, Blunt MJ. Review of
+                                                                                                    underground hydrogen storage: Concepts and challenges. Adv Geo-Energy Res
+   High-resolution versions of the referenced images in this study are
+                                                                                                    2023;7(2):111–31.
+available for download at https://zenodo.org/records/10426407 and                               [2] Heinemann N, Alcalde J, Miocic JM, Hangx SJ, Kallmeyer J, Ostertag-Henning C,
+the code used for the generation of pore and throat occupancy maps is                               et al. Enabling large-scale hydrogen storage in porous media–the scientific
+accessible here https://github.com/ImperialCollegeLondon/porescale.                                 challenges. Energy Environ Sci 2021;14(2):853–64.
+                                                                                                [3] Mohan M, Sharma VK, Kumar EA, Gayathri V. Hydrogen storage in carbon
+                                                                                                    materials—A review. Energy Storage 2019;1(2):e35.
+Acknowledgments                                                                                 [4] Rahman MM, Oni AO, Gemechu E, Kumar A. Assessment of energy storage
+                                                                                                    technologies: A review. Energy Convers Manage 2020;223:113295.
+   We thank Shell through the Digital Rocks program and EPSRC,                                  [5] Tarkowski R. Underground hydrogen storage: Characteristics and prospects.
+United Kingdom grant number EP/V038044/1 INFUSE: Interface with                                     Renew Sustain Energy Rev 2019;105:86–94.
+                                                                                                [6] Usman MR. Hydrogen storage methods: Review and current status. Renew
+the Future - Underpinning Science to Support the Energy Transition for                              Sustain Energy Rev 2022;167:112743.
+funding this work. We are grateful to Dr. Steffen Berg for suggesting                           [7] Zivar D, Kumar S, Foroozesh J. Underground hydrogen storage: A comprehensive
+that we study Ostwald ripening and for useful discussions.                                          review. Int J Hydrogen Energy 2021;46(45):23436–62.
+
+
+                                                                                        1150
+S. Goodarzi et al.                                                                                                        International Journal of Hydrogen Energy 56 (2024) 1139–1151
+
+
+ [8] Amirthan T, Perera M. Underground hydrogen storage in Australia: A review on               [30] Jangda Z, Menke H, Busch A, Geiger S, Bultreys T, Lewis H, et al. Pore-scale
+     the feasibility of geological sites. Int J Hydrogen Energy 2022.                                visualization of hydrogen storage in a sandstone at subsurface pressure and
+ [9] Lysyy M, Føyen T, Johannesen EB, Fernø M, Ersland G. Hydrogen rel-                              temperature conditions: Trapping, dissolution and wettability. J Colloid Interface
+     ative permeability hysteresis in underground storage. Geophys Res Lett                          Sci 2023;629:316–25.
+     2022;49(17):e2022GL100364.                                                                 [31] Lysyy M, Ersland G, Fernø M. Pore-scale dynamics for underground porous media
+[10] Jha NK, Al-Yaseri A, Ghasemi M, Al-Bayati D, Lebedev M, Sarmadi-                                hydrogen storage. Adv Water Resour 2022;163:104167.
+     valeh M. Pore scale investigation of hydrogen injection in sandstone via X-ray             [32] Arif M, Lebedev M, Barifcani A, Iglauer S. CO2 Storage in carbonates: Wettability
+     micro-tomography. Int J Hydrogen Energy 2021;46(70):34822–9.                                    of calcite. Int J Greenhouse Gas Control 2017;62:113–21.
+[11] Lenhard R, Parker J. Experimental validation of the theory of extending two-               [33] Krevor S, Blunt MJ, Benson SM, Pentland CH, Reynolds C, Al-Menhali A, et al.
+     phase saturation-pressure relations to three-fluid phase systems for monotonic                  Capillary trapping for geologic carbon dioxide storage–from pore scale physics
+     drainage paths. Water Resour Res 1988;24(3):373–80.                                             to field scale implications. Int J Greenhouse Gas Control 2015;40:221–37.
+[12] Hassani V, Tjahjowidodo T, Do TN. A survey on hysteresis modeling,                         [34] Boon M, Hajibeygi H. Experimental characterization of H2 /water multiphase
+     identification and control. Mech Syst Signal Process 2014;49(1–2):209–33.                       flow in heterogeneous sandstone rock at the core scale relevant for underground
+[13] Teklu TW, Zhou Z, Li X, Abass H. Experimental investigation on permeability and                 hydrogen storage (UHS). Sci Rep 2022;12(1):14604.
+     porosity hysteresis in low-permeability formations. In: SPE low perm symposium,            [35] Zhang Y, Bijeljic B, Gao Y, Goodarzi S, Foroughi S, Blunt MJ. Pore-scale
+     vol. 49. OnePetro; 2016, p. 1–30, 180226.                                                       observations of hydrogen trapping and migration in porous rock: Demonstrating
+[14] de Chalendar JA, Garing C, Benson SM. Pore-scale modelling of ostwald ripening.                 the effect of ostwald ripening. Geophys Res Lett 2023;50(7):e2022GL102383.
+     J Fluid Mech 2018;835:363–92.                                                              [36] Peksa AE, Wolf K-HA, Zitha PL. Bentheimer sandstone revisited for experimental
+[15] Li X, Fan X. Effect of CO2 phase on contact angle in oil-wet and water-wet pores.               purposes. Mar Pet Geol 2015;67:701–19.
+     Int J Greenhouse Gas Control 2015;36:106–13.                                               [37] AbuAisha M, Billiotte J. A discussion on hydrogen migration in rock salt for tight
+[16] Garing C, de Chalendar JA, Voltolini M, Ajo-Franklin JB, Benson SM. Pore-scale                  underground storage with an insight into a laboratory setup. J Energy Storage
+     capillary pressure analysis using multi-scale X-ray micromotography. Adv Water                  2021;38:102589.
+     Resour 2017;104:223–41.                                                                    [38] Alhosani A, Selem AM, Lin Q, Bijeljic B, Blunt MJ. Disconnected gas transport
+[17] Blunt MJ. Ostwald ripening and gravitational equilibrium: Implications for                      in steady-state three-phase flow. Water Resour Res 2021. e2021 WR031147.
+     long-term subsurface gas storage. Phys Rev E 2022;106(4):045103.                           [39] H2 Tools, hydrogen properties. 2015, https://h2tools.org/hyarc/hydrogen-
+[18] Xu K, Bonnecaze R, Balhoff M. Egalitarianism among bubbles in porous me-                        properties. (1 March 2023).
+     dia: an ostwald ripening derived anticoarsening phenomenon. Phys Rev Lett                  [40] Gao Y, Lin Q, Bijeljic B, Blunt MJ. Pore-scale dynamics and the multiphase Darcy
+     2017;119(26):264502.                                                                            law. Phys Rev Fluids 2020;5(1):013801.
+[19] Joewondo N, Garbin V, Pini R. Experimental evidence of the effect of solute                [41] Schlüter S, Sheppard A, Brown K, Wildenschild D. Image processing of multi-
+     concentration on the collective evolution of bubbles in a regular pore-network.                 phase images obtained via X-ray microtomography: a review. Water Resour Res
+     Chem Eng Res Des 2023;192:82–90.                                                                2014;50(4):3615–39.
+[20] Singh D, Friis HA, Jettestuen E, Helland JO. A level set approach to ost-                  [42] Buades A, Coll B, Morel J-M. A non-local algorithm for image denoising. In: 2005
+     wald ripening of trapped gas bubbles in porous media. Transp Porous Media                       IEEE computer society conference on computer vision and pattern recognition,
+     2022;145(2):441–74.                                                                             vol. 2. Ieee; 2005, p. 60–5.
+[21] Singh D, Friis HA, Jettestuen E, Helland JO. Pore-scale ostwald ripening of gas            [43] Herring A, Robins V, Sheppard A. Topological persistence for relating mi-
+     bubbles in the presence of oil and water in porous media. J Colloid Interface                   crostructure and capillary fluid trapping in sandstones. Water Resour Res
+     Sci 2023;647:331–43.                                                                            2019;55(1):555–73.
+[22] Wang J, Yang Y, Cai S, Yao J, Xie Q. Pore-scale modelling on hydrogen transport            [44] Gao Y, Georgiadis A, Brussee N, Coorn A, van Der Linde H, Dietderich J, et al.
+     in porous media: Implications for hydrogen storage in saline aquifers. Int J                    Capillarity and phase-mobility of a hydrocarbon gas-liquid system. Oil Gas Sci
+     Hydrogen Energy 2023;48(37):13922–33.                                                           Technol Revue d’IFP Energies nouvelles 2021;76:43.
+[23] Saxena N, Hofmann R, Alpak FO, Dietderich J, Hunter S, Day-Stirrat RJ. Effect              [45] Berg S, Gao Y, Georgiadis A, Brussee N, Coorn A, van der Linde H,
+     of image segmentation & voxel size on micro-CT computed effective transport &                   et al. Determination of critical gas saturation by micro-CT. Petrophysics
+     elastic properties. Mar Pet Geol 2017;86:972–90.                                                2020;61(02):133–50.
+[24] Blunt MJ. Multiphase flow in permeable media: A pore-scale perspective.                    [46] Hemme C, Van Berk W. Hydrogeochemical modeling to identify potential risks of
+     Cambridge University Press; 2017.                                                               underground hydrogen storage in depleted gas fields. Appl Sci 2018;8(11):2282.
+[25] Iglauer S, Ali M, Keshavarz A. Hydrogen wettability of sandstone                           [47] Foroughi S, Bijeljic B, Lin Q, Raeini AQ, Blunt MJ. Pore-by-pore modeling,
+     reservoirs: implications for hydrogen geo-storage. Geophys Res Lett                             analysis, and prediction of two-phase flow in mixed-wet rocks. Phys Rev E
+     2021;48(3):e2020GL090814.                                                                       2020;102(2):023302.
+[26] Hashemi L, Glerum W, Farajzadeh R, Hajibeygi H. Contact angle measurement                  [48] Foroughi S, Bijeljic B, Blunt MJ. Pore-by-pore modelling, validation and predic-
+     for hydrogen/brine/sandstone system using captive-bubble method relevant for                    tion of waterflooding in oil-wet rocks using dynamic synchrotron data. Transp
+     underground hydrogen storage. Adv Water Resour 2021;154:103964.                                 Porous Media 2021;138(2):285–308.
+[27] Higgs S, Da Wang Y, Sun C, Ennis-King J, Jackson SJ, Armstrong RT, et al.                  [49] Dong H, Blunt MJ. Pore-network extraction from micro-computerized-
+     In-situ hydrogen wettability characterisation for underground hydrogen storage.                 tomography images. Phys Rev E 2009;80(3):036307.
+     Int J Hydrogen Energy 2022;47(26):13062–75.                                                [50] Raeini AQ, Bijeljic B, Blunt MJ. Generalized network modeling: Network extrac-
+[28] van Rooijen W, Hashemi L, Boon M, Farajzadeh R, Hajibeygi H. Microfluidics-                     tion as a coarse-scale discretization of the void space of porous media. Phys Rev
+     based analysis of dynamic contact angles relevant for underground hydrogen                      E 2017;96(1):013312.
+     storage. Adv Water Resour 2022;104221.                                                     [51] Moghadasi R, Goodarzi S, Zhang Y, Bijeljic B, Blunt MJ, Niemi A. Pore-scale
+[29] Thaysen EM, Butler IB, Hassanpouryouzband A, Freitas D, Alvarez-Borges F,                       characterization of residual gas remobilization in CO2 geological storage. Adv
+     Krevor S, et al. Pore-scale imaging of hydrogen displacement and trapping in                    Water Resour 2023;104499.
+     porous media. Int J Hydrogen Energy 2022.
+
+
+
+
+                                                                                         1151
+

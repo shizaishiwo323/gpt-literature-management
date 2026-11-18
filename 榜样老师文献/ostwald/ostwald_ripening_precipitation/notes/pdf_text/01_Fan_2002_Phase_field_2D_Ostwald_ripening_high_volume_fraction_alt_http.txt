@@ -1,0 +1,648 @@
+                                           Acta Materialia 50 (2002) 1895–1907
+                                                                                                          www.actamat-journals.com
+
+
+
+
+  Phase-field simulation of 2-D Ostwald ripening in the high
+                    volume fraction regime
+             Danan Fan 1,a, S.P. Chen b, Long-Qing Chen c,*, P.W. Voorhees d
+                   a
+                     P.O. Box 5800, MS 1411, Sandia National Laboratories, Albuquerque, NM 87185, USA
+                 b
+                 Theoretical Division, MS B262, Los Alamos National Laboratory, Los Alamos, NM 87545, USA
+    c
+      Department of Materials Science and Engineering, The Pennsylvania State University, University Park, PA 16802, USA
+            d
+              Department of Materials Science and Engineering, Northwestern University, Evanston, IL 60208, USA
+
+                     Received 28 August 2001; received in revised form 2 October 2001; accepted 28 October 2001
+
+
+
+Abstract
+
+   The microstructural evolution and kinetics of Ostwald ripening were studied in the high volume fraction regime by
+numerically solving the time-dependent Ginzburg–Landau (TDGL) and Cahn–Hilliard equations. It is shown that the
+growth exponent m is equal to 3, independent of the volume fraction, and the kinetic coefficient k increases as the
+volume fraction increases. The shape of size distributions changes significantly with increasing volume fraction of the
+coarsening phase; the skewness changes continuously from negative to positive while the kurtosis decreases in the low
+fraction regime and increases in the high volume fraction regime.  2002 Acta Materialia Inc. Published by Elsevier
+Science Ltd. All rights reserved.
+
+Keywords: Phase transformations; Ostwald ripening; Phase field models
+
+
+
+
+1. Introduction                                                       Slyozov and Wagner [1,2], which is known as
+                                                                      LSW theory. In LSW theory, the problem of coars-
+   Ostwald ripening is a process related to the                       ening kinetics was modeled by assuming a steady-
+coarsening of one phase dispersed in the matrix of                    state diffusion field, an infinitesimally dilute
+another. The average size of the particles of the                     second phase, spherical particles and by assuming
+dispersed phase increases during coarsening due to                    that particles interact only indirectly with each
+diffusion through the matrix phase, and their total                   other through a mean field provided by the matrix.
+number decreases. Modern theories of Ostwald rip-                        The LSW theory predicts that during diffusion
+ening are based on the classical work of Lifshitz,                    controlled coarsening the average particle size
+                                                                      should increase as a power law in time, Rmt⫺
+                                                                      Rm0 ⫽ kt, with an exponent, m ⫽ 3 and a particle
+  * Corresponding author. Tel.: +1-814-863-8101; fax: +1-             size distribution function that, when scaled by the
+814-865-0016.
+    E-mail address: chen@ems.psu.edu (L.-Q. Chen).                    average particle size, is time independent. These
+  1
+    Present address: Energizer, 25225 Detroit Road, P.O. Box          predictions hold rigorously in the limit t→⬁. Since
+450777, Westlake, OH 44145, USA.                                      interparticle diffusional interactions are neglected
+
+1359-6454/02/$22.00  2002 Acta Materialia Inc. Published by Elsevier Science Ltd. All rights reserved.
+PII: S 1 3 5 9 - 6 4 5 4 ( 0 1 ) 0 0 3 9 3 - 7
+1896                               D. Fan et al. / Acta Materialia 50 (2002) 1895–1907
+
+in LSW theory, this theory is valid only in the                liquid systems have been performed [33]. These
+physically unrealistic limit of zero volume fraction           experiments show that the time required to reach
+of the second phase. This is one of the reasons used           the asymptotic coarsening state predicted by LSW
+to explain the disagreement in the size distribution           can be quite long. It was never attained in the time-
+functions measured experimentally [3] and those                scale of the experiments. This difficulty will also
+predicted from the LSW theory.                                 be present in simulations of the coarsening process.
+   A variety of techniques have been used to incor-            If the growth exponent m indeed ultimately varies
+porate the effect of finite volume fractions on                with volume fraction, then a kinetic coefficient cal-
+coarsening, including statistical mechanical                   culated using the classical LSW exponent becomes
+theories, mean field theories and numerical simula-            questionable at high volume fractions.
+tions [4–13] for three-dimensional (3-D) and [14–                 The purpose of this paper is to study the effect
+20] for two-dimensional (2-D) systems. Despite the             of volume fraction on the Ostwald ripening
+different physical bases of these models and                   behavior in 2-D by employing a phase field formu-
+theories, most of them assume that the coarsening              lation. The authors have used similar method-
+particles are spherical in shape to avoid the com-             ologies to study grain growth in single-phase sys-
+plexity of irregular geometry. However, this                   tems [34,35] and the microstructural evolution in
+assumption cannot remain valid at sufficiently high            two-phase polycrystalline materials [36–39]. Com-
+volume fractions, where the particles within the               puter simulations using this model allow one not
+microstructure become constrained geometrically                only to monitor the detailed temporal microstruc-
+and exhibit shape accommodation. Shape accom-                  ture evolution during Ostwald ripening but also to
+modation results in the non-uniform distribution of            obtain all the information about the average grain
+curvature along the particle interface. At very high           size and size distributions. We will focus on the
+volume fractions of coarsening particles, crowded              high volume fraction regime where analytical
+particles develop flattened sides, curved edges and            theories have the most difficulty. The dependencies
+rounded vertices or corners. This shape accommo-               of growth exponent m, kinetic coefficient k and
+dation can occur strictly as a result of interparticle         shapes of size distributions on the volume fractions
+diffusional interactions [21]; stresses generated at           of the coarsening phase will be systematically
+particle contacts are not necessary to develop flat            examined.
+interfaces [22]. The effects of geometrical com-
+plexity present at high volume fractions in systems
+with sufficient number of particles to determine the           2. The phase field model
+evolution of the average particle size have not been
+included in the theoretical treatments. As a result,             The details of this numerical model have been
+the dynamics of Ostwald ripening in the high vol-              reported in another publication [40]. A schematic
+ume fraction regime remains poorly understood.                 microstructure of particles of one phase dispersed
+Since Ostwald ripening is a moving boundary                    in the continuous matrix of another is shown in
+problem, it is very difficult to solve analytically in         Fig. 1. In this microstructure, the solubilities or
+the high volume fraction regime.                               equilibrium concentrations are Ca and Cb for the
+   Experimentally, however, testing of the theories            matrix phase and second phase, respectively. We
+describing the effects of volume fractions of coars-           define a set of continuous field variables,
+ening phase on the kinetics of Ostwald ripening is
+                                                               h1(r), h2(r), …, hp(r), C(r)
+quite difficult to perform. Despite the fact that an
+increase in the kinetic coefficient k with increasing          where p is the number of possible orientations of
+volume fraction of the coarsening phase has been               the second phase grains in space, hi (i ⫽ 1, …, p)
+demonstrated by many experiments [23–27], a var-               are orientation field variables with each orientation
+iety of growth exponent values m ranging from 2                field representing grains of a given crystallographic
+to 8 have been reported [28–32]. Recently a series             orientation in space, and r is the position in space.
+of careful experiments on coarsening in solid–                 These variables change continuously in space and
+                                           D. Fan et al. / Acta Materialia 50 (2002) 1895–1907                                      1897
+
+
+
+                                                                                         冘                 冘冘
+                                                                                          p                  p    p
+
+                                                                       f0 ⫽ f1(C) ⫹           f2(C,hi) ⫹                f3(hi,hj)   (2)
+                                                                                        i⫽1                i ⫽ 1j ⫽ i
+
+                                                                       where
+                                                                       f1(C) ⫽ ⫺(A / 2)(C⫺Cm)2 ⫹ (B / 4)(C⫺Cm)4
+                                                                           ⫹ (Da / 4)(C⫺Ca)4 ⫹ (Db / 4)(C⫺Cb)4
+                                                                       f2(C,hi) ⫽ ⫺(g / 2)(C⫺Ca)2(hi)2 ⫹ (d / 4)(hi)4
+                                                                       f3(hi,hj) ⫽ (eij / 2)(hi)2(hj)2
+                                                                       where Ca and Cb are the solubilities in the matrix
+                                                                       phase and the second phase respectively, Cm ⫽
+                                                                        (Ca ⫹ Cb) / 2, A, B, Da, Db, g, d, and eij are
+                                                                       phenomenological parameters. The parameters are
+                                                                       chosen in such a way that fo has 2p degenerate min-
+                                                                       ima with equal depth located at (h1,h2,…,hp) ⫽
+                                                                        (1,0,…,0), (0,1,…,0), …, (0,0,…,1) at the equilib-
+                                                                       rium concentration Cb. This requirement ensures
+Fig. 1. A schematic microstructure of a two-phase system
+                                                                       that each point in space can only belong to a grain
+with second phase particles dispersed in a matrix phase. The
+orientation field variables h1, …, hj represent different crystal-     with a given orientation of a given phase.
+lographic orientations of the second phase grains in space. All           This formulation guarantees that, when two par-
+orientation fields are zero in liquid or disordered (matrix) phase.    ticles with different orientations are in contact with
+The equilibrium compositions or solubilities are Ca for the            each other, a grain boundary forms. Two particles
+matrix phase and Cb for the second phase respectively.
+                                                                       will coalesce when they have the same orientation,
+                                                                       which also happens in real systems. The difference
+assume values ranging from ⫺1.0 to 1.0. All orien-
+                                                                       is that there are an infinite number of orientations
+tation field variables are zero in the matrix phase,
+                                                                       in a real system and only a finite number of order
+which simulates the liquid or disordered phase.
+                                                                       parameters can be used in a simulation. It has been
+C(r) is the composition field which takes the value
+                                                                       shown [34–37] that, if a large number of order
+of Ca within the matrix phase and Cb within a
+                                                                       parameters (more then 30) are used in simulations,
+second phase grain. C(r) has intermediate values
+                                                                       the kinetics will converge to a value independent
+between Ca and Cb at the interfacial region
+                                                                       of the number of orientations.
+between the matrix phase and a second phase
+                                                                          It should be pointed out that, in this paper, we
+grain.
+                                                                       only study the coarsening of particles after the
+   The total free energy of an inhomogeneous sys-
+                                                                       initial phase transformation that creates the two-
+tem can be written as:
+                                                                       phase mixtures. The driving force for particle
+
+F⫽     冕冋 f0(C(r); h1(r), h2(r), …, hp(r))                     (1)
+                                                                       coarsening is the minimization of total surface
+                                                                       energy (grain boundary energy and interfacial
+                                                                       energy). Therefore, as long as the correct grain
+   ⫹
+       ␬C
+       2
+          (ⵜC(r))2 ⫹
+                     i⫽1
+                        ␬i
+                         2
+                           冘
+                            p
+
+                           (ⵜhi(r))2 d3r     册                         boundary and interfacial energies can be obtained,
+                                                                       the exact form of the free energy density (f0) is not
+                                                                       an issue. Free energy density (f0) determines the
+where ⵜC and ⵜhi are gradients of concentration                        driving force for the phase transformation.
+and orientation fields, ␬C and ␬i are the correspond-                     The energy of a planar grain boundary, sgb,
+ing gradient energy coefficients, and f0 is the local                  between a grain of orientation i and another grain
+free energy density which, in this work, is assumed                    of orientation j for two second phase grains, can
+to be,                                                                 be written as follows,
+1898                               D. Fan et al. / Acta Materialia 50 (2002) 1895–1907
+
+
+
+
+        冕冋       冉 冊
+        ⫹⬁                                                     phenomenological parameters were chosen such
+                            ␬C dC 2                            that the liquid, or matrix, phase totally wets the
+sgb ⫽         ⌬f(hi,hj,C) ⫹                          (3)
+                            2 dx                               solid, or coarsening, phase, i.e., the ratio of grain
+        ⫺⬁
+                                                               boundary energy to interfacial energy is larger than
+   ⫹    冉 冊 冉 冊册
+       ␬i dhi 2 ␬j dhj 2
+       2 dx
+               ⫹
+                 2 dx
+                         dx
+                                                               2.0. We assumed the following phenomenological
+                                                               parameters in Eqs. (1)–(4): Ca ⫽ 0.05, Cb ⫽
+                                                                0.95, Cm ⫽ (Ca ⫹ Cb) / 2 ⫽ 0.5, A ⫽ 2.0, B ⫽
+in which                                                        A / (Cb⫺Cm)2, g ⫽ 2 / (Cb⫺Ca)2, d ⫽ 1.0, Da ⫽
+⌬f(hi,hj,C) ⫽ f0(hi,hj,C)⫺f0(hi,e,hj,e,Cb)⫺(C        (4)        Db ⫽ g / d2, eij ⫽ 3.0. The gradient coefficients
+                                                               were chosen as: ␬i ⫽ ␬j ⫽ ␬C ⫽ 2.0. These para-
+   ⫺Cb)   冉 冊
+           ∂f0
+           ∂C hi,e,hj,e,Cb
+                                                               meters give an energetic ratio sgb / sin ⫽ 2.14,
+                                                               which satisfies the total wetting condition. The kin-
+                                                               etic equations were discretized using centered
+where f0(hi,e,hj,e,Cb) represents the free energy den-         finite differences and integrated in time using an
+sity minimized with respect to hi and hj at the equi-          explicit method. The grid size along both Cartesian
+librium composition of the second phase Cβ. Simi-
+                                                               coordinate axes, ⌬x, was chosen to be 2.0, and the
+larly, the interphase boundary energy between the
+                                                               time step for integration, ⌬t ⫽ 0.1. Periodic
+matrix phase and a second phase grain with orien-
+                                                               boundary conditions were applied. The diffusivi-
+tation i can be defined.
+                                                               ties and mobilities were assumed to be the same
+   In the present model, the evolution kinetics of
+                                                               for both phases.
+these field variables are described by the gen-
+                                                                  Computer simulations were started from a liquid
+eralized      time-dependent        Ginzburg–Landau
+                                                               or disordered phase, i.e., a phase with small ran-
+(TDGL) and Cahn–Hilliard equations:
+                                                               dom values for all field variables (±0.001) and the
+dhi(r,t)         dF                                            average concentration for the composition field
+         ⫽ ⫺Li          , i ⫽ 1,2,…,p,              (5a)
+  dt           dhi(r,t)                                        with thermal noise. This ensures the desired vol-
+
+              再 冋 册冎
+                                                               ume fractions. After the quench, grains of the
+dC(r,t)         dF                                             coarsening phase will spontaneously nucleate from
+        ⫽ ⵜ Dⵜ         ,                           (5b)
+  dt           dC(r,t)                                         the liquid or disordered phase. The nucleation pro-
+where Li and D are kinetic coefficients related to             cess was completed roughly within first 1500 time
+grain boundary mobilities and atomic diffusion                 steps. Allowing enough time for the system to
+coefficients, t is time, and F is the total free energy        reach the steady state or as close as we could reach
+given in Eq. (1). The difference between kinetic               in these calculations (after the first 5000 time
+equations for orientation field variables hi(r) and            steps), the kinetic data for Ostwald ripening and
+concentration field C(r) comes from the fact that              size distributions were extracted from the simu-
+C(r) is a conserved field, due to the requirement              lated microstructures. At time step 5000, there are
+of mass conservation, and the orientation fields are           about 600 grains or particles in the 25% coarsening
+non-conserved variables.                                       phase system and about 700 grains in the high vol-
+                                                               ume fraction systems. The simulations were
+                                                               stopped when there were about 100 grains left in
+3. Simulation results and discussions                          the 25% volume fraction system and about 200 left
+                                                               in the high volume fraction systems.
+3.1. Microstructural evolution and scaling                        The temporal evolution of the microstructures
+                                                               with 25%, 50%, 75%, and 90% volume fractions
+   To study Ostwald ripening, we chose a set of 30             of second phase is shown in Figs. 2–5, respect-
+orientation variables and a concentration field to             ively. In these microstructures, the bright phase is
+characterize the microstructures. A 2-D                        the coarsening, or solid, phase, and the dark phase
+512 × 512 square system was employed. The                      represents the matrix phase. It can be seen that at
+                                        D. Fan et al. / Acta Materialia 50 (2002) 1895–1907                                   1899
+
+
+
+
+                                                                    Fig. 4. Microstructural evolution of Ostwald ripening in 2-D
+Fig. 2. Microstructural evolution of Ostwald ripening in 2-D        with 75% coarsening phase. The system size is 512 × 512. The
+with 25% coarsening phase. The system size is 512 × 512. The        initial microstructure is a liquid. After nucleation, there are
+initial microstructure is a liquid. After nucleation, there are     about 650 particles in this system at the 5000 time step.
+about 600 particles in this system at the 5000 time step.
+
+
+
+
+Fig. 3. Microstructural evolution of Ostwald ripening in 2-D with 50% coarsening phase. The system size is 512 × 512. The initial
+microstructure is a liquid. After nucleation, there are about 750 particles in this system at the 5000 time step.
+
+
+low volume fraction (25%), the coarsening grains                    ing phase, particle coalescence is observed, which
+are almost perfect circles and the coarsening is                    is the result of a finite number of orientation vari-
+solely controlled by the interparticle diffusion                    ables employed in the simulations, and most of the
+through the matrix phase. At 50% of the coarsen-                    grains are still nearly circular. However, at 75%
+1900                                    D. Fan et al. / Acta Materialia 50 (2002) 1895–1907
+
+                                                                    be determined by calculating the scaling function
+                                                                    of the system. If the shape of the scaling function
+                                                                    does not change significantly with time, it means
+                                                                    that the system has reached the scaling state or ste-
+                                                                    ady state. Following the formulations of Lebowitz
+                                                                    et al. [37], the structure functions and its scaled
+                                                                    version are calculated. Fig. 6 shows an example of
+                                                                    the calculated scaling function for the 90% coars-
+                                                                    ening phase system at different time steps. It is
+                                                                    clear that scaling functions are invariant with time,
+                                                                    indicating that over the time scale of our calcu-
+                                                                    lations, the system may have reached the steady
+                                                                    state. It should be pointed out that due to the lim-
+                                                                    ited system size and limited number of time steps
+                                                                    in our simulations, Fig. 6 is not a rigorous proof
+                                                                    that the system has reached the scaling regime. It
+                                                                    is possible that the system evolves very slowly to
+                                                                    the scaling regime, and the statistics are not suf-
+                                                                    ficiently accurate to distinguish potentially small
+                                                                    variations in the scaling functions. The scaling
+                                                                    functions in other volume fractions are similar to
+Fig. 5. Microstructural evolution of Ostwald ripening in 2-D
+with 90% coarsening phase. The system size is 512 × 512. The
+                                                                    Fig. 6.
+initial microstructure is a liquid. After nucleation, there are
+about 650 particles in this system at the 5000 time step.
+
+
+volume fraction, shape accommodation becomes
+apparent and the particle shapes start to depart
+from circular shapes. The microstructures with vol-
+ume fractions larger than 90% are comprised of
+particles with flattened sides, curved edges and
+rounded vertices or corners. In all cases, the coars-
+ening particles are wetted by the matrix phase as
+a result of our choice of the gradient energy coef-
+ficients.
+   A common method used to determine whether
+a system has reached the scaling regime is to
+examine the normalized structural function S(k, t)
+[41–43], which is the Fourier transform of the spa-
+tial correlation function. It is suggested that the
+normalized structural function can be written as
+s(k,t) ⫽ ␬(t)dF(x,t), where k is the wave vector, d
+dimensions, x ⫽ k / ␬(t), t the time, ␬(t) a time-
+dependent length scale which behaves as
+␬(t) 苲 tn for positive n. F(x, t) is called the scaling
+                                                                    Fig. 6. Relations of the scaling function F(x, t) with the nor-
+function. In the scaling regime, F(x,t) ⫽ F(x),                     malized wave number x (x ⫽ k / ␬(t)) in the reciprocal space at
+which is independent of time.                                       different time steps in 90% coarsening phase system. Time
+   Therefore, the dynamical scaling of a system can                 step=20,000, 40,000, 60,000, 80,000, and 100,000.
+                                        D. Fan et al. / Acta Materialia 50 (2002) 1895–1907                                   1901
+
+3.2. Kinetics of Ostwald ripening
+
+   The time dependence of the average grain size
+in systems with 25% and 90% of the coarsening
+phase are shown in Figs. 7 and 8. In these plots,
+the solid lines are the non-linear fits to the power
+growth law Rmt⫺Rm0 ⫽ kt with three variables m, k
+and R0. It is found that these data fit the power
+growth law very well with m ⫽ 3 in all cases, even
+for the very high volume fraction of coarsening
+phase (90%). Thus even in systems with 90% vol-
+ume fraction the coarsening process is not well
+described by m ⫽ 1 / 2, which would be expected
+in the limit of very high volume fractions. It is
+clear that the shape accommodation of particles
+will not affect the growth exponent m as long as
+the system is in the scaling regime. Even though
+the growth exponent is independent of the volume
+fraction of the coarsening phase, the kinetic coef-                 Fig. 8. Time dependence of the average grain size of the
+                                                                    coarsening phase in the 90% coarsening phase system. The dots
+ficient k is strongly volume-fraction dependent.
+                                                                    are the measured data from simulated microstructures. The solid
+   The dependence of the kinetic coefficient k on                   line is a non-linear fit to the power growth law Rmt⫺Rm0 ⫽ kt
+the volume fraction of the coarsening phase is                      with three variables m, k and R0.
+shown in Fig. 9. At 25% coarsening phase, the kin-
+etic coefficient k is 0.833, while at 90% coarsening
+
+
+
+
+Fig. 7. Time dependence of the average grain size of the
+coarsening phase in the 25% coarsening phase system. The dots
+are the measured data from simulated microstructures. The solid
+line is a non-linear fit to the power growth law Rmt⫺Rm0 ⫽ kt       Fig. 9. Dependence of the kinetic coefficient k on the volume
+with three variables m, k and R0.                                   fraction of the coarsening phase.
+1902                                  D. Fan et al. / Acta Materialia 50 (2002) 1895–1907
+
+phase, the coefficient increases to 24.45 that is
+about 30 times higher than that in the 25% system.
+The rapid increase in the kinetic coefficient k can
+be attributed to the dramatic decrease of the dif-
+fusion distance of atoms in the matrix phase as the
+volume fraction of coarsening phase increases. At
+low volume fraction (25%), the typical diffusion
+distance is the mean spacing between particles,
+which is much larger than the grain boundary
+thickness. At 90% coarsening phase, it can be seen
+from microstructures (Fig. 5) that the typical dif-
+fusion distance between grains becomes compara-
+ble with the grain boundary width, which will gre-
+atly enhance the coarsening kinetics but, as
+mentioned above, not change the temporal
+exponent. The rapid increase in k at high volume
+fraction is qualitatively similar to that obtained
+from experiments using solid–liquid mixtures in
+the Fe–Cu, Co–Cu, Pb–Sn, Sn–Pb systems [3].                       Fig. 11. Time dependence of grain size distributions in 90%
+                                                                  coarsening phase system. Time step=5000, 7500, 10,000,
+3.3. Size distributions                                           12,500, 15,000. There are about 500 grains at the 5000 time
+                                                                  step and 300 grains at the 15,000 time step.
+   Examples of size distributions at different times
+in systems with 25% and 90% coarsening phase                      clear that the shapes of size distributions in all sys-
+are shown in Figs. 10 and 11, respectively. It is                 tems does not vary significantly with time, indicat-
+                                                                  ing the system evolves very slowly to the true sca-
+                                                                  ling regime or the system is very close to the
+                                                                  scaling regime. However, the shapes of size distri-
+                                                                  butions between different volume fractions are dif-
+                                                                  ferent. The dependence of the shape of size distri-
+                                                                  butions on the volume fraction is given in Fig. 12.
+                                                                  In this plot, the dots represent the average data of
+                                                                  size distributions at different volume fractions, and
+                                                                  the lines are the smooth fits to those data. For a
+                                                                  direct comparison, all size distributions at different
+                                                                  volume fractions were normalized to satisfy the
+                                                                  relation ⌺r(x) dx ⫽ 1, where r(x) is the size distri-
+                                                                  bution, and x ⫽ R / 具R典. As the volume fraction of
+                                                                  the coarsening phase increases, the size distribution
+                                                                  broadens and the peak of the size distribution
+                                                                  decreases. Fig. 12 also shows that in the low vol-
+                                                                  ume fraction regime (25%), the size distribution
+                                                                  skews to the left side and becomes more symmetric
+                                                                  at 50%. To quantitatively study the skewness of
+                                                                  the size distributions, the skewness was calculated
+Fig. 10. The time dependence of grain size distributions in
+25% coarsening phase system. Time step=40,000, 120,000,           for different volume fractions, as shown in Fig. 13,
+200,000, 280,000, 360,000. There are about 300 grains at the      in which the skewness is defined as m3 / m32 / 2, where
+40,000 time step and 100 grains at the 360,000 time step.         mm is the mth moment of the size distribution. A
+                                          D. Fan et al. / Acta Materialia 50 (2002) 1895–1907                                1903
+
+                                                                      positive skewness means the distribution has a
+                                                                      longer tail to the right of the mean value than to
+                                                                      the left. If the reverse is true, skewness is negative.
+                                                                      It can be seen that at 25% volume fraction the
+                                                                      skewness is negative, i.e., skewed to the left, and
+                                                                      that it continuously changes toward positive values
+                                                                      as the volume fraction increases. In the high vol-
+                                                                      ume fraction regime, the size distributions skew to
+                                                                      the right in contrast to the low volume fraction
+                                                                      regime. Most theories, on the other hand, predict
+                                                                      that skewness increases with the volume fraction
+                                                                      of coarsening phase, but does not change sign. It
+                                                                      should be noted, however, that there are very few
+                                                                      theories that attempt to predict the particle size dis-
+                                                                      tributions at volume fractions in excess of 70% and
+                                                                      thus this change in the sign of the skewness may
+                                                                      be primarily a result of the volume fractions
+                                                                      employed in our computer simulations.
+Fig. 12. Dependence of grain size distributions on the volume            Another important characteristic of size distri-
+fraction of coarsening phase. Dots represent the average data         butions is the so-called kurtosis, the degree of
+of size distributions at different volume fractions and lines are     peakedness of distributions. The kurtosis or excess
+the smooth fits to those data.
+                                                                      kurtosis is defined as m4 / m22⫺3, which is the rela-
+                                                                      tive sharpness compared to the normal distribution.
+                                                                      The dependence of kurtosis of the size distributions
+                                                                      on the volume fraction is shown in Fig. 14. At low
+                                                                      volume fraction (25%), the kurtosis is positive and
+
+
+
+
+Fig. 13. Dependence of the skewness of size distributions on          Fig. 14. Dependence of the kurtosis of size distributions on
+the volume fractions of the coarsening phase.                         the volume fractions of the coarsening phase.
+1904                              D. Fan et al. / Acta Materialia 50 (2002) 1895–1907
+
+more peaked than the normal distribution. A rapid             influence the shape of size distributions. A second
+decrease of peakedness is observed from 25% to                possibility is that the evolution of the particle size
+50% of the coarsening phase, and the kurtosis is              distribution towards its asymptotic shape may be
+negative for the 50% case, indicating that it is more         extremely slow at high volume fractions, and thus
+flattened than the normal distribution. In this vol-          the observed skewness would disappear if the sys-
+ume fraction regime (⬍50%), the trend of kurtosis             tem were allowed to coarsen longer [33].
+as a function of volume fraction agrees with the                 The size distribution for the 25% coarsening
+prediction of analytical theories, i.e., the peak of          phase system predicted by the current simulation is
+size distributions becomes more flattened                     compared with the result for 21% coarsening phase
+(decreasing kurtosis) with increasing volume frac-            obtained by Chakrabarti et al. [17] through numeri-
+tion. However, in the high volume fraction regime             cally solving the Cahn–Hilliard equation, as shown
+(⬎50%), the kurtosis increases with increasing vol-           in Fig. 15. It can be seen that these two results are
+ume fraction, i.e., the size distribution becomes             almost identical. As a matter of fact, the current
+more peaked as it continuously skews to the                   model will reduce to the Cahn–Hilliard equation if
+right side.                                                   no orientation field variables are involved. How-
+   Similar behaviors for skewness and kurtosis in             ever, the Cahn–Hilliard equation itself cannot be
+the high volume fraction regime have also been                employed to study Ostwald ripening in the high
+found in Monte Carlo simulations by Tikare [44].              volume fraction regime since an interconnected
+However, since the Monte Carlo simulations were               microstructure will be formed when the volume
+only performed in the higher volume fraction                  fraction is larger than about 40%. At the low frac-
+regime (⬎40%), there is no reported continuous                tion regime, the current model and numerical sol-
+change of skewness from a large negative value                ution of the Cahn–Hilliard equation are equivalent.
+(strongly skewed to the left) to a large positive                Due to the lack of experimental and theoretical
+value (strongly skewed to the right), and the sig-            results in 2-D for the high volume fraction regime,
+nificant decrease of kurtosis from positive to nega-          the current simulation result of 50% volume frac-
+tive in the low volume fraction regime. Both Monte
+Carlo and current simulations showed that in the
+high volume fraction regime size distributions
+skew to the right and peakedness increases with
+increasing volume fraction of the coarsening phase.
+Davies et al. [45] predicted the change of skewness
+from negative to positive with increasing volume
+fraction in 3-D, by taking into account the encoun-
+ter or coalescence of particles and modifying the
+continuity equation of LSW theory. However, the
+coalescence of particles was explicitly prevented
+in Monte Carlo simulations while in the current
+simulations the coalescence did occur. Since both
+simulations predicted similar behaviors for skew-
+ness and kurtosis in the high volume fraction
+regime, the coalescence may not be the controlling
+factor that determines the volume-fraction depen-
+dences of skewness and kurtosis. The factors that
+may affect their volume-fraction dependences
+should include the spatial correlations of particles
+                                                              Fig. 15. Comparison of the size distribution of the present
+and shape accommodation in the high volume frac-              result in 25% coarsening phase system with the result for 21%
+tion regime, which affect the local driving force             coarsening phase system obtained by Chakrabarti et al. [17]
+and local concentration gradient and in turn may              through numerical solving the Cahn–Hilliard equation.
+                                      D. Fan et al. / Acta Materialia 50 (2002) 1895–1907                                    1905
+
+tion is compared with the thin-film experimental                  3.4. Effect of partial wetting
+result of 40% [24] and the theoretical prediction at
+40% by Marqusee [16], as shown in Fig. 16. To                        In the above simulations and all other theories
+make a direct comparison, these distributions were                a total wetting energetic condition was assumed.
+normalized to satisfy the relation ⌺r(x) dx ⫽ 1. It               However, in many practical systems or solid–liquid
+is clear that the shape of the distribution obtained              two-phase alloys, the liquid, or matrix, phase only
+from the current simulation is in good agreement                  partially wets the solid phase or coarsening phase.
+with the shape obtained from 2-D experiment                       The partial wetting energetic condition will result
+results, except at the large size regime. The fre-                in direct contact between particles of the coarsen-
+quencies of large size particles in the current simul-            ing phase, which changes the local concentration
+ation with 50% coarsening phase are higher than                   distribution and local curvatures. Therefore, it is
+those obtained from experiments with a volume                     necessary to examine if the wetting condition will
+fraction of 40% coarsening phase. This difference                 affect the coarsening kinetics of Ostwald ripening.
+could come from the higher volume fraction in the                    In this section, a system with 90% of coarsening
+simulated system, and from the fact that some                     phase and with the energetic ratio sgb / sin ⫽ 1.85
+coalescence is observed in the simulated 50% sys-                 was chosen to study the effect of the energetic ratio
+tem. This difference has been found to be a signa-                on coarsening kinetics. The temporal evolution of
+ture of a transient coarsening process [33]. It was               the microstructure of this system is shown in Fig.
+found that very long coarsening times are required                17. It can be seen that microstructures under this
+for the largest growing particles to decrease their               energetic condition are quite different from those
+size relative to the average and thus decrease the                of total wetting systems. The liquid phase or matrix
+magnitude of the frequency at large R / 具R典. It is
+thus possible that the calculated scaled distri-
+butions are not completely in steady state.
+
+
+
+
+                                                                  Fig. 17. Microstructural evolution in the partial wetting sys-
+Fig. 16. Comparison of the size distribution of the present       tem with 90% coarsening phase. sgb / sin ⫽ 1.85. The system
+result in 50% coarsening phase system with the prediction of      size is 512 × 512. The initial microstructure is a liquid. After
+Marqusee theory [16] and experimental result [24] for 40%         nucleation, there are about 580 particles in this system at the
+coarsening phase system.                                          5000 time step.
+1906                                      D. Fan et al. / Acta Materialia 50 (2002) 1895–1907
+
+phase is not continuous anymore and stays at grain
+boundaries and grain corners of the coarsening
+phase because of its low volume fraction. The time
+dependence of the average grain size of the coars-
+ening phase is shown in Fig. 18. It is quite interest-
+ing to see that the growth exponent m is still 3 for
+the coarsening phase, which is not affected by the
+change in wetting conditions and microstructural
+details. Therefore, as long as Ostwald ripening is
+the rate controlling process in a two-phase mixture,
+the growth exponent will not depend on which
+phase undergoes Ostwald ripening. Because we
+assume the same diffusivity for both phases, the
+kinetic coefficient k in this partial wetting system
+is also identical to that of a total wetting system
+with 90% coarsening phase. However, if the diffus-
+ivities are different in the two phases and in the
+grain boundary regions, a strong dependence of
+kinetic coefficient k on the wetting condition can                    Fig. 19. Time dependence of size distributions in the partial
+be expected. The time dependence of size distri-                      wetting system with 90% coarsening phase. sgb / sin ⫽ 1.85.
+                                                                      Time step=5000, 7500, 10,000, 12,500, 15,000. There are about
+butions in this system is shown in Fig. 19. These
+                                                                      450 grains at time step 5000 and 250 grains at time step 15,000.
+size distributions are approximately self-similar or
+time-invariant, indicating the system is nearly at
+the steady state. The shape of these size distri-                     butions is equivalent to that in the total wetting
+                                                                      system with 90% coarsening phase. Hence, under
+                                                                      the assumption of both phases having the same
+                                                                      diffusivity, the characteristics of Ostwald ripening
+                                                                      are not affected by the wetting condition, even
+                                                                      though the microstructures are very different in
+                                                                      total wetting and partial wetting systems. This is
+                                                                      not the case if the diffusivities are different for two
+                                                                      phases and in grain boundary regions [46].
+
+
+                                                                      4. Summary
+
+                                                                         The characteristics of Ostwald ripening in a two-
+                                                                      phase mixture have been systematically studied
+                                                                      over a range of volume fractions of the coarsening
+                                                                      phase. It was found that the growth exponent
+                                                                      m ⫽ 3 is independent of the volume fraction of the
+                                                                      coarsening phase and the details of the microstruc-
+                                                                      tures up to a volume fraction of 90%. The kinetic
+                                                                      coefficient k increases as the volume fraction of
+Fig. 18. Time dependence of the average grain size in the par-        the coarsening phase increases, with a very strong
+tial wetting system with 90% coarsening phase. sgb / sin ⫽
+1.85. The dots are the measured data from simulated micro-            increase above volume fractions of 70%. The
+structures. The solid line is a non-linear fit to the power growth    simulation predictions agree well with experi-
+law Rmt⫺Rm0 ⫽ kt with three variables m, k and R0.                    mental results from different systems. It was shown
+                                      D. Fan et al. / Acta Materialia 50 (2002) 1895–1907                                 1907
+
+that the shape of size distributions changes dra-                 [14] Rogers TM, Desai RC. Phys Rev B 1989;39:11956.
+matically with increasing volume fraction of the                  [15] Ardell J. Phys Rev B 1990;41:2554.
+                                                                  [16] Chakrabati A, Toral R, Gunton JD. Phys Rev E
+coarsening phase. The skewness continuously                            1993;47:3025.
+changes from negative to positive while the kur-                  [17] Marqusee JA. J Chem Phys 1984;81:976.
+tosis decreases in the low fraction regime and                    [18] Zheng Q, Gunton JD. Phys Rev A 1989;39:4848.
+increases in the high volume fraction regime. The                 [19] Yao JH, Elder KR, Guo H, Grant M. Phys Rev B
+wetting of a second phase will not affect the coars-                   1992;45:8173.
+                                                                  [20] Akaiwa N, Meiron DI. Phys Rev E 1996;54:R13.
+ening exponent under the conditions that two                      [21] Voorhees PW, McFadden GB, Boisvert RF, Meiron DI.
+phases and grain boundary have the same diffusion                      Numerical simulation of morphological development dur-
+coefficient or mobility, and the volume diffusion                      ing Ostwald ripening. Acta Metall 1988;36:207.
+is the controlling mechanism for diffusion.                       [22] Kingery WD. J Appl Phys 1959;30:301.
+                                                                  [23] Johnson WC, Abinandanan TA, Voorhees PW. Acta Met-
+                                                                       all 1990;38:134.
+                                                                  [24] Hardy SC, Voorhees PW. Metall Trans A 1988;19:2713.
+Acknowledgements                                                  [25] Niemi N, Courtney TH. J Mater Sci 1981;16:226.
+                                                                  [26] Kang H, Yoon DN. Metall Trans A 1981;12:65.
+                                                                  [27] Krichevsky O, Stavans J. Phys Rev E 1995;52:1818.
+  DF and SPC’s work is supported by the US                        [28] Wong J. J Appl Phys 1980;51:4453.
+Department of Energy, L-QC’s work is supported                    [29] Smith F. Acta Metall 1967;15:1867.
+by the National Science Foundation under the grant                [30] Yang SC, German RM. J Am Ceram Soc 1991;74:3085.
+number DMR 0122638, and PWV work is sup-                          [31] Mani SS, Fradkov VE, Glicksman ME. In: Proceedings of
+                                                                       ASM/TMS International Meeting, Pittsburgh (PA), 1994.
+ported by the Physical Sciences Division of NASA.                 [32] Krichevsky O, Stavans J. Phys Rev Lett 1993;70:1473.
+                                                                  [33] Snyder VA, Alkemper J, Voorhees PW. Acta Mater
+                                                                       2001;49:699.
+                                                                  [34] Fan D, Chen L-Q. Acta Mater 1997;45(2):611.
+References                                                        [35] Fan D, Chen L-Q. Acta Mater 1997;45(3):1115.
+                                                                  [36] Fan D, Chen L-Q. Acta Mater 1997;45(8):3297.
+ [1] Lifshitz M, Slyozov VV. J Phys Chem Solids 1961;19:35.       [37] Chen L-Q, Fan D. J Am Ceram Soc 1996;79:1163.
+ [2] Wagner C. Z Elektrochem 1961;65:581.                         [38] Fan D, Chen L-Q. Acta Mater 1997;45(10):4145.
+ [3] Voorhees PW. Annu Rev Mater Sci 1992;22:197 and ref-         [39] Fan D, Chen L-Q. J Am Ceram Soc 1997;80(7):1773.
+     erences therein.                                             [40] Fan D, Chen L-Q, Chen SP, Voorhees PW. Comput Mater
+ [4] Ardell J. Acta Metall 1972;20:61.                                 Sci 1998;9:329.
+ [5] Tsumuraya K, Miyata Y. Acta Metall 1983;31:437.              [41] Lebowitz JL, Marro J, Kalos MH. Acta Metall
+ [6] Brailsford D, Wynblatt P. Acta Metall 1979;27:489.                1982;30:297.
+ [7] Voorhees PW, Glicksman ME. Acta Metall 1984;32:2013.         [42] Oona Y, Puri S. Phys Rev Lett 1987;58:836.
+ [8] Yao JH, Elder KR, Guo H, Grant M. Phys Rev B                 [43] Enomoto Y, Kato R. J Phys.: Condens Matter
+     1993;47:14110.                                                    1990;2:9215.
+ [9] Marqusee JA, Ross J. J Chem Phys 1984;80:536.                [44] Tikare V. Numerical simulation of grain growth in liquid
+[10] Dehoff RT. Acta Metall 1991;39:2349.                              phase sintered materials. PhD thesis, Case Western
+[11] Akaiwa N, Voorhees PW. Phys Rev E 1994;49:3860.                   Reserve University, 1994.
+[12] Fang Z, Patterson BR, Turner ME. Acta Metall                 [45] Davies KL, Nash P, Stevens RN. Acta Metall
+     1992;40:713.                                                      1980;28:179.
+[13] Beenakker CWJ. Phys Rev A 1986;33:4482.                      [46] Eggleston JJ, Voorhees PW. In preparation.
+

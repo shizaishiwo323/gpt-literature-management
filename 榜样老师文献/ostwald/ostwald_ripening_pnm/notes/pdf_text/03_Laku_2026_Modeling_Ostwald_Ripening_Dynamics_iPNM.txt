@@ -1,0 +1,1599 @@
+                                                             Modeling Ostwald Ripening Dynamics in Porous Microstructures
+
+                                                           Md Zahidul Islam Lakua , Mohammad Salehpourb , Tian Lanb , Benzhong Zhaob , Yashar Mehmania
+                                                                  a Department of Energy and Mineral Engineering, The Pennsylvania State University, University Park, USA
+                                                                              b Department of Civil Engineering, McMaster University, Hamilton, ON, Canada
+arXiv:2604.06581v1 [physics.flu-dyn] 8 Apr 2026
+
+
+
+
+                                                  Abstract
+                                                  Partially miscible ganglia trapped in a porous medium evolve through Ostwald ripening, driven by differences in
+                                                  interfacial curvature. In practice, ganglia can span multiple pores and undergo discrete capillary events — invasion,
+                                                  snap-off, retraction, fragmentation, coalescence, and dislocation — that alter their topology and induce local flow.
+                                                  Existing pore-network models (PNMs) for ripening are limited to single-pore ganglia, assume idealized pore shapes,
+                                                  and operate under quasi-static conditions that preclude flow. We present an image-based pore-network model (iPNM)
+                                                  that removes these limitations. Unlike existing PNMs, iPNM requires no idealization of pore shapes, as the effect
+                                                  on capillarity is encoded locally in curvature–saturation curves computed via the pore-morphology method. iPNM
+                                                  couples two-phase flow, solute transport, and Ostwald ripening within a unified framework. We first verify iPNM
+                                                  against a prior quasi-static PNM, then validate it against recent high-resolution microfluidic experiments of hydrogen
+                                                  ripening in a sandstone-patterned micromodel over 15–24 days at 40◦ C and 80◦ C. Good agreement is obtained without
+                                                  adjustable parameters. Comparison with a continuum model shows that while macroscopic saturation is captured by
+                                                  both approaches, iPNM uniquely resolves population statistics, individual ganglion curvatures, and pre-equilibrium
+                                                  ripening dynamics within a representative elementary volume. Its computational efficiency over direct numerical
+                                                  simulation makes it suitable for guiding the development of improved theories of ripening in confined geometries.
+                                                  Keywords: Porous media, Ostwald ripening, Pore-network model, Hydrogen storage, Ganglia, Pore morphology
+
+
+
+                                                  1. Introduction
+
+                                                      Partially miscible ganglia trapped within a liquid-saturated porous medium arise in several energy and environ-
+                                                  mental applications. In underground hydrogen storage (UHS), hydrogen is cyclically injected into and withdrawn from
+                                                  an aquifer to buffer the intermittency of renewable energy supply. Each injection-withdrawal cycle leaves behind a
+                                                  population of disconnected ganglia whose long-term fate determines storage efficiency [1]. In geological carbon stor-
+                                                  age, residual trapping of CO2 ganglia is a primary mechanism to render the injected CO2 hydrodynamically immobile
+                                                  [2, 3]. In polymer electrolyte membrane fuel cells and water electrolyzers, oxygen and hydrogen produced at catalytic
+                                                  sites must traverse porous diffusion layers, and managing trapped gas is central to device performance [4]. In all these
+                                                  settings, trapped ganglia exchange mass and evolve through a process known as Ostwald ripening [5].
+                                                      Ripening is driven by differences in capillary pressure Pc between ganglia. Because Pc is proportional to interfa-
+                                                  cial curvature κ, and κ sets the dissolved concentration at a ganglion’s interface by the Kelvin equation, high-κ ganglia
+                                                  dissolve more rapidly and feed into low-κ ganglia, causing the latter to grow. In bulk fluids, κ is inversely propor-
+                                                  tional to the bubble radius, which drives smaller bubbles to dissolve while feeding the growth of larger bubbles. At
+                                                  equilibrium, only one large bubble remains [6–8]. Porous confinement fundamentally alters this picture. For a bubble
+                                                  confined to a single pore, κ first decreases as the bubble grows until it touches the pore’s walls (sub-critical regime),
+                                                  then increases as it deforms under the confining geometry (super-critical regime) [9]. This non-monotonicity admits
+                                                  stable equilibrium of bubble populations that have a multitude of sizes and shapes but equal curvature, impossible in
+
+                                                    ∗ Corresponding author: Yashar Mehmani. Email: yzm5192@psu.edu
+
+                                                     Email addresses: mxl6146@psu.edu (Md Zahidul Islam Laku), salehpom@mcmaster.ca (Mohammad Salehpour),
+                                                  lant20@mcmaster.ca (Tian Lan), robinzhao@mcmaster.ca (Benzhong Zhao), yzm5192@psu.edu (Yashar Mehmani)
+free space [10, 11]. In most applications of practical interest, however, ganglia span multiple pores, as evidenced by
+numerous X-ray imaging studies of rocks undergoing cyclic displacement [3, 12–14]. Here, the relationship between
+κ and ganglion size is far more complex, characterized by oscillatory behavior and multiple discontinuities [15, 16].
+Each time a ganglion invades a pore through a narrow throat, κ drops abruptly since the ganglion occupies a larger
+pore volume. As the ganglion grows further, κ climbs again. Growth and shrinkage are therefore punctuated by dis-
+crete capillary events such as invasion, snap-off, retraction, fragmentation, coalescence, and dislocation, which alter
+the ganglion’s topology [16]. Capturing this physics is key to any predictive pore-scale model of Ostwald ripening.
+    These rich dynamics have motivated a range of theoretical descriptions at different scales. At Darcy scale, con-
+tinuum models describe ganglia with macroscopic field variables like saturation [17–19], while equilibrium [11, 20]
+and kinetic theories [21–23] describe how the statistics of bubble populations evolve. Pore-scale models play a vital
+role in formulating and closing such theories. Among them, direct numerical simulation (DNS) provides detailed
+mechanistic insight by resolving the fluid-fluid interface in full [24, 25]. However, the cost of DNS is prohibitive for
+studying sufficiently large ganglion populations that yield statistically meaningful information. Pore-network models
+(PNMs) remain the only viable option, which represent the void space by a computational graph comprised of pore
+bodies connected by throats. Recently for ripening, a series of PNMs with increasing levels of sophistication have
+been proposed [10, 11, 16], whose validation has relied primarily on controlled microfluidic experiments [9, 26].
+    A major gap in the above PNMs for ripening is that they restrict ganglia to a single pore, and the microfluidic
+experiments used to validate them meet this condition. However as discussed, multi-pore spanning ganglia dominate
+in practice, and the only PNM to have relaxed this assumption is [16]. But this PNM assumes instantaneous capillary
+equilibration within each ganglion, does not capture fluid flow, and requires all pores to share the same shape to be
+tractable. The PNM of [16] also consists of a delicate and path-dependent root-finding procedure to compute each gan-
+glion’s Pc , which makes generalization to heterogeneous pore shapes difficult. A key ingredient in PNMs for ripening
+is a κb –S b curve that relates bubble curvature κb to saturation S b within each pore. The curve is also vital to most
+dynamic PNMs of two-phase flow [27–29], used to study fluid-fluid displacement. In these PNMs, κb –S b curves are
+based on idealized pore geometries (cube, polyhedron) that are amenable to an analytical form. Moreover, this form
+is held fixed regardless of the connectivity of the non-wetting phase in the pore, an assumption relaxed only in [16].
+Another simplification in displacement-centric PNMs is that the sub-critical branch of the κb –S b curve is regularized
+for numerical robustness. This is inconsequential for forced displacement problems, where viscous forces dominate.
+However for ripening, where the driving force consists of differences in κb , such regularization can prove catastrophic.
+For example, if kb is assumed constant on the sub-critical branch [28], spherical bubbles of different sizes would cease
+to ripen, contrary to experimental evidence [9]. Nevertheless, similar simplifications about capillary pressure within
+pores have been made in older PNMs used to study ganglion dissolution and pressure exsolution [30–32].
+    We present an image-based pore-network model (iPNM) that addresses all the above limitations. iPNM operates
+directly on binarized images of a porous microstructure, extracting its network and computing distinct κb –S b curves
+for each pore via the pore-morphology method [33, 34] (modified for ripening [18]). These κb –S b curves apply to
+arbitrary pore shapes, obviating any geometric simplification. Moreover, iPNM classifies bubble-occupied pores into
+three types (singleton, terminal, and bridge), each with a distinct κb –S b curve that dynamically adapts to the local
+connectivity of the non-wetting phase. This divide-and-conquer strategy avoids the analytically intractable task of
+constructing highly oscillatory capillary pressure versus bubble-size relations for multi-pore ganglia [15], their effects
+instead emerging implicitly from the pore-wise κb –S b curves. iPNM couples two-phase flow, solute transport, and
+Ostwald ripening while handling all capillary events a ganglion may undergo. Unlike the quasi-static PNM of [16], no
+intricate root finding is needed. Finally, iPNM establishes a one-to-one mapping between simulated pore saturations
+on the network’s graph and the microstructure image, allowing fast calculations on the graph to be transformed into
+detailed images of phase distribution similar to DNS. We validate iPNM against recent microfluidic experiments [19]
+of controlled and long-term (15–24 days) measurements of Ostwald ripening in a realistic sandstone microstructure,
+containing multi-pore H2 ganglia. Very good agreement is observed without any adjustable parameters.
+    The paper’s outline follows: Section 2 describes the problem and governing physics. Section 3 formulates iPNM.
+Section 4 verifies iPNM against a previous quasi-static PNM [16] in capturing key capillary events. Section 5 validates
+iPNM against microfluidic experiments [19]. We discuss results in Section 6 and summarize findings in Section 7.
+
+
+
+
+                                                            2
+Figure 1: (a) Schematic of a porous medium, where solid grains are colored black, trapped ganglia white, and the wetting phase gray. (b) Distance
+map of the void space with the extracted pore network superposed, represented as a computational graph of nodes (pores) and links (throats). (c)
+Watershed segmentation partitioning the void space into pores, shown as colored regions. Each node in the network corresponds to a region. The
+boxed region in (c) illustrates a local pore subimage used to compute the pore-wise κb –S b curve depicted in Fig.3.
+
+
+
+2. Problem description
+
+    We consider a rigid porous medium whose void space is partially occupied by trapped non-wetting ganglia, as
+shown in Fig.1a. Black represents the solid grains, gray the void space filled with the wetting phase, and white the
+trapped ganglia. The wetting phase is a liquid in which the gaseous non-wetting phase is partially miscible. Ganglia
+vary in size and span one or more pores. We assume local thermodynamic equilibrium between each ganglion and
+the immediately surrounding liquid. The concentration of dissolved non-wetting species at a ganglion’s interface
+is governed by the Kelvin equation. We also assume bubble composition is uniform and the vapor pressure of the
+wetting component within each ganglion is constant. Differences in interfacial curvature κ between ganglia engender
+concentration gradients in the wetting phase, driving molecular diffusion from regions of high κ to low κ. This process
+is called Ostwald ripening, and it causes high-κ ganglia to shrink and low-κ ganglia to grow. We also assume that the
+capillary pressure variations among ganglia are small relative to the ambient pressure magnitude, rendering the non-
+wetting density approximately spatially uniform. We justify this assumption later for the experiments in Section 5.
+    Porous confinement fundamentally alters the relationship between κ and ganglion size compared to bubbles in
+a bulk fluid, as discussed in Section 1. As ganglia evolve during ripening, they undergo discrete capillary events
+that alter their topology. They include invasion (entering a new pore), retraction (withdrawal from a pore), snap-off
+(pinching of a meniscus in a throat), fragmentation (splitting into disjoint parts), coalescence (merging of disjoint
+parts), and dislocation (migration into an adjacent pore). Such topological changes redistribute the non-wetting phase
+and drive local flow within the wetting phase, even in the absence of an external pressure gradient. Capturing this
+ripening-induced flow is essential, as it governs the timescale and fate of mass redistribution among ganglia.
+
+
+3. Image-based pore network model (iPNM)
+
+3.1. Network extraction
+     iPNM operates on a binarized image of a porous microstructure to extract a pore network: a computational graph
+made up of nodes (pores) and links (throats) representing geometric enlargements and constrictions of the void space,
+respectively (Fig.1b). First, a distance map of the void space is computed, assigning to each void pixel its distance
+to the nearest solid pixel (Fig.1b). Local maxima of this distance map are then identified and used as markers for
+watershed segmentation [35, 36], which partitions the void into distinct pores shown by colored regions in Fig.1c. The
+volume of each pore V p is the sum of its constituent pixel volumes, and the maximum inscribed radius of each pore R p
+is the largest distance-map value in the region. In iPNM, the local subimage of each pore (e.g., boxed region in Fig.1c)
+is also retained for computing pore-wise κb –S b curves, as described in Section 3.4. Throats linking adjacent pores
+are approximated as prisms with rectangular cross sections. This is appropriate for the topologically 2D micromodel
+analyzed in Section 5, and shown to be an accurate representation in prior work [37]. The in-plane half-width a of
+
+                                                                       3
+Figure 2: Cross-section of a rectangular throat with half-widths a and b. Non-wetting phase (orange) occupies the interior, and wetting phase
+resides in the corners. The radius of curvature of the corner arc menisci (AMs) is r and the distance from the contact line to the corner apex is ℓ.
+
+
+
+each throat’s cross section (Figs.1c and 2) is the maximum inscribed radius at the constriction, i.e., pixels along the
+interface shared between two colored regions (Fig.1c). The out-of-plane half-width b (Fig.2) equals the uniform gap
+thickness g of the micromodel divided by two. The length of each throat Lt is the sum of the Euclidean distances
+from the centroid of the constriction to the centroids of the two neighboring pores. We note that iPNM applies equally
+to networks with 3D topologies as well as other throat geometries. Throats carry no volume in iPNM, i.e., all void
+volume is assigned to pores. Throats provide the connectivity between pores and hydraulic conductance for flow.
+
+3.2. Balance equations
+    The image-based pore network model (iPNM) is built upon three balance equations formulated for each pore i:
+a wetting-phase molar balance, a non-wetting (bubble) phase molar balance, and a dissolved-species molar balance.
+In the following, we present these equations in their most general form, then simplify them by exploiting inherent
+timescale separations and order-of-magnitude approximations valid in the dilute limit. The result is a set of numeri-
+cally tractable equations that can be solved sequentially via operator splitting.
+    Conservation of the wetting phase in pore i reads:
+
+                                                                               zi
+                                                                  dS w,i      X
+                                                          ρw Vi          = ρw     qw,i j                                                        (1)
+                                                                   dt         j=1
+
+
+where ρw is the molar density of the wetting phase, Vi is the pore volume, S w,i is the wetting-phase saturation, zi is the
+coordination number, and qw,i j is the volumetric flow rate of wetting phase through throat i j (positive into pore i). No
+mass-transfer source appears as the partial pressure of the wetting component in each bubble is assumed constant.
+   Conservation of the non-wetting component residing in the bubble phase reads:
+                                                                            zi
+                                                               dS b,i      X
+                                                       ρb Vi          = ρb     qb,i j + ṁi ,                                                   (2)
+                                                                dt         j=1
+
+where ρb is the molar density of the bubble phase (treated as constant under the incompressibility assumption; see
+Section 2), S b,i = 1 − S w,i is the bubble saturation, qb,i j is the volumetric flow rate of the bubble phase through throat
+i j, and ṁi [mol/s] is the interphase mass-transfer rate (positive for exsolution, negative for dissolution).
+      Lastly, conservation of the dissolved non-wetting species in the wetting phase reads:
+                                                                                  w
+                                                                             zi
+                                                     d(ρwCi S w,i Vi )      X
+                                                                       = ρw     Ji j − ṁi ,                                                    (3)
+                                                          dt                j=1
+
+where Ci is the mole fraction of the dissolved non-wetting species and Ji j is the solute flux through throat i j (defined
+
+                                                                          4
+in Section 3.3). The summation runs over the zwi = zi − zbi unoccupied throats (filled with wetting phase) connected
+to pore i, where zbi denotes the number of bubble-occupied throats (zbi ≤ zi ). We neglect dissolved-species transport
+through occupied throats because the wetting phase there is confined to thin corner films whose cross-sectional area
+is much smaller than that of unoccupied throats. Furthermore, hydrodynamic transport of the non-wetting component
+through occupied throats via the bubble phase redistributes mass within a ganglion much faster than the transport of
+dissolved species through corner films. This intra-ganglion redistribution is captured by the flow equations (Eqs.1–2).
+    The right-hand side of Eq.2 contains two processes operating on distinct timescales: bubble-phase flow (qb,i j ; fast)
+and interphase mass transfer (ṁi ; slow). We decouple them via Lie–Trotter operator splitting. Setting ṁi = 0 in Eq.2:
+
+                                                                      zi
+                                                         dS b,i      X
+                                                 ρb Vi          = ρb     qb,i j                                       (4)
+                                                          dt         j=1
+
+
+Eqs.1 and 4, combined with the constraint S w +S b = 1, constitute the standard incompressible two-phase flow problem,
+which we solve for Pw,i and S b,i while holding Ci frozen.
+   Setting qb,i j = 0 in Eq.2 yields:
+                                                          dS b,i
+                                                    ρb Vi        = ṁi .                                            (5)
+                                                           dt
+By adding Eqs.5 and 3, we can eliminate ṁi and obtain the following total non-wetting component balance:
+                                                                                  w
+                                                                             zi
+                                              dS b,i d(ρwCi S w,i Vi )      X
+                                        ρb Vi       +                  = ρw     Ji j .                                (6)
+                                               dt         dt                j=1
+
+For a vacant pore (S b,i = 0), the first term on the left-hand side of Eq.6 vanishes, yielding the standard advection–
+diffusion equation for Ci :
+                                                                        w
+                                                                  zi
+                                                        dCi      X
+                                                  ρw Vi     = ρw     Ji j                                             (7)
+                                                         dt      j=1
+
+   For an occupied pore (S b,i > 0), we simplify Eq.6 by first expanding the second term on the left-hand side:
+                                                                                     !
+                                     d(ρwCi S w,i Vi )               dCi      dS w,i
+                                                       = ρw Vi S w,i     + Ci          .                              (8)
+                                           dt                         dt       dt
+
+Because the dissolved molar concentration ρwCi is much smaller than the molar density in the bubble phase ρb ,
+we neglect the second term on the right-hand side of Eq.8. Moreover, the concentration Ci in an occupied pore is
+determined by local thermodynamic equilibrium: Ci depends on capillary pressure Pc,i , which in turn depends on the
+bubble saturation S b,i (these functional relationships are presented in Section 3.4). Applying the chain rule gives:
+
+                                                  dCi   dC dPc dS b,i
+                                                      =               .                                               (9)
+                                                   dt   dPc dS b dt
+Substituting Eq.9 into Eq.6, the prefactor ρw S w (dC/dPc )(dPc /dS b ) multiplying the first term on the right-hand side
+of Eq.8 becomes negligible compared to ρb for our H2 –H2 O system. This follows from an order-of-magnitude ap-
+proximation detailed in Remark 1 of Section 3.4. Hence, we can drop the foregoing term, reducing Eq.6 to:
+                                                                        w
+                                                                     zi
+                                                        dS b,i      X
+                                                  ρb Vi        = ρw     Ji j                                         (10)
+                                                         dt         j=1
+
+
+Eq.10 states that the rate of bubble growth is driven entirely by the net solute flux Ji j through unoccupied throats.
+   In summary, the balance equations solved in iPNM include Eq.1 for wetting-phase conservation, Eq.2 for non-
+wetting phase conservation, and Eq.3 for dissolved-species conservation. The flow problem consists of Eqs.1 and 4
+                                                                5
+and is solved first for Pw,i and S b,i while holding Ci frozen. The transport problem consists of Eqs.10 and 7 and is
+solved second for Ci and S b,i while holding qw,i j frozen (computed in the flow problem). A capillary stability check—
+encompassing invasion, snap-off, and retraction events—is performed after each problem as described in Section 3.5.
+
+3.3. Throat constitutive equations
+   We next present constitutive equations for throats with rectangular cross sections. The geometric parameters a, b,
+and Lt were defined in Section 3.1. Recall that for a micromodel with uniform gap thickness g, we have b = g/2.
+Flux laws. For Newtonian fluids at low Reynolds number, the flow rate of phase α ∈ {w, b} through throat i j is:
+                                                           Kα,i j
+                                                qα,i j =          (Pα, j − Pα,i ),                                    (11)
+                                                            µα
+where Kα,i j is the hydraulic conductivity of phase α and µα is its dynamic viscosity. The net solute flux through an
+unoccupied throat i j, which appears in Eq.3, comprises advective transport and Fickian diffusion:
+
+                                                            up        Ai j
+                                            Ji j = qw,i j Ci j + Dm        (C j − Ci ),                               (12)
+                                                                      Li j
+        up
+where Ci j is the upwind pore’s mole fraction, Dm is the molecular diffusion coefficient, and Ai j and Li j are the cross-
+sectional area and length of the throat. Below, we replace the i j subscript with t for throat properties (e.g., At , Lt ).
+Single-phase conductivity. Throats that are not invaded by the non-wetting phase are fully occupied by the wetting
+phase. For an unoccupied throat, Kb = 0 and Kw = Kt , where Kt is the single-phase conductivity. For a rectangular
+cross-section, the analytical solution to the Stokes equations yields [38, 39]:
+
+                                                                      A2t
+                                                       Kt = g̃(ε)         ,                                           (13)
+                                                                      Lt
+where At = 4 ab is the throat’s cross-sectional area, Lt its length, and:
+                                               !2             ∞
+                                                                                    
+                                             1  1    64 X tanh[(2n + 1)πε/2] 
+                                 g̃(ε) = 1 +       −                                Gt                             (14)
+                                             ε  3 επ5 n=0             (2n + 1)5
+
+the dimensionless conductivity. The aspect ratio and shape factor of the throat are computed via ε = a/b and Gt =
+At /P2t , respectively, where Pt = 4(a + b) is the throat’s perimeter. Eqs.13–14 are exact, but approximate closed-
+form expressions are also available [40]. For a square cross-section, Eq.14 reduces to g̃ = 0.5623 Gt . Mehmani and
+Tchelepi [37] found that Eq.13 yields network permeability predictions within 10% of direct numerical simulation.
+Two-phase wetting conductivity. Throats invaded by the non-wetting phase contain both a central bubble region and
+wetting films occupying the four corners. The wetting-phase conductivity Kw (Eq.11) is computed following [41]:
+
+                                                                 8 g̃w ℓ4
+                                                       Kw =               ,                                           (15)
+                                                                    Lt
+where ℓ = r cos(θ + β)/ sin β is the distance from the corner arc meniscus (AM) to the throat corner (Fig.2), β = π/4 is
+the corner half-angle, and r = σ/Pc is the AM’s radius of curvature, with σ denoting the interfacial tension. The:
+
+                                           a1G̃2w + a2G̃w + a3 + 0.02 sin(β − π/6)
+                                         "                                                    #
+                              g̃w = exp                                            + 2 ln Ã w ,                   (16)
+                                                 (1/4π − G̃w )e1 cose2 (β − π/6)
+is the dimensionless conductivity of one half-corner film, with dimensionless cross-sectional area:
+                                                     !2 "
+                                          sin β             cos θ cos(θ + β)       π
+                                                                                     #
+                                  Ãw =                                      +θ+β−     ,                              (17)
+                                        cos(θ + β)                sin β            2
+
+                                                                 6
+and corresponding shape factor:
+
+                                                                Ãw
+                                        G̃w =                                       i2 .                                      (18)
+                                                4 1 − θ + β − π2 sin β / cos(θ + β)
+                                                 h             
+
+
+The e1 , e2 , a1 , a2 , and a3 are fitting coefficients. In [41], these are provided for no-slip and perfect-slip conditions at the
+bubble-water interface. We use the perfect-slip coefficients (e1 , e2 , a1 , a2 , a3 ) = (1, 0, −18.2066, 5.88287, −0.351809),
+appropriate for the gaseous H2 bubbles immersed in water as considered in the experiments of Section 5.
+Two-phase non-wetting conductivity. The non-wetting phase conductivity Kb (Eq.11) for a rectangular throat is not
+available in the literature. We derive one here using the hydraulic diameter concept [38], ensuring that Kb → Kt as
+S b → 1. The derivation is given in Appendix B. Here we present the final result:
+
+                                                                    D2h,b Ab
+                                                             Kb =              ,                                              (19)
+                                                                    2 Po Lt
+
+where Ab = At − Aw is the cross-sectional area occupied by the non-wetting phase, with Aw = 4 ℓ2 Ãw the total wetting-
+phase area in the four corners (ℓ and Ãw were defined previously). The hydraulic diameter of the bubble region is
+Dh,b = 4 Ab /Cb , where the wetted perimeter, invoking again perfect slip at the bubble-water interface, is:
+
+                                                     Cb = 4(a − ℓ) + 4(b − ℓ).                                                (20)
+
+The Poiseuille number Po is computed from the single-phase conductivity:
+
+                                                                    D2h At
+                                                             Po =           ,                                                 (21)
+                                                                    2 Kt Lt
+and assumed to be independent of saturation. Here, Dh = 4 At /Pt is the hydraulic diameter of the throat itself.
+Capillary entry pressure. We apply the Mayer-Stowe-Princen (MS-P) theory [42, 43] to derive the capillary entry
+pressure of throats with rectangular cross-sections. MS-P equates the curvature of the AMs in the corners of the throat
+to the curvature of the main terminal meniscus (MTM)—the advancing part of the interface. The entry pressure is:
+                                                                        σ
+                                                              Pce =       ,                                                   (22)
+                                                                        r
+where r is the AM radius of curvature. The latter is obtained by solving:
+                                                              1 Pe (r)
+                                                                =        ,                                                    (23)
+                                                              r   Ae (r)
+where Pe is the effective perimeter and Ae the effective cross-sectional area of the non-wetting phase, both functions
+of r. Explicit expressions for Pe (r) and Ae (r) are derived in Appendix A for a rectangular throat with side lengths 2a
+and 2b. Eq.23 is solved numerically using the bisection method. For the case of a throat with square cross-section
+(a = b), the derived expressions reduce to the analytical solution by [44]. The proof is given in Appendix A.
+Snap-off pressure. Snap-off occurs when the AMs in adjacent corners of a throat coalesce, at which point any
+infinitesimal decrease in capillary pressure becomes unsustainable, causing the wetting phase to fill the throat. For
+a rectangular throat with half-widths a and b, snap-off occurs when the distance from each AM’s contact line to the
+corner of the throat equals min(a, b) (see Appendix A), giving the snap-off pressure:
+                                                              σ sin(π/4 − θ)
+                                                     Pcs =                      .                                             (24)
+                                                             min(a, b) sin(π/4)
+For a square cross-section, this reduces to Pcs = σ (cos θ − sin θ)/a, as proposed by Ma et al. [44]. For zero contact
+angle in a rectangular throat, Eq.24 reduces to Pcs = σ/ min(a, b), which was proposed by Lenormand et al. [45].
+
+                                                                    7
+                                    (a) Singleton pore
+
+
+
+
+                                                                                                                                                    (b) Terminal pore
+                                                                                                               Pce
+                                                                                                               σ
+
+
+
+
+                                                                                                                                                    (c) Bridge pore
+                                           Sb = S c                                                                  Sb = cSc
+
+
+
+
+Figure 3: Bubble curvature–saturation (κb –S b ) relationships for different pore types. (a) Singleton pore: the sub-critical branch (green) corresponds
+to a spherical bubble that does not touch the pore walls; the super-critical branch (red) is fitted to PMM data (black circles); the yellow square marks
+the critical point (S c , κb,min ). Insets show the bubble configuration at different saturations obtained from PMM. (b) Terminal pore: the sub-critical
+branch (green) intersects the κb -axis at Pce /σ, corresponding to the entry pressure of the connected invaded throat. Insets show the bubble at the
+moment of invasion and shortly after. (c) Bridge pore: the interface emerges from one throat and terminates at another, allowing curvatures below
+κb,min . The linear sub-critical branch ensures κb → 0 as S b → 0 (flat interface). Insets show possible interface configurations.
+
+
+
+3.4. Pore constitutive equations
+    We next present constitutive equations for pores. The pore volume V p and maximum inscribed radius R p were
+defined in Section 3.1. Beyond these scalar quantities, iPNM requires the local subimage of each pore to compute its
+κb –S b curve via the pore morphology method (PMM). Each subimage corresponds to a colored region in Fig.1c.
+Capillary-pressure curve. The capillary pressure Pc of a bubble-occupied pore depends on the mean interfacial
+curvature κb of the non-wetting phase within that pore through the Young-Laplace equation:
+
+                                                                     Pc = σκb ,                                                                   (25)
+
+For micromodels with uniform gap thickness g and zero contact angle, as those in Section 5, Eq.25 reduces to:
+
+                                                         κb = κbip + κgap ,     κgap = 2/g,                                                       (26)
+
+where κbip is the in-plane curvature and κgap is the constant out-of-plane curvature. Mean curvature κb (or κbip in 2D)
+is a direct function of the pore’s saturation S b = Vb /V p , where Vb is the non-wetting phase volume in the pore. The
+specific form of this κb –S b relation depends on the pore type, which we classify into three categories on the basis of
+how many invaded throats they connect to (zb ): singleton (zb = 0), terminal (zb = 1), and bridge (zb > 1) [16]. These
+are depicted in Fig.3 along with their corresponding κb –S b curves, which we discuss next for each pore type.
+Singleton. For a pore containing a single-pore spanning bubble (Fig.3a):
+                                                !1/D
+                                             Sc
+                                       κb,min          ,                                            Sb < Sc
+                                     
+                                     
+                                     
+                                     
+                                              Sb
+                                     
+                                     
+                               κb = 
+                                     
+                                                                                                                                                  (27)
+                                     
+                                                                           !
+                                                     Sb − Sc       Sb − Sc
+                                       κ        + λ           + λ             ,
+                                     
+                                                                                                    Sb ≥ Sc
+                                     
+                                     
+                                      b,min
+                                             1     1             2
+                                                      1−S           1−S
+                                     
+                                                                          c                 b
+
+                                                                           8
+where D is the network’s dimensionality (= 2 for micromodels). The super-critical branch (S b ≥ S c ) corresponds
+to bubbles that are deformed by and conform to the pore’s walls. The sub-critical branch (S b < S c ) corresponds to
+bubbles that do not touch the walls and remain spherical (or circular in 2D). The minimum curvature κb,min = 2/R p
+(or 1/R p in 2D) occurs at the critical saturation S c , where R p is the maximum inscribed radius. The critical saturation
+is S c = Vc /V p , where Vc = 4πR3p /3 in 3D (or Vc = πR2p g in 2D). The parameters λ1 and λ2 depend on the pore shape.
+Terminal. For a pore that is part of a multi-pore ganglion, with one invaded throat of entry pressure Pce (Fig.3b):
+                                      
+                                         Pce             S − S !n
+                                                            c     b
+                                                κ                     + κb,min ,     Sb < Sc
+                                      
+                                             −   b,min
+                                          σ
+                                      
+                                      
+                                      
+                                                             S c
+                                κb = 
+                                      
+                                                                                                                    (28)
+                                      
+                                                                                 !
+                                                        Sb − Sc        Sb − Sc
+                                      
+                                      
+                                       κb,min 1 + λ1             + λ2             , Sb ≥ Sc
+                                      
+                                      
+                                      
+                                      
+                                                         1 − Sc        1 − Sb
+
+The super-critical branch is identical to Eq.27, but the sub-critical branch differs. This is because at the instant when
+the non-wetting phase invades a terminal pore (i.e., the terminal pore is “born”), capillary pressure equals Pce (Fig.3b).
+Hence, as S b → 0, we must have κb → Pce /σ. The parameter n is empirical, which we set to n = 2 for smoothness.
+Bridge. For a pore that is part of multi-pore ganglion, and connected to multiple invaded throats (Fig.3c):
+                                            Sb
+                                     
+                                       κb,c     ,                             Sb < cSc
+                                     
+                                     
+                                     
+                                            cSc
+                                     
+                                     
+                                     
+                                κb = 
+                                     
+                                                                                                                        (29)
+                                     
+                                                                         !
+                                     
+                                                   Sb − Sc      Sb − Sc
+                                      κb,min 1 + λ1 1 − S + λ2 1 − S , S b ≥ c S c
+                                     
+                                     
+                                     
+                                     
+                                                          c            b
+
+The second case (S b ≥ c S c ) is identical to the super-critical branch of Eq.27. The first case is a line crossing the
+origin (S b , κb ) = (0, 0). The rationale is that in a bridge pore, the interface emanates from one throat and terminates
+at another, forming a curved surface through the pore whose curvature can fall well below κb,min (Fig.3c). Complete
+flattening of the interface, however, never occurs because one or more of the connected throats would snap off first,
+transforming the bridge pore into a terminal or singleton. Eq.29 therefore extrapolates the super-critical formula from
+S c to c S c , then connects it to the origin to ensure κb → 0 as S b → 0. The parameter c is evaluated as follows:
+                                                           
+                                                            1,
+                                                                 c∗ > 0.1
+                                                      c=
+                                                           
+                                                                                                                      (30)
+                                                            0.1, c∗ ≤ 0.1
+                                                           
+
+where κb,c = κ(c S c ) and c∗ solves κb (c∗ S c ) = 0, with κb (·) corresponding to the super-critical formula. For most pore
+shapes, c∗ ≤ 0.1 and c = 0.1 suffices. Rarely c∗ > 0.1, implying κb is zero at S b > 0.1 S c , so we anchor the sub-critical
+branch at S c by setting c = 1. While Eq.29 for S b < S c is empirical, its exact form plays a minor role in simulations.
+     The super-critical branches of Eqs.27–29 are identical and depend on pore shape through the parameters λ1 and λ2 .
+A key novelty of iPNM is to use the pore morphology method (PMM), adapted for Ostwald ripening by [18, 19], to
+compute λ1 and λ2 . Doing so avoids making simplifying assumptions about pore shape, allowing accurate upscaling
+of its impact on capillary pressure. In applying PMM, each pore’s subimage I p is subjected to morphological opening
+I p ◦ Br by a spherical (or circular in 2D) structuring element Br of radius r. By varying r from zero to R p , we get a
+sequence of images that show the ganglion’s configuration in the pore (insets in Fig.3a). Associated with each image
+is a curvature κb = 2/r (or κbip = 1/r in 2D) and a saturation S b , which constitutes the super-critical branch of the
+κb –S b curve (black circles in Fig.3a). The parameters λ1 and λ2 are fitted to this data (red line in Fig.3a). Notice S c
+and κb,min correspond to r = R p . The super-critical branch (red line in Fig.3a) has a vertical asymptote: as S b → 1,
+κb → ∞. This limit is never approached in practice because the ganglion invades a vacant throat in its periphery if κb
+is sufficiently high. As ganglia evolve during simulation, a pore’s type and thus κb –S b curve changes dynamically.
+Equilibrium concentration. The dissolved concentration of the non-wetting species in the wetting phase of a pore is
+
+
+
+
+                                                             9
+governed by local thermodynamic equilibrium with the bubble phase. For a dilute solution, Henry’s law reads:
+                                                 Pb − Pv   Pw + Pc (S b ) − Pv
+                                           C=            =                     ,                                      (31)
+                                                    H             H
+where C is the equilibrium mole fraction of the dissolved solute, Pb is the bubble-phase pressure, Pw is the wetting-
+phase pressure, and Pc is the capillary pressure in the pore. Moreover, Pv is the spatially constant vapor pressure of
+the wetting phase in the bubble, and H is Henry’s constant. Pc depends on bubble saturation S b through Eqs.25–29.
+
+Remark 1. We are now in a position to justify neglecting the term ρw S w (dC/dPc )(dPc /dS b ) compared to ρb in Eq.10.
+For the H2 –H2 O system of interest here, dC/dPc = 1/H from Eq.31. The slope dPc /dS b is on the order of the
+capillary pressure Pc ∼ σ/R p . For typical micromodel pore sizes (R p ∼ 50–100 µm) and σ ≈ 0.07 N/m, this gives
+dPc /dS b ∼ 103 –104 Pa. With H ≈ 7.8 × 109 Pa for H2 at 25◦ C and ρw ≈ 55.5 × 103 mol/m3 , the term evaluates to
+ρw S w (dC/dPc )(dPc /dS b ) ∼ 10−2 –10−1 mol/m3 , which is orders of magnitude smaller than ρb ≈ 40 mol/m3 at 1 atm.
+
+3.5. Capillary stability
+    As the balance equations of Section 3.2 evolve S b,i during a simulation, the occupancy of pores and throats by the
+non-wetting phase may become unstable, inducing capillary events such as snap-off, invasion, retraction, and ganglion
+coalescence and fragmentation. At each time step, we check whether the current configuration is stable and, if not,
+trigger the appropriate capillary events and update the occupancy until a stable configuration is found. Let χi ∈ {0, 1}
+and χi j ∈ {0, 1} be indicator variables for the occupancy of pore i and throat i j by the non-wetting phase, respectively.
+To evaluate the capillary stability of a throat, we require the throat’s capillary pressure, defined here as:
+                                                                Pc,i + Pc, j
+                                                     Pc,i j =                ,                                        (32)
+                                                                     2
+where Pc,i and Pc, j are computed from the κb –S b curves (Eqs.27–29). Both pores i and j straddling the occupied throat
+are themselves occupied, so Eq.32 is always well-defined. We check for three types of capillary events:
+Snap-off. An occupied throat snaps off when its capillary pressure drops below the snap-off pressure (Eq.24):
+
+                                       Pc,i j < Pcs,i j and χi j = 1       =⇒    χi j = 0.                            (33)
+
+Snap-off fills the throat with wetting phase but leaves the occupancy and saturation of neighboring pores intact.
+Retraction. The non-wetting phase in an occupied pore retracts when its saturation reaches zero:
+
+                         S b,i < ϵ and χi = 1      =⇒      χi = 0, S b,i = 0, χi j = 0 ∀ j ∈ Ni b ,                   (34)
+
+where ϵ ≈ 10−16 is used to avoid excessively small adaptive time steps (discussed in Section 3.6). Ni b is the set of
+occupied throats connected to pore i. Upon retraction, all occupied throats connected to pore i also become vacant.
+Invasion. An unoccupied throat is invaded when the capillary pressure of a neighboring pore at super-critical state
+(S b ≥ S c ) exceeds the entry pressure of the throat (Eq.22):
+
+                                 max(Pc,i , Pc, j ) > Pce,i j and χi j = 0       =⇒    χi j = 1.                      (35)
+
+Only super-critical pores contribute to the maximum in Eq.35. A sub-critical bubble does not contact the walls of its
+confining pore and, therefore, cannot invade a throat. If the invaded throat connects to a previously vacant pore j, that
+pore also becomes occupied (χ j = 1) and is initialized to S b, j = 10−6 . Similar to retraction, the initialization avoids
+excessively small time steps. To conserve mass, the corresponding non-wetting-phase volume (10−6 V j ) is subtracted
+from the source pore i that drove the invasion. This subtraction is bounded so that S w,i remains in [0, 1].
+     Capillary events can trigger one another by altering the occupied coordination number zbi of pores. For example,
+snap-off reduces zbi , which can transform a bridge pore (zbi > 1) into a terminal (zbi = 1) or a terminal into a singleton
+(zbi = 0). Since each pore type has a distinct κb –S b curve (Section 3.4), the pore’s capillary pressure changes, which
+                                                                10
+Algorithm 1. Capillary stability check
+  Input: S b,i , χi , χi j
+  Output: S b,i , χi , χi j , Pc,i , Pc,i j
+  Mark all pores and throats as unprocessed
+  Repeat
+     Compute pore capillary pressures Pc,i from Eqs.27–29
+     Compute throat capillary pressures Pc,i j from Eq.32
+     Snap-off: For each unprocessed throat with χi j = 1,
+         if Pc,i j < Pcs,i j , set χi j = 0 and mark as processed
+     Retraction: For each unprocessed pore with χi = 1,
+         if S b,i < ε, set χi = 0, S b,i = 0, χi j = 0 ∀ j ∈ Ni b , and mark pore and connected throats as processed
+     Invasion: For each unprocessed throat with χi j = 0,
+         set P∗c,i = Pc,i if S b,i ≥ S c,i , else P∗c,i = 0 (same for pore j)
+         if max(P∗c,i , P∗c, j ) > Pce,i j , set χi j = 1. If a neighboring pore (say j) is vacant, set it to occupied with
+         S b, j = 10−6 and subtract 10−6 V j from the source pore. Mark the invaded throat and pore as processed
+  Until χi and χi j are unchanged
+
+Algorithm 2. Image-based pore network model (iPNM)
+  Input: Pw,i , S b,i , Ci , χi , χi j , T (simulation time)
+  Output: Pw,i , S b,i , Ci , χi , χi j
+  time = 0
+  While time < T
+     [Pw,i , S b,i , χi , χi j , qw,i j ] = Flow(Pw,i , S b,i , χi , χi j , ∆t)                              [Algorithm 3]
+     [Ci , S b,i , χi , χi j ] = Transport(Ci , S b,i , qw,i j , χi , χi j , ∆t)                             [Algorithm 4]
+     Adapt ∆t
+     time = time + ∆t
+  End While
+
+
+may cause other throats to undergo snap-off or retraction. Conversely, invasion increases zbi , which can transform a
+singleton into a terminal or a terminal into a bridge, thereby altering the local capillary pressure and triggering other
+events. Finding a stable configuration is therefore iterative. Here, we sweep through all pores and throats, check for
+all three events, then update χi , χi j , and S b,i accordingly. Once a pore or throat has been processed in a given sweep,
+it is not re-examined in subsequent sweeps within the same call. This prevents stagnation due to two or more events
+undoing one another (e.g., a newly invaded pore immediately flagged for retraction). Iterations terminate when no
+occupancy changes occur between consecutive sweeps. Algorithm 1 summarizes the steps described above.
+
+3.6. Discretization and algorithm
+    In this section, we describe how the balance equations of Section 3.2 are discretized in time and solved algorithmi-
+cally. We employ backward Euler for time integration and Lie–Trotter operator splitting (introduced in Section 3.2) to
+decouple the flow problem (Eqs.1 and 4), solved for Pw,i and S b,i while holding Ci frozen, and the transport problem
+(Eqs.7 and 10), solved for Ci and S b,i while holding qw,i j frozen. The two sub-problems are solved sequentially, not
+iteratively, and accuracy is controlled by an adaptive time step ∆t. Within each outer time step, the flow and trans-
+port solvers may independently progress in sub-steps with smaller increments δt ≤ ∆t. A capillary stability check
+(Algorithm 1) is performed after each sub-step of both solvers. Algorithm 2 summarizes the overall procedure.
+    Using S b,i = 1−S w,i and Pb,i = Pw,i + Pc (S b,i ), the flow problem (Eqs.1 and 4) is expressed in terms of two primary
+unknowns per pore: Pw,i and S b,i . The flow rates qw,i j and qb,i j are computed from Eq.11 using the conductivities in
+
+
+
+
+                                                                           11
+Algorithm 3. Flow solver
+  Input: Pw,i , S b,i , χi , χi j , ∆t
+  Output: Pw,i , S b,i , χi , χi j , qw,i j
+  time = 0; δt = ∆t
+  While time < ∆t
+     xn,0 = [Pnw,i ; S b,i n
+                             ]
+     For k = 1, . . . , kmax
+          Compute F(xn,k ) and J(xn,k ) from Eq.36
+          ∆x = −J−1 F; xn,k+1 = xn,k + ∆x
+          If converged, exit
+     End For
+        w,i , S b,i ] = x
+     [Pn+1        n+1        n,k+1
+
+     Adapt δt
+     [S b,i , χi , χi j ] = Capillary Stability (S b,i
+                                                   n+1
+                                                       , χi , χi j )                                                      [Algorithm 1]
+     time = time + δt
+  End While
+  Compute qw,i j from Pw,i , S b,i via Eq.11
+
+
+Section 3.3. Applying backward Euler yields the nonlinear system:
+                                                                                              Xzi            
+                                                                            n+1
+                                                                                − S w,i ) − δt
+                                                                                    n               n+1 
+                                                          
+                                                            Vi (S w,i                           qw,i j 
+                                                                                            j=1
+                                                                                                              
+                                            F(xn+1 ) =                                     Xzi
+                                                                                                                 = 0
+                                                                                                                                (36)
+                                                                   Vi (S b,i − S b,i ) − δt      n+1
+                                                                         n+1     n
+                                                                                                   qb,i j 
+                                                                                                 j=1
+
+where x = [Pw,i ; S b,i ] for all pores i. The nonlinearity is due to conductivities Kw and Kb (Eqs.15 and 19) and capillary
+pressure Pc (Eqs.27–29) being nonlinear functions of S b,i . We solve Eq.36 via Newton’s method with the Jacobian
+computed by automatic differentiation. Iterations terminate when ∥F∥, ∥F∥/∥F0 ∥, or ∥∆x∥/∥x∥ falls below a tolerance.
+After each sub-step, a capillary stability check (Algorithm 1) is performed. Algorithm 3 summarizes the flow solver.
+    The solute flux Ji j (Eq.12) is a linear function of C, so the transport equations reduce to a linear system that is
+solved in a single step without Newton iteration. At each sub-step, the concentration in occupied pores is first set from
+local thermodynamic equilibrium (Eq.31). These values serve as internal boundary conditions for the vacant pores,
+following the approach of [16]. Applying backward Euler to Eq.7 for each vacant pore i gives:
+                                                                                             w
+                                                                                          zi
+                                                                                          X
+                                                          Vi (Cin+1 − Cin ) = δt                 Jin+1
+                                                                                                    j                              (37)
+                                                                                           j=1
+
+The saturation in occupied pores is updated explicitly from Eq.10 using the concentration field at time level n:
+                                                                                             w
+                                                                                        zi
+                                                                                  ρw X
+                                                           n+1
+                                                         S b,i = S b,i
+                                                                   n
+                                                                       +                   J n δt                                  (38)
+                                                                                 ρb Vi j=1 i j
+
+After each sub-step, a capillary stability check (Algorithm 1) is performed. Algorithm 4 outlines the transport solver.
+    The flow solver (Algorithm 3) adapts δt based on the bubble saturation S b,i in each occupied pore (terminal or
+                                                        x
+bridge). For each pore, the nearest event saturation S b,i in the direction of S b,i change is identified. Events include the
+pore filling to its capacity S b,i (computed as the saturation at which Pc,i = 100 max(Pce,i j ), where Pce,i j are the entry
+                               max
+
+pressures of the pore’s unoccupied throats), the pore emptying (S b,i → −10−6 ; the slightly negative bound ensures
+retraction is triggered in Algorithm 1 restoring S b,i = 0), and crossings of critical saturation (S b,i = S c ), invasion, and
+                                      max
+snap-off thresholds. The value of S b,i   is chosen large enough that invasion into adjacent throats occurs well before
+                                                                               12
+Algorithm 4. Transport solver
+  Input: Ci , S b,i , qw,i j , χi , χi j , ∆t
+  Output: Ci , S b,i , χi , χi j
+  time = 0; δt = ∆t
+  While time < ∆t
+     Set Cin+1 from Eq.31 for occupied pores
+     Compute (dS b,i /dt)n from Eq.38
+     Adapt δt
+     Solve Eq.37 for Cin+1 at vacant pores
+                   n+1
+     Update S b,i        at occupied pores from Eq.38
+     [S b,i , χi , χi j ] = Capillary Stability (S b,i
+                                                   n+1
+                                                       , χi , χi j )                                                  [Algorithm 1]
+     time = time + δt
+  End While
+
+
+S b,i reaches it, while staying far from S b,i = 1 where the κb –S b curve has a vertical asymptote. End-point saturations
+  max
+S b,i   and −10−6 are hard limits, and the sub-step is rejected if these limits are violated. The intermediate S b,i           x
+                                                                                                                                 are
+                                     −3
+allowed to overshoot by up to 10 , ensuring that the solver can cross them rather than asymptotically approaching
+them. If Newton fails to converge, the step is rejected, δt is halved, and the iterations are restarted. The next sub-step
+is estimated by the linear extrapolation δtnew = (|S b,ix     n
+                                                          − S b,i | / |S b,i
+                                                                         n+1     n
+                                                                             − S b,i |) δt, followed by taking the minimum over all
+occupied pores. While we check for all event saturations in the simulations of Section 5, we have found empirically
+that checking for only the end-points is sufficient and accelerates computations with negligible impact on accuracy.
+      The transport solver (Algorithm 4) adapts δt somewhat differently, by controlling the saturation increment per
+sub-step. Concretely, a trial increment ∆S b,i = (dS b,i /dt)n δt is first computed for each occupied pore, then bounded
+to lie within prescribed limits [∆S b,min , ∆S b,max ] (here [10−3 , 10−1 ]). If the trial updated saturation S b,i ∗
+                                                                                                                      = S b,i
+                                                                                                                          n
+                                                                                                                              + ∆S b,i
+falls outside the interval [−10 , S b,max ], the increment is further reduced. The sub-step is then back-calculated
+                                  −6
+
+from δt = mini (∆S b,i / (dS b,i /dt)n ) over all occupied pores that exchange solute through at least one unoccupied
+throat (Eq.10). The outer coupling loop (Algorithm 2) employs the same adaptive protocol. If either returns δt = 0,
+indicating stagnation, the outer time step ∆t is halved and both the flow and transport solvers are restarted.
+
+3.7. Visualization
+     A key feature of iPNM is that the bubble saturations S b,i computed for each pore can be mapped directly onto
+the original pore-space image. For each occupied pore, the PMM subimage corresponding to S b,i provides the spatial
+distribution of the non-wetting phase within that pore (Section 3.4). Because the κb –S b curves are constructed from
+the actual pore geometry, this mapping is faithful to the underlying microstructure. This is in contrast to traditional
+PNMs, which approximate pore shapes with idealized geometries (e.g., spheres, cubes) and cannot reconstruct a high-
+fidelity phase distribution. A naive per-pore mapping, however, produces disconnected fragments for ganglia that
+span multiple pores (Fig.4a; see red ganglion occupying three adjacent pores). To restore visual connectivity, we first
+identify which pores belong to the same ganglion via connected-component labeling of the subgraph defined by χi
+and χi j (Section 3.5). Each ganglion is assigned a unique color (Fig.4). The medial axis (skeleton) of the pore space
+is then used to bridge fragments across adjacent pores within each ganglion, preserving local curvature and matching
+the ganglion’s total volume (Fig.4b). Such a connectivity-corrected visualization is used in Section 5. While iPNM
+does not impose uniform Pc within a ganglion, the balance equations naturally drive it toward uniformity, consistent
+with experimental evidence [19]. Transient deviations arise during capillary events, which induce intra-ganglion flow.
+
+4. Numerical verification
+
+    In this section, we verify that the proposed iPNM accurately reproduces key pore-scale phenomena associated
+with Ostwald ripening, before deploying it to complex domains in Section 5. The verification cases were originally
+presented in [16] to validate a quasi-static PNM against microfluidic experiments and direct numerical simulations.
+That PNM enforces instantaneous capillary equilibration within each ganglion at all times, whereas iPNM resolves
+                                                                       13
+Figure 4: Visualization of the non-wetting phase distribution mapped onto the original pore-space image. Each ganglion is assigned a unique color.
+(a) Per-pore mapping using PMM subimages: ganglia spanning multiple pores appear as disconnected fragments (e.g., the red ganglion occupying
+three adjacent pores). (b) Connectivity-corrected mapping: the medial axis (skeleton) of the pore space is used to bridge fragments across pores
+belonging to the same ganglion, restoring physical connectivity while preserving the local curvature and total ganglion volume.
+
+
+
+the finite timescale of this process through its two-phase flow solver. Reproducing the quasi-static predictions ensures
+that iPNM retains the validated behavior. In all cases, pores are semi-cubic: a pore with inscribed-sphere radius
+R p and volume (2R p )3 . The pore shape is controlled by fitting parameters λ1 and λ2 in Eqs.27–29, which we set to
+λ1 = 0.905, λ2 = 0.01, and n = 2, matching those in [16]. Throats are prismatic with square cross-sections, with
+side half-length Rt = ξ × min(R p1 , R p2 ), where ξ is the throat-to-pore aspect ratio, and length Lt = L s − R p1 − R p2 ,
+where L s is the lattice spacing. Networks have a 2D lattice topology but non-uniform out-of-plane thickness, since
+each pore’s depth equals 2R p . Further details on the network geometry and boundary conditions can be found in [16].
+Below, we compare iPNM against the quasi-static PNM [16] for three verification cases: dissolution-induced snap-off
+(Section 4.1), bubble dislocation (Section 4.2), and ganglion growth (Section 4.3).
+
+4.1. Dissolution-induced snap-off
+    We first examine dissolution-induced snap-off, observed in a microfluidic experiment by Sahloul et al. [46], in
+which a ganglion spanning two pores dissolves into the surrounding wetting phase. The ganglion fragments into two
+singleton bubbles that then undergo simultaneous dissolution and ripening. This sequence was successfully captured
+by the quasi-static PNM of [16], which we now reproduce via iPNM. Following [16], we consider a four-pore network
+in which a ganglion initially occupies the two central pores and the connecting throat (Fig.5a, S b = 0.45). A small
+perturbation in pore size (∼1%) is introduced to break symmetry. Dissolution is driven by imposing a lower dissolved
+concentration at the two outer boundary pores, which act as concentration sinks similar to the experiment. A constant
+wetting-phase pressure is imposed at both boundaries to allow the wetting phase to enter or leave in response to
+volumetric changes of the bubbles. As shown in Fig.5, both models predict snap-off of the ganglion into two singleton
+bubbles at S b ≈ 0.39, followed by continued dissolution and ripening of the fragments. In the quasi-static PNM,
+capillary equilibrium within the connected ganglion prior to snap-off is enforced instantaneously. In iPNM, this
+equilibration proceeds dynamically through two-phase flow. As the non-wetting phase redistributes between the two
+occupied pores, the wetting phase adjusts to accommodate the resulting volume changes. This finite equilibration
+timescale leads to minor differences in the spatial distribution at later stages (S b = 0.06 and S b = 0.04).
+
+4.2. Bubble dislocation
+    Mehmani and Xu [16] coined bubble dislocation to describe the pore-to-pore migration of a growing bubble from
+a small pore into an adjacent large pore. The mechanism arises because, upon invading the large pore, the bubble lacks
+sufficient volume to be halted by that pore’s walls. Hence, the bubble retracts from the small pore and moves entirely
+                                                                       14
+                                 (a) Quasi-static PNM                                    (b) Dynamic iPNM
+
+       Sb = 0.45
+
+       Sb = 0.39
+
+       Sb = 0.27
+
+       Sb = 0.06
+
+       Sb = 0.04
+
+Figure 5: Comparison of dissolution-induced snap-off and ripening between (a) quasi-static PNM [16] and (b) iPNM. Snapshots show the non-
+wetting phase distribution (red) and dissolved gas concentration field (color map) at decreasing bubble saturations (annotated on the left). Snap-off
+occurs at S b ≈ 0.39, followed by dissolution and ripening of the ganglion fragments. Throats carry no volume in either model.
+
+                               (a) Quasi-static PNM                                         (b) Dynamic iPNM
+
+    Sb = 0.01
+
+
+    Sb = 0.03
+
+
+    Sb = 0.10
+
+
+   Sb = 0.40
+
+Figure 6: Comparison of bubble dislocation between (a) quasi-static PNM [16] and (b) iPNM. Snapshots show the non-wetting phase distribution
+(red) and dissolved gas concentration field (color map) at increasing bubble saturations (annotated on the left). The bubble migrates sequentially
+from the smallest to the largest pore in a four-pore network. Throats carry no volume in either model.
+
+
+
+into the large pore, which is energetically favorable. This phenomenon was demonstrated by DNS and observed in
+microfluidic experiments. The quasi-static PNM of [16] captured this behavior, which we now reproduce with iPNM.
+Following [16], we consider a four-pore network with pores arranged in ascending size from left to right. A bubble
+is initially placed in the smallest pore (Fig.6a, S b = 0.01). Slightly elevated dissolved concentrations are imposed
+at boundary pores (not depicted) connected to each end of the network, driving growth via diffusive mass uptake. A
+constant wetting-phase pressure is imposed at both boundaries to allow the wetting phase to enter or leave. In the
+quasi-static PNM, the bubble jumps to the next pore at the moment of invasion. In iPNM, this transition has a finite
+timescale, because the non-wetting phase must flow into the larger pore while the wetting phase flows countercurrent
+through corner films. Fig.6b shows iPNM reproduces the same sequence of events, with the bubble migrating through
+progressively larger pores. We note dislocation is challenging to model because it involves two events (invasion and
+retraction) occurring simultaneously, which taxes the time stepping and Newton iterations of the flow solver.
+
+4.3. Ganglion growth
+    We next simulate ganglion growth in 11 × 11 heterogeneous pore networks for two aspect ratios, ξ = 1/4 and
+ξ = 3/4, following the supplementary material of [16]. Pore sizes are drawn from a uniform distribution with contrast
+ratio R p,max /R p,min = 2, where R p,max and R p,min are the maximum inscribed-sphere radii of the largest and smallest
+pores. Boundary throats are made intentionally small to create a capillary barrier that prevents the non-wetting phase
+
+                                                                        15
+              Non-wetting phase   Aspect ratio = 1/4                                     Aspect ratio = 3/4
+
+
+
+
+Figure 7: Comparison of ganglion growth between quasi-static PNM [16] and iPNM for two aspect ratios: ξ = 1/4 (left column) and ξ = 3/4
+(right column). Top row shows the non-wetting phase distribution (red: quasi-static PNM; green: iPNM). Middle and bottom rows show the Euler
+characteristic χb and specific interfacial area γb , respectively, as functions of total saturation S btot (black: quasi-static PNM; red: iPNM).
+
+
+
+from leaving the network. A small bubble is initially placed at the center of the network, and elevated dissolved
+concentrations are imposed at all boundary pores to drive growth. A constant wetting-phase pressure is imposed at the
+boundaries, as in Sections 4.1–4.2. Simulations continue until S btot reaches 95%. As the ganglion grows, variations in
+pore and throat geometry cause it to repeatedly fragment and reconnect, producing a complex topological evolution.
+   We track two descriptors of the ganglion to compare iPNM against the quasi-static PNM: (1) Euler characteristic
+χb = N − L + O, where N is the number of disconnected ganglia, L is the number of redundant loops, and O is the
+number of internal voids (zero for the 2D lattice here). A high positive χb entails a fragmented phase, while a low or
+                                                                      16
+negative value entails increased connectivity; (2) Specific area γb = Γb /Vb , where Γb is the total gas–liquid interfacial
+area and Vb is the total non-wetting phase volume. Both PNMs are run on the same networks with these metrics
+compared in Fig.7. The models agree on the overall oscillatory behavior of χb and γb as functions of S btot . Agreement
+is closer for ξ = 3/4, where growth is continuous and snap-off is suppressed. For ξ = 1/4, the ganglion fragments
+and reconnects frequently, so mispredicting a single event can snowball into larger pointwise deviations between the
+two models. These deviations stem from iPNM resolving the finite timescale of capillary equilibration, which the
+quasi-static PNM does not. Nevertheless, the overall statistical behavior remains in agreement.
+
+
+5. Experimental validation
+
+    We next benchmark iPNM against the microfluidic experiments of Salehpour et al. [19], which track the Ostwald
+ripening of residually trapped hydrogen ganglia in a silicon-glass bonded micromodel patterned from a 2D X-ray CT
+image of a Canadian sandstone. The micromodel measures 10.19 × 4.25 mm in the horizontal plane with a uniform
+gap thickness of g = 7.8 µm, and has a median pore size of 42 µm, a median throat size of 10.6 µm, and a porosity
+of 0.3. These dimensions introduce sufficient pore-scale heterogeneity for the iPNM to demonstrate its capability in
+handling realistic pore geometries. For a detailed description of the experimental apparatus and imaging protocol,
+see [19]. A schematic of the experimental setup and a representative raw image of the micromodel are shown in Fig.8.
+Experimental setup
+Microscope image
+
+
+
+
+Figure 8: Experimental setup (top) showing the silicon-glass bonded micromodel, high-pressure syringe pump, and temperature controller. Raw
+microscope image (bottom) of the micromodel showing residually trapped hydrogen bubbles (white) within the sandstone pore space (gray) at
+t = 1 hr in the 40HS case. The wider inlet and outlet channels on the left and right edges contain large bubbles that act as concentration sinks.
+
+
+
+                                                                      17
+    Experiments were conducted at two temperatures (40°C and 80°C). Hydrogen was first injected into the water-
+saturated micromodel, followed by water reinjection to residually trap the gas as disconnected bubbles within the pore
+space. Large bubbles were deliberately retained in the wider inlet and outlet channels (Rl = 50 µm and Rr = 85 µm,
+respectively) so that they served as concentration sinks, sustaining diffusive mass transfer from the porous matrix
+toward the channels. Four experimental cases are considered, combining two temperatures with two levels of initial
+gas saturation: 40°C low-saturation (40LS), 40°C high-saturation (40HS), 80°C low-saturation (80LS), and 80°C
+high-saturation (80HS). The initial gas saturations range from 0.47 to 0.67, and experiments lasted 15–24 days.1
+    We compare iPNM against both the experimental data and the continuum model of [19]. The continuum model
+predicts the spatiotemporal evolution of dissolved concentration and gas saturation along the longitudinal direction of
+the micromodel. It couples Henry’s law with a Pc –S b relationship obtained by applying PMM to the entire micromodel
+image. Unlike iPNM, the continuum model assumes local capillary equilibrium within each representative elementary
+volume (REV) and therefore cannot resolve individual bubble curvatures or population statistics. The model equations
+and numerical implementation are given in Appendix C. In what follows, we first describe the iPNM simulation setup
+(Section 5.1), then compare macroscopic quantities (Section 5.2) and population statistics (Section 5.3).
+
+5.1. iPNM simulation setup
+    The pore network is extracted from the binary image of the micromodel via marker-based watershed segmentation
+(Section 2). For each pore i, the volume Vi and maximum inscribed radius R p,i are computed, and PMM is applied
+pore-wise to construct the κb –S b curve as described in Section 3.4. Throats are modeled as rectangular cross-sections
+with in-plane half-width a equal to the inscribed radius at the constriction, out-of-plane half-width b = g/2, and length
+Lt equal to the sum of Euclidean distances from the constriction to the centroids of its two neighboring pores.
+    The initial saturation field is obtained by mapping bubble volumes segmented from the experimental image at
+t = 0 onto the extracted pore network. Dirichlet BCs on C are imposed at the left and right boundary throats by
+evaluating Henry’s law (Eq. 31) with the capillary pressure of an interface spanning each channel’s half-width, Pc =
+σ(1/Rl,r + 2/g), consistent with Appendix C. The remaining boundaries are treated as no-flux. For the flow problem, a
+constant wetting-phase pressure Pw = 1 atm is imposed at the left and right boundaries, with no-flow on the remaining
+sides, so that gas redistribution is driven entirely by diffusive mass transfer. The non-wetting phase molar density is
+computed from the ideal gas law as ρb = Pw /(Rg T ) and held constant throughout. This is because capillary pressure
+variations are small relative to the ambient pressure: Pc /Pw ≈ 3% for the median pore size here. The water viscosity
+µw is computed from the correlation of Reid et al. [47], and the hydrogen viscosity µb is linearly interpolated between
+reference values at 300 K and 400 K from Mehl et al. [48]. All fluid properties are listed in Table 1.
+
+                                         Table 1: Fluid properties for each experimental temperature.
+
+
+                  Property                          Symbol                 40°C                   80°C               Unit
+                  Molecular diffusivity             Dm                7.34 × 10   −5
+                                                                                               1.53 × 10   −4
+                                                                                                                    cm2 /s
+                  Surface tension                   σ                      68.9                   62.6             dyn/cm
+                                                                                  10                       10
+                  Henry’s constant                  H                 7.51 × 10                7.55 × 10          dyn/cm2
+                  Vapor pressure                    Pv                7.36 × 104               4.73 × 105         dyn/cm2
+                  Water viscosity                   µw                6.70 × 10−3              3.60 × 10−3          poise
+                  H2 viscosity                      µb                9.16 × 10   −5
+                                                                                               9.96 × 10   −5
+                                                                                                                    poise
+                  Water molar density               ρw                                 0.055                      mol/cm3
+                  H2 molar density                  ρb                3.89 × 10−5              3.45 × 10−5        mol/cm3
+
+
+
+  1 The experimental images were reprocessed with improved algorithms, yielding saturations and bubble statistics that differ slightly from [19].
+
+
+
+
+                                                                      18
+                                       40°C                                                            80°C
+
+
+
+
+                                                                                                                                       Low saturation
+                                                                                                                                       High saturation
+Figure 9: Temporal evolution of total non-wetting phase saturation S btot for all four experimental cases. Red squares denote experiments, the black
+line is the iPNM prediction, and the green line is the continuum model. Cases correspond to 40°C and 80°C with low and high initial S btot .
+
+
+
+5.2. Macroscopic behavior
+Total saturation. We compare the temporal evolution of the total non-wetting phase saturation S btot in the micromodel
+across all four experimental cases (Fig.9). In all cases, S btot declines monotonically, driven by diffusive transport to-
+ward the boundary channels. Both iPNM and the continuum model capture this trend. iPNM shows strong agreement
+with experiments, except for some deviation at later times in the 80HS case. The deviation is attributed primarily to
+non-ideal BCs at the channels. In iPNM, the concentration at each channel is set uniformly based on the capillary
+pressure of an interface spanning the channel’s half-width. In the experiments, however, the bubble distribution in
+the channels is highly irregular (Fig.8), and in some cases low-curvature interfaces form along (rather than across)
+the channel, creating locally stronger sinks than assumed (see supplementary videos). A likely secondary contributor
+is the presence of condensation droplets within trapped ganglia, which are most prevalent in the 80HS case (yellow
+in Fig.13). These droplets often condense and re-evaporate cyclically, with non-trivial effects on concentration and
+capillary pressure fields that are not captured by iPNM. Both sources of error are discussed further in Section 6.3.
+Mean curvature. Next, we compare the temporal evolution of the mean in-plane radius of curvature r̄ in Fig.10. In
+experiments, r̄ is calculated by fitting circles to individual bubble interfaces extracted from acquired images using
+least-squares minimization, with quality control to exclude nearly straight arcs and interfaces with insufficient pixel
+coverage. These per-pore radii are averaged across each ganglion, then across all ganglia. In iPNM, the per-pore radii
+are obtained by evaluating the κb –S b curves, subtracting the out-of-plane contribution κgap = 2/g, then computing the
+
+                                                                        19
+                                     40°C                                                            80°C
+
+
+
+
+                                                                                                                                      Low saturation
+                                                                                                                                      High saturation
+Figure 10: Temporal evolution of the mean in-plane radius of curvature r̄ for all four experimental cases. Red squares denote experiments, the
+black line is the iPNM prediction, and the green line is the continuum model. Cases correspond to 40°C and 80°C with low and high initial S btot .
+
+
+
+reciprocal of the resulting in-plane curvature. The per-pore radii are averaged across ganglia similar to the experi-
+ments. In the continuum model, r̄ is derived by mapping S btot to a capillary pressure via the global Pc –S b curve, then
+subtracting the out-of-plane contribution, and taking the reciprocal of the resulting in-plane curvature.
+    In all cases, Fig.10 shows that r̄ increases monotonically over time. iPNM yields close quantitative agreement
+with experiments across all cases, though it tends to slightly underestimate r̄ (particularly at 80°C and at late times
+for 40°C). This is partly attributable to the PMM-based κb –S b curves, which overestimate curvature for multi-pore
+ganglia, as examined further in Section 5.3. By contrast, the continuum model overestimates r̄ at early and interme-
+diate times, but approaches experimental data at late times. This arises because individual ganglion curvatures are
+not resolved, and S btot is mapped to a single curvature value using the global Pc –S b curve. This misses the small,
+high-curvature, and out-of-equilibrium bubbles that can pull the true population mean r̄ downward. As these bubbles
+vanish over time, the curvature distribution narrows and the continuum model approaches the experiment.
+
+5.3. Pore-scale behavior
+    The macroscopic quantities of the previous section mask pore-scale information about ganglia. Here, we validate
+iPNM against experiments by comparing probability distributions of ganglion curvatures and spatial configurations of
+the non-wetting phase, capillary pressure, and dissolved concentration. The continuum model is inherently incapable
+of providing ganglion-level information, so its mean-property predictions are juxtaposed where appropriate.
+Curvature distribution. Fig.11 compares the PDF of radius of curvature of ganglia at three times (T = 4, 192, and
+360 hrs). In all cases, we see that the experimental PDFs shift toward larger r while simultaneously broadening. This
+reflects two concurrent processes governing ripening in the presence of boundary sinks [19]: (1) Local ripening, which
+                                                                       20
+                      T = 4 hrs                                   T = 192 hrs                                  T = 360 hrs
+
+
+
+
+                                                                                                                                              40°C low sat.
+                                                                                                                                              40°C high sat.
+                                                                                                                                              80°C low sat.
+                                                                                                                                              80°C high sat.
+
+
+
+
+Figure 11: PDF of the mean radius of curvature of ganglia at three times (T = 4, 192, and 360 hrs) for all four experimental cases. Red lines denote
+experimental data, black lines the iPNM predictions, and vertical green lines the continuum model’s prediction of r̄.
+
+
+
+is driven by the interaction between adjacent ganglia, forcing the PDFs to sharpen into a Dirac delta. Salehpour et
+al. [19] showed local ripening lasts ∼5 hrs in the central region of the micromodel at 80°C, consistent with the ∼24 hr
+plateau of r̄ in Fig.10 for the full domain; (2) Global ripening, which is driven by diffusive mass loss to the channels.
+As most ganglia are supercritical (deformed), mass loss lowers curvature and shifts the PDF to larger r.
+     iPNM captures the peak positions and shifts of the PDFs across all cases. The agreement is strongest for 40°C,
+but deteriorates for 80°C at intermediate and late times. At 80°C, the experimental PDFs are broader than iPNM and
+have more pronounced tails toward small r. We attribute this primarily to the irregular bubbles in the inlet and outlet
+channels (Fig.8), whose effective curvatures—thus the boundary concentrations they impose—differ from the uniform
+                                                                        21
+                                                                    40°C high saturation
+               Initial condition
+
+
+
+
+                                                                                                                                                   C         Pc
+               Experiment
+T = 24 hrs
+
+               Simulation
+               Experiment
+T = 288 hrs
+
+               Simulation
+
+
+
+
+              Figure 12: Spatial distributions for the 40HS case. Left: phase distribution (red: non-wetting, blue: wetting, black: solid, yellow: condensation).
+              Right: ganglia colored by capillary pressure (dyn/cm2 ) and wetting phase by dissolved concentration (mole fraction). The top row shows the
+              experimental initial condition used to initialize the simulation. Subsequent rows compare experiments and iPNM at T = 24 and 288 hrs.
+
+
+
+              values assumed in iPNM. A possible secondary factor is the higher prevalence of water condensation droplets at 80°C,
+              whose cyclic condensation and re-evaporation alters concentration and capillary pressure fields in ways not captured
+              by iPNM. In Fig.11, the continuum model is shown as vertical lines denoting r̄, which fall consistently to the right of
+              experimental and iPNM peaks, except at late times. This explains the overestimation of r̄ in Fig.10 and is consistent
+              with the assertion that the continuum model does not capture pre-equilibrium dynamics of ripening in an REV.
+              Spatial distribution. Figs.12–13 compare the spatial distribution of trapped ganglia between experiments and iPNM
+              at T = 24 and 288 hrs for the 40HS and 80HS cases. The experimental initial condition used to initialize the sim-
+              ulations is shown in the top row of each figure. These two cases are selected because they illustrate the range of
+              agreement, from strong in 40HS to weak in 80HS. The remaining two cases are included in the supplementary ma-
+              terial. The iPNM results are rendered using the connectivity-corrected visualization described in Section 3.7 (Fig.4),
+              which maps simulated pore saturations onto the micromodel’s pore-scale image. The continuum model does not
+
+                                                                                     22
+                                                                    80°C high saturation
+               Initial condition
+
+
+
+
+                                                                                                                                                   C         Pc
+               Experiment
+T = 24 hrs
+
+               Simulation
+               Experiment
+T = 288 hrs
+
+               Simulation
+
+
+
+
+              Figure 13: Spatial distributions for the 80HS case. Left: phase distribution (red: non-wetting, blue: wetting, black: solid, yellow: condensation).
+              Right: ganglia colored by capillary pressure (dyn/cm2 ) and wetting phase by dissolved concentration (mole fraction). The top row shows the
+              experimental initial condition used to initialize the simulation. Subsequent rows compare experiments and iPNM at T = 24 and 288 hrs.
+
+
+
+              resolve individual ganglia and is therefore excluded from this comparison.
+                   In Figs.12–13, the ganglia near the channels dissolve more rapidly due to their proximity to concentration sinks,
+              creating a depletion zone that expands inward over time [18]. After 24 hrs, the depletion zone is already visible in the
+              experiments, and by 288 hrs, it has expanded significantly. iPNM captures this dissolution front, though the agreement
+              is stronger in 40HS than in 80HS. In the 80HS case, the left portion of the micromodel depletes faster in the experiment
+              than in iPNM, likely due to a low-curvature interface in the bottom part of the left channel that acts as a stronger sink
+              than the uniform-concentration BC assumed in iPNM (see supplementary videos). The right columns of Figs.12–13
+              compare capillary pressure and dissolved concentration fields. The latter is obtained by solving the Laplace equation
+              over the wetting phase, with concentrations at ganglia set by Henry’s law and used as Dirichlet BCs. In 40HS, these
+              fields from iPNM are in good agreement with experiments. In 80HS, the discrepancy is more pronounced, consistent
+              with idealized BCs at channels and higher prevalence of condensation droplets discussed above. Another contributing
+
+                                                                                     23
+Figure 14: Comparison between experimental phase distributions and PMM reconstructions at select pore locations. Red circles are drawn tangent
+to the gas–water interface. PMM tends to yield smaller radii, indicating a higher curvature than observed experimentally.
+
+
+factor to the more rapid depletion observed in iPNM is the PMM curvature bias, which we discuss next.
+PMM curvature bias. The PMM-derived κb –S b curves used by iPNM overestimate curvature for pores belonging
+to multi-pore ganglia, contributing to the underestimation of r̄ seen in Figs.10–11. Fig.14 demonstrates this visually
+by comparing experimental phase distributions against PMM reconstructions at the same pore locations. Red circles
+drawn tangent to various interfaces reveal smaller radii in PMM than in experiments. This arises because PMM
+constructs the κb –S b curve for each pore by morphologically eroding its subimage independently. During erosion,
+connected throats are progressively emptied of the non-wetting phase, so the resulting bubble configuration is confined
+entirely to the pore body (Fig.3). For multi-pore ganglia, however, some of these throats are occupied and hold part
+of the ganglion’s volume. By excluding this throat volume, PMM effectively compresses the same amount of non-
+wetting phase into a smaller space, producing more deformed interfaces with higher curvature than observed.
+
+6. Discussion
+
+6.1. Continuum vs. pore-scale modeling
+    We showed in Section 5.2 that the continuum model of [19] captures S btot well across all four experiments. How-
+ever, three fundamental limitations distinguish it from iPNM. First, the continuum model cannot provide pore-scale
+information about the spatial position, size, curvature, or population statistics of individual ganglia, whereas iPNM
+resolves all of these by tracking each ganglion explicitly through pore-scale balance equations. Second, the continuum
+model assumes capillary equilibrium within an REV at all times, as dictated by the Pc –S b curve. iPNM imposes no
+such assumption and naturally resolves the pre-equilibration dynamics of ripening. Depending on the size and specific
+microstructure of the REV, the pre-equilibration timescale can be on the order of macroscopic forcings imposed on the
+system (e.g., cyclic injections in H2 storage), which would prevent equilibrium from ever being reached. Even more
+challenging is when an REV itself is absent (e.g., fractal media) [49], for which the continuum framework breaks
+                                                                     24
+down entirely. Third, the Pc –S b curve from PMM, used by the continuum model, corresponds to the maximal satura-
+tion achievable at any given Pc . If the actual saturation is non-maximal, as is often the case due to incomplete sweep
+during drainage-imbibition cycles, Pc is underestimated [18]. Mitigating this requires extended parameterizations that
+express Pc as functions of S b , specific interfacial area [50], and Euler characteristic [51, 52], but these demand evolu-
+tion equations for these extra variables, which themselves require closure. Pore-scale models like iPNM circumvent
+this entirely because each ganglion’s capillary pressure is computed from its own saturation and pore geometry, with
+no ambiguity from unoccupied pores. Population balance methods [22, 23] similarly avoid this limitation.
+
+6.2. iPNM’s limitations
+    A key achievement of iPNM is that no geometric approximation in pore shape, typical of all existing PNMs, is
+introduced. Instead, different pore shapes are encoded by κb –S b curves obtained from pore-wise applications of PMM.
+Despite the advance, several limitations remain. One is the PMM curvature bias for multi-pore ganglia identified in
+Section 5.3. Because PMM erodes each pore’s subimage independently, connected throats are progressively emptied.
+This confines the non-wetting phase to the pore body and can overestimate curvature when throats are occupied.
+One antidote is a connectivity-aware PMM, analogous to the classical invasion-percolation formulation by [34], but
+the downside is that the number of occupied-throat permutations grows combinatorially with coordination number. A
+more tractable approximation is to apply a saturation correction to κb –S b curves depending on the number of occupied
+throats. However, the details require further research. Another limitation of iPNM concerns the non-uniqueness of the
+subcritical branch in the κb –S b curves for bridge pores (Eq.29). As shown in Fig.3, multiple interface configurations
+can exist in a bridge pore depending on which throats are occupied, but all are approximated with the same function.
+While the correct physical limits are satisfied (Section 3.4), the actual shape between these limits is uncertain.
+    Other limitations are less consequential for the experiments considered herein but may matter in other settings.
+First, a zero contact angle was assumed, which is appropriate for the H2 –water–silicon system in Section 5. Extensions
+of PMM to non-zero contact angles exist [53, 54] and iPNM can accommodate them without modification. Note the
+effect enters solely through the κb –S b curves. Second, while all simulations were on topologically 2D networks, iPNM
+and its associated PMM operations remain unchanged in 3D. Third, vapor pressure and temperature were assumed
+spatially uniform, which clearly is insufficient to capture the localized condensation and reevaporation observed at
+80°C. Capturing this phenomenon requires an extra energy balance and the equation of state for water. Lastly, we
+treated the non-wetting phase density as constant, which was justified by Pc /Pw ≈ 3% in Section 5.1, also typical of
+the subsurface. When this approximation breaks down, the flow and transport problems become nonlinear.
+
+6.3. Sources of experimental discrepancy
+     The largest source of discrepancy between iPNM and the experiments is the idealization of the BCs at the channels.
+In iPNM, the concentration at each channel is set to be uniform and based on the capillary pressure of an interface
+spanning the channel’s half-width (Section 5.1). In experiments, however, the bubble distributions in the channels are
+highly non-uniform (Fig.8). For example, in the 40HS case, both channels are nearly filled with gas, with the left
+one containing small condensation droplets that raise the effective capillary pressure above the one assumed in iPNM.
+In the 80HS case, a low-curvature interface forms in the bottom of the left channel, which acts as a stronger sink
+than assumed. A similar low-curvature interface sits also in the right channel. These non-uniformities are likely why
+the micromodel depletes faster in the 80HS experiment than in iPNM (see Fig.13 and supplementary videos). The
+other two cases exhibit similar non-uniformities. In 40LS, the right channel initially contains a small bubble at the
+bottom that gradually grows upward, lengthening the diffusion path for the topmost ganglia. In 80LS, a low-curvature
+interface temporarily forms in the right channel but collapses quickly, consistent with the better agreement in S btot .
+     Condensation droplets are a secondary source of error, most prominent at 80°C. In 80HS (Fig.13), droplets re-
+peatedly condense within ganglia and re-evaporate over multiple cycles. A plausible contributor is small temperature
+fluctuations across the micromodel. Even on the order of tenths of a degree, such fluctuations can produce sizable
+swings in vapor pressure via the Clausius-Clapeyron relation (∼4% per 1°C). The elevated gas pressure inside ganglia,
+by contrast, accounts for only a ∼0.05% shift in vapor pressure due to the Poynting effect. Moreover, cyclic conden-
+sation and re-evaporation perturbs the wetting phase, which can mix dissolved H2 across larger distances. Condensed
+droplets also increase local ganglion curvature, promoting dissolution by Henry’s law. Lastly, the experiments were
+initialized with deionized water [19], so the wetting phase was undersaturated at T = 0, whereas iPNM initializes C
+
+                                                            25
+from Henry’s law assuming local equilibrium. Despite this difference in initialization, no signature is visible in Fig.10,
+where a temporary drop in mean curvature (r̄) would be expected. This effect is therefore of minor importance.
+
+7. Conclusions
+    We presented an image-based pore network model (iPNM) that couples two-phase flow with Ostwald ripening to
+simulate the evolution of trapped ganglia in heterogeneous porous media. Unlike previous PNMs, iPNM eliminates
+geometric approximations of pore shape by parameterizing curvature–saturation curves directly from pore-scale im-
+ages via the pore morphology method (PMM). It handles multi-pore ganglia of arbitrary size and complexity through
+a combination of pore-type classification, operator-split flow and transport solvers, and an iterative capillary stabil-
+ity checking algorithm that captures invasion, snap-off, retraction, fragmentation, coalescence, and dislocation. The
+sub-critical branch of the curvature–saturation curve, essential for ripening, is captured for all pore types.
+    iPNM was verified against a quasi-static PNM to ensure capillary-driven phenomena such as dissolution-induced
+snap-off, bubble dislocation, and ganglion growth in heterogeneous networks are captured accurately. iPNM was then
+validated against microfluidic experiments tracking hydrogen ripening in a sandstone-patterned micromodel over 15–
+24 days. The model predicts total saturation, mean curvature, curvature distributions, and spatial phase configurations
+in good agreement with experiments, particularly at 40°C. At 80°C, discrepancies arise primarily due to non-ideal
+boundary conditions at the micromodel’s inlet and outlet channels and, to a lesser extent, from condensation droplets
+not modeled by iPNM. A curvature bias by PMM was also identified for multi-pore ganglia, arising from the inde-
+pendent treatment of each pore during morphological erosion. Comparison with a continuum model confirmed that
+while macroscopic saturation is captured well by the continuum approach, it cannot resolve population statistics and
+spatial information about individual ganglia or pre-equilibrium dynamics of ripening within an REV.
+    Several directions for future work emerge from this work. Extending iPNM to non-zero contact angles, using
+existing PMM variants, would enable investigating whether ripening dynamics are qualitatively altered under partial
+wetting. In the context of underground hydrogen storage, generalizing iPNM along the multi-component framework
+of [20] would allow simulating ripening of gas mixtures. Moreover, iPNM opens the possibility of studying how cyclic
+injection and withdrawal, interacting with ripening, reshape ganglion populations over multiple seasons. Application
+to 3D rock images extracted from X-ray CT is straightforward, as the PMM operations remain unchanged.
+
+Supplementary materials
+   Included as supplementary materials
+
+Acknowledgments
+   This research is jointly supported by the National Science Foundation, United States under Grant No. CBET-
+2348723 (for ZL, YM) and the Natural Sciences and Engineering Research Council of Canada (NSERC) Alliance
+Grants under ALLRP 592525-23 and ALLRP 567631-24 (for MS, TL, BZ).
+
+Appendix A. Entry pressure for rectangular throat
+   We derive the capillary entry pressure for a throat with rectangular cross-section using the Mayer-Stowe-Princen
+(MS-P) theory [42–44]. The derivation is based on an energy balance at the moment of invasion. Specifically, for a
+small displacement dx of the meniscus, the balance of work done versus surface energy created/destroyed reads:
+
+                                      Pc Ae dx = (Lbw σbw + Lbs σbs − Lbs σws ) dx,                                 (A.1)
+
+where Ae is the cross-sectional area occupied by the non-wetting phase (effective area), Lbw is the length of the bubble-
+water (non-wetting/wetting) interface, Lbs is the length of bubble-solid contact, and σbw , σbs , σws are the respective
+interfacial tensions. Applying Young’s equation, σbs − σws = σbw cos θ, and denoting σ = σbw , Eq.A.1 simplifies to:
+                                              Pc   Lbw + Lbs cos θ Pe
+                                                 =                =    ,                                            (A.2)
+                                              σ          Ae         Ae
+                                                         26
+where Pe = Lbw + Lbs cos θ is the effective perimeter. The next step in the MS-P method is to equate the displacement
+curvature Pc /σ to the curvature 1/r of the arc menisci (AMs) residing in the corners [44]:
+                                                    Pc 1 Pe (r)
+                                                      = =        .                                                 (A.3)
+                                                    σ  r  Ae (r)
+Eq.A.3 is an implicit equation that must be solved for r. We next derive explicit expressions for Pe (r) and Ae (r).
+    Fig.2 shows the cross-section of a rectangular throat occupied by the non-wetting phase in the center and wetting
+phase in the corners, forming four AMs. The throat has an in-plane side length of 2a and an out-of-plane side length
+of 2b. The distance from the contact line to the corner apex is denoted by ℓ and it is related to r via:
+                                                     √        π    
+                                                 ℓ = 2 r sin     −θ .                                               (A.4)
+                                                               4
+The bubble-solid contact length Lbs is the perimeter of the throat minus the portions occupied by the AMs:
+
+                                                  Lbs = 4 (a + b − 2ℓ).                                            (A.5)
+
+The bubble-water arc length Lbw counting all four AMs is:
+                                                         π    
+                                                 Lbw = 8    − θ r.                                                 (A.6)
+                                                          4
+Hence, the effective perimeter Pe can be computed via:
+                                                      π                          
+                             Pe = Lbw + Lbs cos θ = 4 2   − θ r + (a + b − 2ℓ) cos θ .                             (A.7)
+                                                        4
+    The effective cross-sectional area Ae of the non-wetting phase can be computed by subtracting the four corner-film
+areas from the throat’s cross-sectional area. Straightforward geometric analysis yields the area of a single corner film:
+                                           √ √                  π      π
+                                              2  2                              
+                                   AAM =        ℓ    ℓ + r cos    − θ  −   − θ r2 .                           (A.8)
+                                                                          
+                                            2        2            4           4
+
+which in turns allows computing:
+                                                 √ √               π      π     
+                                                   2  2
+                       Ae = 4ab − 4AAM = 4 ab −   ℓ    ℓ + r cos    − θ  +   − θ r2  .
+                                            
+                                                                                                                   (A.9)
+                                                                             
+                                                                                           
+                                                  2      2            4          4
+
+Eqs.A.7 and A.9 are substituted into Eq.A.3 to allow solving for r numerically. The entry pressure is Pce = σ/r.
+Special case of square throat. For a square throat with a = b = R, we show our formulation for rectangular throats
+reduces to the analytical solution of Ma et al. [44]:
+
+                                                                         π
+                                                          r
+                                         Pce R
+                                                = cos θ +   sin θ cos θ + − θ.                             (A.10)
+                                           σ                             4
+                                                   √
+Let γ = π/4 − θ. Substituting a = b = R and ℓ = 2 r sin γ into Eqs.A.7 and A.9 yields:
+                                             h              √              i
+                                      Pe = 4 2γr + (2R − 2 2 r sin γ) cos θ ,                              (A.11)
+                                             h                                 i
+                                      Ae = 4 R + r γ − r sin γ − r sin γ cos γ .
+                                                2    2    2   2       2
+                                                                                                           (A.12)
+
+Inserting into Eq.A.3 and using cos θ = √12 (cos γ + sin γ), we obtain after simplification:
+                                                                       √
+                               R2 = r2 [γ − sin γ (cos γ + sin γ)] +    2 Rr (cos γ + sin γ).                     (A.13)
+
+                                                           27
+                                                                                                        √
+Defining u = r/R, Eq.A.13 is a quadratic Au2 + Bu − 1 = 0, with A = γ − sin γ(cos γ + sin γ) and B =        2(cos γ + sin γ).
+The physical root gives:                                      √
+                                            Pce R 1 B + B2 + 4A
+                                                  = =                    .                                           (A.14)
+                                             σ      u           2
+Noting that B/2 = cos θ and B2 + 4A = 4 sin θ cos θ + 4 (π/4 − θ), this simplifies to Eq.A.10.
+
+Appendix B. Derivation of non-wetting phase conductivity
+
+    We derive the hydraulic conductance of the non-wetting (or bubble) phase flowing through the central region of
+an invaded throat with rectangular cross-section (see Fig.2). The derivation employs the hydraulic diameter concept
+[38] and ensures that the correct asymptotic behavior is preserved as the bubble saturation approaches unity.
+    To establish some key relations, consider first the scenario where a throat is occupied by one fluid phase undergoing
+steady-state, fully-developed laminar flow. The corresponding axial momentum balance on a fluid element reads:
+                                                          dP τw Pt
+                                                      −      =     ,                                                   (B.1)
+                                                          dx   At
+where τw is the mean shear stress exerted by the fluid on the throat’s walls, At is the cross-sectional area of the throat,
+and Pt is its wetted perimeter. Next, introduce the Fanning friction factor defined as:
+                                                                  τw
+                                                         Cf = 1         ,                                              (B.2)
+                                                                 2 ρu
+                                                                      2
+
+
+where ρ is the fluid density and u the mean velocity. For laminar flow, C f scales inversely with Reynolds number:
+
+                                                  Po                            ρuDh
+                                           Cf =      ,     where      Re =           ,                                 (B.3)
+                                                  Re                              µ
+where Dh = 4 At /Pt is the hydraulic diameter. The Poiseuille number Po is a geometry-dependent constant that
+characterizes flow resistance for a given throat shape. For example, Po = 16 for a circular duct and Po ≈ 14.2 for a
+square duct [38]. Substituting Eqs.B.2–B.3 into Eq.B.1 yields:
+
+                                                              D2h ∆P
+                                                     u=               .                                                (B.4)
+                                                            2 Po µ Lt
+The volumetric flow rate can be computed as follows:
+
+                                                                  D2h At ∆P
+                                                  qt = u At =               .                                          (B.5)
+                                                                  2 Po µ Lt
+Defining the hydraulic conductance via qt = (Kt /µ) ∆P, we obtain:
+
+                                                                 D2h At
+                                                         Kt =           .                                              (B.6)
+                                                                2 Po Lt
+For a rectangular throat with half-widths a and b (Fig.2), At = 4 ab, Pt = 4 (a + b), and Dh = 4 At /Pt .
+    Now for the non-wetting phase in Fig.2, we define the hydraulic conductance in a similar fashion to Eq.B.6:
+
+                                                                D2h,b Ab
+                                                      Kb =                  ,                                          (B.7)
+                                                                2 Pob Lt
+where Ab is the cross-sectional area of the bubble-occupied region in the throat, Dh,b is its hydraulic diameter, and
+Pob is its Poiseuille number. This region is bounded by solid walls and the four arc menisci occupying the corners,
+
+
+                                                                28
+as shown in Fig.2. Under the assumption of perfect slip at the interface between the bubble and wetting phase, the
+wetted perimeter Cb consists only of the solid walls. Expressions for Ab , Cb , and Dh,b are given in Section 3.3.
+    The only quantity on the right-hand side of Eq.B.7 that is not directly available is the Poiseuille number Pob . In
+general, Pob depends on the shape of the bubble-occupied region (Fig.2), which varies with the throat’s saturation as
+the corner films grow or shrink. Since no analytical or numerical solution for this dependence exists, we approximate
+Pob by the single-phase Poiseuille number Po. The latter can be back-calculated using:
+
+                                                                  D2h At
+                                                   Pob ≈ Po =                                                          (B.8)
+                                                                  2 Kt Lt
+where Kt is the known single-phase conductivity from Eq.13. This approximation ensures the correct asymptotic
+behavior: as S b → 1, the wetting films shrink, causing Ab → At , Cb → Pt , and Dh,b → Dh , so that Kb → Kt .
+
+
+Appendix C. Continuum model
+
+     The continuum model of Salehpour et al. [19] describes the macroscopic evolution of the non-wetting phase due
+to Ostwald ripening. It is derived by taking the continuum limit of the pore-scale mass balance equations of Bueno et
+al. [20], assuming ideal gas behavior for the non-wetting phase. The full derivation is in the supplementary material
+of [19]. The model is formulated in terms of the dissolved mole fraction C in the aqueous phase. For the micromodel
+considered here, the domain is treated as 1D in the left-to-right direction x (Fig. 8), and the equation reads:
+
+                                                                      ∂C    Dm ∂ 2 C
+                                    ("        #"              #    )
+                                       H          dS b
+                                          −1 H         C + Sb + 1         =          ,                          (C.1)
+                                       ρw         dPc                 ∂t      τ ∂x2
+
+where Dm is the molecular diffusion coefficient, H is Henry’s constant, ρw is the molar density of the wetting phase, and
+τ = ϕ−1 is Bruggeman’s tortuosity. The dS b /dPc term is obtained from a macroscopic Pc –S b relationship computed
+by applying PMM to the binary image of the entire micromodel [18]. Unlike classical PMM [33, 34], the variant used
+here retains disconnected ganglia, and unlike the pore-wise application in iPNM (Section 3.4), here PMM is applied
+globally to produce a single Pc –S b curve. The reader is referred to [19] for an illustration of this curve.
+    The non-wetting phase saturation S b is recovered from C via Henry’s law:
+                                                       Pw + Pc (S b ) − Pv
+                                                 C=                        ,                                           (C.2)
+                                                              H
+where Pw is the wetting-phase pressure and Pv is the spatially uniform vapor pressure. To invert Eq. C.2 for S b , the
+Pc –S b curve is used. Dirichlet BCs on C are imposed at the left and right ends of the domain by evaluating Eq. C.2
+at Pc = σ(1/Rl,r + 2/g) from the Young–Laplace equation, where Rl = 50 µm and Rr = 85 µm are half-widths of
+the left and right channels, respectively (Fig. 8). The initial condition for C is obtained by converting the initial non-
+wetting phase saturation profile to concentration via Eq. C.2 and the Pc –S b curve. The initial saturation profile itself is
+constructed from the first experimental image by averaging the phase occupancy in the y-direction (up-down in Fig. 8)
+at each x-coordinate using a sliding window of width equal to 5% of the micromodel length. The total non-wetting
+phase saturation in the micromodel at each time step is computed by spatially averaging the saturation profile.
+    Eq. C.1 is discretized along the x direction with a uniform mesh of 100 cells. Backward Euler time integration
+with adaptive time stepping and a Newton solver are used at each time step. Fluid properties are assigned depending
+on the temperature corresponding to the particular experiment being modeled. These are listed in Table 1.
+
+
+References
+
+ [1] D. Zivar, S. Kumar, J. Foroozesh, Underground hydrogen storage: A comprehensive review, International journal
+     of hydrogen energy 46 (45) (2021) 23436–23462.
+
+ [2] S. Bachu, Co2 storage in geological media: Role, means, status and barriers to deployment, Progress in energy
+     and combustion science 34 (2) (2008) 254–273.
+
+                                                             29
+ [3] S. Iglauer, A. Paluszny, C. H. Pentland, M. J. Blunt, Residual co2 imaged with x-ray micro-tomography, Geo-
+     physical Research Letters 38 (21) (2011).
+ [4] M. Andersson, S. Beale, M. Espinoza, Z. Wu, W. Lehnert, A review of cell-scale multiphase flow modeling,
+     including water management, in polymer electrolyte fuel cells, Applied Energy 180 (2016) 757–778.
+
+ [5] W. Ostwald, Studien über die bildung und umwandlung fester körper, Zeitschrift für physikalische Chemie 22 (1)
+     (1897) 289–330.
+ [6] I. M. Lifshitz, V. V. Slyozov, The kinetics of precipitation from supersaturated solid solutions, Journal of physics
+     and chemistry of solids 19 (1-2) (1961) 35–50.
+ [7] C. Wanger, Theorie der alterung von niederschlagen durch umlosen, Z. Elektrochem. 65 (1961) 581–591.
+
+ [8] P. W. Voorhees, The theory of ostwald ripening, Journal of Statistical Physics 38 (1985) 231–252.
+ [9] K. Xu, R. Bonnecaze, M. Balhoff, Egalitarianism among bubbles in porous media: an ostwald ripening derived
+     anticoarsening phenomenon, Physical review letters 119 (26) (2017) 264502.
+[10] J. A. de Chalendar, C. Garing, S. M. Benson, Pore-scale modelling of ostwald ripening, Journal of Fluid Me-
+     chanics 835 (2018) 363–392.
+[11] Y. Mehmani, K. Xu, Pore-network modeling of ostwald ripening in porous media: How do trapped bubbles
+     equilibrate?, Journal of Computational Physics 457 (5 2022). doi:10.1016/j.jcp.2022.111041.
+[12] S. Goodarzi, Y. Zhang, S. Foroughi, B. Bijeljic, M. J. Blunt, Trapping, hysteresis and ostwald ripening in hydro-
+     gen storage: A pore-scale imaging study, International Journal of Hydrogen Energy 56 (2024) 1139–1151.
+[13] Z. Jangda, H. Menke, A. Busch, S. Geiger, T. Bultreys, H. Lewis, K. Singh, Pore-scale visualization of hydrogen
+     storage in a sandstone at subsurface pressure and temperature conditions: Trapping, dissolution and wettability,
+     Journal of Colloid and Interface Science 629 (2023) 316–325.
+[14] M. Boon, T. Rademaker, C. W. Winardhi, H. Hajibeygi, Multiscale experimental study of h/brine multiphase
+     flow in porous rock characterizing relative permeability hysteresis, hydrogen dissolution, and ostwald ripening,
+     Scientific Reports 14 (1) (2024) 30170.
+[15] C. Wang, Y. Mehmani, K. Xu, Capillary equilibrium of bubbles in porous media, Proceedings of the National
+     Academy of Sciences 118 (17) (2021) e2024069118.
+
+[16] Y. Mehmani, K. Xu, Capillary equilibration of trapped ganglia in porous media: A pore-network modeling
+     approach, Advances in Water Resources 166 (8 2022). doi:10.1016/j.advwatres.2022.104223.
+[17] Y. Li, C. Garing, S. M. Benson, A continuum-scale representation of ostwald ripening in heterogeneous porous
+     media, Journal of Fluid Mechanics 889 (2020) A14.
+[18] Y. Mehmani, K. Xu, A continuum theory of diffusive bubble depletion in porous media, Advances in Water
+     Resources 185 (2024) 104625.
+[19] M. Salehpour, T. Lan, N. Bueno, M. Z. I. Laku, Y. Mehmani, B. Zhao, Ostwald ripening in underground gas
+     storage, arXiv preprint arXiv:2509.00044 (2025).
+[20] N. Bueno, L. Ayala, Y. Mehmani, Ostwald ripening of multi-component bubbles in porous media: A theory
+     and a pore-scale model of how bubble populations equilibrate, Advances in Water Resources 182 (2023). doi:
+     10.1016/j.advwatres.2023.104581.
+[21] Y. Yu, C. Wang, J. Liu, S. Mao, Y. Mehmani, K. Xu, Bubble coarsening kinetics in porous media, Geophysical
+     Research Letters 50 (1) (2023) e2022GL100757.
+
+
+                                                           30
+[22] N. Bueno, L. Ayala, Y. Mehmani, A generalized kinetic theory of ostwald ripening in porous media, Advances
+     in Water Resources 193 (2024). doi:10.1016/j.advwatres.2023.104826.
+[23] N. Bueno, L. F. Ayala, Y. Mehmani, Kinetic theory of multicomponent ostwald ripening in porous media, arXiv
+     preprint arXiv:2512.20665 (2025).
+
+[24] D. Singh, H. A. Friis, E. Jettestuen, J. O. Helland, A level set approach to ostwald ripening of trapped gas bubbles
+     in porous media, Transport in Porous Media 145 (2) (2022) 441–474.
+[25] D. Singh, H. A. Friis, E. Jettestuen, J. O. Helland, Ostwald ripening of gas bubbles in porous media: Impact of
+     pore geometry and spatial bubble distribution, Advances in Water Resources 187 (2024) 104688.
+[26] N. Joewondo, V. Garbin, R. Pini, Experimental evidence of the effect of solute concentration on the collective
+     evolution of bubbles in a regular pore-network, Chemical Engineering Research and Design 192 (2023) 82–90.
+[27] K. E. Thompson, Pore-scale modeling of fluid transport in disordered fibrous materials, AIChE journal 48 (7)
+     (2002) 1369–1389.
+[28] V. Joekar-Niasar, S. M. Hassanizadeh, H. Dahle, Non-equilibrium effects in capillarity and interfacial area in
+     two-phase flow: dynamic pore-network modelling, Journal of fluid mechanics 655 (2010) 38–71.
+[29] S. Chen, C. Qin, B. Guo, Fully implicit dynamic pore-network modeling of two-phase flow and phase change in
+     porous media, Water Resources Research 56 (11) (2020) e2020WR028510.
+[30] X. Li, Y. Yortsos, Visualization and simulation of bubble growth in pore networks, AIChE Journal 41 (2) (1995)
+     214–222.
+
+[31] L. A. Dillard, M. J. Blunt, Development of a pore network simulation model to study nonaqueous phase liquid
+     dissolution, Water Resources Research 36 (2) (2000) 439–454.
+[32] A. Dominguez, S. Bories, M. Prat, Gas cluster growth by solute diffusion in porous media. experiments and
+     automaton simulation on pore network, International Journal of Multiphase Flow 26 (12) (2000) 1951–1979.
+
+[33] R. Hazlett, Simulation of capillary-dominated displacements in microtomographic images of reservoir rocks,
+     Transport in porous media 20 (1) (1995) 21–35.
+[34] M. Hilpert, C. T. Miller, Pore-morphology-based simulation of drainage in totally wetting porous media, Ad-
+     vances in water resources 24 (3-4) (2001) 243–255.
+
+[35] S. Beucher, C. Lantuéjoul, Use of watersheds in contour detection, in: International Workshop on Image Pro-
+     cessing: Real-time Edge and Motion Detection/Estimation, Rennes, France, 1979.
+[36] J. T. Gostick, Versatile and efficient pore network extraction method using marker-based watershed segmenta-
+     tion, Physical Review E 96 (2) (2017) 023307.
+[37] Y. Mehmani, H. A. Tchelepi, Minimum requirements for predictive pore-network modeling of solute transport
+     in micromodels, Advances in water resources 108 (2017) 83–98.
+[38] F. M. White, J. Majdalani, Viscous fluid flow, Vol. 3, McGraw-Hill New York, 2006.
+[39] T. Patzek, D. B. Silin, Shape factor and hydraulic conductance in noncircular capillaries: I. one-phase creeping
+     flow, Journal of colloid and interface science 236 (2) (2001) 295–304.
+
+[40] Y. Muzychka, M. Yovanovich, Modeling friction factors in non-circular ducts for developing laminar flow, in:
+     2nd AIAA, Theoretical Fluid Mechanics Meeting, 1998, p. 2492.
+[41] T. Patzek, J. Kristensen, Shape factor correlations of hydraulic conductance in noncircular capillaries: Ii. two-
+     phase creeping flow, Journal of colloid and interface science 236 (2) (2001) 305–317.
+
+                                                           31
+[42] R. P. Mayer, R. A. Stowe, Mercury porosimetry–breakthrough pressure for penetration between packed spheres,
+     Journal of colloid Science 20 (8) (1965) 893–911.
+[43] H. Princen, Capillary phenomena in assemblies of parallel cylinders: I. capillary rise between two cylinders,
+     Journal of Colloid and Interface Science 30 (1) (1969) 69–75.
+
+[44] S. Ma, G. Mason, N. R. Morrow, Effect of contact angle on drainage and imbibition in regular polygonal tubes,
+     Colloids and Surfaces A: Physicochemical and Engineering Aspects 117 (3) (1996) 273–291.
+[45] R. Lenormand, C. Zarcone, A. Sarr, Mechanisms of the displacement of one fluid by another in a network of
+     capillary ducts, Journal of Fluid Mechanics 135 (1983) 337–353.
+[46] N. Sahloul, M. Ioannidis, I. Chatzis, Dissolution of residual non-aqueous phase liquids in porous media: pore-
+     scale mechanisms and mass transfer rates, Advances in water resources 25 (1) (2002) 33–49.
+[47] R. Reid, J. Prausnitz, B. Poling, The Properties of Gases and Liquids, 4th Edition, McGraw-Hill, New York,
+     1987.
+[48] J. Mehl, M. Huber, A. Harvey, Ab initio transport coefficients of gaseous hydrogen, Int. J. Thermophys. 31
+     (2010) 740–755. doi:10.1007/s10765-009-0697-9.
+[49] Y. Mehmani, T. Anderson, Y. Wang, S. A. Aryana, I. Battiato, H. A. Tchelepi, A. R. Kovscek, Striving to
+     translate shale physics across ten orders of magnitude: What have we learned?, Earth-Science Reviews 223
+     (2021) 103848.
+[50] S. M. Hassanizadeh, W. G. Gray, Thermodynamic basis of capillary pressure in porous media, Water resources
+     research 29 (10) (1993) 3389–3405.
+[51] J. E. McClure, R. T. Armstrong, M. A. Berrill, S. Schlüter, S. Berg, W. G. Gray, C. T. Miller, Geometric state
+     function for two-fluid flow in porous media, Physical Review Fluids 3 (8) (2018) 084306.
+[52] J. E. McClure, T. Ramstad, Z. Li, R. T. Armstrong, S. Berg, Modeling geometric state for fluids in porous media:
+     Evolution of the euler characteristic, Transport in Porous Media 133 (2) (2020) 229–250.
+[53] V. P. Schulz, E. A. Wargo, E. C. Kumbur, Pore-morphology-based simulation of drainage in porous media
+     featuring a locally variable contact angle, Transport in Porous Media 107 (1) (2015) 13–25.
+[54] X. Liu, A. Zhou, S.-l. Shen, J. Li, Modeling drainage in porous media considering locally variable contact angle
+     based on pore morphology method, Journal of Hydrology 612 (2022) 128157.
+
+
+
+
+                                                         32
+

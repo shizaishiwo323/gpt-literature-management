@@ -1,0 +1,464 @@
+RESEARCH LETTER                               Pore-Scale Observations of Hydrogen Trapping and Migration
+10.1029/2022GL102383
+                                              in Porous Rock: Demonstrating the Effect of Ostwald Ripening
+Key Points:
+                                              Yihuai Zhang1,2 , Branko Bijeljic2         , Ying Gao3, Sepideh Goodarzi2, Sajjad Foroughi2            , and
+• H ydrogen trapping and rearrangement
+                                              Martin J. Blunt2
+   in porous rock have been observed
+   in situ                                    1
+                                                James Watt School of Engineering, University of Glasgow, Glasgow, UK, 2Department of Earth Science and Engineering,
+• Ostwald ripening is observed over
+   timescales consistent with theoretical     Imperial College London, London, UK, 3Shell Global Solutions International B.V., Amsterdam, The Netherlands
+   predictions
+• The results imply less trapping and
+   hysteresis than with completely            Abstract We use high-resolution three-dimensional X-ray imaging to study hydrogen injection and
+   insoluble gas                              withdrawal in the pore space of Bentheimer sandstone. The results are compared with a replicate experiment
+                                              using nitrogen. We observe less trapping with hydrogen because the initial saturation after drainage is lower
+Correspondence to:                            due to channeling. Remarkably we observe that after imbibition, if the sample is imaged again after 12 hr,
+Y. Zhang and M. J. Blunt,                     there is a significant rearrangement of the trapped hydrogen. Many smaller ganglia disappear while the larger
+yihuai.zhang@glasgow.ac.uk;
+m.blunt@imperial.ac.uk
+                                              ganglia swell, with no detectable change in overall gas volume. For nitrogen, the fluid configuration is largely
+                                              unchanged. This rearrangement is facilitated by concentration gradients of dissolved gas in the aqueous phase—
+                                              Ostwald ripening, We estimate the time-scales for this effect to be significant, consistent with the experimental
+Citation:
+Zhang, Y., Bijeljic, B., Gao, Y., Goodarzi,
+                                              observations. The swelling of larger ganglia potentially increases the gas connectivity, leading to less hysteresis
+S., Foroughi, S., & Blunt, M. J. (2023).      and more efficient withdrawal.
+Pore-scale observations of hydrogen
+trapping and migration in porous rock:        Plain Language Summary The supply of energy by hydrogen is a key component of a zero-carbon
+Demonstrating the effect of Ostwald
+ripening. Geophysical Research Letters,       economy; an essential part of global hydrogen use is underground storage at the gigatonne scale in porous
+50, e2022GL102383. https://doi.               rocks. However, the behavior of hydrogen in the subsurface is not well understood. Using high-resolution
+org/10.1029/2022GL102383                      three-dimensional X-ray imaging, we observe that in the pore-space, there is a significant rearrangement of
+                                              hydrogen trapped by water. Many smaller trapped bubbles disappear while the larger ones grow. The process is
+Received 5 DEC 2022
+Accepted 11 MAR 2023                          driven by differences in the amount of gas dissolved in the aqueous phase: this is called Ostwald ripening. We
+                                              estimate the time-scales effect as being important, which are consistent with the experimental observations.
+Author Contributions:
+                                              The work implies that there is less trapping for hydrogen injection and withdrawal compared to equivalent
+Conceptualization: Yihuai Zhang, Ying         hydrocarbon systems, which makes the process efficient.
+Gao, Sepideh Goodarzi, Martin J. Blunt
+Data curation: Yihuai Zhang, Ying Gao
+Formal analysis: Yihuai Zhang, Sajjad         1. Introduction
+Foroughi, Martin J. Blunt
+Funding acquisition: Branko Bijeljic,         The use of hydrogen as an energy source is widely considered to be a key component of a zero-carbon energy
+Martin J. Blunt
+Investigation: Yihuai Zhang, Branko
+                                              economy (Heinemann et al., 2021; Miocic et al., 2022; Parnell & Blamey, 2017; Zeng et al., 2022). Hydrogen has
+Bijeljic, Ying Gao, Sajjad Foroughi,          a high specific energy capacity (120 MJ/kg), larger on a mass basis than natural gas (methane), which makes it a
+Martin J. Blunt                               promising replacement for many fossil-fuel-powered applications. However, the hydrogen needs to be stored until
+Methodology: Yihuai Zhang, Branko
+Bijeljic, Sepideh Goodarzi, Sajjad
+                                              needed, particularly bearing in mind the intermittent nature of renewable power generation. At the scale required,
+Foroughi, Martin J. Blunt                     running to several Gt (10 12 kg) at a global scale, underground storage in depleted hydrocarbon reservoirs, saline
+Project Administration: Branko Bijeljic,      aquifers or salt caverns is required (Aftab et al., 2022; Ali et al., 2021; Boon & Hajibeygi, 2022; Hematpur
+Martin J. Blunt
+Resources: Yihuai Zhang, Branko
+                                              et al., 2023; Muhammed et al., 2022; Raad et al., 2022).
+Bijeljic, Sepideh Goodarzi
+Software: Yihuai Zhang, Sajjad Foroughi
+                                              Hydrogen has an extremely low density, low viscosity and high diffusivity, very different from other gases
+Supervision: Branko Bijeljic, Martin J.       commonly stored or encountered in the subsurface, such as nitrogen, methane, ethane and carbon dioxide. The
+Blunt                                         other challenge is that unlike the one-way nature of most storage or extraction—for instance, with carbon dioxide,
+                                              we only need to design injection such that the carbon dioxide remains underground—in hydrogen storage, we
+                                              need to both inject and produce the gas with as little loss of material, or use of energy, as possible.
+© 2023 The Authors.
+This is an open access article under
+                                              Contact angle controls the amount of trapping in the pore space: lower contact angles (water-wet conditions)
+the terms of the Creative Commons
+Attribution-NonCommercial License,            imply more trapping of hydrogen by water leading to less efficient withdrawal (Hashemi et al., 2021; Yekta
+which permits use, distribution and           et al., 2018). Iglauer et al. (2021) found that the contact angle between water and hydrogen on a quartz substrate
+reproduction in any medium, provided the
+                                              increases, indicating less water-wet conditions, with pressure and depth. The system became intermediate-wet in
+original work is properly cited and is not
+used for commercial purposes.                 the presence of organic material.
+
+
+
+ZHANG ET AL.                                                                                                                                                   1 of 8
+                                                                                                                                                                   19448007, 2023, 7, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL102383 by Imperial College London, Wiley Online Library on [09/08/2023]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                             Geophysical Research Letters                                                      10.1029/2022GL102383
+
+
+Validation: Yihuai Zhang, Branko         To assess the behavior of hydrogen reliably in representative porous formations, it is necessary to observe in situ
+Bijeljic, Ying Gao, Sepideh Goodarzi,
+                                         the pore-space configurations of the fluids. In recent studies, non-destructive high-resolution three-dimensional
+Martin J. Blunt
+Visualization: Yihuai Zhang, Ying Gao,   X-ray imaging has been used to observe trapped hydrogen inside rock otherwise saturated with an aqueous phase
+Sajjad Foroughi                          (Jangda et al., 2023; Jha et al., 2021; Thaysen et al., 2023). These studies have shown that significant trapping of
+Writing – original draft: Yihuai Zhang
+                                         the hydrogen is possible, which potentially limits the efficiency of storage and retrieval.
+Writing – review & editing: Yihuai
+Zhang, Ying Gao, Sepideh Goodarzi,
+                                         One feature of injection and withdrawal that has received less attention, however, is the potential rearrangement
+Martin J. Blunt
+                                         of the gas in the pore space, which is normally completely ignored for hydrocarbon production. However, a
+                                         mechanism that could act to reconnect trapped gas is Ostwald ripening: differences in local capillary pressure
+                                         of trapped ganglia result in differences in the gas pressure and consequently lead to concentration gradients in
+                                         the aqueous phase thanks to small differences in solubility. Diffusion through the aqueous phase will equilibrate
+                                         these gradients, leading to the growth of low-pressure bubbles and the shrinkage, if not complete disappearance,
+                                         of ganglia with higher pressures. In a bulk fluid, the equilibrium state is the aggregation of all the gas in a single
+                                         bubble; in porous media, multiple equilibrium states are possible with a distribution of ganglia of equal capillary
+                                         pressure. This process has been explored in the context of carbon dioxide storage, experimentally, numerically
+                                         and theoretically, and has also been observed for trapped air and natural gas (de Chalendar et al., 2018; Gao
+                                         et al., 2022; Garing et al., 2017; Singh et al., 2022; Xu et al., 2017). However, hitherto no direct studies of Ostwald
+                                         ripening (Ostwald, 1897) have been made for hydrogen, despite the likely rearrangement of gas over day-long
+                                         time scales at the mm-scale thanks to hydrogen's high diffusion coefficient in water (Blunt, 2022).
+
+                                         To study trapping and Ostwald ripening, we have imaged hydrogen trapped inside a Bentheimer sandstone in
+                                         situ via high-resolution X-ray tomography for drainage, and imbibition, representing injection and withdrawal,
+                                         respectively. We also waited after displacement to observe how the fluids reconfigured in the pore space. Nitro-
+                                         gen, as a benchmark gas, with low solubility and relatively low diffusion coefficient in water, was also studied
+                                         as a comparison.
+
+
+                                         2. Materials and Methods
+                                         A cylindrical Bentheimer sandstone sample (6.08 mm diameter and 28.76 mm length) was mounted in a specially
+                                         designed micro-fluidics apparatus: details can be found elsewhere (Gao et al., 2017; Scanziani et al., 2018; Zhang,
+                                         Bijeljic, & Blunt, 2022; Zhang, Lin et al., 2022). The sample and system were vacuumed for 10 hr and followed
+                                         by injecting 200 pore volumes (PV) brine (distilled water with 3.4 wt% KI, potassium iodide) at 1 ml/min flow
+                                         rate with 1 MPa back (fluid) pressure to reach a fully saturated condition. The temperature of the experiments
+                                         was set at 25°C.
+
+                                         We conducted the investigations by the following steps.
+
+                                         1. Hydrogen injection (drainage) for 40 PV with a 0.04 ml/min injection rate; the capillary number was
+                                             2.55 × 10 −9.
+                                         2. Brine injection (imbibition) at the same flow rate and with the same pore volumes injected as in step 1; the
+                                             capillary number was 2.62 × 10 −7.
+                                         3. 12 hr storage period. Here the system was left with no flow.
+
+                                         A ZEISS Xradia Versa 520 X-ray microscope was used to image the rock and fluids after each step with a 3.58 μm
+                                         voxel size: the settings were 75 kV X-ray energy, 0.5 s exposure time, and 1601 projections with a flat panel
+                                         detector. The imaged volume was in the middle of the sample, with the field of view being 1608 × 1608 × 2933
+                                         voxels. After the hydrogen experiment, we injected many pore volumes of brine again to dissolve the hydrogen
+                                         completely to reach an initial full brine saturation, and then we repeated the experiments as before but with nitro-
+                                         gen rather than hydrogen.
+
+
+                                         3. Results and Discussion
+                                         3.1. Phase Configurations in Drainage and Imbibition
+
+                                         The pore-scale X-ray images are shown in Figure 1: in the greyscale images, gas is black, brine is dark gray, and
+                                         the rock is light gray; in the segmented images, the gas phase is yellow, brine is blue, and rock is gray. The results
+                                         clearly show that after the gas drainage (Step 1), the nitrogen had the higher pore volume fraction (saturation);
+
+
+ZHANG ET AL.                                                                                                                                             2 of 8
+                                                                                                                                            19448007, 2023, 7, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL102383 by Imperial College London, Wiley Online Library on [09/08/2023]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                   Geophysical Research Letters                                                        10.1029/2022GL102383
+
+
+
+
+               Figure 1. Example two-dimensional cross-sections of the three-dimensional images showing the same area of the sample
+               after 40 pore volumes (PV) drainage and imbibition for hydrogen and nitrogen experiments. The greyscale images are shown
+               at the top. In the segmented images below, yellow is gas, blue is water, and gray is rock matrix.
+
+
+               it is 0.83, almost twice that for hydrogen (0.44), quantified from the segmented images. The residual nitrogen
+               saturation is 0.36 after imbibition (Step 2) but is only 0.11 in the hydrogen experiment. The lower hydrogen
+               saturations can be explained by channeling through the pore space driven by the lower hydrogen viscosity of
+               0.88 × 10 −5 Pa.s, compared to nitrogen, 1.76 × 10 −5 Pa.s (Engineering ToolBox, 2014). In addition, during imbi-
+               bition, a significant fraction of the hydrogen can dissolve in the injected brine.
+
+
+               3.2. Ganglia Size Distribution and Wettability
+
+               After the 12 hr storage period (Step 3), the X-ray images show a significant change in the hydrogen experiment
+               but not in the nitrogen case: many small hydrogen ganglia that were trapped in Step 2, disappear, but larger
+               bubbles grow, as illustrated in Figures 2 and 3. The discrete ganglia are identified, and their volume is quantified.
+               Initially, the trapped ganglia of hydrogen are mainly located in the 10 3–10 4 μm 3 range; however, it moves to
+               larger sizes, 10 6–10 7 μm 3, after 12 hr. In contrast, there is little change in the distribution for nitrogen, with most
+               volume in ganglia of size 10 6–10 7 μm 3, although there is a small shift toward larger ganglia. Note that the overall
+               volume of gas does not significantly change—bubbles are not somehow removed from the system; instead, the
+               size distribution changes while maintaining the same amount of gas in its own phase.
+
+               We also mapped the contact angle distributions between gas, brine and rock for all three steps in Figure 4, based
+               on a subset of the whole image of size 600 × 600 × 600 voxels. The contact angles were obtained through an
+               automated algorithm (AlRatrout et al., 2017). In all cases, the contact angles are centered at 60–70°, indicating
+               weakly water-wet conditions, consistent with the quartz contact angle measurements of Iglauer et al. (2021). As
+               expected from the lack of ganglion rearrangement in nitrogen, the contact angle distributions after all three steps
+               are similar. However, we do observe an increase of around 10° in contact angle after waiting 12 hr for hydrogen.
+               This is consistent with Ostwald ripening. Trapping initially occurs principally through snap-off in the tightest,
+               most water-wet regions of the pore space. Smaller contact angles lead to larger interfacial curvature, higher local
+               capillary pressures and greater solubility. The ganglia with locally smaller contact angles and higher capillary
+               pressures then tend to lose gas volume in favor of larger ganglia with larger contact angles, lower interfacial
+               curvature and lower solubility. This is illustrated in Figure 3, where the pores where water seems more wetting
+               lose hydrogen in favor of other regions where the contact angle appears to be larger, where the capillary pressure
+               is lower. A new position of equilibrium is reached with larger contact angles and ganglia. This trend is not seen
+               for nitrogen, as initially, there is a lot of trapping anyway with larger ganglia present.
+
+
+ZHANG ET AL.                                                                                                                      3 of 8
+                                                                                                                                                                             19448007, 2023, 7, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL102383 by Imperial College London, Wiley Online Library on [09/08/2023]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                               Geophysical Research Letters                                                             10.1029/2022GL102383
+
+
+
+
+Figure 2. (a) 3D images of the trapped gas ganglia before and after 12 hr for both the hydrogen and nitrogen experiment: yellow represents trapped gas ganglia. (b)
+The quantified ganglia size distributions are shown with equal bin sizes in logarithmic space: this is equivalent to a volume-weighted distribution. The area under the
+distributions remains the same, indicating no change in gas volume.
+
+
+                                           We also assessed wettability through measuring interfacial area on the same subvolume; the results are shown
+                                           in Table 1. For the hydrogen experiment we see a significant decrease in area between water and gas after 12 hr,
+                                           consistent with the aggregation of smaller ganglia into larger ones. If the system is water-wet we expect the water
+                                           to preferentially coat the solid surfaces. The ratio of the fraction of the solid contacted by the water to the satu-
+                                           ration can be used as a measure of wettability: a value greater than 1 indicates a water-wet system, as seen here
+                                           (Garfi et al., 2022). However, uncertainties in the measurement of interfacial area, and the low gas saturations,
+                                           mean that we cannot determine any clear trends in wettability between the hydrogen and nitrogen experiments.
+
+
+
+
+Figure 3. Examples of two-dimensional slices on a 600 × 600 × 600 voxel image for the hydrogen experiments after drainage, imbibition and after waiting a further
+12 hr. Yellow is the hydrogen, blue is the brine, and gray is the rock. Note that some smaller ganglia, where water appears to be strongly wetting, disappear while other
+trapped regions grow, displacing brine. The red circle area is an example of where the hydrogen ganglia enlarged.
+
+
+ZHANG ET AL.                                                                                                                                                        4 of 8
+                                                                                                                                                                                  19448007, 2023, 7, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL102383 by Imperial College London, Wiley Online Library on [09/08/2023]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                 Geophysical Research Letters                                                              10.1029/2022GL102383
+
+
+
+
+Figure 4. The distribution for contact angles between gas, brine and solid after drainage, imbibition and after waiting 12 hr for both nitrogen and hydrogen
+experiments.
+
+                                          3.3. Time-Scales for Ostwald Ripening
+
+                                          We will now estimate the time scale for Ostwald ripening to have a significant effect on the ganglion distribution,
+                                          using Henry's, Fick's and the ideal gas laws, to show that this is possible for the hydrogen experiment. In a gas
+                                          brine system, the equilibrium concentration of gas is the function of the pressure of gas, Pg, by Henry's law:
+                                          𝐶 = HP𝑔
+                                          (1)
+
+                                          where H is the Henry's Law constant. Concentration is defined in mol.m −3 and pressure in Pa. Therefore, typical
+                                          concentration differences between ganglia can be approximated as,
+                                                           𝜎𝜎
+                                          (2)
+                                          Δ𝐶𝐶 = 𝐻𝐻Δ𝑃𝑃 = 𝐻𝐻
+                                                           𝑟𝑟
+
+                                          where we have assumed that pressure differences between ganglia are of order a typical capillary pressure, where
+                                          σ is the interfacial tension and r is a typical radius of curvature of a gas-brine meniscus.
+                                          The diffusive flux F of dissolved gas in mol.s −1 can be described by Fick's law,
+                                                    Δ𝐶𝐶
+                                          (3)
+                                          𝐹𝐹 = 𝐴𝐴𝐴𝐴
+                                                     𝐿𝐿
+
+                                          where A is a typical pore area, D is the diffusion coefficient of the gas in the aqueous phase, and L is the diffusion
+                                          length.
+
+                                          We can then use this flux to estimate the time scale for a ganglion to completely disappear—as we see in the
+                                          experiments.
+
+
+                                            Table 1
+                                            Interfacial Areas, Saturation and the Ratio of Fractional Coverage to Saturation for the Experiments on 600 × 600 × 600
+                                            Voxels Cropped Image; a Is the Specific Interfacial Area (Area per Unit Volume), g Represents Gas (Nitrogen or
+                                            Hydrogen), w Is Water and s Is Solid, Sw Is the Water Saturation
+                                                             Nitrogen         Nitrogen        Nitrogen imbibition        Hydrogen        Hydrogen       Hydrogen imbibition
+                                            Experiment       drainage        imbibition            after 12 hr           drainage        imbibition         after 12 hr
+                                            Sw                   0.17            0.84                  0.76                  0.47            0.93                 0.89
+                                            agw [mm −1]          0.25            0.64                  0.53                  0.58            0.64                 0.19
+                                            aws [mm −1]          5.2            18.8                  20.3                  13.2            19.3                 19.5
+                                            ags [mm −1]        13.9              1.5                   2.8                   8.0             0.6                  0.7
+                                            fw                   0.27            0.93                  0.88                  0.62            0.97                 0.97
+                                            fw/Sw                1.6             1.1                   1.2                   1.3             1.0                  1.1
+                                            Note. The wetted fraction is defined as fw = aws/(ags + aws). The ratio fw/Sw is a measure of wettability. If this ratio is greater
+                                            than 1 it represents water-wet conditions.
+
+
+
+ZHANG ET AL.                                                                                                                                                             5 of 8
+                                                                                                                                         19448007, 2023, 7, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL102383 by Imperial College London, Wiley Online Library on [09/08/2023]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                   Geophysical Research Letters                                                      10.1029/2022GL102383
+
+
+                  𝑛   𝑃𝑉
+               𝑡=
+               (4) =
+                  𝐹   FRT
+
+               where n is the number of moles of gas in the ganglion and we have used the ideal gas law where V is volume, T is
+               temperature and R is the universal gas constant. We assume that all the material is lost through Ostwald ripening
+               and ignore the possibility that the ganglia—when they become very small—may be able to advect through the
+               pore space and merge with larger neighbors directly.
+
+               When combining Equations 1–4, the time for the small ganglia to disappear is estimated to be
+
+                       𝐿𝐿𝐿𝐿𝐿𝐿 𝐿𝐿
+               (5)
+               𝑡𝑡 =
+                    𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴𝐴
+
+               We assume that the length L = 2 mm, since this is the length scale over which we see ganglion rearrangement,
+               Figure 2. Equation 5 also contains three related pore-scale quantities: V, A and r. We can estimate V as the
+               typical volume of a single-pore gangion that disappears: from Figure 2b, we can estimate this to be approxi-
+               mately 5 × 10 −15 m 3 (5 × 10 3 μm 3). If we assume that the ganglion is spherical, its radius r = 23 μm, which is
+               almost exactly the threshold throat radius in Bentheimer for displacement (24 μm; Blunt, 2017). The equivalent
+               cross-sectional area A = πr 2. Then we rewrite Equation 5 in terms of a typical pore radius as:
+
+                      𝐿𝐿𝐿𝐿2 𝑃𝑃
+               (6)
+               𝑡𝑡 =
+                    3𝐷𝐷𝐷𝐷𝐷𝐷𝐷𝐷𝐷𝐷
+
+               For the hydrogen water system, H is 7.8 × 10 −6 mol.m −3.Pa −1 (Linstrom & Mallard, 2014), D is 5.13 × 10 −9 m 2.s −1
+               (Hemme & Van Berk, 2018), and σ is 7.29 × 10 −2 N.m −1 (Chow et al., 2018). For nitrogen, H is 6 × 10 −6 mol.m −3.
+               Pa −1 (Linstrom & Mallard, 2014), D is 2 × 10 −9 m 2.s −1 (Cadogan et al., 2014), and σ is 4.7 × 10 −2 N.m −1 (Linstrom
+               & Mallard, 2014). When we put these values in Equation 6, we find a time of 19,000 s or approximately 5 hr for
+               hydrogen and 100,000 s or 28 hr for nitrogen. What this implies is that for our experiments conducted over 12 hr,
+               we may indeed see a significant influence of Ostwald ripening for hydrogen over the scale of 2 mm, but with
+               less effect for nitrogen. In addition, from Figure 2, there are virtually no single-pore ganglia of nitrogen initially
+               anyway, so rearrangement can only occur for larger ganglia with even longer time-scales: some small changes
+               are seen but are less significant than for hydrogen. At elevated temperatures and pressures, from Equation 6, the
+               time-scales will be larger, but still of order days to weeks at typical subsurface storage conditions, and hence
+               still shorter than the likely month-to-year cycles of injection and withdrawal. Note that this is an approximate
+               calculation, but what we observe in the experiments is consistent with the theoretical analysis. Thus, we can
+               conclude that, under the same conditions, nitrogen ganglia will take more than five times longer than hydrogen
+               to disappear.
+
+
+               4. Conclusions and Future Work
+               We imaged a sample of Bentheimer sandstone after drainage, imbibition and storage steps in both hydrogen–brine
+               and nitrogen–brine systems. Due to channeling during initial injection and dissolution, less hydrogen was trapped
+               in the pore space than nitrogen.
+
+               The main finding of this work was that after waiting 12 hr with no flow, we observed a significant rearrangement
+               of trapped ganglia of hydrogen. Although the total mass of hydrogen stayed constant, smaller ganglia tended to
+               disappear while larger ganglia grew. The average contact angle between hydrogen and brine also increased, as
+               there was a tendency for the hydrogen to aggregate in less water-wet regions with a lower local capillary pressure.
+               No noticeable change was seen for nitrogen.
+
+               We hypothesize that this rearrangement of ganglia is caused by Ostwald ripening: diffusion of dissolved gas in
+               the aqueous phase in response to local concentration gradients, which drives the system to a state of equilibrium
+               with constant local capillary pressure. This interpretation is consistent with other studies in the literature in 2D
+               micromodels (Xu et al., 2017). We estimated the time scales for this to significantly change the fluid configura-
+               tion over lengths of 2 mm: this was around 5 hr of hydrogen, consistent with the experiments.
+
+               The effect of Ostwald ripening is to equilibrate local capillary pressures and hence act to reduce capillary pres-
+               sure hysteresis. While it may take many years for geological time scales to have a significant effect at the field
+
+
+ZHANG ET AL.                                                                                                                   6 of 8
+                                                                                                                                                                                                      19448007, 2023, 7, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL102383 by Imperial College London, Wiley Online Library on [09/08/2023]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                                                   Geophysical Research Letters                                                                           10.1029/2022GL102383
+
+
+                                              scale (Blunt, 2022), locally—at the mm to cm level—there is a significant rearrangement. This may then lead to
+                                              a capillary pressure over a representative elementary volume that displays less hysteresis, indicating less trapping
+                                              and more efficient injection and withdrawal, which is favorable for hydrogen storage and extraction.
+
+                                              Further work is thus required to test the hypothesis above, as well as studying the effect of the different tempera-
+                                              ture and pressure conditions. Experiments could be performed with higher initial gas saturations, perhaps imposed
+                                              through a porous plate and at higher pressures, and with brine pre-equilibrated with gas to remove the compli-
+                                              cating effect of dissolution. A careful analysis of repeated drainage and imbibition cycles with measurement, or
+                                              estimation, of capillary pressure, could determine if indeed Ostwald ripening can lead to a less hysteretic capillary
+                                              pressure than found in, for instance, oil-water systems where the ripening effect is negligible. This phenomenon
+                                              would also affect relative permeability, meaning that the use of immiscible-type multiphase flow functions to
+                                              model hydrogen storage, with quiescent periods of several months between injection and withdrawal, is flawed.
+
+
+                                              Data Availability Statement
+                                              The data set in this paper can be accessed through Mendeley data: https://doi.org/10.17632/rbkvwt7tws.1.
+
+
+Acknowledgments                               References
+We thank Shell through the Digital Rocks
+programme for funding this work. We are       Aftab, A., Hassanpouryouzband, A., Xie, Q., Machuca, L. L., & Sarmadivaleh, M. (2022). Toward a fundamental understanding of geological
+grateful to Dr. Steffen Berg for suggesting      hydrogen storage. Industrial & Engineering Chemistry Research, 61(9), 3233–3253. https://doi.org/10.1021/acs.iecr.1c04380
+that we study Ostwald ripening.               Ali, M., Jha, N. K., Al-Yaseri, A., Zhang, Y., Iglauer, S., & Sarmadivaleh, M. (2021). Hydrogen wettability of quartz substrates exposed to organic
+                                                 acids; Implications for hydrogen geo-storage in sandstone reservoirs. Journal of Petroleum Science and Engineering, 207, 109081. https://doi.
+                                                 org/10.1016/j.petrol.2021.109081
+                                              AlRatrout, A., Raeini, A. Q., Bijeljic, B., & Blunt, M. J. (2017). Automatic measurement of contact angle in pore-space images. Advances in
+                                                 Water Resources, 109, 158–169. https://doi.org/10.1016/j.advwatres.2017.07.018
+                                              Blunt, M. J. (2017). Multiphase flow in permeable media: A pore-scale perspective. Cambridge University Press.
+                                              Blunt, M. J. (2022). Ostwald ripening and gravitational equilibrium: Implications for long-term subsurface gas storage. Physical Review E,
+                                                 106(4), 045103. https://doi.org/10.1103/physreve.106.045103
+                                              Boon, M., & Hajibeygi, H. (2022). Experimental characterisation of H2/water multiphase flow in heterogeneous sandstone rock at the core scale
+                                                 relevant for underground hydrogen storage (UHS). Scientific Reports, 12(1), 1–12.
+                                              Cadogan, S. P., Maitland, G. C., & Trusler, J. M. (2014). Diffusion coefficients of CO2 and N2 in water at temperatures between 298.15 K and
+                                                 423.15 K at pressures up to 45 MPa. Journal of Chemical & Engineering Data, 59(2), 519–525. https://doi.org/10.1021/je401008s
+                                              Chow, Y. F., Maitland, G. C., & Trusler, J. M. (2018). Interfacial tensions of (H2O + H2) and (H2O + CO2 + H2) systems at temperatures of
+                                                 (298–448) K and pressures up to 45 MPa. Fluid Phase Equilibria, 475, 37–44. https://doi.org/10.1016/j.fluid.2018.07.022
+                                              de Chalendar, J. A., Garing, C., & Benson, S. M. (2018). Pore-scale modelling of Ostwald ripening. Journal of Fluid Mechanics, 835, 363–392.
+                                                 https://doi.org/10.1017/jfm.2017.720
+                                              Engineering ToolBox. (2014). Gases - dynamic viscosities.
+                                              Gao, Y., Lin, Q., Bijeljic, B., & Blunt, M. J. (2017). X-ray microtomography of intermittency in multiphase flow at steady state using a differential
+                                                 imaging method. Water Resources Research, 53(12), 10274–10292. https://doi.org/10.1002/2017wr021736
+                                              Gao, Y., Sorop, T., Brussee, N., van der Linde, H., Coorn, A., Appel, M., & Berg, S. (2022). Advanced digital-SCAL measurements of gas trapped
+                                                 in sandstone, paper SCA2022-043. In Proceedings of SCA annual meeting.
+                                              Garfi, G., John, C. M., Rücker, M., Lin, Q., Spurin, C., Berg, S., & Krevor, S. (2022). Determination of the spatial distribution of wetting in the
+                                                 pore networks of rocks. Journal of Colloid and Interface Science, 613, 786–795. https://doi.org/10.1016/j.jcis.2021.12.183
+                                              Garing, C., de Chalendar, J. A., Voltolini, M., Ajo-Franklin, J. B., & Benson, S. M. (2017). Pore-scale capillary pressure analysis using multi-scale
+                                                 X-ray micromotography. Advances in Water Resources, 104, 223–241. https://doi.org/10.1016/j.advwatres.2017.04.006
+                                              Hashemi, L., Glerum, W., Farajzadeh, R., & Hajibeygi, H. (2021). Contact angle measurement for hydrogen/brine/sandstone system using
+                                                 captive-bubble method relevant for underground hydrogen storage. Advances in Water Resources, 154, 103964. https://doi.org/10.1016/j.
+                                                 advwatres.2021.103964
+                                              Heinemann, N., Alcalde, J., Miocic, J. M., Hangx, S. J., Kallmeyer, J., Ostertag-Henning, C., et al. (2021). Enabling large-scale hydrogen storage
+                                                 in porous media–the scientific challenges. Energy & Environmental Science, 14(2), 853–864. https://doi.org/10.1039/d0ee03536j
+                                              Hematpur, H., Abdollahi, R., Rostami, S., Haghighi, M., & Blunt, M. J. (2023). Review of underground hydrogen storage: Concepts and chal-
+                                                 lenges. Advances in Geo-Energy Research, 7(2), 111–131. https://doi.org/10.46690/ager.2023.02.05
+                                              Hemme, C., & Van Berk, W. (2018). Hydrogeochemical modeling to identify potential risks of underground hydrogen storage in depleted gas
+                                                 fields. Applied Sciences, 8(11), 2282. https://doi.org/10.3390/app8112282
+                                              Iglauer, S., Ali, M., & Keshavarz, A. (2021). Hydrogen wettability of sandstone reservoirs: Implications for hydrogen geo-storage. Geophysical
+                                                 Research Letters, 48(3), e2020GL090814. https://doi.org/10.1029/2020gl090814
+                                              Jangda, Z., Menke, H., Busch, A., Geiger, S., Bultreys, T., Lewis, H., & Singh, K. (2023). Pore-scale visualisation of hydrogen storage in a sand-
+                                                 stone at subsurface pressure and temperature conditions: Trapping, dissolution and wettability. Journal of Colloid and Interface Science, 629,
+                                                 316–325. https://doi.org/10.1016/j.jcis.2022.09.082
+                                              Jha, N. K., Al-Yaseri, A., Ghasemi, M., Al-Bayati, D., Lebedev, M., & Sarmadivaleh, M. (2021). Pore scale investigation of hydro-
+                                                 gen injection in sandstone via X-ray micro-tomography. International Journal of Hydrogen Energy, 46(70), 34822–34829.
+                                                 https://doi.org/10.1016/j.ijhydene.2021.08.042
+                                              Linstrom, P. J., & Mallard, W. G. (2014). NIST chemistry WebBook, NIST standard reference database number 69. (p. 20899). National Institute
+                                                 of Standards and Technology.
+                                              Miocic, J., Heinemann, N., Edlmann, K., Scafidi, J., Molaei, F., & Alcalde, J. (2022). Underground hydrogen storage: A review. Geological
+                                                 Society, London, Special Publications, 528(1), SP528–2022. https://doi.org/10.1144/sp528-2022-88
+
+
+
+ZHANG ET AL.                                                                                                                                                                               7 of 8
+                                                                                                                                                                        19448007, 2023, 7, Downloaded from https://agupubs.onlinelibrary.wiley.com/doi/10.1029/2022GL102383 by Imperial College London, Wiley Online Library on [09/08/2023]. See the Terms and Conditions (https://onlinelibrary.wiley.com/terms-and-conditions) on Wiley Online Library for rules of use; OA articles are governed by the applicable Creative Commons License
+                    Geophysical Research Letters                                                                            10.1029/2022GL102383
+
+
+               Muhammed, N. S., Haq, B., Al Shehri, D., Al-Ahmed, A., Rahman, M. M., & Zaman, E. (2022). A review on underground hydrogen storage:
+                  Insight into geological sites, influencing factors and future outlook. Energy Reports, 8, 461–499. https://doi.org/10.1016/j.egyr.2021.12.002
+               Ostwald, W. (1897). Studien über die Bildung und Umwandlung fester Körper. Zeitschrift für Physikalische Chemie, 22(1), 289–330. https://doi.
+                  org/10.1515/zpch-1897-2233
+               Parnell, J., & Blamey, N. (2017). Global hydrogen reservoirs in basement and basins. Geochemical Transactions, 18(1), 1–8. https://doi.
+                  org/10.1186/s12932-017-0041-4
+               Raad, S. M. J., Leonenko, Y., & Hassanzadeh, H. (2022). Hydrogen storage in saline aquifers: Opportunities and challenges. Renewable and
+                  Sustainable Energy Reviews, 168, 112846. https://doi.org/10.1016/j.rser.2022.112846
+               Scanziani, A., Singh, K., Bultreys, T., Bijeljic, B., & Blunt, M. J. (2018). In situ characterisation of immiscible three-phase flow at the pore scale
+                  for a water-wet carbonate rock. Advances in Water Resources, 121, 446–455. https://doi.org/10.1016/j.advwatres.2018.09.010
+               Singh, D., Friis, H. A., Jettestuen, E., & Helland, J. O. (2022). A level set approach to Ostwald ripening of trapped gas bubbles in porous media.
+                  Transport in Porous Media, 145(2), 441–474. https://doi.org/10.1007/s11242-022-01859-4
+               Thaysen, E. M., Butler, I. B., Hassanpouryouzband, A., Freitas, D., Alvarez-Borges, F., Krevor, S., et al. (2023). Pore-scale imaging of hydro-
+                  gen displacement and trapping in porous media. International Journal of Hydrogen Energy, 48(8), 3091–3106. https://doi.org/10.1016/j.
+                  ijhydene.2022.10.153
+               Xu, K., Bonnecaze, R., & Balhoff, M. (2017). Egalitarianism among bubbles in porous media: An Ostwald ripening derived anticoarsening
+                  phenomenon. Physical Review Letters, 119(26), 264502. https://doi.org/10.1103/physrevlett.119.264502
+               Yekta, A. E., Manceau, J. C., Gaboreau, S., Pichavant, M., & Audigane, P. (2018). Determination of hydrogen–water relative permeability and
+                  capillary pressure in sandstone: Application to underground hydrogen injection in sedimentary formations. Transport in Porous Media, 122(2),
+                  333–356. https://doi.org/10.1007/s11242-018-1004-7
+               Zeng, L., Keshavarz, A., Xie, Q., & Iglauer, S. (2022). Hydrogen storage in Majiagou carbonate reservoir in China: Geochemical modelling
+                  on carbonate dissolution and hydrogen loss. International Journal of Hydrogen Energy, 47(59), 24861–24870. https://doi.org/10.1016/j.
+                  ijhydene.2022.05.247
+               Zhang, Y., Bijeljic, B., & Blunt, M. J. (2022). Nonlinear multiphase flow in hydrophobic porous media. Journal of Fluid Mechanics, 934, R3.
+                  https://doi.org/10.1017/jfm.2021.1148
+               Zhang, Y., Lin, Q., Raeini, A. Q., Onaka, Y., Iwama, H., Takabayashi, K., et al. (2022b). Pore-scale imaging of asphaltene deposition with perme-
+                  ability reduction and wettability alteration. Fuel, 316, 123202. https://doi.org/10.1016/j.fuel.2022.123202
+
+
+
+
+ZHANG ET AL.                                                                                                                                                 8 of 8
+

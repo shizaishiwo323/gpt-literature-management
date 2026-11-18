@@ -1,0 +1,482 @@
+Center for Turbulence Research                                                            317
+Proceedings of the Summer Program 2024
+
+
+  Ostwald ripening and breakup characteristics of
+ the advective Cahn-Hilliard equation: The role of
+              free energy functionals
+                  By M. F. P. ten Eikelder† A N D M. A. Khanwale
+
+   Ostwald ripening, the vanishing of small droplets or bubbles that arise during breakup,
+poses a significant challenge in the computational modeling of a wide range of multiphase
+systems. This process leads locally to a loss of mass in one of the phases, even when the
+total mass is conserved. The numerical breakup of the model (breakup due to insufficient
+resolution) and the mitigation of Ostwald ripening can lead to the model showing different
+breakup behavior under low numerical resolutions. In this paper, within the context of the
+advective Cahn-Hilliard phase-field model, we explore the influence of different free energy
+functionals on this process through numerical simulations. Our simulations show that the
+Ginzburg-Landau potential leads to Ostwald ripening. This phenomenon is minimized
+and leads to a desirable delay in numerical breakup when adopting the Flory-Huggins
+potential. These findings have important implications in high-fidelity multiphase simula-
+tions, particularly in high–Reynolds number flows involving breakup.
+
+
+
+1. Introduction
+   Multiphase flow is ubiquitous in various fields of science and engineering, where the in-
+teraction between different phases plays a pivotal role. Understanding and predicting these
+complex flow phenomena requires robust modeling and discretization techniques. Phase-
+field modeling and computation that utilizes thermodynamic arguments has emerged as a
+mature modeling technology, offering solutions to the challenges inherent in multiphase
+flow (Anderson et al. 1998; Gomez & van der Zee 2018). It addresses both physical
+modeling and geometrical representation through a smooth scalar phase field variable
+that simultaneously represents a physical quantity (e.g., a concentration) and accounts for
+geometrical and topological changes in the interface between the two phases. This method
+allows for modeling complex flow physics, including capillary effects, phase transitions,
+and small-scale dynamics, where arbitrary topological transitions occur. Consequently,
+phase-field modeling provides a significant advantage over traditional methods, which be-
+come intractable for problems involving such intricate dynamics, especially when modeling
+multiphysics phenomena (for example, see (Mirjalili et al. 2020; Roccon et al. 2023)).
+   The Cahn-Hilliard (CH) equation is a pivotal phase field model for the description of
+multiphase systems (Cahn & Hilliard 1958). This equation provides a robust framework for
+understanding phase separation and coarsening in binary mixtures by minimizing a free
+energy functional (Elliott & Garcke 1996). It plays a central role in the Navier-Stokes Cahn-
+Hilliard (NSCH) model, which describes the evolution of viscous incompressible isothermal
+fluid mixtures with surface tension (Abels et al. 2012; Lowengrub & Truskinovsky 1998;
+ten Eikelder et al. 2023). This model is popular for the simulation of a wide range of
+  † Institute for Mechanics, Computational Mechanics Group, Technical University of Darmstadt,
+    Germany
+318                              ten Eikelder & Khanwale
+complex fluid dynamics with multiple phases—see, e.g., Khanwale et al. (2020); Guo et al.
+(2022); Khanwale et al. (2022a); ten Eikelder & Schillinger (2024).
+   One of the major challenges in the simulation of multiphase systems is the persistence
+of small droplets/bubbles that arise during breakup events, particularly in the case of
+high–Reynolds number situations, as this affects the droplet size distribution, an important
+quantity of interest. In the existing NSCH simulations of such systems, at a given mesh
+resolution, larger droplets typically grow at the expense of smaller ones due to violation of
+boundedness and minimization of the energy functional of the partial differential equation
+(PDE) system, especially for the small droplets, which are typically underresolved (Yue
+et al. 2007). This leads to the eventual disappearance of such small droplets or bubbles, a
+process known as Ostwald ripening or coarsening (Voorhees 1985). If these droplets do
+not coalesce, the Ostwald-ripening effect in existing NSCH simulations is unphysical.
+   A commonly used functional in CH is the Ginzburg-Landau (GL) potential, which
+characterizes the two phases by a double-well structure (Ginzburg & Landau 1950). While
+effective in many scenarios, the GL potential does not inherently preserve the bounds of
+the phase concentration, leading to potentially unphysical numerical results. This bound
+violation is not due to numerical discretization; it is a feature of the GL potential for the
+CH phase-field model. These bound violations depend on the feature size (droplet/filament)
+relative to the minimum numerical resolution of the simulation. In practice, a clipping
+procedure pulls back the phase field to its saturation bounds to calculate mixture density
+and viscosity, thereby preserving realizability. However, this retraction can lead to other
+cascading errors. To minimize this effect, different strategies have been used in the
+literature [e.g., penalty fluxes (Roccon et al. 2023), degenerate mobilities (Dai & Du 2016;
+Khanwale et al. 2022b) and dynamic interface thickness (Khanwale et al. 2022b)].
+   In this paper, we consider the Flory-Huggins (FH) potential which is a bound-preserving
+free energy potential rooted in the thermodynamics of mixtures (Flory 1953). Therefore,
+the main objective of this paper is to study the role of the free energy functional on
+the Ostwald ripening within the CH framework. We perform numerical simulations of
+the advective CH model using GL and FH potentials and discuss their effect on the
+small-scale droplet/bubble stability. Our results highlight the advantages of using the FH
+potential in preventing unphysical Ostwald ripening.
+   Adopting the FH potential of course introduces several challenges for numerical simula-
+tions. As a secondary objective, we propose a numerical scheme for the mixed formulation
+of the CH model that permits large time steps. We refer readers to Wang et al. (2020);
+Barrett et al. (1999) for other methods for the CH with the FH potential, and note the
+paper of Chen et al. (2024) for the simulation of the NSCH model with the FH potential
+with matching densities.
+
+
+2. The Cahn-Hilliard model
+                         2.1. Governing equations and properties
+Let Ω ⊂ R , d = 2, 3, be an open, connected spatial domain with boundary Γ = ∂Ω,
+           d
+
+and the unit outward normal denotes n. We consider the evolution dynamics of a binary
+mixture in Ω governed by the advective CH equation. The problem under consideration
+consists of solving the strong formulation: given the (time-dependent) vector field v =
+v(x, t) : Ω̄ × T → R, find c = c(x, t) : Ω̄ × T → [0, 1] such that
+
+
+                        ∂t c + div(cv) − div (m∇µ) = 0,      in   Ω,                  (2.1a)
+                      Ostwald ripening in Cahn-Hilliard dynamics                        319
+                                      −1
+                                µ−ε        w(c) + ε∆c = 0,    in   Ω,                (2.1b)
+                                            (m∇µ) · n = 0,    in   Γ,                (2.1c)
+                                               ∇c · n = 0,    in   Γ,                (2.1d )
+with c(x, 0) = c0 (x) in Ω, where the time domain is T = (0, T ) with T > 0, and where we
+assume ∇ · v(x, t) = 0 in Ω. Here c = c(x, t) denotes the concentration (with physical
+bounds c ∈ [0, 1]) of one of the two components, w = w(c) is the derivative of a local
+potential function W = W (c) (W ′ (c) = w(c)) and µ is the chemical potential. Additionally,
+m denotes the concentration-dependent positive mobility quantity m = m(c) ≥ 0, and ε
+is a positive constant that represents the interface width. We choose m(c) = c+ (1 − c)+ ,
+where a+ = (a + |a|)/2 is the positive part of a ∈ R. Eq. (2.1a) describes the CH evolution
+dynamics, Eq. (2.1b) defines the chemical potential µ and Eqs. (2.1c, 2.1d) prescribe the
+homogeneous boundary conditions.
+   The Helmholtz free energy (Ψ) associated with the system (2.1) is
+                                Z
+                                                          1         1
+               Ψ = Ψ(c, ∇c) =      ψ(c, ∇c) dv,      ψ = W (c) + ε∥∇c∥2 ,              (2.2)
+                                 Ω                        ε         2
+where ψ is the Helmholtz free energy density, and where v is the volume element. The
+chemical potential in Eq. (2.1b) is defined as the Fréchet derivative of Eq. (2.2):
+                                                         
+                                   δΨ     ∂ψ           ∂ψ
+                             µ=        =     − div           .                       (2.3)
+                                   δc     ∂c         ∂∇c
+
+               R from Eqs. (2.1a)
+Next, we observe             R and (2.1c) that the concentration is a globally conserved
+quantity, i.e., c(x, t) dv = c(x, 0) dv for all t ∈ T . Additionally, in the absence of
+advection, we have the energy-dissipation law:
+                                       Z
+                              d
+                                 Ψ=−      m∥∇µ∥2 dx ≤ 0,                            (2.4)
+                              dt        Ω
+
+where ∥ · ∥ is the standard Euclidean norm.
+
+                                2.2. Free energy potentials
+The GL double-well potential W (c) = G(c) and its derivative w(c) = g(c) are defined as
+                    G(c) = 4c2 (1 − c)2 ,      g(c) = 8c(2c − 1)(c − 1).               (2.5)
+The structure of the GL potential reveals the underlying problem. Even though the
+minima of the double-well potential G(c) are at c = ±1, it is well-defined for all c ∈ R.
+As such, it contains no mechanism to keep c within the physical bounds [0, 1].
+
+  The FH potential W (c) = F (c) and its derivative w(c) = f (c) are defined as
+               F (c) = a3 (c log(c) + (1 − c) log(1 − c) + a1 c(1 − c) + a2 ) ,      (2.6a)
+                f (c) = a3 (log(c) − log(1 − c) + a1 (1 − 2c)) ,                     (2.6b)
+where a1 , a2 and a3 are dimensionless constants. In contrast to the GL potential, the FH
+potential precludes values of c outside its physical bounds. As such, the FH theory is
+inherently a bound-preserving theory (Elliott & Garcke 1996). In Figure 1, we visualize
+the free energy and its derivative w(c) = W ′ (c) for the GL and the FH model for s = 2,
+where the parameter values are defined in Table 1. We observe that g(c) is well-defined for
+all values of c, whereas f (c) becomes unbounded near c = ±1 and thus acts as a physical
+320                                          ten Eikelder & Khanwale
+                             0.03
+
+                             0.02
+
+                             0.01
+
+                                0
+
+                                0.9                1      1.1
+
+
+
+
+(a)                                                             (b)
+
+figure 1. Potential W (c) and its derivative w(c) = W ′ (c) for the GL (G), and the FH
+potential (F ). The parameter values correspond to s = 2; see Table 1. (a) Potentials
+W (c), (b) Derivative of potentials w(c).
+
+                                           10 -3
+                                10
+
+
+                                    5
+
+
+                                    0
+                                    0.96           0.98    1
+
+
+
+
+(a)                                                             (b)
+
+      figure 2. FH potentials F (c) = Fs (c), for s = 1, 2, 3. (a) No zoom, (b) zoom.
+
+barrier for the phase-field c to go out of bounds. Next, we note that the parameter a1
+determines the shape of the FH free energy, and, in particular, it admits a double-well
+shape for a1 > 2 and a single-well profile for a1 ≤ 2. A larger a1 shifts the minima
+closer to c = 0 and c = 1. The parameters in Figure 1 are selected so that the minima
+are near c = 0.01 and c = 0.99, where a2 and a3 are chosen so that minc F (c) = 0 and
+maxc F (c) = 1. In Figure 2, we show the minima for various values of a1 . Ideally, the
+value of a1 should be chosen to be as high as numerically possible so that the saturation
+is close to 0 or 1. We set cr = c2 − c1 with c1 < c2 the locations of the minima (with
+c1 + c2 = 1).
+
+                                        2.3. Nondimensionalization
+We now perform the nondimensionalization of the advective CH system [Eq. (2.1)].
+Introducing a characteristic length and time scales L0 and T0 , the units of the quantities in
+Eq. (2.1) are: [c] = 1, [v] = L0 T0−1 , [µ] = L−1                    3 −1
+                                               0 , [ε] = L0 , [m] = L0 T0 . The dimensionless
+variables are
+                      x            uT0            t             m
+               x∗ =      , u∗ =          , t∗ =     , m∗ =        , µ∗ = µL0 ,           (2.7)
+                      L0            L0           T0            M0
+                        Ostwald ripening in Cahn-Hilliard dynamics                             321
+
+
+                          s     a1          a2        a3      c1     c2
+
+                          1 5.346773 0.004878 0.385549 0.005 0.995
+                          2 4.688895 0.009581 0.511605 0.01 0.99
+                          3 4.314010 0.014143 0.625785 0.015 0.985
+
+                    table 1. Table of values for s, a1 , a2 , a3 and xmin .
+
+
+
+where M0 is a characteristic mobility. We note that the concentration c and W ′ (c) are
+dimensionless quantities. The dimensionless system takes the form
+                                               1
+                         ∂t∗ c + div∗ (cv∗ ) −   div∗ (m∗ ∇∗ µ∗ ) = 0,                      (2.8a)
+                                              Pe
+                                        µ∗ − Cn−1 w(c) + Cn∆∗ c = 0,                        (2.8b)
+                                                       ∗   ∗ ∗
+                                                     (m ∇ µ ) · n = 0,                      (2.8c)
+                                                             ∗
+                                                           ∇ c · n = 0.                     (2.8d )
+
+The dimensionless coefficients are the Cahn number Cn = ε/L0 , which expresses relative
+interface width, and the mobility Peclet number Pe = (L20 )/(T0 M0 ), measuring the ratio
+of advection to diffusion. We suppress the star symbols in the remainder of this paper.
+
+
+
+3. Numerical scheme
+                                     3.1. Spatial discretization
+                   1
+We choose V = H (Ω) for the trial and weighting function spaces. The variational formu-
+lation reads
+
+  Find (c, µ) ∈ [L2 (T ; V) ∩ H 1 (T , L2 (Ω))]2 such that for all (v, q) ∈ [V]2 :
+                                                1
+                       (v, ∂t c)Ω + (v, v · ∇c)Ω + (∇v, m∇µ)Ω = 0,                          (3.1a)
+                                                Pe
+                                                   1
+                         (q, µ)Ω − Cn (∇q, ∇c)Ω −    (q, w(c))Ω = 0,                        (3.1b)
+                                                  Cn
+where (·, ·)Ω is the standard L2 (Ω) inner product on the interior. Integration by parts
+shows that Eq. 3.1 is for smooth solutions equivalent to the strong formulation Eq. 2.8.
+   We apply the Bubunov-Galerkin finite element methodology to discretize in space. For
+this purpose, we introduce the conformal discrete space V h ⊂ V spanned by C 0 -finite
+element basis functions. The semi-discrete approximation of (3.1) takes the form
+   Find (ch , µh ) ∈ [L2 (T ; V h ) ∩ H 1 (T , L2 (Ω))]2 such that for all (v h , q h ) ∈ [V h ]2 :
+                                                     1                 
+                   v h , ∂t ch Ω + v h , v · ∇ch Ω +     ∇v h , mh ∇µh Ω = 0,               (3.2a)
+                                                     Pe
+                              h   h
+                                               h    h
+                                                          1             
+                             q , µ Ω − Cn ∇q , ∇c Ω −            q h , wh Ω = 0,            (3.2b)
+                                                          Cn
+where ch (0) = ch0 , µh (0) = µh0 , and mh = m(ch ) and wh = w(ch ) in Ω.
+322                                   ten Eikelder & Khanwale
+                                    3.2. Temporal discretization
+To introduce the time-discretization, we subdivide the time domain T into elements
+Tn = (tn , tn+1 ) of equal size ∆t = tn+1 − tn with time level n = 0, 1, ..., N . We adopt the
+conventional notation to denote the time level of a quantity with a subscript n, i.e., chn
+and µhn denote the concentration and chemical potential at time level n, respectively. The
+intermediate time level and time derivative of the concentration are given by
+                                                                      1 h
+                     chn+1/2 := 12 (chn + chn+1 ),      [[ch ]]n :=     (c   − chn ).             (3.3)
+                                                                      ∆t n+1
+The method in fully discrete form now reads
+  Given chn ∈ V h , find (chn+1 , µhn+1 ) ∈ [V h ]2 such that for all (v h , q h ) ∈ [V h ]2 :
+                                                1  h                           
+     v h , [[ch ]]n Ω + v h , v · ∇chn+1/2 +          ∇v , m(chn+1/2 )∇µhn+1           = 0,      (3.4a)
+                                            Ω     Pe                                 Ω
+                                                            1                  
+                     q h , µhn+1 Ω − Cn ∇q h , ∇chn+1/2 −                  h
+                                                                    q h , wn+1/2       = 0.      (3.4b)
+                                                          Ω   Cn                     Ω
+                      h
+   The definition of wn+1/2 depends on the free energy functional. For the GL Helmholtz
+                                         h
+free energy W (c) = G(c), we take wn+1/2       = w(chn+1/2 ), and for the FH free energy
+W (c) = F (c), we select the first-order approximation
+                                                                 h                
+     h                 h              h            h              cn+1    1 − chn+1
+   wn+1/2 = a3 log(cn ) − log(1 − cn ) + a1 (1 − 2cn ) + (λ + 1)       −               ,
+                                                                   chn     1 − chn
+                                                                                      (3.5)
+where λ is a positive numerical parameter. The definition given in Eq. 3.5 coincides with
+the discretization of the chemical potential of the Allen-Cahn equation of Wang et al.
+(2020). Their scheme ensures bound preservation for the Allen-Cahn equation and is
+constructed to guarantee energy stability. The latter is inherited from the CH equation
+(without advection). In particular, we have
+                                                      h
+                             F (chn+1 ) − F (chn ) ≤ wn+1/2 (chn+1 − chn ).                       (3.6)
+
+
+4. Numerical experiments
+                                          4.1. Problem setup
+We use the two-dimensional swirl benchmark problem (Bell et al. 1989) to compare the
+boundedness and Ostwald-ripening properties of the advective CH equation of both free
+energy functionals. A circle with c ≈ 1 and initial radius R0 = 0.15 is placed in the square
+domain [0, 1]2 ⊂ Ω at location (x∗ , y ∗ ) = (0.35, 0.35) with concentration field c ≈ 0. The
+circle is stretched out due to the divergence-free velocity field given by
+                v = A(t)(sin(2πy) sin(πx) sin(πx), − sin(2πx) sin(πy) sin(πy)),                   (4.1)
+where A = A(t) = cos(πt/8) provides a periodic motion in T = (0, T ) with T = 8. This
+causes the circle to stretch out for 0 < t < 4 and contract for 4 < t < T = 8. For small
+Cn and large Pe we anticipate the final configuration (t = T ) to approximation the initial
+configuration (t = 0).
+  We define the initial concentration profile as
+                                         p                               !
+                  h       1                (x − x∗ )2 + (y − y ∗ )2 − R0
+                 c0 (x) =    1 − cr tanh                √                  ,          (4.2)
+                          2                          Cn 2
+                       Ostwald ripening in Cahn-Hilliard dynamics                         323
+so that ch0 ≈ c1 outside the circle, and ch0 ≈ c2 inside of it. For the GL potential, we
+set cr = 1, and for the FH potential, we choose the parameters of s = 2 leading to
+cr = 0.98 and λ = 2. We first solve the CH equation without advection until a stable
+configuration is reached. We use this concentration field as the initial configuration for the
+advective CH simulations. All our simulations are performed in FEniCS and utilize linear
+triangular finite elements for both the concentration and the chemical potential (Logg
+et al. 2012). We use as mesh width h = 1/256, and set ∆t = 4 × 10−3 so that the
+Courant-Friedrichs-Lewy (CFL) number approximately equals 1. We select a relatively
+large interface width parameter of Cn = 4h to realize the breakup of the stretched circle
+and take Pe = 8/(3Cn2 ).
+   We visualize the evolution of the concentration field for GL and FH potentials in
+Figure 3. In both simulations, the circle breaks up, and smaller circles are formed. The
+key difference between the two simulations is that the small circles vanish for the GL
+potential but persist for the FH potential. We observe the boundedness property of the
+FH simulation. In contrast, the GL setup violates bounds; it yields overshoots of more
+than 2%. The breakup of the filament (which is purely numerical) is delayed in the case
+of FH and the filament maintains its shape longer compared to the GL case. This delayed
+breakup is a useful property, as any breakup in this configuration is purely numerical
+(because of the absence of surface tension in 2D), and prevention and minimization of the
+numerical breakup of a method for a given mesh resolution is desirable.
+   Both simulations reasonably recover the initial profile. The recovery depends on the
+interface thickness parameter and mesh resolution. A detailed convergence analysis of
+shape recovery as a function of these factors is a future research direction.
+
+
+5. Conclusions and outlook
+   In this paper we have compared Ostwald-ripening phenomena within the context of
+Cahn-Hilliard dynamics using numerical simulations. We have adopted two free energy
+functionals, the Ginzburg-Landau and the Flory-Huggins potentials. To enable large
+time-step simulations with the latter, we have proposed a novel numerical scheme. Our
+simulations demonstrate that adopting the Ginzburg-Landau potential violates the physi-
+cal bounds and shows Ostwald ripening. In contrast, using the Flory-Huggins potential
+provides a bound-preserving simulation free of Ostwald ripening. Potential future research
+directions include (i) a detailed convergence analysis and comparison of the Flory-Huggins
+case with the Ginzburg-Landau case; (ii) energy-stable and bound-preserving discretiza-
+tions for a Flory-Huggins Navier-Stokes Cahn-Hilliard model; (iii) the extension of the
+study on Ostwald ripening to high–Reynolds number multiphase flows (see, e.g., Saurabh
+et al. (2023)), N-phase flows (see, e.g., Huang et al. (2020); ten Eikelder (2024)), and
+mixture models (see e.g. Abels (2024); ten Eikelder et al. (2024)), leveraging energy-stable
+schemes to ensure robust and accurate simulations.
+
+                                     Acknowledgments
+The authors thank S. Mirjalili, Z. Huang and L.J. Brown for helpful discussions.
+
+
+                                      REFERENCES
+Abels, H. 2024 Mixture theory for diffuse interface models of two-phase flows. J. Fluid
+   Mech. 992, F1.
+324                             ten Eikelder & Khanwale
+
+
+
+
+ (a)
+
+
+
+
+ (b)
+
+
+
+
+ (c)
+
+figure 3. Swirl problem. GL (left) and FH potential (right). (a) t = 0.0, (b) t = 4.0, (c)
+t = 5.76. Cont’d on next page.
+
+
+
+Abels, H., Garcke, H. & Grün, G. 2012 Thermodynamically consistent, frame
+   indifferent diffuse interface models for incompressible two-phase flows with different
+   densities. Math. Mod. Meth. Appl. S. 22, 1150013.
+Anderson, D., McFadden, G. & Wheeler, A. 1998 Diffuse-interface methods in
+   fluid mechanics. Annu. Rev. Fluid Mech. 30, 139–165.
+Barrett, J., Blowey, J. & Garcke, H. 1999 Finite element approximation of the
+   Cahn–Hilliard equation with degenerate mobility. SIAM J. Numer. Anal. 37, 286–318.
+Bell, J. B., Colella, P. & Glaz, H. M. 1989 A second-order projection method for
+   the incompressible navier-stokes equations. J. Comput. Phys. 85, 257–283.
+                     Ostwald ripening in Cahn-Hilliard dynamics                    325
+
+
+
+
+ (d)
+
+
+
+
+ (e)
+
+                      figure 3. Cont’d (d) t = 6.08, (e) t = 8.0.
+
+
+Cahn, J. & Hilliard, J. 1958 Free energy of a nonuniform system. i. interfacial free
+    energy. J. Chem. Phys. 28, 258–267.
+Chen, W., Jing, J., Liu, Q., Wang, C. & Wang, X. 2024 A second order numerical
+    scheme of the Cahn-Hilliard-navier-stokes system with Flory-Huggins potential.
+    Communications in Computational Physics 35 (3), 633–661.
+Dai, S. & Du, Q. 2016 Computational studies of coarsening rates for the Cahn–Hilliard
+    equation with phase-dependent diffusion mobility. J. Comput. Phys. 310, 85–108.
+ten Eikelder, M. F. P. 2024 A unified framework for N -phase Navier-Stokes Cahn-
+    Hilliard Allen-Cahn mixture models with non-matching densities. arXiv preprint:
+    2407.20145 .
+ten Eikelder, M. F. P. & Schillinger, D. 2024 The divergence-free velocity for-
+    mulation of the consistent Navier-Stokes Cahn-Hilliard model with non-matching
+    densities, divergence-conforming discretization, and benchmarks. J. Comput. Phys.
+    p. 113148.
+ten Eikelder, M. F. P., van der Zee, G., K. & Schillinger, D. 2024 Thermodynam-
+    ically consistent diffuse-interface mixture models of incompressible multicomponent
+    fluids. J. Fluid Mech. 990, A8.
+ten Eikelder, M. F. P., van der Zee, K. G., Akkerman, I. & Schillinger, D.
+    2023 A unified framework for Navier–Stokes Cahn–Hilliard models with non-matching
+    densities. Math. Mod. Meth. Appl. S. 33, 175–221.
+Elliott, C. & Garcke, H. 1996 On the Cahn–Hilliard equation with degenerate
+    mobility. Siam journal on mathematical analysis 27, 404–423.
+326                            ten Eikelder & Khanwale
+Flory, P. 1953 Principles of Polymer Chemistry. Cornell University Press.
+Ginzburg, V. & Landau, L. 1950 On the theory of superconductivity. Berlin: Springer
+    Nature.
+Gomez, H. & van der Zee, K. 2018 Computational phase-field modeling. Encycl. of
+   Comput. Mech. 2nd ed. (eds. E. Stein, R. de Borst & T.J.R. Hughes) pp. 1–35.
+Guo, Z., Cheng, Q., Lin, P., Liu, C. & Lowengrub, J. 2022 Second order approxi-
+    mation for a quasi-incompressible Navier-Stokes Cahn-Hilliard system of two-phase
+    flows with variable density. J. Comput. Phys. 448, 110727.
+Huang, Z., Lin, G. & Ardekani, A. M. 2020 Consistent and conservative scheme for
+    incompressible two-phase flows using the conservative Allen-Cahn model. J. Comput.
+   Phys. 420, 109718.
+Khanwale, M., Lofquist, A., Sundar, H., Rossmanith, J. & Ganapathysubra-
+    manian, B. 2020 Simulating two-phase flows with thermodynamically consistent
+    energy stable Cahn-Hilliard Navier-Stokes equations on parallel adaptive octree based
+    meshes. J. Comput. Phys. 419, 109674.
+Khanwale, M., Saurabh, K., Fernando, M., Calo, V., Sundar, H., Rossmanith,
+   J. & Ganapathysubramanian, B. 2022a A fully-coupled framework for solv-
+    ing Cahn-Hilliard Navier-Stokes equations: Second-order, energy-stable numerical
+    methods on adaptive octree based meshes. Comput. Phys. Commun. 280, 108501.
+Khanwale, M. A., Saurabh, K., Ishii, M., Sundar, H. & Ganapathysubramanian,
+    B. 2022b Breakup dynamics in primary jet atomization using mesh- and interface-
+    refined Cahn-Hilliard Navier-Stokes. arXiv preprint: 2209.13142 .
+Logg, A., Mardal, K.-A. & Wells, G. 2012 Automated Solution of Differential
+   Equations by the Finite Element Method: The FEniCS book , Lect. Notes Sci. Comput.
+   Eng., vol. 84. Springer-Verlag.
+Lowengrub, J. & Truskinovsky, L. 1998 Quasi–incompressible Cahn–Hilliard fluids
+    and topological transitions. Proc. R. Soc. of London A 454, 2617–2654.
+Mirjalili, S., Ivey, C. B. & Mani, A. 2020 A conservative diffuse interface method
+    for two-phase flows with provable boundedness properties. J. Comput. Phys. 401,
+   109006.
+Roccon, A., Zonta, F. & Soldati, A. 2023 Phase-field modeling of complex interface
+    dynamics in drop-laden turbulence. Phys. Rev. Fluids 8, 090501.
+Saurabh, K., Ishii, M., Khanwale, M., Sundar, H. & Ganapathysubramanian,
+    B. 2023 Scalable adaptive algorithms for next-generation multiphase flow simulations.
+    In 2023 IEEE Int. Parallel Distrib. Process. Symp. (IPDPS), pp. 590–601. IEEE.
+Voorhees, P. 1985 The theory of Ostwald ripening. J. Stat. Phys. 38 (1), 231–252.
+Wang, X., Kou, J. & Cai, J. 2020 Stabilized energy factorization approach for Allen–
+    Cahn equation with logarithmic Flory–Huggins potential. J. Sci. Comput. 82 (2),
+   25.
+Yue, P., Zhou, C. & Feng, J. J. 2007 Spontaneous shrinkage of drops and mass
+    conservation in phase-field simulations. J. Comput. Phys. 223, 1–9.
+

@@ -1,0 +1,638 @@
+                                   Programming
+                                    With Python
+
+
+
+
+FiPy: Partial Differential
+Equations with Python
+
+Many existing partial differential equation solver packages focus on the important, but
+arcane, task of numerically solving the linearized set of algebraic equations that result
+from discretizing a set of PDEs. Many researchers, however, need something higher level
+than that.
+
+
+
+
+                          P
+                                      artial differential equations (PDEs)       behaviors that involve complex interactions of
+                                      are ubiquitous to the mathematical de-     multiple systems. Teasing out the quantity to be
+                                      scription of physical phenomena: they      determined from an experiment’s “signal” often
+                                      describe the relationships between         requires the solution of a mathematical mod-
+                          functions of more than one independent variable        el in the form of a set of PDEs. In most cases,
+                          and partial derivatives with respect to those vari-    those PDEs don’t admit an analytical solution,
+                          ables. Typical examples in the physical sciences       so researchers use computers to obtain numeri-
+                          describe the evolution of a field in time as a func-   cal solutions to practical problems. The goal of
+                          tion of its value in space, such as in wave propaga-   computational materials science is to apply com-
+                          tion, heat flow, or fluid dynamics.                    putational methods to explain and predict prop-
+                             Although PDEs are relevant throughout the           erties such as experimental microstructures and
+                          sciences, we focus our attention here on mate-         phenomena (see Figure 1).
+                          rials. Materials science studies the relationships        Lots of numerical PDE solvers are available to-
+                          between the properties and microstructures of          day, and FiPy (www.ctcms.nist.gov/fipy) won’t be
+                          materials and how both characteristics are af-         the last; indeed, it isn’t even the first discussion
+                          fected by (and how they affect) the processing         of a Python-based PDE solver in these pages.1,2
+                          of those materials. As the science of materials        Many existing PDE solver packages focus on the
+                          measurement advances, it has become increas-           important, but relatively arcane, task of numeri-
+                          ingly difficult to determine what a measure-           cally solving the linearized set of algebraic equa-
+                          ment “means” or, alternatively, what measurable        tions that result from discretizing a set of PDEs.
+                          quantities are appropriate to shed light on the        However, many, if not most, researchers would
+                          phenomena of interest. These phenomena are             prefer to avoid reckoning with such details and
+                          often at the nanoscale, with highly nonclassical       work at a higher level of abstraction. Specifically,
+                                                                                 they have the physical knowledge to describe
+1521-9615/09/$25.00 © 2009 IEEE
+                                                                                 their model and can apply the calculus needed
+Copublished by the IEEE CS and the AIP                                           to obtain the appropriate governing conditions,
+                                                                                 but when faced with rendering those governing
+Jonathan E. Guyer, Daniel Wheeler, and James A. Warren
+                                                                                 equations on a computer, their skills (or time)
+US National Institute of Standards and Technology
+                                                                                 are limited to a straightforward implementation
+
+
+6            This article has been peer-reviewed.                                                 Computing in Science & Engineering
+of explicit finite differences on uniform square
+grids. Of the PDE solver packages that focus
+at an appropriately high level, many are propri-
+etary, expensive, and difficult to customize. For
+scientists trying to do it themselves, a search of
+the Internet turns up a multitude of codes with
+promising names and abstracts, but they’re gen-
+erally unapproachable by those who don’t already
+know the answer to the question they’re asking.
+Consequently, scientists spend considerable re-
+sources repeatedly developing limited tools for
+specific problems. In an effort to break this cy-
+cle, while still meeting our own research goals,
+                                                           (a)                               (b)
+we developed FiPy.
+   FiPy plays a critical role in our materials re-
+search on electrodeposition,3 alloy interdiffusion,4      Figure 1. Experimental microstructures. (a) Spinodal decomposition
+surface wetting, and photovoltaics. An active user        in glass, which is important for polymers, hardened metal alloys,
+community has also applied FiPy to topics as di-          tempered glasses, and permanent magnets, and (b) dendrites formed
+verse as solar irradiation of soil,5 water percolation    during resolidification after welding nickel-based “superalloys” to jet-
+through peat bogs, and mRNA reaction-diffusion            engine turbine blades. (Source: [1a] W. Haller, US Nat’l Inst. Standards
+in fruitfly embryos, as well as a host of the materi-     and Technology, and [1b] S.A. David at Oak Ridge Nat’l Laboratory;
+als science applications we originally envisioned.        used with permission.)
+FiPy has proven to be a powerful teaching tool as
+well. Several of our colleagues in academia have
+experimented with it for teaching computational           ers that we can embed directly in an application,
+materials science at both the undergraduate and           giving scientific codes immediate access to a
+graduate levels (see, for example, www.nanohub.           high-level scripting language designed by some-
+org/tools/vkmlpsgg). In this article, we outline          one who actually knew what they were doing.
+the design of FiPy and present a few fully func-          We chose to go a step further and not just em-
+tional examples of its ability to solve coupled sets      bed a full-fledged scripting language in the FiPy
+of PDEs.                                                  framework, but instead to design the framework
+                                                          from the ground up in a scripting language. Al-
+Scripting                                                 though runtime performance is unquestionably
+A rather common scenario in the development of            important, many scientific codes are run rela-
+scientific codes is that the first draft hard-codes all   tively little in proportion to the time spent devel-
+the problem parameters. After a few (hundred) it-         oping them. If we could develop a code in a day
+erations of recompiling and relinking the applica-        instead of a month, it might not matter if it takes
+tion to explore parameter changes, the researcher         a week to run instead of a day before being aban-
+adds code to read an input file containing a list of      doned in favor of a new physical problem after the
+numbers. Eventually, we reach a point where it’s          publication of one or two papers. Furthermore,
+impossible to remember which parameter comes              a variety of mechanisms for diagnosing and op-
+in which order or what physical units are required,       timizing those portions of a code that are actu-
+so the researcher adds code to, for example, in-          ally time-critical exist, which is more attractive
+terpret a line beginning with “#” as a comment.           than attempting to optimize all of it by using a
+At this point, the scientist has begun developing         language that’s more palatable to the computer
+a scripting language without even knowing it.             than to the programmer. Thus, FiPy, rather than
+However, very few scientists have actually stud-          taking the approach of writing the fast numerical
+ied computer science or know anything about the           code first and then dealing with the issue of user
+design and implementation of script interpreters.         interaction, initially implements most modules in
+Even if they have the expertise, the time spent de-       a high-level scripting language and only trans-
+veloping such a language interpreter is time not          lates to low-level compiled code those portions of
+spent doing research.                                     the code that prove inefficient.
+   In contrast, several powerful scripting lan-              Although several scripting languages might
+guages, such as Tcl, Java, Python, Ruby, and even         have worked, we selected Python for FiPy’s im-
+the venerable Basic, have open source interpret-          plementation because it’s
+
+
+May/June 2009                                                                                                                   7
+     • an interpreted language that combines remark-               (Γi∇)]nφ in the diffusion term represents any of the
+       able power with very clear syntax;                          family of terms ∇ ⋅ (Γ1∇φ), ∇ ⋅ (Γ1∇[∇ ⋅ (Γ2∇φ)]), and
+     • freely usable and distributable, even for com-              so on. The convection term describes the “blowing”
+       mercial use;                                                of φ by a velocity field u. Finally, a source term rep-
+     • fully object oriented;                                      resents any source or sink that injects or removes φ
+     • distributed with powerful automated testing                 from a point in space. Equation 1 doesn’t address all
+       tools;                                                      applications of PDEs, but it so far covers everything
+     • actively used and extended by other scien-                  we’ve tried to do in materials science.
+       tists and mathematicians (such as NumPy,                       To solve Equation 1, we cast it in integral (weak)
+       http://numpy.scipy.org; SciPy, www.scipy.org;               form as
+       ScientiﬁcPython, http://dirac.cnrs-orleans.
+       fr/plone/software/scientificpython; and Py­                      ∂( ρφ )
+                                                                   ∫V τ         dV − ∫ S τΓ n ( n ⋅ ∇) dS
+       Sparse, http://pysparse.sourceforge.net); and
+                                                                                                
+                                                                          ∂t diffusion
+                                                                   
+                                                                         transient
+     • easily integrated with low-level languages such
+       as C or Fortran (such as Weave and Blitz, www.                 − ∫ S τ ( n ⋅ u )φ dS − ∫V τ Sφ dV = 0 ,                  (2)
+                                                                         
+       scipy.org/Weave; PyRex, www.cosc.canterbury.                                  convection             source
+
+       ac.nz/~greg/python/Pyrex/; Cython, www.
+       cython.org; SWIG, www.swig.org; and f2py,                   where the integrals are performed over an arbi-
+       http://cens.ioc.ee/projects/f2py2e/).                       trary subvolume V with boundary S. The test
+                                                                   function τ depends on the characteristics of the
+        Starting very early in FiPy’s development, we              volume element and the specific numerical dis-
+     made a commitment to use several professional                 cretization scheme. FiPy uses the finite volume
+     coding practices that remain rare for most scien-             method (FVM), which is widely used in the field
+     tific applications—for example, FiPy’s code reposi-           of computational fluid dynamics (CFD), to reduce
+     tory and bug tracker are publicly accessible at www.          the model equations to a form tractable to linear
+     matforge.org/fipy. Based on feedback on our mail-             solvers. One way to understand the FVM is in
+     ing list (www.ctcms.nist.gov/fipy/mail), we’ve been           comparison with two better known discretization
+     able to refine both the documentation and the in-             techniques: the finite element method (FEM)
+     terface in subsequent releases, and we’ve incorpo-            casts the PDE in a weak form and discretizes it
+     rated patches and feature enhancements submitted              with a test function that smoothly weights each
+     by our users. An automated test suite (www.mat-               solution’s volume. If the FEM is constructed with
+     forge.org/fipy/build) exercises both the low-level            a test function of 1, it reduces to the FVM; if the
+     functionality as well as all of the examples included         FVM is solved on a uniform Cartesian grid, it be-
+     in our user manual. This test suite has prevented us          comes the finite difference method (although the
+     from inadvertently breaking one part of the code              FDM is usually performed by discretizing Equa-
+     when working on another and has allowed us to                 tion 1 instead of Equation 2). The FVM allows the
+     undertake major code refactoring on more than                 use of unstructured grids but at the cost of greater
+     one occasion. Although none of these practices are            computational complexity than the FDM. On the
+     unique to Python programming, they are prevalent              other hand, the FVM is easier to implement, with
+     in that community, and a number of Python tools               less computational complexity, than the FEM. Its
+     make it easy to develop “good” software.                      solutions, however, are prone to greater errors,
+                                                                   particularly with very nonorthogonal meshes. For
+     Numerical Approach                                            many problems (such as CFD), these make up a
+     We designed FiPy to solve an arbitrary number of              reasonable set of compromises.
+     PDEs of the form
+                                                                   Objects
+     ∂( ρφ )                     n
+               − ∇ ⋅ ( Γi ∇ ) φ − ∇  ⋅( uφ ) − S = 0 , (1)   FiPy is based on three fundamental Python class-
+     ∂t            φ
+                     diffusion          convection
+                                                source             es: Mesh, Variable, and Term.
+      transient
+                                                                      A Mesh object represents the domain of inter-
+     where one equation is identified with each solution           est. FiPy contains many different specific mesh
+     variable φ. The transient term represents the time            classes to describe different geometries. FiPy can
+     rate of change of φ, with a rate factor ρ. The dif-           also use the open source Gmsh (www.geuz.org/
+     fusion term represents the tendency of nonunifor-             gmsh) meshing tool to represent more complicat-
+     mities in φ to smooth out (material flows “down”              ed geometries. Conceptually, a Mesh is composed
+     gradients) with a diffusivity Γi. The shorthand [∇ ⋅          of Cells, each Cell is defined by its bounding
+
+
+8                                                                                                Computing in Science & Engineering
+Faces, and each Face is defined by its bounding            It’s important to realize that, even though
+Vertex objects.                                          an expression might superficially resemble one
+  A Variable object represents a quantity or             of those just shown, if the dependent variable
+field that can change during the problem’s evolu-        for that PDE doesn’t appear in the appropriate
+tion. A MeshVariable object is a Variable that           place, then we should treat that term as a source,
+holds a field of values, distributed over a Mesh.        so we would write a term ∇ ⋅ (D2∇ξ) as (D2 *
+A Cell­ Variable is defined at the Cell centers          xi.getFaceGrad()).getDivergence() in an
+of the Mesh, and a FaceVariable is defined at            equation that solves for φ rather than ξ.
+the Faces between Cells. A MeshVariable de-                Finally, an equation is simply a collection of
+scribes the values of the field φ, but it isn’t con-     Terms, formed by adding or equating them. For
+cerned with their geometry or topology; the Mesh         example,
+takes that role.
+   An important property of Variable objects is          eq = (TransientTerm()
+that they can describe dependency relationships,          == DiffusionTerm(D)
+such that                                                 + ConvectionTerm(u)
+                                                          + ImplicitSourceTerm(sin(theta)) + 3)
+>>> a = Variable(value=3)
+>>> b = a * 4                                            represents ∂φ/∂t = ∇ ⋅ D∇φ + ∇ ⋅ φu+ φ sin θ + 3.
+                                                            Beyond these three fundamental classes of
+doesn’t assign the value 12 to b, but rather it as-      Mesh, Variable, and Term, FiPy is composed
+signs a multiplication operator object to b, which       of several related classes. A Term encapsulates
+depends on the Variable object a:                        the contributions to the SparseMatrix that
+                                                         define an equation’s solution. We use Bound-
+>>> b                                                    aryConditions to describe the conditions on
+(Variable(value=3) * 4)                                  the boundaries of the Mesh, and each Term in-
+>>> a.setValue(5)                                        terprets the BoundaryConditions as necessary
+>>> b                                                    to modify the SparseMatrix. An equation con-
+(Variable(value=5) * 4)                                  structed from Terms can apply a unique Solver
+                                                         to invert its SparseMatrix in the most expedi-
+The numerical value of the Variable isn’t calcu-         ent and stable fashion. FiPy provides a common
+lated until we need it (“lazy evaluation”):              wrapper interface to shield the user from the
+                                                         implementation details of the SparseMatrix
+>>> print b                                              solver libraries with Python interfaces. These
+20                                                       range from PySparse, which tends to be easy to
+                                                         build and install, to PyTrilinos (http://trilinos.
+  A Term object represents any of the terms in           sandia.gov), which offers both parallel solvers
+Equations 1 or 2 or any linear combination of            and an impressive collection of precondition-
+such terms. The first three terms are represent-         ers. Finally, at any point during the solution, the
+ed in FiPy as TransientTerm(coeff=rho),                  user can invoke a Viewer to display the values of
+DiffusionTerm(coeff=(Gamma1, Gamma2, ...)),              the solved Variables.
+and <Specific>ConvectionTerm(coeff=u).                      When the user invokes a FiPy equation’s
+FiPy supports central difference, upwind, expo-          solve() method, FiPy queries each Term for
+nential, hybrid, power law, and van Leer weight-         its contributions to the SparseMatrix and
+ings for the ConvectionTerm, based on the                right-hand-side vector of the set of linear alge-
+Péclet number.                                           braic discretization expressions. The coefficient
+  Any terms that we can’t write in one of the previ-     of each Term could either be a constant number
+ous forms is considered a source. In FiPy, we write      or obtained by lazy evaluation of a Variable ex-
+an explicit source essentially as it appears in math-    pression that depends on the current value of the
+ematical form, so we might write 3κ2 + φ sin θ as 3      solution variables. In addition to the coefficient’s
+* kappa**2 + b * sin(theta). If, however,                value, each Term queries the Mesh for geometric
+the source depends on the variable that’s being          factors such as Cell volume and Face area and
+solved for, it might be advantageous to linearize the    orientation. For a Mesh composed of different po-
+source and cast part of it as an implicit source term,   lygonal (or polyhedral) elements, FiPy calculates
+so we might write 3κ2 + φ sin θ as 3 * kappa**2          and stores these geometric factors, but for com-
++ ImplicitSourceTerm(coeff=sin(theta)).                  monly used, regular grids, FiPy can efficiently
+
+
+May/June 2009                                                                                                  9
+      calculate these values on the fly, saving a con-         less” phase separation process, such that under the
+      siderable amount of memory. In either case, the          right thermodynamic conditions, any fluctuation,
+      user need not be concerned with what amounts to          no matter how small, will tend to grow. This is
+      nothing more than tedious bookkeeping.                   in contrast to nucleation, in which a fluctuation
+         By default, DiffusionTerm and Convection-             must exceed some critical magnitude before it
+      Term are implicit, but an ExplicitDiffusion-             will survive and grow. We can describe spinodal
+      Term and ExplicitUpwindConvectionTerm                    decomposition via the Cahn-Hilliard equation6,7
+      are available, primarily for didactic purposes. In       (also known as “conserved Ginsberg-Landau” or
+      some cases, semi-explicit approaches can yield           “model B” of Hohenberg and Halperin):
+      larger time steps than a naïve, fully explicit imple-
+      mentation, but with better accuracy than a fully         ∂φ             ∂f        
+                                                                  = ∇ ⋅ D∇  − ε 2∇2φ ,
+      implicit treatment. For example, on a uniform,           ∂t             ∂φ        
+      one-dimensional grid with a constant coefficient
+      D, we can discretize the expression ∂u/∂t = ∇ ⋅          where φ is a conserved order parameter, possi-
+      D∇u at each point j as                                   bly representing alloy composition or spin. The
+                                                               double-well free energy function f = (a2/2)φ2(1 −
+      u new
+        j   − u old
+                j            u new      new
+                               j +1 − 2u j  + u new
+                                                j −1           φ)2 penalizes states with intermediate values of φ
+                      =α D
+          ∆t                         ∆x 2                      between 0 and 1. The gradient energy term ε2∇2φ,
+                        u old      old    old                  on the other hand, penalizes sharp changes of φ.
+                          j +1 − 2u j + u j −1
+         + (1 − α ) D                            .             These two competing effects result in the segre-
+                                 ∆x 2                          gation of φ into domains of 0 and 1, separated by
+      When α = 0, u advances by a fully explicit forward       abrupt, but smooth, transitions. The parameters a
+      Euler time step; when α = 1, it takes a fully implicit   and ε determine the relative weighting of the two
+      backward Euler time step. We obtain the semi-            effects, and D is a rate constant.
+      explicit Crank-Nicolson scheme when α = 1/2. The           We can simulate this process in FiPy with a
+      FiPy implementation of this scheme is as simple as       simple script:
+
+      eq = (TransientTerm()                                    from fipy import *
+       == ImplicitDiffusionTerm(alpha*D)
+       + ExplicitDiffusionTerm((1-alpha)*D))                   (Note that all of NumPy’s functionality is import-
+                                                               ed along with FiPy, although much is augmented
+      The solution step is left largely up to the user,        for FiPy’s needs.)
+      who calls an equation’s solve() method with
+      the CellVariable to be solved for the Bound-             mesh = Grid2D(nx=1000, ny=1000,
+      aryConditions, the time step, and the matrix                           dx=0.25, dy=0.25)
+      Solver. FiPy uses a preconditioned conjugate-            phi = CellVariable(name=r”$\phi$”,
+      gradient solver by default, unless any Term of the                          mesh=mesh)
+      equation indicates that it produces an asymmetric
+      matrix (such as most ConvectionTerms), in which          We start the problem with random fluctuations
+      case, FiPy falls back on lower-upper (LU) matrix         about φ = 1/2:
+      decomposition. Users can always override these
+      defaults, providing a solver and preconditioner of       phi.setValue(
+      their choosing.                                           GaussianNoiseVariable(mesh=mesh,
+                                                                                      mean=0.5,
+      Examples                                                                        variance=0.01))
+      To give a flavor of working with FiPy, we present
+      some fully functional example scripts for prob-          FiPy doesn’t plot or output anything unless you
+      lems of interest in materials science.                   tell it to:
+
+      Spinodal Decomposition                                   viewer = Viewer(vars=(phi,),
+      The spinodal decomposition phenomenon dis-                               datamin=0., datamax=1.)
+      played in Figure 1a is a spontaneous separation of
+      an initially homogeneous mixture into two dis-              For FiPy, we must perform the partial deriva-
+      tinct regions of different properties (spin up/spin      tive ∂f/∂φ manually and then put the equation in
+      down, component A/component B). It’s a “barrier­         the canonical form of Equation 1 by decompos-
+
+
+10                                                                              Computing in Science & Engineering
+ing the spatial derivatives so that each Term is of a                                                      1.0
+single, even order:                                                                  φ
+                                                               250                                         0.9
+∂φ
+   = ∇ ⋅ Da 2[1 − 6φ (1 − φ )]∇φ − ∇ ⋅ D∇ε 2 ∇2φ .                                                         0.8
+∂t                                                             200                                         0.7
+FiPy would automatically interpolate D * a**2
+                                                                                                           0.6
+* (1 - 6 * phi * (1-phi)) onto the Fac-                        150
+es, where the diffusive flux is calculated, but we                                                         0.5
+obtain somewhat more accurate results by per-                  100                                         0.4
+forming a linear interpolation from phi at Cell                                                            0.3
+centers to PHI at Face centers. Some problems                   50
+                                                                                                           0.2
+benefit from nonlinear interpolations, such as
+harmonic or geometric means, and FiPy makes it                                                             0.1
+                                                                 0       50    100       150   200   250
+easy to obtain these, too:                               (a)                                               0.0
+
+PHI = phi.getArithmeticFaceValue()
+D = a = eps = 1.
+eq = (TransientTerm()                                                                                      1.0
+ == DiffusionTerm(coeff=                                                             φ
+                                                               250                                         0.9
+    D * a**2 * (1 - 6 * PHI * (1-PHI)))
+ - DiffusionTerm(coeff=(D, eps**2)))                                                                       0.8
+                                                               200                                         0.7
+   Because the evolution of a spinodal micro-                                                              0.6
+structure slows with time, we use exponentially                150
+increasing time steps to keep the simulation “in-                                                          0.5
+teresting.” The FiPy user always has direct con-               100                                         0.4
+trol over the problem’s evolution:                                                                         0.3
+                                                                50
+                                                                                                           0.2
+dexp = -5
+elapsed = 0.                                                                                               0.1
+                                                                 0       50    100       150   200   250
+while elapsed < 1000.:                                   (b)                                               0.0
+  dt = min(100, exp(dexp))
+  elapsed += dt
+  dexp += 0.01
+  eq.solve(phi, dt=dt)                                                                                     1.0
+  viewer.plot()                                                                      φ
+                                                               250                                         0.9
+
+  The spinodal structure’s coarsening with                                                                 0.8
+time, as seen in Figure 2, is driven by reduction              200                                         0.7
+of the interfacial energy between areas of φ =                                                             0.6
+0 and φ = 1, which is a function of interfacial                150
+                                                                                                           0.5
+curvature. Simulations in 2D can be mislead-
+ing when compared with experimental images                     100                                         0.4
+that are sections through 3D microstructures,                                                              0.3
+such as Figure 1a. For instance, there’s no 2D                  50
+                                                                                                           0.2
+analog for saddle points on 3D surfaces, which
+have zero curvature. FiPy makes it easy to solve                                                           0.1
+                                                                 0       50    100       150   200   250
+the same problem in 3D simply by changing the            (c)                                               0.0
+mesh declaration
+
+mesh = Grid3D(nx=100, ny=100, nz=100,                   Figure 2. The spinodal decomposition’s evolution
+             dx=0.25, dy=0.25, dz=0.25)                 in 2D. From (a) t = 30 to (b) t = 100 to (c) t = 1,000,
+                                                        we see that initially random fluctuations split
+illustrated in Figure 3. No other changes are re-       into separate domains with a steadily increasing
+quired (many other PDE solvers require manually         characteristic wavelength.
+
+
+May/June 2009                                                                                                    11
+                                                                     {Duplicata{Surface{1};}};
+                                                              t4[] = Rotate {{0,1,0},{0,0,0},-Pi/2}
+                                                                     {Duplicata{Surface{1};}};
+                                                              t5[] = Rotate {{0,0,1},{0,0,0},Pi/2}
+                                                                     {Duplicata{Surface{t4[0]};}};
+                                                              t6[] = Rotate {{0,0,1},{0,0,0},Pi}
+                                                                     {Duplicata{Surface{t4[0]};}};
+                                                              t7[] = Rotate {{0,0,1},{0,0,0},Pi*3/2}
+                                                                     {Duplicata{Surface{t4[0]};}};
+
+                                                              // create entire inner and outer
+                                                              // shell Surface
+                                                              Loop(100)={1,t1[0],t2[0],t3[0],
+      Figure 3. Spinodal decomposition in 3D. This                         t7[0],t4[0],t5[0],t6[0]};
+      snapshot is qualitatively similar to the 2D case, but   “””).extrude(extrudeFunc=
+      the more complicated nature of curvature in 3D                       lambda r: 1.1 * r)
+      leads to changed dynamics of phase separation.
+                                                              which is illustrated in Figure 4. Although it took
+                                                              the three of us roughly a week to figure out how to
+                                                              make this nominally isotropic spherical mesh, as
+      changing the ∇ operator from (∂/∂x) iˆ + (∂/∂y) ĵ to   it was our first experience with a complicated 3D
+      (∂/∂x) iˆ + (∂/∂y) ĵ + (∂/∂z) k̂ ).                    mesh, no changes in FiPy were required in order
+         Compared with FEM simulations of air flow            to use it.
+      around airplanes in flight or of combustion in an          The Cells of this Mesh have finite thickness,
+      engine block, computational materials science is        and their outer Faces are slightly larger than
+      typically simulated on simple domains (squares,         their inner ones (due to dilation about the sphere’s
+      cubes, and so forth). Nonetheless, using Gmsh,          center) so, even though the mesh is defined in a
+      we can do something a little more elaborate and         Cartesian coordinate system, the ∇2 operator au-
+      solve the Cahn-Hilliard problem on the surface          tomatically functions as
+      of a sphere. Although Gmsh isn’t scriptable in
+                                                              1 ∂  2 ∂       1 ∂        ∂
+      Python, FiPy provides the facility for generating            r     + 2        sin θ 
+      meshes described in Gmsh’s scripting language           r ∂r  ∂r  r sin θ ∂θ 
+                                                               2
+                                                                                              ∂θ 
+      (as shown between triple quotes in the argument                    1       ∂2
+      to GmshImporter2DIn3DSpace):                              +
+                                                                    r 2 sin 2 θ ∂ϕ 2
+      mesh = GmshImporter2DIn3DSpace(“””                      instead of
+      radius = 5.0;
+      cellSize = 0.3;                                         ∂2    ∂2   ∂2
+                                                                  +    +
+                                                              ∂x 2 ∂y 2 ∂z 2
+      // create inner 1/8 shell
+      Point(1) = {0, 0, 0, cellSize};                         although with an error that’s linear instead of qua-
+      Point(2) = {-radius, 0, 0, cellSize};                   dratic in the grid spacing.
+      Point(3) = {0, radius, 0, cellSize};
+      Point(4) = {0, 0, radius, cellSize};                    Phase Field
+                                                              To convert a liquid material to a solid, we must
+      Circle(1) = {2, 1, 3};                                  cool it to a temperature below its melting point
+      Circle(2) = {4, 1, 2};                                  (known as undercooling or supercooling). The rate of
+      Circle(3) = {4, 1, 3};                                  solidification is often assumed (and experimental-
+      Line Loop(1) = {1, -3, 2};                              ly found) to be proportional to the undercooling.
+      Ruled Surface(1) = {1};                                 Under the right circumstances, the solidification
+                                                              front can become unstable, leading to dendritic
+      // create remaining 7/8 inner shells                    patterns as seen in Figure 1b. Researchers8 have
+      t1[] = Rotate {{0,0,1},{0,0,0},Pi/2}                    described a phase-field model (Allen-Cahn, “non-
+             {Duplicata{Surface{1};}};                        conserved Ginsberg-Landau,” or “model A” of
+      t3[] = Rotate {{0,0,1},{0,0,0},Pi*3/2}                  Hohenberg and Halperin) of such a system, in-
+
+
+12                                                                                    Computing in Science & Engineering
+cluding the effects of discrete crystalline orienta-
+tions (anisotropy).
+   We start with a regular 2D Cartesian mesh
+
+from fipy import *
+dx = dy = 0.025
+nx = ny = 500
+mesh = Grid2D(dx=dx, dy=dy,
+              nx=nx, ny=ny)
+
+and we’ll take fixed time steps
+
+dt = 5e-4
+                                                        Figure 4. Spinodal decomposition on a sphere’s
+  We consider the simultaneous evolution of a           surface. Compare this with, for example, www.
+phase-field variable φ (taken to be 0 in the liquid     youtube.com/watch?v=kDsFP67_ZSE.
+phase and 1 in the solid)
+
+                                                                                          
+                                                                           1 + c β −c ∂β 
+phase = CellVariable(name=r’$\phi$’,
+ mesh=mesh, hasOld=True)                                                              ∂ψ 
+                                                        D = α 2 (1 + c β ) 
+                                                                            ∂β            ,
+and a dimensionless undercooling ΔT (ΔT = 0 at                             c       1+ cβ 
+                                                                            ∂ψ            
+the melting point)                                                                        
+
+dT = CellVariable(name=r’$\Delta T$’,                   where
+ mesh=mesh, hasOld=True)
+                                                             1 − Φ2
+                                                        β=          ,
+The hasOld ﬂag causes FiPy to store the variable             1 + Φ2
+value from the previous time step, which is neces-
+sary for solving equations with nonlinear coeffi-                N                   ∂φ / ∂y
+cients or for coupling between PDEs.                    Φ = tan  ψ , ψ = θ arctan         ,
+                                                                  2                ∂φ / ∂x
+   The governing equation for the temperature
+field is the heat-flux equation, with a source due to   θ is the orientation, and N is the symmetry:
+the latent heat of solidification
+                                                        alpha = 0.015
+∂∆T             ∂φ
+    = DT ∇2∆T +                                         c = 0.02
+ ∂t             ∂t                                      N = 6.
+                                                        theta = pi / 8.
+DT = 2.25                                               psi = (theta
+heatEq = (TransientTerm()                                + arctan2(phase.getFaceGrad()[1],
+ == DiffusionTerm(DT)                                              phase.getFaceGrad()[0]))
+ + (phase - phase.getOld()) / dt)                       Phi = tan(N * psi/2)
+                                                        PhiSq = Phi**2
+The governing equation for the phase field is           beta = (1. - PhiSq) / (1. + PhiSq)
+                                                        DbetaDpsi = -N * 2 * Phi / (1 + PhiSq)
+     ∂φ                                                 Ddia = (1. + c * beta)
+τφ      = ∇ ⋅ D∇φ + φ(1− φ ) m(φ, ∆T ) ,
+     ∂t                                                 Doff = c * DbetaDpsi
+                                                        D = (alpha**2 * (1. + c * beta)
+where                                                        * (Ddia * (( 1, 0),
+                                                                        ( 0, 1))
+               1 κ
+m(φ, ∆T ) = φ − − 1 arctan(κ2∆T )                               + Doff * (( 0,-1),
+               2 π
+                                                                          ( 1, 0)))
+represents a source of anisotropy. The coeffi-
+cient D is an anisotropic diffusion tensor in two       With these expressions defined, we can construct
+dimensions:                                             the phase-field equation as
+
+
+May/June 2009                                                                                             13
+                                                                          FiPy’s viewers are utilitarian, striving to let users
+                                                            0.04        see something, regardless of their operating system
+                          φ and ∆Τ
+                                                                        or installed packages. As a result, users won’t be
+      12
+                                                                        able to simultaneously view two fields “out of the
+                                                            0.02        box,” but, because all of Python is accessible and
+      10                                                                FiPy is object oriented, it isn’t hard to adapt one of
+                                                            0.00
+                                                                        the existing viewers to create a specialized display:
+
+      8                                                                 import pylab
+                                                            –0.02       class DendriteViewer(
+                                                                          Matplotlib2DGridViewer):
+      6
+                                                                          def __init__(self, phase, dT,
+                                                            –0.04
+                                                                            title=None, limits={}, **kwlimits):
+      4                                                                     self.phase = phase
+                                                            –0.06           self.contour = None
+                                                                            Matplotlib2DGridViewer.__init__(
+      2
+                                                                              self, vars=(dT,), title=title,
+                                                            –0.08             cmap=pylab.cm.hot,
+      0      2       4       6       8       10      12                       limits=limits, **kwlimits)
+                                                            –0.10
+                                                                          def _plot(self):
+                                                                            Matplotlib2DGridViewer._plot(self)
+Figure 5. Dendrite formation due to temperature gradients. Faster           if self.contour is not None:
+solidification in steeper temperature gradients leads to surface              cc = self.contour.collections
+instability and progressively finer branching.                                for c in cc:
+                                                                                c.remove()
+                                                                            mesh = self.phase.getMesh()
+                  tau = 3e-4                                                shape = mesh.getShape()
+                  kappa1 = 0.9                                              x, y = mesh.getCellCenters()
+                  kappa2 = 20.                                              z = self.phase.getValue()
+                  phaseEq = (TransientTerm(tau)                             x, y, z = [a.reshape(
+                   == DiffusionTerm(D)                                                  shape, order=”FORTRAN”)
+                   + ImplicitSourceTerm((phase - 0.5                                   for a in (x, y, z)]
+                    - kappa1 / pi * arctan(kappa2 * dT))                    self.contour = pylab.contour(
+                    * (1 - phase)))                                                            x, y, z, (0.5,))
+
+                  We seed a circular solidified region in the center    viewer = DendriteViewer(
+                                                                          phase=phase, dT=dT,
+                  R = dx * 5.                                             title=r”%s & %s” % (phase.name,
+                  C = (nx * dx/2, ny * dy / 2)                                                dT.name),
+                  x, y = mesh.getCellCenters()                            datamin=-0.1, datamax=0.05)
+                  phase.setValue(1., where=
+                   ((x-C[0])**2 + (y-C[1])**2) < R**2)                  and iterate the solution in time, plotting as we go,
+
+                  and to then quench the entire simulation domain       for i in range(10000):
+                  below the melting point                                 phase.updateOld()
+                                                                          dT.updateOld()
+                  dT.setValue(-0.5)                                       phaseEq.solve(phase, dt=dt)
+                                                                          heatEq.solve(dT, dt=dt)
+                  In a real solidification process, dendritic branch-     if i % 10 == 0:
+                  ing is induced by small thermal fluctuations along        viewer.plot()
+                  an otherwise smooth surface, but the granularity
+                  of the Mesh is enough “noise” in this case, so we     as seen in Figure 5. The nonuniform temperature
+                  don’t need to explicitly introduce randomness, the    results from the release of latent heat at the solidify-
+                  way we did in the Cahn-Hilliard problem.              ing interface. The dendrite arms grow fastest where
+
+
+14                                                                                         Computing in Science & Engineering
+the temperature gradient is steepest. We note that                     transformations, particularly in electrochemical and
+this FiPy simulation is written in roughly 50 lines of                 semiconductor systems. Guyer has a PhD in materi-
+code (excluding the custom viewer), compared with                      als science and engineering from Northwestern Uni-
+more than 800 lines of (fairly lucid) Fortran code                     versity. Contact him at guyer@nist.gov.
+used for the figures found in the original work.8
+                                                                       Daniel Wheeler is a guest researcher in the Thermo-
+
+
+
+
+W
+                                                                       dynamics and Kinetics Group in the Metallurgy Divi-
+                  e developed FiPy to address a                        sion at the US National Institute of Standards and
+                  troublesome repetition of effort                     Technology. His interests include numerical analysis
+                  in our own research and in that                      for interpreting experimental results. Wheeler has a
+                  of our colleagues. The result is a                   PhD in computational mechanics from Greenwich
+tool that we enjoy using and that we’ve been able to                   University. Contact him at daniel.wheeler@nist.gov.
+apply to a diverse collection of research problems.
+We can get an implementation of a new combina-                         James A. Warren is leader of the Thermodynamics
+tion of physics far faster than we ever could when                     and Kinetics Group in the Metallurgy Division at the
+we were coding in C or Fortran. We’ve been grat-                       US National Institute of Standards and Technology.
+ified that many others have found our tool useful,                     His interests include developing both models of mate-
+often for applications we never dreamed of. We’re                      rials phenomena and the tools to enable the solution
+also pleased that FiPy is already helping in the                       of these models. Warren has a PhD in physics from
+education of the next generation of materials sci-                     the University of California, Santa Barbara. Contact
+entists. Our current development efforts focus on                      him at james.warren@nist.gov.
+improving performance, through parallelism and
+more sophisticated matrix preconditioners and
+solvers, by exploiting the Trilinos package from
+Sandia National Laboratories. We look forward                            Contact CiSE
+to tackling even larger and more complicated
+problems, while keeping the ease of use that we’ve                       Web sites: www.computer.org/cise/
+already established.                                                    or http://cise.aip.org
+                                                                         Writers: Visit our “Write for Us” section at
+References                                                               www.computer.org/cise/author.htm.
+ 1. M. Tobis, “PyNSol: Objects as Scaffolding,” Computing in
+    Science & Eng., vol. 7, no. 4, 2005, pp. 84–91.                      Letters to the Editors: Email Jennifer
+2. K.-A. Mardal et al., “Using Python to Solve Partial Differential      Gardelle, lead editor, jgardelle@computer.
+   Equations,” Computing in Science & Eng., vol. 9, no. 3, 2007,         org. Provide an email address or daytime
+   pp. 48–51.
+                                                                         phone number.
+3. D. Josell, D. Wheeler, and T.P. Moffat, "Gold Superfill in
+   Submicrometer Trenches: Experiment and Prediction," J.                Subscribe: Visit https://www.aip.org/forms/
+   Electrochemical Soc., vol. 153, no. 1, 2006, pp. C11–C18.             journal_catalog/order_form_fs.html or www.
+ 4. W.J. Boettinger et al., “Computation of the Kirkendall Veloc-        computer.org/subscribe/.
+    ity and Displacement Fields in a One-Dimensional Binary
+    Diffusion Couple with a Moving Interface,” Proc. Royal Soc.          Subscription Change of Address: For the
+    A: Mathematical, vol. 463, 2007, pp. 3347–3373.                      IEEE or IEEE Computer Society, email address.
+ 5. J. Mazur, “Numerical Simulation of Temperature Field in Soil         change@ieee.org. Specify CiSE. For the AIP,
+     Generated by Solar Radiation,” J. Physique IV France, vol. 137,
+                                                                         email subs@aip.org.
+     Nov. 2006, pp. 317–320.
+6. J.W. Cahn and J.E. Hilliard, “Free Energy of a Nonuniform             Missing or Damaged Copies: For IEEE
+    System. I. Interfacial Free Energy,” J. Chemical Physics, vol.       Computer Society subscribers, email help@
+    28, no. 2, 1958, pp. 258–267.
+                                                                         computer.org. For AIP subscribers, email
+ 7. J.W. Cahn, “Free Energy of a Nonuniform System. II. Ther-
+                                                                         claims@aip.org.
+     modynamic Basis,” J. Chemical Physics, vol. 30, no. 5, 1959,
+     pp. 1121–1124.                                                      Article Reprints: Email cise@computer.org
+8. J.A. Warren et al., “Extending Phase Field Models of Solidifi-        or fax +1 714 821 4010.
+    cation to Polycrystalline Materials,” Acta Materialia, vol. 51,
+    no. 20, 2003, pp. 6035–6058.                                         Reprint Permission: Email William Hagen,
+                                                                         Copyrights & Trademarks Manager, at
+Jonathan E. Guyer is a member of the Thermody-                           ­copyrights@ieee.org.
+namics and Kinetics Group in the Metallurgy Divi-
+sion at the US National Institute of Standards and
+Technology. His interests include models of phase                        www.computer.org/cise
+
+May/June 2009                                                                                                                 15
+

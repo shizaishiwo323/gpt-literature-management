@@ -1,0 +1,412 @@
+                                                    Percolation without trapping: how Ostwald ripening during two-phase displacement
+                                                             in porous media alters capillary pressure and relative permeability
+                                                                   Ademola Isaac Adebimpe,1, 2, ∗ Sajjad Foroughi,1 Branko Bijeljic,1 and Martin J. Blunt1
+                                                               1
+                                                                   Department of Earth Science and Engineering, Imperial College London, London, SW7 2BP, UK.
+                                                                           2
+                                                                             Department of Chemical Engineering, Obafemi Awolowo University, Nigeria.
+                                                                                                     (Dated: June 14, 2024)
+                                                                   Conventional measurements of two-phase flow in porous media often use completely immiscible
+                                                                fluids, or are performed over time-scales of days to weeks. If applied to the study of gas storage
+                                                                and recovery, these measurements do not properly account for Ostwald ripening, significantly over-
+                                                                estimating the amount of trapping and hysteresis. When there is transport of dissolved species
+                                                                in the aqueous phase, local capillary equilibrium is achieved: this may take weeks to months on
+arXiv:2404.01313v2 [physics.flu-dyn] 17 Jun 2024
+
+
+
+
+                                                                the centimetre-sized samples on which measurements are performed. However, in most subsurface
+                                                                applications where the two phases reside for many years, equilibrium can be achieved. We demon-
+                                                                strate that in this case, two-phase displacement in porous media needs to be modelled as percolation
+                                                                without trapping. A pore network model is used to quantify how to convert measurements made
+                                                                ignoring Ostwald ripening to correct trapped saturation, capillary pressure and relative permeability
+                                                                to account for this effect. We show that conventional measurements over-estimate the amount of
+                                                                capillary trapping by 20-25%.
+
+
+                                                                      I.   INTRODUCTION                             the effect of hysteresis, to account for Ostwald ripening.
+                                                   Since the seminal work of Wilkinson & Willemnsen [1]                 Consider two fluid phases in the pore space, a denser
+                                                   and Lernomand et al. [2], immiscible multiphase flow             phase, labelled 1, and a less dense phase, 2. The capillary
+                                                   in porous media has been described as a percolation-like         pressure, Pc = P2 − P1 , is imposed by setting the pres-
+                                                   process, including trapping when one phase is completely         sures in each phase: for infinitesimal flow rates, where the
+                                                   surrounded by another. A trapped cluster is assumed              phases are connected to the inlet or outlet, the capillary
+                                                   to retain its volume and capillary pressure at which it          pressure is constant. The pore space can be conceptu-
+                                                   was first immobilized. However, in many natural and en-          alized as a network of wide regions, pores, connected by
+                                                   gineered settings, including subsurface gas storage and          restrictions, called throats [4].
+                                                   recovery, water table movement and transport through                 Let us assume that phase 1 is wetting and phase 2
+                                                   gas diffusion layers in electrolysers and fuel cells, there      non-wetting. Drainage, the displacement of a wetting
+                                                   is also transport of dissolved components leading to Ost-        phase by a non-wetting phase during which the capillary
+                                                   wald ripening [3]. Differences in local capillary pressure       pressure increases, is invasion percolation, where the non-
+                                                   lead to small differences in solubility, establishing con-       wetting phase fills the largest throat that is available for
+                                                   centration gradients in the aqueous phase. By diffusion,         filling through a connected pathway of non-wetting phase
+                                                   gas dissolved in water is transported between ganglia, al-       from the inlet [1]. The adjacent pore, being larger than
+                                                   lowing for rearrangement of the trapped phase. In equi-          the throat, is also filled. If it is assumed that there are
+                                                   librium, the concentration of dissolved gas is constant          connected wetting layer in roughness and corners in the
+                                                   everywhere which means that there is local capillary equi-       pore space, the wetting phase is not trapped. The reverse
+                                                   librium, even for trapped clusters of the gaseous phase.         process, imbibition, is displacement of the non-wetting
+                                                      Most experimental measurements of multiphase flow             phase by a wetting phase as the capillary pressure de-
+                                                   properties are conducted on rock samples a few cm in             creases. This is an ordinary percolation process since the
+                                                   size using either completely immiscible fluids (such as oil      wetting phase has access to the whole pore space through
+                                                   and water, or mercury and a vacuum), or are conducted            wetting layers [5]: the wetting phase occupies throats in
+                                                   over a period of days to a few weeks, during which time          order of size, from the smallest upwards, by snap-off [6].
+                                                   equilibrium of capillary pressure may not be achieved.           However, once the non-wetting phase is completely sur-
+                                                   On the other hand, in most subsurface situations, the            rounded by the wetting phase, it is trapped, and hence
+                                                   two phases will reside with little or no flow for periods of     imbibition is percolation with trapping. When a cluster
+                                                   months or years. As we demonstrate later, in equilibrium         of the non-wetting phase is trapped, it assumes a local
+                                                   of both capillary forces and dissolved concentration, the        capillary pressure that may be different from the prevail-
+                                                   correct model of displacement is percolation without trap-       ing capillary pressure imposed on the continuous phases
+                                                   ping. Nonetheless, phases can still be trapped. We will          [7].
+                                                   show how to correct the residual (trapped) saturations,              While there are additional subtleties, including com-
+                                                   capillary pressures and relative permeabilities, including       plex filling dynamics and Haines jumps in drainage [8, 9],
+                                                                                                                    intermittency [10], and cooperative pore filling in imbi-
+                                                                                                                    bition [2, 5], this model of quasi-static displacement has
+                                                                                                                    remained unchallenged for 40 years. With an accurate
+                                                   ∗ Corresponding author: a.adebimpe21@imperial.ac.uk
+                                                                                                                    representation of the pore-space geometry, and includ-
+                                                                                                                          2
+
+ing the percolation-like processes mentioned above in a        if it is disconnected. We assume, however, that Ostwald
+pore network model, qualitative predictions of the mul-        ripening does not allow clusters of phase 2 to nucleate
+tiphase flow properties, capillary pressure and relative       in parts of the pore space occupied by phase 1. When
+permeability, can be made (see, for instance, [11, 12]).       phase 1 is wetting, this has a less significant impact on
+                                                               the behaviour, as phase 1 is not trapped anyway, thanks
+                                                               to layer flow; however, unlike a traditional invasion per-
+             II.   OSTWALD RIPENING                            colation model, phase 2 can displace phase 1 from a dis-
+                                                               connected cluster.
+If the two fluids are not completely immiscible, for in-
+stance if phase 2 is a gas (air, natural gas, carbon dioxide
+or hydrogen), displacement is also accompanied by mass
+                                                                B.   Time-scales for equilibrium and experimental
+transport of dissolved species through phase 1 (usually                               implications
+water, but can be oil in the presence of carbon dioxide
+or natural gas). This facilitates Ostwald ripening, where      Having established that the equilibrium model of dis-
+diffusive transport in the aqueous phase acts to make the      placement is percolation without trapping, whereas it is
+local capillary pressure uniform [13–16]. Ostwald ripen-       percolation with trapping for completely immiscible flu-
+ing in porous media has been studied experimentally, the-      ids, we need to explore the implications for the analysis
+oretically and numerically: it leads to rearrangement of       of field-scale gas storage and recovery based on experi-
+the phases in the pore space with an overall trend of in-      mental measurements, typically made on samples a few
+creasing connectivity [17, 18].                                centimetres in size.
+                                                                 The first step is to consider if there is sufficient time
+                                                               for mass transport through the aqueous phase to reach
+                                                               equilibrium. This has previously been analysed analyti-
+    A.   Equilibrium model for partially miscible
+                     two-phase flow
+                                                               cally [19]. A typical timescale for equilibrium established
+                                                               by diffusion, td , over a length l is [19]
+If we consider slow displacement, what is the correct equi-
+librium model if Ostwald ripening leads to a constant                                      l2 rϕSgr ρg
+capillary pressure, even for disconnected phases? Ost-                              td =               ,                (1)
+                                                                                           2DHσmg
+wald ripening ensures that locally the capillary pressure
+is uniform, even in disconnected clusters. Consider the        where r is a typical throat radius, mg is the molecular
+displacement of phase 2 by phase 1 where the capillary         mass of the gas, Sgr is the residual gas saturation, ϕ is
+pressure decreases. A cluster of phase 2 is first trapped      the porosity, σ is the gas-water interfacial tension, ρg is
+when it is completely surrounded by phase 1, and its           the gas density, D is the diffusion coefficient of dissolved
+capillary pressure is the value imposed on the connected       gas in the aqueous phase and H is the Henry’s constant.
+phases. As displacement proceeds, and the capillary pres-      Eq. (1) finds the time sufficient to transport an amount
+sure drops, the capillary pressure in the trapped cluster      of gas equivalent to the residual saturation Sgr entirely
+is now higher than in the connected phases. If we allow        through the aqueous phase by molecular diffusion.
+Ostwald ripening, this means, from Henry’s law, that the          However, the pore-space arrangement of fluids is also
+concentration of dissolved gas adjacent to the cluster is      determined by advection, or the flow of connected gas in
+slightly higher than next to the connected phase, creating     its own phase under imposed or natural pressure gradi-
+a concentration gradient. If we allow sufficient time for      ents. If we assume a Darcy flux (volume per unit area per
+mass transport by diffusion, material from the trapped         unit time) q, then for a cubic volume of side l, the volume
+cluster will dissolve and be transferred to the connected      of gas transported in a time ta is l2 qta . If we equate this
+phase 2.                                                       to the volume of residual gas in the same volume l3 ϕSgr ,
+   Now imagine a displacement event possible at the pre-       we can define an advective timescale:
+vailing capillary pressure, but which occurs in a trapped
+                                                                                              lϕSgr
+cluster that would be forbidden in a conventional model                                ta =         .                   (2)
+with trapping. Ostwald ripening will mean that removal                                          q
+of gas is possible, albeit through diffusion through phase
+                                                               The ratio of diffusive and advective times is therefore
+1, rather than by immiscible displacement. In the end
+this is simply a percolation-like model where trapping is                              td     lqrρg
+ignored. Phase 2 does remain trapped at the end of the                            R=      =         .                   (3)
+                                                                                       ta   2DHσmg
+displacement. Displacement stops when we can no longer
+impose a capillary pressure through connected phases:            As an example, using typical values of the parameters
+this occurs when all of phase 2 is first disconnected.         in Eq. (1) (see Table 1 in [19] for details), the time to
+   The same argument pertains for subsequent injection         reach equilibrium over a length 1 = 10−3 m (taken as a
+of phase 2, allowing for the reconnection of previously-       representative distance between trapped ganglia of gas)
+trapped clusters. Displacement is possible, without trap-      by diffusion at subsurface conditions is 1.5×106 s, 3×106 s
+ping of phase 1, from any cluster containing phase 2, even     and 9 × 106 s for carbon dioxide, hydrogen and methane
+                                                                                                                          3
+
+respectively: this is approximately 17 to 100 days. In             In this work we hypothesize that under most experi-
+comparison, advection is much more rapid, assuming that         mental conditions, Ostwald ripening has an insignificant
+the gas is connected through the pore space: taking a flow      effect on the measured multiphase flow properties such
+rate of 10−7 m/s, ϕ = 0.2 and Sgr = 0.3, ta is only 600 s       that displacement can be modelled as percolation with
+in Eq. (2).                                                     trapping. Under field conditions we assume, in contrast,
+   From Eq. (3) it is evident that as we consider larger        that Ostwald ripening leads to capillary pressure equi-
+length-scales, l, from centimetre-sized samples used for        librium, even for trapped clusters, and can be modelled
+experiments to the kilometre extent of gas storage, ad-         as percolation without trapping. We will now use a pore
+vection becomes increasingly dominant. Hence we can             network model to explore what impact this has on capil-
+assume that when there is flow of gas – it is not com-          lary pressure, relative permeability and residual satura-
+pletely trapped – advection will control how it moves and       tion.
+its occupancy in the pore space for all reasonable values
+of diffusion coefficient, Henry’s constant and interfacial
+tension.
+   The conceptual picture of flow in the presence of Ost-                       III.   METHODOLOGY
+wald ripening is therefore as follows: Advection will dom-
+inate the pore-scale arrangement of fluid when the gas          We now explore the differences between a percolation
+is well-connected in the pore space. While there can be         model with and without trapping on predictions of resid-
+transport of dissolved material, since the connected phase      ual saturation, capillary pressure and relative permeabil-
+maintains a constant capillary pressure locally, there are      ity using a pore network model that can simulate an arbi-
+no significant concentration gradients or transport of dis-     trary sequence of displacement both with trapping (the
+solved gas in the aqueous phase. The situation when a           conventional model) and without (considering Ostwald
+significant fraction of the gas is trapped – at or near the     ripening). The input is an unstructured network of pores
+end-point of imbibition or the start of secondary drainage      connected by throats extracted from pore-space images
+– requires more careful consideration, however. Here            by the maximal ball method [20, 21]. The model, with
+there can be a difference in capillary pressure between         trapping, is identical in terms of algorithm to previous
+trapped ganglia and the connected phase, as discussed           work [12].
+in the previous section. Advective flow is controlled by
+the multiphase flow functions, relative permeability and           We will only consider two extreme cases: no Ostwald
+capillary pressure, that are determined by the pore-scale       ripening (rapid experiments or immisicble fluids), and
+arrangement of fluid. These functions do change with            equilibrium considering Ostwald ripening (which is rep-
+Ostwald ripening, as the distribution of phases within the      resentative of most subsurface flows). We will not con-
+pore space alters; hence, even if advection is fast, Ost-       sider a transient, time-dependent process where both ad-
+wald ripening has an effect if it alters the multiphase flow    vection and diffusive transport compete. This has been
+functions during displacement. The question is whether          simulated in pore-scale models by several authors using
+there is sufficient time for Ostwald ripening to have a         level set method [22], level set with mass transfer method
+significant impact on relative permeability and capillary       [23, 24], and pore network modelling including pressure
+pressure.                                                       depletion [25], and bubble equilibration using sequential
+   In experimental studies, a full cycle of injection on a      [15] and fully-implicit [26] algorithms. The purpose of
+centimetre-sized sample is normally completed in a few          our work is not to propose a new, sophisticated model of
+days to weeks, dependent on the methodology used [4].           the time evolution of phases with Ostwald ripening, but
+What is of principal concern here is the amount of time,        to propose a simple approach to correct experimental re-
+near the end of the displacement, for rearrangement of          sults, where the effect is small, to field settings where we
+trapped phases. In this case, it is unlikely that equilib-      are at, or close to, equilibrium.
+rium is reached at the mm-scale such that there is signifi-
+cant reconnection and flow, and certainly not at the scale         As a base case we simulated displacement through a
+of the whole sample. On the other hand, in gas storage          network derived from a micro-tomography image of Ben-
+operations, after injection the system is left for typically    theimer sandstone [27] that has been widely used as a
+3-6 months before withdrawal (for hydrogen and natu-            benchmark for many experimental and modelling stud-
+ral gas), or, in the case of carbon dioxide sequestration,      ies [28]. To explore the sensitivity of our results to pore
+the supercritical gas is left to migrate through the for-       structure, we also studied networks derived from two im-
+mation under natural pressure gradients and buoyancy            ages of Estaillades limestone [29, 30], Ketton, an oolithic
+over decades to millennia. In these circumstances it is         limestone [31], and a reservoir carbonate sample [32]. In
+likely that equilibrium is achieved at a scale sufficient for   all cases the receding contact angle (measured through
+phases potentially to reconnect and flow. It is not nec-        phase 1) was zero for drainage and 45.6◦ ± 20.1◦ dis-
+essary for equilibrium to be satisfied by diffusion alone       tributed uniformly for imbibition. This value was chosen
+over much longer lengths, since once the gas reconnects,        based on measurements of contact angle during displace-
+advection leads to a much more rapid transport.                 ment and previous modelling studies [28, 33, 34].
+                                                                                                                               4
+
+
+
+
+FIG. 1. Capillary pressure as a function of the saturation of
+phase 1 assuming (a) filling of a pore or throat is not allowed
+if trapped, and (b) when filling of a pore or throat is allowed
+even if trapped. The imposed capillary pressures in drainage
+reached 100 kPa while during imbibition filling was contin-
+ued until the non-wetting phase became disconnected. The
+lines are model predictions while the points are experimen-
+tal measurements where Ostwald ripening had not reached
+equilibrium (percolation with trapping): squares for primary
+drainage and secondary imbibition from [35]; and circles and
+diamonds for mercury injection capillary pressure drainage
+and secondary imbibition respectively from [28].
+
+
+
+         IV.    RESULTS AND DISCUSSION
+                                                                  FIG. 2. Relative permeability as a function of the satura-
+                 A.    Capillary pressure                         tion of phase 1 for (a) primary and secondary drainage and
+                                                                  (b) imbibition assuming filling is not allowed if trapped; and
+Fig. 1 shows the predicted capillary pressure for primary         (c) drainage and imbibition assuming filling is allowed even if
+drainage, secondary imbibition and secondary drainage             trapped. The lines are model predictions while the points are
+with and without trapping in imbibition. For the case             measurements where Ostwald ripening is negligible (percola-
+with trapping, the model predictions are compared to              tion with trapping): squares for phase 1 and circles for phase
+experimental measurements of primary drainage using               2 from [11, 36].
+mercury injection [28], where Ostwald ripening does not                                          .
+occur, and nitrogen/water experiments for both primary
+drainage and imbibition [35] where the entire imbibition
+cycle was performed in 5 to 48 hours. Based on the anal-
+ysis in the previous section, we suggest that this is in-         ripening is considered. Here we see a decrease in trapped
+sufficient time for Ostwald ripening to reach equilibrium.        saturation from approximately 0.36 to 0.28 (see Table 1):
+There is a good agreement between the model predictions           the capillary pressure for secondary displacement cycles
+and experiment, including the trapped saturation S2t .            appears stretched along the saturation axis compared to
+  Fig. 1(b) presents model predictions when Ostwald               the case with trapping.
+                                                                                                                               5
+
+               B.    Relative permeability
+Predictions of relative permeability are compared with
+experimental data [11, 36] in Fig. 2: here the mea-
+surements were made with immiscible oil/water systems
+where the impact of Ostwald ripening is negligible. The
+model predictions fall within the considerable scatter of
+the data, consistent with other work using algorithmi-
+cally similar network models [12, 34]. However, when
+Ostwald ripening is considered, although the non-wetting
+phase relative permeability is similar, it reaches a lower
+residual saturation, while the wetting phase relative per-
+meability reaches a higher maximum value, following the
+trend in primary drainage: the wetting phase occupies
+the smallest regions of the pore space, as well as corners
+and roughness, and reaches a higher conductance as the
+saturation increases.
+
+
+    C.    Proposed scaling to account for Ostwald
+                         ripening
+As explored above, most experimental measurements
+of capillary pressure and relative permeability are not
+conducted at equilibrium, in terms of Ostwald ripen-
+ing, and hence are not representative of most subsurface
+flows involving gases. This is either because mercury
+or oil/water systems are used, or the experiment is per-
+formed too rapidly to allow diffusive transport to rear-
+range the gaseous phase. We now propose how to convert
+measurements made out of equilibrium (with trapping)
+to account for Ostwald ripening.
+   We define a normalized saturation 1 ≥ Se ≥ 0:
+                             S1 − S1i
+                    Se =                 ,                 (4)
+                           1 − S1i − S2t
+where S1i is the initial (irreducible) saturation of phase
+1 at the end of primary drainage and S2t is the trapped
+saturation of phase 2.
+   We hypothesize that the capillary pressures for dis-
+placement cycles after primary drainage with and with-
+out trapping are similar when plotted as a function of
+Se with appropriate (and different) values for S2t . This
+is tested in Fig. 3 which demonstrates that this concept          FIG. 3. (a) Capillary pressure and (b) the relative perme-
+does provide an accurate representation of the capillary          ability of phase 2, as a function of the normalized saturation,
+pressure hysteresis.                                              Eq. (4), and (c) phase 1 relative permeability as a function
+   For the wetting phase relative permeability, a larger          of its own saturation. For both capillary pressure and the
+                                                                  relative permeability of phase 2, the results with and without
+value is reached without trapping, since the saturation
+                                                                  trapping are similar. With a rescaling of saturation, mea-
+is higher at the end of imbibition. Here the approach is          surements with trapping can be converted to predict the be-
+                            t    n           t
+as follows: for S1 ≤ 1 − S2t  ; kr1 (S1 ) = kr1 (S1 ) while for   haviour under truly equilibrium conditions. For the relative
+      t               t
+1 − S2n ≥ S1 > 1 − S2t ; we propose:                              permeability of phase 2, excellent predictions are also made
+                                          t    t                  using the scaling proposed in Eq. (5).
+                n           D            kr1 (S1t )
+               kr1 (S1 ) = kr1 (S1 ) ·    D    t
+                                                           (5)
+                                         kr1 (S1t )
+where the superscript t refers to the case with no Ostwald        meability including Ostwald ripening. For the other net-
+ripening (trapping), n with Ostwald ripening (the no-             works studied, see Table 1, our proposed scaling of cap-
+trapping model), and D refers to primary drainage.                illary pressure and relative permeability also works well.
+   Fig. 3 suggests that the scaling proposed in Eq. (5)              The remaining parameter required to convert measure-
+gives a good prediction of the wetting phase relative per-        ments without Ostwald ripening is the change in trapped
+                                                                                                                            6
+
+                                                                   ing to a less steep transition in occupancy. The resultant
+                                                                   difference in trapped saturation will be a function of con-
+                                                                   tact angle (wettability) and pore structure and hence is
+                                                                   difficult to predict a priori.
+
+
+                                                                                     V.   CONCLUSIONS
+                                                                   In summary, two-phase displacement where transport of
+                                                                   dissolved species allows local capillary equilibrium is a
+                                                                   percolation process with trapping, overturning current
+                                                                   conventional models [2]. Experimental measurements on
+                                                                   gas/water systems that have not yet reached equilibrium
+                                                                   – which is likely to take days to months [19] – over-
+FIG. 4. A plot of frequency distribution for the fraction of       estimate the amount of residual trapping by approxi-
+pores and throats of different radius filled with the phase 2 at   mately 20% and the extent of capillary pressure hystere-
+the end of imbibition. Without trapping (no Ostwald ripen-         sis. This is significant for assessments of geological car-
+ing) there is less filling overall, but the larger elements are    bon dioxide storage, for instance, where capillary trap-
+occupied by phase 2. The difference in the distributions with      ping allows secure long-term storage, but whose impact,
+and without considering Ostwald ripening controls the change       if based on laboratory experiments, may have been ex-
+in trapped saturation.                                             aggerated [37]; on the other hand, the reduction in trap-
+                                .                                  ping with Ostwald ripening is favourable for hydrogen
+                                                                   and natural gas storage and retrieval.
+                                                                      Future work could extend these predictions to systems
+saturation. This can be found experimentally, by wait-             of arbitrary wettability and to provide direct experimen-
+ing at the end of imbibition for equilibrium to be reached,        tal tests of the changes in multiphase flow properties
+followed by further injection of phase 1 to allow any con-         predicted here. In addition, we could employ a time-
+nected phase 2 to be displaced.                                    dependent pore-scale simulation, as presented by others
+                                                                   [15, 22–26] to quantify more precisely the effect of Ost-
+   In the absence of experimental evidence, Table I shows          wald ripening during experiments and at representative
+the change in trapped saturation for the cases we have             subsurface conditions.
+studied: Bentheimer sandstone, Estaillades limestone
+and a reservoir sample. We see that the reduction in
+trapped saturation accounting for Ostwald ripening is ap-
+                                                                                          VI.   DATA
+proximately 20% and this factor could be used to find an
+                     n
+initial estimate of S2t .                                          The code used to generate the results in this pa-
+                                                                   per, together with associated data can be found in
+   Fig. 4 illustrates the fraction of pores and throats of
+                                                                   github.com/ImperialCollegeLondon/porescale/OstRipening.
+different radius filled at the end of imbibition for both
+models. Allowing for Ostwald ripening leads to a more
+strictly percolation-like process with a sharp transition
+from small throats, filled with phase 1, and larger throats                   VII.   ACKNOWLEDGEMENT
+occupied by phase 2. When trapping is accommodated,                AIA would like to thank the Petroleum Technology De-
+some smaller throats can remain filled with phase 1, lead-         velopment Fund (Nigeria) for funding his PhD.
+
+
+
+
+ [1] D. Wilkinson and J. F. Willemsen, Journal of Physics A:        [6] J. J. Pickell, B. F. Swanson, and W. B. Hickmann, SPE
+     Mathematical and General 16, 3365 (1983).                          Journal 6, 55– (1966).
+ [2] R. Lenormand, C. Zarcone, and A. Sarr, Journal of Fluid        [7] M. Andrew, H. Menke, M. J. Blunt, and B. Bijeljic,
+     Mechanics 135, 337 (1983).                                         Transport in Porous Media 110, 1 (2015).
+ [3] W. Ostwald, Zeitschrift für physikalische Chemie 22, 289      [8] W. B. Haines, The Journal of Agricultural Science 20,
+     (1897).                                                            97 (1930).
+ [4] M. J. Blunt, Multiphase Flow in Permeable Media:               [9] S. Berg, H. Ott, S. A. Klapp, A. Schwing, R. Neit-
+     a Pore-Scale Perspective (Cambridge University Press,              eler, N. Brussee, A. Makurat, L. Leu, F. Enz-
+     2017).                                                             mann, J. O. Schwarz, M. Kersten, S. Irvine,
+ [5] R. Lenormand and C. Zarcone (1984) sPE 13264, pro-                 and M. Stampanoni, Proceedings of the Na-
+     ceedings of the 59th SPE Annual Technical Conference               tional Academy of Sciences 110, 3755 (2013),
+     and Exhibition, Houston, Texas, 16–19 September.                   http://www.pnas.org/content/110/10/3755.full.pdf.
+                                                                                                                              7
+
+
+                      Table I. Comparison of network properties and predictions of trapped saturations.
+                Network                  Porosity          K (m2 )             t
+                                                                             S2t            n
+                                                                                          S2t        ∆S (%)
+                Bentheimer                0.220         2.792 ×10−12        0.358        0.280        21.8
+                Estaillades 1             0.127         1.651 ×10−13        0.532        0.413        22.4
+                Estaillades 2             0.102         2.643 ×10−14        0.579        0.454        21.6
+                Ketton                    0.074         1.108 ×10−12        0.393        0.300        23.7
+                Reservoir sample          0.133         2.339 ×10−13        0.464        0.366        21.1
+
+
+[10] C. A. Reynolds, H. Menke, M. Andrew, M. J. Blunt,                resources research 59, e2022WR033686 (2023).
+     and S. Krevor, Proceedings of the National Academy of       [26] Y. Mehmani and K. Xu, Journal of Computational
+     Sciences 114, 8187 (2017).                                       Physics 457, 111041 (2022).
+[11] P. E. Øren, S. Bakke, and O. J. Arntzen, SPE Journal 3,     [27] Porescale Modelling and Imaging Group - Imperial Col-
+     324 (1998).                                                      lege London, High resolution x-ray image of bentheimer
+[12] P. H. Valvatne and M. J. Blunt, Water Resources Re-              sandstone, https://imperialcollegelondon.box.com/
+     search 40, W07406 (2004).                                        v/iccpsim-bentheimer2015 (2015).
+[13] K. Xu, R. Bonnecaze, and M. Balhoff, Physical Review        [28] Q. Lin, B. Bijeljic, R. Pini, M. J. Blunt, and S. Krevor,
+     Letters 119, 264502 (2017).                                      Water Resources Research 54, 7046– (2018).
+[14] C. Garing, J. A. de Chalendar, M. Voltolini, J. B. Ajo-     [29] Porescale Modelling and Imaging Group - Imperial Col-
+     Franklin, and S. M. Benson, Advances in Water Re-                lege London, High-resolution x-ray image of estaillades
+     sources 104, 223 (2017).                                         carbonate, https://imperialcollegelondon.app.box.
+[15] J. A. de Chalendar, C. Garing, and S. M. Benson, Journal         com/v/iccpsim-estaillades2015 (2015).
+     of Fluid Mechanics 835, 363 (2018).                         [30] Y. Gao, S. Foroughi, B. Bijeljic, and M. J. Blunt, Es-
+[16] K. Singh, T. Bultreys, A. Q. Raeini, M. Shams, and M. J.         taillades carbonate: High-resolution x-ray imaging of
+     Blunt, Journal of Colloid and Interface Science 609, 384         steady-state oil-brine flow in microporous rock. figshare.
+     (2022).                                                          media. (2023).
+[17] Y. Zhang, B. Bijeljic, Y. Gao, S. Goodarzi, S. For-         [31] A. Scanziani, Q. Lin, A. Alhosani, M. J. Blunt, and B. Bi-
+     oughi, and M. J. Blunt, Geophysical Research Letters             jeljic, Proceedings of the Royal Society A 476, 20200040
+     50, e2022GL102383 (2023).                                        (2020).
+[18] S. Goodarzi, Y. Zhang, S. Foroughi, B. Bijeljic, and        [32] A. Alhosani, A. Scanziani, Q. Lin, S. Foroughi, A. M.
+     M. J. Blunt, International Journal of Hydrogen Energy            Alhammadi, M. J. Blunt, and B. Bijeljic, Physical Review
+     56, 1139 (2024).                                                 E 102, 023110 (2020).
+[19] M. J. Blunt, Physical Review E 106, 045103 (2022).          [33] M. J. Blunt, Q. Lin, T. Akai, and B. Bijeljic, Journal of
+[20] H. Dong and M. J. Blunt, Physical Review E 80, 036307            Colloid and Interface Science 552, 59 (2019).
+     (2009).                                                     [34] A. Q. Raeini, B. Bijeljic, and M. J. Blunt, Physical Re-
+[21] A. Q. Raeini, B. Bijeljic, and M. J. Blunt, Physical Re-         view E 97, 023308 (2018).
+     view E 96, 013312 (2017).                                   [35] B. Raeesi, N. R. Morrow, and G. Mason, Vadose Zone
+[22] D. Singh, H. A. Friis, E. Jettestuen, and J. O. Helland,         Journal 13, https://doi.org/10.2136/vzj2013.06.0097
+     Transport in Porous Media 145, 441 (2022).                       (2014).
+[23] D. Singh, H. A. Friis, E. Jettestuen, and J. O. Helland,    [36] A. H. Alizadeh and M. Piri, Water Resources Research
+     Journal of Colloid and Interface Science 647, 331 (2023).        50, 1636 (2014).
+[24] D. Singh, H. A. Friis, E. Jettestuen, and J. O. Helland,    [37] S. M. Benson and D. R. Cole, Elements 4, 325 (2008).
+     Advances in Water Resources 187, 104688 (2024).
+[25] R. Moghadasi, S. Foroughi, F. Basirat, S. R. McDougall,
+     A. Tatomir, B. Bijeljic, M. J. Blunt, and A. Niemi, Water
+

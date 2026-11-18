@@ -1,0 +1,2394 @@
+                 Fluid-Rock Interaction:
+              A Reactive Transport Approach
+                       1
+                           Carl I. Steefel and 2Kate Maher
+                                        1
+                                       Earth Sciences Division
+                                Lawrence Berkeley National Laboratory
+                                   Berkeley, California 94720, USA
+                            2
+                                Dept. of Geological & Environmental Sciences
+                                        School of Earth Sciences
+                                          Stanford University
+                                    Stanford, California 94305, USA
+
+
+                                            INTRODUCTION
+     Fluid-rock interaction (or water-rock interaction, as it was more commonly known) is a
+subject that has evolved considerably in its scope over the years. Initially its focus was primarily
+on interactions between subsurface fluids of various temperatures and mostly crystalline rocks,
+but the scope has broadened now to include fluid interaction with all forms of subsurface
+materials, whether they are unconsolidated or crystalline (“fluid-solid interaction” is perhaps less
+euphonious). Disciplines that previously carried their own distinct names, for example, basin
+diagenesis, early diagenesis, metamorphic petrology, reactive contaminant transport, chemical
+weathering, are now considered to fall under the broader rubric of fluid-rock interaction,
+although certainly some of the key research questions differ depending on the environment
+considered.
+     Beyond the broadening of the environments considered in the study of fluid-rock interaction,
+the discipline has evolved in perhaps an even more important way. The study of water-rock
+interaction began by focusing on geochemical interactions in the absence of transport processes,
+although a few notable exceptions exist (Thompson 1959; Weare et al. 1976). Moreover, these
+analyses began by adopting a primarily thermodynamic approach, with the implicit or explicit
+assumption of equilibrium between the fluid and rock. As a result, these early models were
+fundamentally static rather than dynamic in nature. This all changed with the seminal papers by
+Helgeson and his co-workers (Helgeson 1968; Helgeson et al. 1969) wherein the concept of an
+irreversible reaction path was formally introduced into the geochemical literature. In addition to
+treating the reaction network as a dynamically evolving system, the Helgeson studies introduced
+an approach that allowed for the consideration of a multicomponent geochemical system, with
+multiple minerals and species appearing as both reactants and products, at least one of which
+could be irreversible. Helgeson’s pioneering approach was given a more formal kinetic basis
+(including the introduction of real time rather than reaction progress as the independent variable)
+in subsequent studies (Lasaga 1981; Aagaard and Helgeson 1982; Lasaga 1984) . The reaction
+path approach can be used to describe chemical processes in a batch or closed system (e.g., a
+Fluid-Rock Interaction: A Reactive Transport Approach                         Steefel & Maher
+
+
+laboratory beaker), but such systems are of limited interest in the Earth sciences where the
+driving force for most reactions is transport. Lichtner (1988) clarified the application of the
+reaction path models to water-rock interaction involving transport by demonstrating that they
+could be used to describe pure advective transport through porous media. By adopting a
+reference frame which followed the fluid packet as it moved through the medium, the reaction
+progress variable could be thought of as travel time instead.
+     Multi-component reactive transport models that could treat any combination of transport and
+biogeochemical processes date back to the early 1980s. Berner and his students applied
+continuum reactive transport models to describe processes taking place during the early
+diagenesis of marine sediments (Berner 1980). Lichtner (1985) outlined much of the basic
+theory for a continuum model for multicomponent reactive transport. Yeh and Tripathi (1989)
+also presented the theoretical and numerical basis for the treatment of reactive contaminant
+transport. Steefel and Lasaga (1994) presented a reactive flow and transport model for non-
+isothermal, kinetically-controlled water-rock interaction and fracture sealing in hydrothermal
+systems based on simultaneous numerical solution of both reaction and transport
+     This chapter begins with a review of the important transport processes that affect or even
+control fluid-rock interaction. This is followed by a general introduction to the governing
+equations for reactive transport, which are broadly applicable to both qualitative and quantitative
+interpretations of fluid-rock interactions. This framework is expanded through a discussion of
+specific topics that are the focus of current research, or are either incompletely understood or not
+fully appreciated. At this point, the focus shifts to a brief discussion of the three major
+approaches to modeling multi-scale porous media 1) continuum models, 2) pore scale and pore
+network models, and 3) hybrid or multi-continuum models. From here, the chapter proceeds to
+investigate some case studies which illuminate the power of modern numerical reactive transport
+modeling in deciphering fluid-rock interaction.
+
+                                  TRANSPORT PROCESSES
+     Transport is a fundamental part of the fluid-rock interaction process for two reasons: 1) it
+provides the driving force for many of the reactions that take place by continuously introducing
+fluid out of equilibrium with respect to the reactive solid phase, and 2) it provides a characteristic
+time scale to be compared with the rates of reaction. In a batch system, the time scale of interest
+is the time over which equilibrium is achieved (where net reaction rates are, by definition, = 0),
+or rates become so slow that the system effectively no longer changes. In an open system, a
+good laboratory analogue of which is the continuously stirred tank reactor (CSTR) or well-mixed
+flowthrough reactor, the continuous injection of solution that is out of equilibrium (either with
+itself, or with a solid phase inside the reactor) causes the solution composition coming out of the
+reactor to reach a steady-state. If the residence time in the CSTR is long enough, equilibrium
+between the solution and solid phase may be achieved—otherwise, the solution and solid phase
+may remain some distance from equilibrium at steady state. The steady state behavior is
+controlled by the ratio of the characteristic fluid residence time, τres, to the characteristic reaction
+time, τreact
+                                               τ res kV
+                                                     =  .                                           (1)
+                                              τ react Q
+
+
+
+                                                   2
+Fluid-Rock Interaction: A Reactive Transport Approach                        Steefel & Maher
+
+where
+        k = reaction rate constant (s-1)
+        Q = volumetric flow rate (cm3 s-1)
+        V = volume of reactor (cm3)
+From this simple analysis, it should be clear that the approach to equilibrium has nothing to do
+with geologic time, but is controlled instead by the ratio of the characteristic residence (or
+transport) time and reaction time in the reactor. Similar concepts apply in the more complicated
+case of flow and transport through porous media, although the detailed transport processes
+require additional discussion.
+     The continuously stirred tank reactor provides perhaps the simplest example where rates of
+transport can be compared to rates of reaction. But in porous and/or fractured media, reactions
+can be driven by a variety of transport processes and changes in porosity, mineral saturation
+states and mineral abundances can be distributed along a flow path. The most important of these
+transport processes are advection, molecular diffusion, and mechanical dispersion. Although
+widely neglected, electrochemical migration is a flux created by the diffusion of charged species
+at differing rates which may be important in some cases. Below, these transport processes are
+defined mathematically in terms of fluxes, that is, the amount of solute passing through a unit
+area per unit time.
+Advection
+    Advection involves the translation in space of dissolved or suspended material at the rate of
+movement of the bulk fluid phase. No modification of the shape of a front and no dilution
+occurs when transport is purely via advection—a sharp front remains so when undergoing purely
+advective transport. The advective flux, Jadv, of a dissolved species in porous media can be
+described mathematically as
+                                             J adv = φ vCi ,                                       (2)
+where φ is the porosity, v is the average linear velocity in the media, and Ci is the concentration
+of the ith species. In most (but not all) examples of water-rock interaction, flow is through a
+porous medium and is described with Darcy’s Law.
+Darcy’s Law
+     The fluid velocity in porous and fractured media is usually calculated from Darcy’s Law,
+which states that the volumetric flux of water (m3fluid/m2medium/s), q, is a vector proportional to
+the gradient in the hydraulic head, h
+                                           q = φ v = − K∇h ,                                       (3)
+where K is the hydraulic conductivity (here a second-order tensor) in units of m/s (Darcy 1856).
+One can also write Darcy’s Law in terms of fluid pressure by defining the hydraulic head as
+                                                       P
+                                             h= z+        ,                                        (4)
+                                                       ρg
+where z is the depth, P is the fluid pressure, ρ is the fluid density, and g is the acceleration due to
+gravity. The hydraulic conductivity is defined as
+
+                                                   3
+Fluid-Rock Interaction: A Reactive Transport Approach                          Steefel & Maher
+
+
+                                                   κρ g
+                                              K=           ,                                     (5)
+                                                       µ
+where κ is the permeability and µ is the dynamic viscosity. One can also write Darcy’s Law
+explicitly in terms of the fluid pressure, permeability, and the viscosity
+                                                   κ
+                                      q = φv = −       [ ∇P − ρ g ] .                            (6)
+                                                   µ
+Darcy’s Law is applied where the porous medium can be treated as a continuum in which a
+representative elementary volume (REV) is significantly larger than the average grain size. In
+the case of flow at the pore scale, the averaging does not apply and Darcy’s Law cannot be used.
+Representative values of the hydraulic conductivity (or permeability) are given in Table 1 for
+various subsurface materials.
+Molecular diffusion
+     In water-rock interaction, we are often concerned with transport through low porosity and
+permeability material, in which case molecular diffusion needs to be included in addition to flow.
+The treatment of molecular diffusion has also suffered to some extent from the assumption that
+Fick’s First Law (described below) is sufficient, but as shown below, this is true only in the case
+of diffusion of uncharged species in dilute solutions. A more general formulation relates the
+diffusive flux linearly to gradients in the chemical potential rather than concentration, but we
+begin with the simpler Fickian description of diffusion for the sake of simplicity.
+   Fick’s First Law. Molecular diffusion is usually described in terms of Fick’s First Law,
+which states that the diffusive flux (here shown for only a single coordinate direction x) is
+proportional to the concentration gradient
+                                                         ∂Ci
+                                            J i = − Di       .                                   (7)
+                                                         ∂x
+Di is referred to as the diffusion coefficient and is specific to the chemical component considered
+as indicated by the subscript i. Fick’s First Law is a phenomenological theory for diffusion that
+relates diffusion to the “driving force” provided by the concentration gradient, although it can
+also be derived atomistically (Lasaga 1998). In the case of diffusion in porous media, it is
+normally necessary to include a tortuosity correction as well (see discussion below). Values of
+diffusion coefficients for selected ion at infinite dilution in water at 25°C are given in Table 2.
+   Fick’s Second Law. Integrating the diffusive fluxes over a control volume leads to Fick’s
+Second Law (Bear 1972; Lasaga 1998). By defining the fluxes at the faces of an elemental
+volume as in Figure 1 (here shown for only a single coordinate direction x) a general form of the
+continuity equation can be derived by considering the change in concentration inside an
+elemental volume for a given time increment:
+                             dC   1                      1
+                                =   [ J x − J x +∆x ] = − [ J x+∆x − J x ] .                     (8)
+                             ∆t ∆x                       ∆x
+Written as a partial derivative as ∆x and ∆t → 0 , and substituting Fick’s First Law in Equation
+(7), Equation (8) becomes
+
+
+
+                                                   4
+Fluid-Rock Interaction: A Reactive Transport Approach                        Steefel & Maher
+
+
+                                    ∂Ci    ∂        ∂ ⎡ ∂Ci ⎤
+                                        = − [Ji ] =      Di     ,                                (9)
+                                     ∂t    ∂x       ∂x ⎢⎣ ∂x ⎥⎦
+which provides an expression for the change in concentration in terms of the divergence of the
+diffusive flux.
+Integration of Equation (9) provides a solution for the time and space evolution of the
+concentration field. This equation is quite straightforward to integrate numerically, but
+analytical solutions are also available, with the general form
+                                                             ⎡ x ⎤
+                                      C ( x, t ) = A + B erf ⎢      ⎥,                          (10)
+                                                             ⎣ 2 Dt ⎦
+where A and B are constants that depend on the initial and boundary conditions. For the case
+where the initial mass is located between –h and h, with concentrations equal to zero elsewhere,
+the analytical solution is given by
+                                          1 ⎡ ⎛ x+h ⎞         ⎛ x − h ⎞⎤
+                           C ( x, t ) =    C0 ⎢ erf ⎜ ⎟ − erf ⎜       ⎟⎥ ,                      (11)
+                                          2 ⎣ ⎝ 2 Dt ⎠        ⎝ 2 Dt ⎠ ⎦
+where erf is the error function and C0 is the initial concentration between –h and h (Lasaga
+1998). Figure 2 shows the evolution of such an initially narrow and sharp zone with time as a
+result of molecular diffusion.
+Electrochemical migration
+     Fick’s First Law is strictly applicable only in the case of an infinitely dilute solution with
+uncharged chemical species. In electrochemical systems or systems containing charged species,
+it is also necessary to consider an electrochemical migration term. While this could be
+considered as a separate flux on the same level as advection and diffusion, this effect is most
+commonly related to diffusion of charged species at different rates. The full expression for the
+migration of a charged species in an electric field (written again in terms of a single coordinate
+direction, x, for the sake of simplicity) is given by (Newman 1991)
+                                                                    ∂Φ
+                                            J imigr = − zi ui FCi      ,                        (12)
+                                                                    ∂x
+where zi is the charge of the species, ui is its mobility, F is Faraday’s constant (= 96,487
+Coulombs/equivalent), and Φ is the electrical potential. The mobility refers to the average
+velocity of a species in solution acted upon by a unit force, independent of the origin of the force.
+The flux of charged species in an electric field gives rise to a current, which can be expressed as
+                                                 i = F ∑ zi J i ,                               (13)
+                                                         i
+
+where i is the current density in units of amperes per m2. Expanding Equation (13) in terms of
+the migration term (Equation (12)) and the diffusive flux (Equation (7)), the current density can
+be written as
+                                           ∂Φ                      ∂C
+                               i = −F 2       ∑
+                                           ∂x i
+                                                zi2uiCi − F ∑ zi Di i .
+                                                            i      ∂x
+                                                                                                (14)
+
+
+
+                                                        5
+Fluid-Rock Interaction: A Reactive Transport Approach                                                             Steefel & Maher
+
+Where no concentration gradients are present, the current is given by the first term on the right
+hand side
+                                                                        ∂Φ
+                                                  i = −κ e                                                                          (15)
+                                                                        ∂x
+where
+                                           κ e = F 2 ∑ zi2uiCi                                                                      (16)
+                                                                i
+
+is the conductivity of the solution. Note that using Equation (16), it is possible to determine the
+mobility of an ion by measuring the conductivity of a solution. The mobility in turn can be used
+to determine the diffusion coefficient for an ion from the Nernst-Einstein equation (Newman
+1991; Lasaga 1998)
+                                                  Di = RTui ,                                                                       (17)
+where R is the gas constant and T is the temperature on the Kelvin scale. Rearranging Equation
+(14) to obtain an expression for the gradient in the electrical potential
+                                     ∂Φ     i F      ∂C
+                                        = − − ∑ zi Di i ,                                                                           (18)
+                                     ∂x    κe κe i   ∂x
+it is apparent that even in the absence of an electrical current, i, it is possible to have a gradient in
+the electrical potential as a result of concentration gradients of charged species. The second term
+on the right hand side of Equation (18) is known as the diffusion potential, which vanishes when
+all of the diffusion coefficients for the charged species are the same. To proceed further, it is
+useful to define the fraction of the current carried by a species j (or the transference number)
+                                                        z 2j u jC j
+                                                tj =                                        ,                                       (19)
+                                                        ∑z uC
+                                                        i
+                                                                    2
+                                                                    i i             i
+
+
+which can be used along with the substitution of Equation (18) and Equation (16) into Equation
+(12) to obtain an expression for the migration flux
+                                                 t ji       tj                                          ∂Ci
+                                     J migr
+                                       j    =
+                                                z jF
+                                                        +
+                                                            z
+                                                              ∑ z D ∂x .    i
+                                                                                        i           i                               (20)
+                                                                    j
+
+This equation (still only strictly applicable to relatively dilute solutions) can be used to describe
+the case where an electrical current is present (e.g., an electrochemical cell), although more
+commonly in fluid-rock interaction one encounters only the second term.
+     In the absence of a current and advection, the total flux (combining Fickian diffusion and
+electrochemical migration) is then given by
+                                                 ∂C j               tj                                      ∂Ci
+                                   J j = −Dj
+                                                   ∂x
+                                                            +
+                                                                    z
+                                                                      ∑ z D ∂x .i
+                                                                                                i       i                           (21)
+                                                                        j
+
+As noted above, the second term vanishes when all of the diffusion coefficients for the charged
+species are the same, but since this is in general not the case, this term should normally be
+
+
+                                                            6
+Fluid-Rock Interaction: A Reactive Transport Approach                        Steefel & Maher
+
+retained along with the first term. Note also that the effect of electrochemical migration may be
+important even in dilute systems.
+     Electrochemical migration has several important consequences.                      Inclusion of
+electrochemical migration prevents the unrealistic build up of charge in calculations using
+differing diffusivities for charged species. The typical way to avoid this problem in transport
+calculations is to use the same diffusion coefficient for all of the charged species, in which case
+the diffusion potential driving electrochemical migration disappears. However, this approach
+does not provide the same results as would a full treatment of electrochemical migration. An
+example from Steefel (2007) illustrates some of the potential effects. A fixed boundary
+condition on the left side is separated by 20 mm of 10% porosity material from a reacting
+feldspar (albite) grain (Figure 3). At 25°C, the dissolution rate of feldspar is sufficiently slow
+that concentration gradients will not develop (Murphy et al. 1989). At higher temperatures
+where the rate of surface reaction is more rapid, however, it is possible to develop diffusion-
+limited dissolution (the rate of surface reactions is significantly faster than the rate at which ions
+can diffuse across the 20 mm distance, and thus a gradient develops). Comparison of the full
+multicomponent diffusion and electrochemical migration calculation (essentially the Nernst-
+Planck equation) with one based on identical diffusion coefficients (no electrochemical
+migration) for all species indicates that conservative quantities like alkalinity need not have
+linear profiles where electrochemical migration is important. Comparing the two cases with
+identical albite dissolution rates, the concentrations of dissolved species next to the albite grain
+are not even the same. This is primarily due to the rapid diffusion of hydrogen ion, which results
+in a more nearly linear profile for pH in the multicomponent diffusion/electrochemical migration
+case as compared to the identical diffusion coefficient case.
+Diffusion in concentrated solutions
+    Ficks’s First Law runs into additional difficulties in concentrated aqueous solutions as
+discussed in Steefel (2007). A more rigorous and general expression is given by
+                                                            ∂µ j
+                                          J diff
+                                            j    = − L ji            ,                           (22)
+                                                                ∂x
+where the Lji are the phenomenological coefficients introduced in the theory of irreversible
+thermodynamics (Onsager 1931; Prigogine 1967; Lasaga 1998) and µj is the chemical potential
+of the jth species. Here, the fluxes are linearly related to gradients in the chemical potentials of
+the solutes rather than to their concentrations as in Fick’s Law. The phenomenological
+coefficients, Lji, can be linked back to measurable quantities by making use of the mobility again
+as the “velocity” of a particle acted upon by a force, with the force in this case provided by the
+chemical potential rather than the concentration
+                                                                ∂µ j
+                                         J diff
+                                           j    = −u jC j                .                       (23)
+                                                                ∂x
+In the case where a gradient in chemical potential rather than concentration is used, the migration
+flux (compare to Equation (20) in the absence of a current) becomes
+                                                  tj                 ∂µi
+                                       J migr
+                                         j    =
+                                                  z
+                                                    ∑ z D ∂x .
+                                                       i
+                                                            i    i                               (24)
+                                                   j
+
+
+
+
+                                                       7
+Fluid-Rock Interaction: A Reactive Transport Approach                                                            Steefel & Maher
+
+By writing the chemical potential as (Denbigh 1981)
+                                           µ j = µ j 0 + RT ln(γ jC j ) ,                                                          (25)
+
+where γ j is the activity coefficient for the species, and differentiating with respect to x, we
+obtain the following combined expression for the pure diffusive flux and electrochemical
+migration by making use again of the definition of the ion mobility (Equation (17))
+                               ∂C j              ∂ ln γ j           tj                   ∂Ci     tj                  ∂γ i
+                   J j = −Dj
+                               ∂x
+                                      − D jC j
+                                                   ∂x
+                                                            +
+                                                                    z
+                                                                      ∑ z D ∂x + z ∑ z D ∂x .
+                                                                         i
+                                                                                 i   i
+                                                                                                         i
+                                                                                                             i   i                 (26)
+                                                                     j                               j
+
+This more general expression, which reduces to Equation (21) where gradients in activity
+coefficients are negligible (for example, for diffusion of a trace species in a strong electrolyte),
+makes clear that both the diffusive and electrochemical migration fluxes can depend on the
+activity coefficients for the species. If gradients in one or more activity coefficients are negative,
+it is possible for “uphill diffusion”, in which a species diffuses up its own concentration gradient,
+to occur (Lasaga 1998).
+Tortuosity
+    Since water-rock interaction commonly takes place in porous materials, it is important to
+account for the effect of tortuosity (Figure 4), which is defined as the ratio of the path length the
+solute would follow in water alone, L, relative to the tortuous path length it would follow in
+porous media, Le (Bear 1972)
+                                                                             2
+                                                   TL = ⎛⎜ L ⎞⎟ .                                                                  (27)
+                                                         ⎝ Le ⎠
+In this definition of tortuosity (sometimes the inverse of Equation (27) is used), its value is
+always < 1 and the effective diffusion coefficient in porous media is obtained by multiplying the
+tortuosity by the diffusion coefficient for the solute in pure water. With this formulation, the
+diffusion coefficient in porous media is given by
+                                                      Di* = TL Di .                                                                (28)
+
+
+The diffusive flux, then, is given by
+                                                            ∂C j                          ∂C j
+                                      J diff
+                                        j    = −φ D jTL                  = −φ D*j                .                                 (29)
+                                                            ∂x                             ∂x
+An alternative formulation for the coefficient for molecular diffusion in porous media is given by
+the formation factor, F, defined as (Bear 1972)
+
+                                             ( L L)
+                                                                2
+
+                                           F= e                         1
+                                                                    φ = φTL ,                                                      (30)
+
+in which case the diffusive flux in porous media becomes
+                                                                D j ∂C j
+                                                 J diff
+                                                   j    =−                           .                                             (31)
+                                                                    F ∂x
+
+
+                                                                8
+Fluid-Rock Interaction: A Reactive Transport Approach                     Steefel & Maher
+
+Various approaches for calculating formation factors (and thus, the diffusion coefficient in
+porous medium) are in use, with a formulation based on Archie’s Law being the most common
+                                                      1
+                                             F=            ,                                  (32)
+                                                  aφ m
+where a is a fitted constant and m is the cementation exponent. Values of a = 0.71 and m = 1.57
+have been suggested for unfractured granite (Pharmamenko 1967), although values of m = 2
+have been reported for many more porous and permeable subsurface materials (Oelkers 1996).
+Values for the formation factor in igneous intrusive rock in Sweden range from 103 to 107
+(Skagius and Neretnieks 1986). In the case of low porosity materials, especially those with low
+pore connectivity, the formation factor may be quite large (and thus, the diffusion coefficient in
+porous media quite small).
+Hydrodynamic dispersion
+     The phenomenon of hydrodynamic dispersion was noted as early as 1905 when Slichter
+reported that the concentration of an electrolyte monitored in an aquifer downstream of an
+injection point increased only gradually, with the plume shape becoming longer and wider as it
+advanced (Slichter 1905). The spreading of the solute mass as a result of dispersion is a
+diffusion-like process that has led to the use of Fick’s First Law to describe the process in one
+dimension as
+                                                          ∂C j
+                                         J disp
+                                           j    = − Dh           ,                            (33)
+                                                          ∂x
+where Dh is the hydrodynamic dispersion coefficient. The coefficient of hydrodynamic
+dispersion is defined as the sum of molecular diffusion and mechanical dispersion, since these
+effects are not separable where flow is involved (Bear 1972)
+                                           Dh = D* + D.                                       (34)
+The representation of dispersion as a Fickian process, however, has been questioned extensively
+(Dagan 1988). As applied to reactive transport problems, the main problem is that dispersion
+does not involve mixing in the same way that molecular diffusion does (Cirpka 2002). This is
+discussed further below in the section on macrodispersion.
+    Mechanical dispersion Mechanical dispersion is a result of the fact that variations in the
+flow velocities exist, even where an average flow rate (as in Darcy’s Law) can be defined for a
+particular representative elementary volume (REV). If all the detailed flow paths could be
+captured, then there would be no need for inclusion of a dispersion coefficient.
+     Mechanical dispersion was first clearly discussed for the case of laminar flow and transport
+within a cylindrical tube (Taylor 1953). In the case where a non-reactive tracer is
+instantaneously released at the inlet of the tube and complete mixing does not occur, the tracer
+pulse will arrive first where the flow is fastest, later where the flow is slower. At any one time,
+the bulk concentration of the fluid leaving the tube represents a flux-weighted average of the
+concentration in the fast and slow moving flow paths, so the breakthrough of the tracer will
+appear as disperse or gradual rather than sharp. This effect is referred to as Taylor dispersion
+(Taylor 1953; Aris 1956). Assuming Poiseuille’s equation for flow in a cylinder holds, the
+
+
+
+                                                  9
+Fluid-Rock Interaction: A Reactive Transport Approach                         Steefel & Maher
+
+steady-state parabolic velocity distribution as a function of radius r can be calculated from
+(Daugherty and Franzini 1965)
+
+                                       2Q ⎡ ⎛ r ⎞ ⎤            ⎡ ⎛ r ⎞2 ⎤
+                                                      2
+
+                             u( r ) =        ⎢1 −       ⎥ = 2U ⎢1 − ⎜ ⎟ ⎥ ,                     (35)
+                                      π R 2 ⎣⎢ ⎜⎝ R ⎟⎠ ⎦⎥      ⎣⎢ ⎝ R ⎠ ⎦⎥
+where u(r) is the local fluid velocity within the cylinder, Q is the volumetric flow rate, R is the
+radius of the cylinder, and U is the average velocity (Figure 5A). Using Equation (35), Taylor
+derived an analytical expression for the dispersion in the case of Poiseuille flow
+                                                       UR 2
+                                           Dh = D +         ,                                   (36)
+                                                        D
+where Dh is the dispersion coefficient, and D is the molecular diffusion coefficient. Note that the
+dispersion coefficient depends on the molecular diffusion coefficient for its contribution to
+longitudinal spreading (the first term on the right hand side of Equation (36)), but also inversely
+on the molecular diffusion coefficient in the second term on the right hand side because radial
+diffusion acts to eliminate the gradients in concentration developed by the non-uniform velocity
+profile (Figure 5A). A comparison of the breakthrough curve for a non-reactive tracer calculated
+with the Taylor-Aris dispersion coefficient given in Equation (36) and a full two-dimensional
+axisymmetric cylindrical Poiseuille flow calculation in which dispersion is represented only
+through the variation in flow velocities and through molecular diffusion (i.e., no explicit
+dispersion coefficient is included) is given in Figure 5B (Steefel 2007).
+A similar effect occurs within porous media (which are often conceptualized as bundles of
+capillary tubes), since the velocity adjacent to a solid grain is slower than the velocities in the
+center of the pore. Even in the case of a perfectly homogeneous porous medium (e.g., glass
+beads all of the same size), therefore, spreading of a solute plume will occur. Additional effects
+in porous media are related to the tortuosity of flow paths (Figure 4) and to differences in pore
+size, since velocities will be higher in those pores with wider apertures (Bear 1972).
+     Dispersion needs to be quantified at much larger scales in porous media, however, so some
+averaging of these dispersion mechanisms is usually required. Dispersion in porous media is
+typically defined as the product of the fluid velocity and a dispersivity, α, with longitudinal and
+transverse components
+                                             DL = α LVi
+                                                          ,                                     (37)
+                                             DT = αTVi
+where Vi refers to the average velocity in the principal direction of flow, and the subscripts L
+(longitudinal) and T (transverse) refer to the dispersion coefficient parallel and perpendicular to
+the principal direction of flow respectively (Bear 1972).
+     Macrodispersion The treatment of hydrodynamic dispersion as a Fickian process (that is,
+one in which the flux is linearly proportional to the concentration gradient) has been widely
+criticized (Gelhar and Axness 1983; Gelhar 1986; Dagan 1988; Gelhar et al. 1992). As pointed
+out by a number of investigators, dispersion is scale-dependent, with larger dispersivities
+observed for larger observation scales. At the column scale, a typical dispersivity may be on the
+order of a centimeter, but at the field scale, apparent dispersivities of 10 to 100 meters or more
+
+
+                                                  10
+Fluid-Rock Interaction: A Reactive Transport Approach                      Steefel & Maher
+
+are common. Gelhar (1986) showed that the dispersivity increased with scale of observation,
+although even at a single observation scale, dispersivities could range over 2-3 orders of
+magnitude due to differing degrees of aquifer heterogeneity at the different sites (Gelhar 1986;
+Gelhar et al. 1992). The increase with dispersivity as a function of the scale of measurement is
+related to the hierarchical nature of natural porous medium and is often referred to as
+macrodispersion. At the pore-scale, variations in flow velocity and direction are related to pore-
+scale heterogeneities like the variation in grain size and pore apertures, but at the field scale,
+additional heterogeneity features (sedimentary features, fractures, faults) are encountered which
+add to the spreading of the solute plume. As in the case of Taylor dispersion, the spreading of a
+solute plume is fundamentally related to the variations in flow velocity, with fast-flowing
+pathways leading to earlier breakthrough than slow flow pathways. In the case of Poiseuille flow
+in a tube, the effect is predictable and rigorously quantifiable because of the well-defined physics
+of the system, but in natural porous media where multi-scale heterogeneities typically occur, the
+problem of determining dispersivities is much more difficult and usually requires a stochastic
+treatment.
+     The effect of macrodispersion can be illustrated with a simple example as considered in
+Steefel (2007). Consider a permeability field with approximately six orders of magnitude
+variability in permeability (Figure 6A). The heterogeneous distribution of and strong contrast in
+permeability results in preferred flow paths that lead to fingering of a non-reactive tracer plume
+as it moves with the flow from left to right (Figure 6B). The two-dimensional numerical
+simulation was conducted without including a Fickian treatment of hydrodynamic dispersion and
+using an accurate Total Variation Diminishing (TVD) scheme that minimizes numerical
+dispersion (Steefel and MacQuarrie 1996). When a flux-weighted average of the solute
+concentration is calculated over the entire length of the capture plane on the right hand side,
+perpendicular to the flow direction (similar conceptually to what occurs where flow converges
+into a pumping well), one observes a gradual, disperse breakthrough as a result of the mixing of
+the early and late arriving fluid packets (Figure 7). To match the disperse breakthrough curve in
+the heterogeneous flow field with a one-dimensional simulation of flow in a homogeneous
+permeability field, it is necessary to use a dispersivity, α, of about 50 centimeters.
+     Stochastic descriptions of dispersion       There is much interest now in more rigorous
+descriptions of macrodispersion in particular. One approach has been to treat the parameters
+controlling transport (primarily the hydraulic conductivity or permeability, but also potentially
+such parameters as mineral volume fractions and/or reactive surface area) as stochastic rather
+than deterministic parameters, since the exact distribution of these parameters in the subsurface
+is typically poorly known (Gelhar 1986; Dagan 1989; Gelhar 1993). This is a particularly useful
+approach when the primary data available are breakthrough curves for tracers at an observation
+point. The shape of the curve can be used to deconvolve a stochastic distribution of hydraulic
+conductivities in the aquifer, implying that while we do not know the exact path a particular
+solute particle followed, we do have a statistical representation of the ensemble of solute travel
+times that could have produced the observed tracer concentrations at the observation point.
+Tracer breakthrough data, therefore, is often used to generate probability density functions for
+hydraulic conductivities and travel times, although this concept need not be strictly stochastic.
+
+
+
+
+                                                11
+Fluid-Rock Interaction: A Reactive Transport Approach                      Steefel & Maher
+
+
+Reaction-induced changes in transport properties
+     One of the most difficult problems in reactive transport today is the treatment of cases in
+which the physical properties of the porous medium evolve as a result of chemical reactions.
+The most commonly identified coupling involves the porosity and permeability as affected by
+chemical reactions (dissolution or precipitation), but other properties like the reactive surface
+area may evolve as well. A number of experimental studies have been conducted in which
+reaction-induced permeability change was identified (Dobson et al. 2003). Modeling studies
+have also been carried out in which flow and reaction have been explicitly coupled and allowed
+to evolve (Ortoleva et al. 1987; Steefel and Lasaga 1990; Steefel and Lasaga 1994; Steefel and
+Lichtner 1994; Steefel and Lichtner 1998b; Dobson et al. 2003; Steefel 2007; Cochepin et al.
+2008). A smaller set of studies have combined experimental and/or characterization studies with
+reactive transport modeling (Dobson et al. 2003; Navarre-Sitchler et al. 2009).
+     Porosity is typically the first order parameter that is predicted from reactive transport
+simulations, since it is directly related to the sum of the mineral volumes precipitated or
+dissolved. It is possible to predict the evolution of the total porosity, therefore, with some degree
+of confidence. More difficult is to predict the transport parameters, especially permeability and
+diffusivity, since they depend on the detailed pore geometry. To make progress in this area, it
+will be necessary to combine the modeling with microscopic characterization of the porous
+medium as mineral dissolution or precipitation occur. A first attempt at this has been carried out
+by Navarre-Sitchler et al. (2009) who studied the evolution of the porosity, pore connectivity,
+pore geometry, and diffusivity as a function of the extent of chemical weathering. This study
+showed that as the chemical weathering process advanced within the approximately 1 mm wide
+weathering interface developed within a basalt clast, porosity increased as the primary minerals
+dissolved (as one would expect), but that pore connectivity increased as well once a critical
+porosity of ~9% was achieved. The porosity and pore connectivity as a function of weathering
+were imaged with Xray microtomography at the Advanced Light Source (Figure 8). The 3D data
+was also used to construct a pore network model that was used for tracer diffusion calculations
+(Navarre-Sitchler et al. 2009). A comparison of unweathered and weathered basalt using both
+µXray fluorescence (Panel A) and 3D tracer diffusion simulations using the pore network model
+constructed from the microtomography (Panel B) indicates that the weathering process
+substantially increased the diffusivity as a result of weathering (Figure 9).
+
+                            REACTIVE TRANSPORT BASICS
+     We are now ready to combine the transport processes outlined above with expressions for
+kinetically-controlled geochemical and biogeochemical reactions. A comprehensive and modern
+treatment requires the use of a sophisticated numerical simulator capable of handling variations
+in system properties (hydraulic conductivity, porosity, tortuosity, etc.) in both space and time,
+along with rigorous treatments of multicomponent diffusion and advection. In addition, the
+modern numerical simulators are capable of considering multicomponent reactions along with
+nonlinear rate laws, features that are well beyond what is possible with analytical solutions.
+Analytical solutions, while exact by definition for the particular equation and boundary and
+initial conditions considered, often force the would-be user into approximations (physical or
+chemical) that may or may not be warranted. Our interest here initially, however, is in exploring
+the first-order dynamics when reaction and transport are coupled, and for this purpose a
+simplified version of the advection-dispersion-reaction equation is adequate.
+
+                                                 12
+Fluid-Rock Interaction: A Reactive Transport Approach                        Steefel & Maher
+
+    For a system with transport of a non-reactive tracer, an expression for the conservation of
+solute mass can be derived by accounting for the flux of solute across the faces of a volume
+element. For a one-dimensional system (fluxes in the Y and Z directions = 0), the net flux is
+obtained from
+                                       ∂J i      J        − Ji x
+                                            = lim i x +∆x        .                              (38)
+                                       ∂x ∆x →0        ∆x
+In a multidimensional system involving porous media, the accumulation of solute mass is given
+by the difference (that is, the divergence) of the fluxes summed over all of the faces of the
+element
+                              ∂ (φCi )                ⎛ ∂J ∂J ∂J ⎞
+                                       = −∇ ⋅ J i = − ⎜ i + i + i ⎟ ,                           (39)
+                                 ∂t                   ⎝ ∂x ∂y ∂z ⎠
+where Ji is the flux vector. Substitution of Equations (2) and (7) into Equation (39) (neglecting
+electrochemical migration for simplicity) yields
+                                 ∂ (φCi )
+                                          = −∇ (φ vCi ) + ∇ (φ Di*∇Ci ) .                       (40)
+                                    ∂t
+To include reactions, it is more instructive to use the one-dimensional version of the advection-
+dispersion equation, particularly since non-dimensionalization of the equation is more
+straightforward in this case. For a constant porosity, tortuosity, and flow system characterized
+by a first-order precipitation and dissolution reaction that can be described in terms of a single
+chemical component (e.g., SiO2[aq] reacting with the single mineral quartz) , the advection-
+dispersion-reaction equation becomes
+                                 ∂C        ∂C       ∂ 2C         C
+                             φ      = −φ v    + φ D* 2 + Ak (1 −     ),                         (41)
+                                 ∂t        ∂x       ∂x           Ceq
+where k is the rate constant in units of moles m-2 s-1, A is the reactive surface area of the mineral
+in units of m2 m-3, and Ceq is the solubility of the mineral in moles m-3.
+Important non-dimensional parameters
+     By converting a partial differential equation to its non-dimensional form, it is possible to
+define a series of parameters that describe the relative importance of dynamic processes like
+chemical reaction, advection, and hydrodynamic dispersion. The first step is to define a length
+scale, l, which may be a characteristic length scale defined by the geology or hydrology (e.g., the
+flow length through an aquifer or weathering profile), or more commonly a length scale which
+reflects the spatial distribution of observations. Using this length scale, a non-dimensional or
+fractional distance can be defined as
+                                                        x
+                                                 x′ =     .                                     (42)
+                                                        l
+In addition, this allows us to define a characteristic time for dispersive transport
+                                                        l2
+                                               tD =        ,                                    (43)
+                                                        D*
+
+
+                                                   13
+Fluid-Rock Interaction: A Reactive Transport Approach                        Steefel & Maher
+
+and advective transport
+                                                       l
+                                                tA =     .                                        (44)
+                                                       v
+When combined with a characteristic time for reaction
+                                                      φCeq
+                                              tR =           ,                                    (45)
+                                                       Ak
+it is possible to define a series of non-dimensional parameters that control the behavior of a
+water-rock interaction system involving transport: the Damköhler number for advective, DaI, and
+diffusive (or dispersive), DaII, systems respectively
+                                                t    Akl
+                                          Da I = A =                                              (46)
+                                                tR φ vCeq
+
+                                                t    Akl 2
+                                        Da II = D =        .                                      (47)
+                                                tR φ D*Ceq
+In addition, the relative importance of advective versus diffusive (or dispersive) transport is
+compared in the Péclet number
+                                                 t  vl
+                                            Pe = D = * .                                          (48)
+                                                 tA D
+Note that each of these numbers depends on the characteristic length scale considered.
+    After introducing a non-dimensional form of the concentration
+                                                   C − Ceq
+                                            C′ =                 ,                                (49)
+                                                   C0 − Ceq
+where C0 is the concentration of the fluid injected into the system (Lichtner 1998) and a
+dimensionless time
+                                                      D*t
+                                              tD′ =       ,                                       (50)
+                                                      l2
+Equation (41) becomes
+                                   ∂C ′ ∂ 2C ′      ∂C ′
+                                        =      − Pe      − Da II C ′ ,                            (51)
+                                   ∂tD′   ∂x′2
+                                                    ∂x′
+which makes clear how the Péclet and Damköhler numbers control the behavior of the
+advection-dispersion-reaction equation.
+At high Péclet numbers (Pe >>1), advective transport dominates and dispersive and diffusive
+transport are negligible, with the result that the concentration front is relatively sharp (Figure 10).
+Similarly, for Damköhler numbers >> 1, reaction times are much faster than transport times for a
+given length scale. Where this is the case, local equilibrium is achieved for a reaction of the form
+given in Equation (41) over a length scale, l (Bahr and Rubin 1987). In addition, reaction fronts
+
+
+                                                   14
+Fluid-Rock Interaction: A Reactive Transport Approach                        Steefel & Maher
+
+are relatively sharp where the Damköhler number is large, since the approach to equilibrium
+requires a small amount of time relative to the time needed for a solute to traverse a distance.
+Transport versus surface reaction control
+     Under the steady-state conditions considered here, there is always some theoretical length
+scale over which local equilibrium could be attained (assuming such an equilibrium state exists),
+although this length scale may not be realized in a particular geological environment (Steefel
+2007). Where the concentration in the aqueous phase increases or decreases to the point where
+equilibrium or near-equilibrium is achieved, the overall rate of reaction within the spatial domain
+defined by the length scale l becomes transport-controlled. This implies that the rate-limiting
+process in the overall reaction evaluated over the length scale l is transport, rather than the rate of
+attachment and detachment of ions from the mineral surface. Transport control has often been
+discussed in the geochemical literature, but usually with regard to experimental studies where
+transport involved diffusion across a boundary layer next to a reacting mineral (Berner 1980).
+For example, numerous studies have shown that the dissolution of calcite is diffusion rather than
+surface-reaction controlled at pH values < 4. This can be verified in rotating disk reactors by
+increasing the speed of rotation—in the case of a diffusion control on the rate of dissolution, the
+faster rate of spinning reduces the size of the diffusion boundary layer adjacent to the crystal,
+thus increasing the overall rate of dissolution (Pokrovsky et al. 2005).
+     While the rotating disk experiment involving calcite is a particularly good example of a
+transport-controlled system, the concept is much more general and may be applied at any scale.
+Consider a flow path through a granite undergoing weathering. If a fluid percolating through the
+granite approaches equilibrium over a flow distance of about 25 meters, but we collect water
+samples issuing from the profile 50 meters from the start of flow path, then we are collecting
+waters close to or at equilibrium that will express a transport control on the overall rate.
+Operationally, this means that the flow rate through the weathering profile (due, for example, to
+an increase in rainfall) controls the weathering flux, Jweather, in the advection-dominant case over
+the 50 meters according to
+                                            J weather = qCeq ,                                    (52)
+
+where q is the flow rate and Ceq is the equilibrium concentration. If the scale of observation, l, is
+>> than the equilibration length scale λ, then the weathering rate will not depend on the reaction
+kinetics. This is a general result that applies to all water-rock interaction systems (Lichtner
+1993). A direct comparison of laboratory-determined rates of reaction, which are carried out in
+most cases under far from equilibrium conditions and thus under surface reaction control, and
+natural weathering rates evaluated at length scales greater than the equilibration length scale, will
+be meaningless in this case, since the rate control is not the same (Schnoor 1990). By definition,
+the field rate when transport-controlled will be slower than the surface reaction-controlled rate.
+But, as stressed above, the control on rates is scale-dependent, so data collected at a length scale
+<< than the equilibration length scale may show evidence for a surface reaction control on rates
+and far from equilibrium conditions. Thus, observations of etch pitting in primary minerals,
+generally taken as good evidence of far from equilibrium conditions (White and Brantley 2003),
+may be fully compatible with an overall transport control on weathering rates, depending on how
+the scales of observations compare to the equilibration length scale.
+
+
+
+
+                                                   15
+Fluid-Rock Interaction: A Reactive Transport Approach                      Steefel & Maher
+
+
+Rates of fluid-rock interaction in heterogeneous systems
+     Most studies of the kinetics of fluid-rock interaction carried out to date have assumed flow
+and reaction through a homogeneous, well-mixed system, as would be the case with a single
+continuously stirred flowthrough reactor (Haggerty et al. 1998; Snodgrass and Kitanidis 1998;
+White and Brantley 2003; Zhu 2005). This is perhaps somewhat strange given the enormous
+number of studies on macrodispersion in the hydrologic literature indicating that travel times,
+and thus residence times, in the subsurface are not all the same. Fortunately, the roles of both
+physical and chemical heterogeneities and their role in water-rock interaction are now beginning
+to be discussed (Malmström et al. 2000; Li et al. 2006; Meile and Tuncay 2006; Li et al. 2007b;
+Li et al. 2007a; Li et al. 2008). The role of physical heterogeneties can be clarified by returning
+to the heterogeneous permeability field shown in Figure 6. If we now include reactions along
+with the flow and transport, in this case the dissolution of plagioclase according to the kinetic
+scheme proposed by Oelkers et al. (1994), we see that the numerical modeling of the reactive
+transport predicts a steady-state fingering of the pore water pH that follows the high permeability
+zones (Figure 12A). Similarly, a contour plot of the logarithm of the mineral saturation states
+(the distance the pore water is from equilibrium with respect to plagioclase) shows a similar
+strong spatial variability—a transect in the Y direction at X = 10 centimeters would encounter up
+to 10 orders of magnitude variability, ranging from far from equilibrium to relatively close to
+equilibrium pore waters (Figure 12B). Therefore, a single transect could encounter both surface-
+reaction and at least partly transport-controlled rates. While this is a model result, it should be
+broadly representative of what would be expected for any reactive system with seven orders of
+magnitude variation in the local permeability.
+     Residence time distributions. The concept of macrodispersion has important implications
+for the kinetics of water-rock interaction. One can also think of these variations in flow velocity
+and/or flow length as leading to a distribution of residence times for aqueous species migrating
+through reactive material (Steefel 2007). A sample collected from a stream draining a
+catchment, for example, typically includes waters that have moved through a myriad of flow
+paths and distances. Some water may have moved through relatively shallow portions of the soil
+profile—these flow paths would typically involve relatively short residence times, with less
+exposure to primary reactive phases forming the bedrock. In contrast, other water may have
+moved along deeper, slower flow paths, encountering a greater abundance of reactive primary
+minerals along the way. The residence time of reactive water in contact with rock, therefore, can
+vary substantially in a natural system. Locally, the system may be far from equilibrium,
+elsewhere close to equilibrium. Conceptually, one might think of the overall system as an
+ensemble of flow-through reactors, some with short residence times and/or small amounts of
+reactive material, others with much longer residence times. In some cases, the residence time
+will have been long enough that the fluid actually equilibrates within the reactor, leading to a rate
+that is transport rather than surface reaction-controlled. If the effluent of this ensemble of flow-
+through reactors were to converge into a single sampling tube (the experimental analogue of a
+stream gauging station at the catchment scale or a pumping well drawing water from a
+heterogeneous aquifer), then the total extent of reaction (i.e., the upscaled, volume-averaged
+reaction rate) would reflect the full distribution of residence times and reactive mineral mass.
+    Many examples of reactive flow through permeable rocks or sediment exist where strong
+contrasts in porosity and permeability result in regions characterized by very different transport
+regimes. This is often referred to as multi-region transport (Harvey and Gorelick 2000). The
+
+
+                                                 16
+Fluid-Rock Interaction: A Reactive Transport Approach                     Steefel & Maher
+
+most common example is a dual permeability (or porosity) system, where a portion of the system
+is sufficiently permeable that macroscopic flow occurs within it, another portion is so
+impermeable that flow is negligible and transport is by molecular diffusion. Perhaps the best
+example of a dual permeability system is provided by fractured rock, where the permeability of
+the fractures is typically many orders of magnitude higher than the permeability of the rock
+matrix (Steefel and Lichtner 1998a).
+     Much of the evidence that multi-region transport systems exist in the subsurface comes from
+measurements of hydraulic conductivities on small laboratory-scale samples. Another source of
+evidence is provided by groundwater ages determined with various methods (Plummer et al.
+2001). Although these groundwater ages are often interpreted as the result of mixing between
+two end members (old and young water), what we have learned about the distribution of
+hydraulic conductivities, and thus residence times, in heterogeneous 3D subsurface media argues
+against this (Varni and Carrera 1998; Tompson et al. 1999; Bethke and Johnson 2002;
+Weissmann et al. 2002). For example, Figure 13 shows groundwater ages determined using the
+chlorofluorocarbon (CFC) technique compared to CFC ages based on high resolution
+groundwater flow simulation of a heterogeneous alluvial fan aquifer in California (Weissmann et
+al. 2002). The high resolution flow modeling argues that the individual CFC ages are real, and
+not simply the result of mixing of old and young waters.
+     Evidence also comes from non-reactive tracer concentration profiles (or “breakthrough
+curves”) determined in subsurface wells. Tracer concentration profiles at an observation well (or
+at the end of a laboratory column) characterized by multi-region effects typically show an early,
+usually sharp breakthrough, followed by a long gradual approach to a maximum value in the case
+of a constant injection. In the case of a transient pulse of a tracer followed by another fluid (a
+common case in contaminant hydrology), the tracer is eluted only very slowly from the column
+or aquifer. This behavior occurs because it requires some time for the tracer to be transported
+into the low permeability material, and once elution begins, then to be flushed from this zone.
+     Tracer breakthrough curves can be used to estimate a residence time distribution. With
+release of a non-reactive tracer pulse, fast pathways will deliver tracer first. Lower permeability
+regions within the flow domain will flush the tracer more slowly, providing information on the
+longer residence times. Using the first derivative of the concentration in the breakthrough curve
+in Figure 7, the formal probability density function for residence can be determined (Figure 14).
+    Upscaling reaction rates in heterogeneous media. Mineral reaction rates are typically
+measured in well-stirred laboratory systems where the intent is to eliminate gradients in
+concentration within the solution. An individual crystal is expected to experience the same
+chemical environment as its neighbor. To the extent that a diffusion boundary layer can be
+eliminated via stirring, the rate of the mineral reaction is surface reaction-controlled— this is
+potentially a problem with a rapidly reacting mineral like calcite at low pH (Pokrovsky et al.
+2005). In porous media where water-rock interaction takes place, however, physical, chemical,
+and microbiological heterogeneities can lead to the development of gradients in concentration,
+and thus to a spatially variable reaction rates.
+     Perhaps the clearest example of where rates are not the same at all scales is provided by the
+case where a reacting phase is distributed heterogeneously—obviously, in this case the reaction
+rate in the microenvironment next to the mineral is greater than what is determined over a larger
+volume average. If the system is well-mixed via either molecular diffusion or dispersion,
+
+
+                                                17
+Fluid-Rock Interaction: A Reactive Transport Approach                       Steefel & Maher
+
+however, then the rate should be scale-independent if the reactive surface area is calculated
+correctly over the larger volume. At fairly high flow rates in single pores, it may even be
+possible to develop diffusion boundary layers along the reacting mineral surfaces, which results
+in gradients in concentration and reaction rate at this scale (Li et al. 2008). However, the Li et al
+(2008) study showed that given the typical flow rates encountered in the subsurface, the
+efficiency of molecular diffusion is high enough that complete mixing occurs at the scale of a
+single pore (Li et al. 2008). However, in the case where incomplete mixing at the larger pore
+network scale occurs, significant spatial variations in concentration, mineral saturation state, and
+reaction rates are likely to occur and thus result in rates that are scale dependent (Li et al. 2006).
+    A similar scaling effect may occur at larger scales characterized by slow transfer between
+low permeability zones (often referred to as “immobile”) and higher permeability (“mobile”)
+zones. In these cases, disequilibrium between these zones may prevail, creating gradients in
+concentration and thus a spatial variability in reaction rates (Harvey and Gorelick 2000).
+     From the preceding discussion, it should be clear that upscaling reaction rates is not as
+simple as normalizing the rates to the total reactive surface area in the water-rock system. Rates
+in natural heterogeneous porous media will always be scale-dependent where incomplete mixing
+occurs.
+
+       A REACTIVE TRANSPORT APPROACH TO MODELING FLUID-
+                          ROCK INTERACTION
+     The chapter began with an overview of the transport processes that are important in fluid-
+rock interaction and was followed with a very basic introduction to the essential equations that
+describe fluid-rock interaction concisely. We have relied so far primarily on analytical
+expressions, although some examples have been provided that make use of numerical models.
+The analytical solutions for reactive transport discussed in Section 5 are extremely useful for
+several reasons: 1) they have a pedagogical value in that fundamental system behavior can often
+be captured with relatively simple expressions or with non-dimensional parameters, 2) in most
+cases they are easier to solve than are the corresponding numerical representations, and 3) they
+are exact, and therefore offer a reliable comparison for other methods (chiefly numerical) where
+errors of various kinds can arise. There are some significant limitations, however, to relying
+strictly or even mostly to analytical solutions for the reactive transport problem. Perhaps most
+important is the fact that multicomponent, nonlinear reaction rate laws and reaction networks can
+rarely be handled with analytical approaches. Another potential danger in an over-reliance on
+analytical solutions is that they often lead to approximations that may or may not be justifiable.
+Examples abound, but to mention a few: 1) it is common to take the nonlinear reaction kinetics
+found in most experimental studies and treat these as linear for the purposes of including them in
+an analytical expression, significantly changing in some cases the system behavior, 2) the
+treatment of contaminant retardation is often carried out with the use of linear distribution
+coefficients, or Kd values, despite the fact that nonlinear expressions for sorption
+(multicomponent ion exchange or surface complexation methods) typically provide far better
+descriptions of the processes involved, especially under chemically variable conditions (Steefel
+et al. 2005), and 3) assumptions of constant and/or uniform physical or chemical properties can
+lead to completely erroneous predictions of system behavior.
+
+
+
+                                                 18
+Fluid-Rock Interaction: A Reactive Transport Approach                           Steefel & Maher
+
+     Modern numerical software for reactive transport simulations provides some powerful
+additional capabilities that make it the ideal tool to analyze and interpret fluid-rock interaction.
+The potential pitfalls of numerical reactive transport modeling are many and should not be
+discounted (see Steefel and MacQuarrie (1996) for a discussion of many of the errors that can
+arise when numerical methods are used). Other problems have to do with the extensive
+thermodynamic and kinetic databases that need to be used with this approach—each of these is
+subject to its own errors and these can propagate through to the dynamic system behavior in
+ways that may or may not be intuitively obvious. That said, the features to be found in these
+software packages are constantly evolving in response to the development of new conceptual
+models, but even now they can handle a variety of coupled biogeochemical and transport
+processes that are beyond the capabilities of an analytical model. Perhaps their key strength for
+the geochemist and mineralogist is their ability to handle multicomponent systems of arbitrary
+complexity. For the mulicomponent case, the governing advection-dispersion-reaction equation
+becomes
+                     ∂ (φCi )                                    Nr         Nm
+                              = ∇ ⋅ (φ Di ∇Ci ) − ∇ ⋅ (φ uCi ) − ∑ν ir Rr − ∑ν im Rm              (53)
+                        ∂t                                       r =1       m =1
+
+where we now have a set of coupled partial differential equations for the chemical components, i,
+in the system. These solutes may be affected by both the rates of the Nr aqueous (homogeneous)
+reactions, Rr, and the rates of the Nm solid phase (mineral) reactions, Rm,each reacting according
+to the stoichiometry given in the coefficients ν ir and ν im , respectively. The numerical software
+also has no problem handling both parallel and sequential kinetic pathways, which are common
+in microbially-mediated reaction networks.
+Equally important is the ability to handle variable physical and chemical properties when a
+numerical approach is used. For some problems (e.g., the wormholing example shown in Figure
+15 below), this is essential for describing the dynamics of fluid-rock interaction.
+Approaches to modeling multi-scale porous media
+     Depending on the scale of interest, three different types of models are used to describe
+reactive transport in porous media today, 1) continuum models, 2) pore scale models, and 3)
+multiple continua or hybrid models involving a combination of scales (Steefel et al. 2005).
+Flow, transport, and reaction are conventionally described by macroscale models based on a
+continuum formulation of the underlying microscale equations (Lichtner 1985; Lichtner 1996).
+The continuum approach is the most advanced in terms of its treatment of multicomponent
+chemical processes. The continuum equations are often derived intuitively by averaging over a
+representative elementary volume (REV) or control volume resulting in effective macroscale
+parameters. Pore scale models include pore network and lattice Boltzmann models, but few
+efforts in reactive transport have been attempted. Multiple continuum models have been in use
+for some time (Pruess and Narisimhan 1985)—hybrid models which combine pore scale and
+continuum scale behavior are only now beginning to be considered seriously (Lichtner and Kang
+2007). These different approaches are considered in more detail in what follows.
+    Continuum models. Subsurface reactive flow and transport models are most commonly
+based on the continuum representation of porous media. This approach depends on averaging
+system properties over a macroscopic length (control volume or REV) containing many solid
+grains (Lichtner 1996; Steefel et al. 2005). Because of this averaging of properties, however, the
+
+                                                   19
+Fluid-Rock Interaction: A Reactive Transport Approach                       Steefel & Maher
+
+continuum approach is not valid for length scales on the order of a single pore dimension. Since
+many of the physical, chemical, and biological processes actually take place at the pore scale,
+developing averaging approaches for these coupled processes at larger scales is essential.
+     Solid properties may be either fixed (frozen) or evolving. The latter is much more difficult
+to simulate and involves using various phenomenological approaches for describing changes in
+such macroscale parameters as porosity, permeability, capillarity, tortuosity, and reactive surface
+area. The formation of wormholes, which takes place in carbonate rocks due the infiltration of
+fluids undersaturated with respect to the carbonate minerals, is an extreme example of evolving
+heterogeneity that can still be modeled at the continuum scale (Figure 15).
+     The wormholes form as a result of a reactive infiltration instability in which the
+enhancement of permeability resulting from mineral dissolution causes the wormholes to capture
+progressively increasing amounts of flow, thus accelerating their propagation (Ortoleva et al.
+1987; Steefel and Lasaga 1990; Spiegelman et al. 2001; Spiegelman and Kelemen 2003; Steefel
+et al. 2005; Steefel 2007). Wormholes are observed in ideally homogeneous materials, such as
+plaster of Paris (gypsum), indicating that only slight variations in pore size are needed to form
+wormholes given the presence of high flow velocities and fast reaction kinetics.
+     Basic assumptions invoked in the continuum formulation are (Steefel et al. 2005) 1) solid,
+liquid, and gaseous phases all coexist at a single point (control volume) in space; 2)
+heterogeneous reactions involving two separate phases which interact across a common interface
+are treated as if they were homogeneous reactions uniformly distributed throughout a control
+volume. Interfacial surface area is represented as a uniform surface area concentration; 3) flow is
+described in terms of Darcy's law with velocity proportional to the pressure gradient. The
+proportionality coefficients are the permeability divided by the fluid viscosity; 4) the fluid, solid,
+and gas phases are well-mixed and therefore without concentration gradients, thus resulting in
+uniform reaction rates within the control volume.
+     The continuum description breaks down at the pore scale where the Navier-Stokes equations
+derived from fluid mechanics are required and where it may be necessary to capture
+microscopic-scale gradients in concentration resulting from transport and a non-uniform
+distribution of reactive material.
+    Pore-scale models. Pore scale models have been considered for some time in hydrology and
+petroleum engineering, but only very recently have such models included coupled reactive
+transport processes. Network models aim to capture pore scale behavior through a set of rules
+governing mass transport and chemical/biological reactions within and between individual pores.
+While they don’t capture sub-pore scale gradients and processes that might be present, they offer
+the advantage of being able to treat processes like wormholing described above with only modest
+computational expense(Li et al. 2006). Li and co-workers used this approach to investigate
+various upscaling procedures for reactive transport processes controlled by a combination of
+transport and reaction kinetics at the pore scale. They demonstrated that continuum or volume
+averaging approaches often introduce significant errors, in some cases not even capturing the
+correct reaction direction. A more rigorous approach because of its ability to capture intra-pore
+gradients and geometries is offered by lattice Boltzmann methods (LBM) (Kang et al. 2006;
+Kang et al. 2007; Lichtner and Kang 2007), but these are limited with present day computational
+facilities to relatively small scale problems on the order of millimeters. In addition, there is some
+question how far up in scale the approach can be extended due to the computational difficulties
+
+
+                                                 20
+Fluid-Rock Interaction: A Reactive Transport Approach                    Steefel & Maher
+
+associated with resolving enough pores to describe the equivalent of a representative elementary
+volume. The approach is potentially very powerful for developing formulations for use in hybrid
+models where pore scale processes such as biofilms, diffusion, and fracture or pore sealing can
+occur.
+     Multiple continuum or hybrid models.          Fractured porous media, and more generally
+hierarchical media involving multiple length scales, play an important role in subsurface flow
+and transport processes. Fracture-dominated flow systems are involved in numerous subsurface
+geochemical processes, including contaminant migration, ore deposition, weathering, enhanced
+oil recovery, geothermal energy, degradation of concrete, and subsurface carbon sequestration. A
+description based on a single continuum formulation is unable to capture the unique features of a
+fractured system, and more generally, a hierarchical system involving multiple characteristic
+length scales, and can lead to serious error (Lichtner and Kang 2007).
+     If it were possible to model subsurface reactive flow problems at the micro scale over any
+desired macro length scale, there would be no need to consider other approaches. However, this
+is obviously not the case even with access to the world’s fastest computers. Consequently, the
+problem must be simplified and approximations made in such a way that at least the first order
+effects of multi-scale processes are accommodated. One mathematical formulation of this
+problem is through a hierarchical set of continua, with each characteristic length scale
+represented by a different continuum that is coupled to the next continuum in the hierarchy
+(Lichtner and Kang 2007).
+Approaches and constraints for determining rates
+     Rates of reaction can be determined in water-rock interaction systems affected by transport
+using several approaches. In general, however, intrinsic rates of reaction (e.g., moles/m2/s)
+cannot be determined uniquely without independently determining transport rates. An exception
+is the case where one process or the other (surface reaction or transport) is clearly the slowest
+and therefore rate-limiting step in the overall process. Unfortunately, a surface reaction or
+transport control is often assumed to apply in advance of a rigorous analysis that demonstrates
+this control.
+    Using aqueous concentration profiles From Equation (41), it is clear that rates of reaction
+can be determined from a concentration profile if the rates of transport are known. One can
+determine rates of water-rock interaction even where non-steady state conditions prevail, but the
+steady state case is much simpler to deal with. In the case of a steady state system, the rates of
+reaction in a pure diffusion system will be given by the curvature or second derivative of the
+concentration
+                                                     ∂ 2C
+                                          R = φ D*        ,                                  (54)
+                                                     ∂x 2
+while in a pure advective system, the rate is given by the first derivative or slope of the
+concentration
+                                                     ∂C
+                                          R = −φ v      .                                    (55)
+                                                     ∂x
+    Equations (54) and (55) can be used with finite differencing of discrete data to determine
+local reaction rates, respectively
+
+                                               21
+Fluid-Rock Interaction: A Reactive Transport Approach                                    Steefel & Maher
+
+
+                               ⎡            C − Cj                      C − C j −1 ⎤
+                         R j = ⎢(φ D* ) 1 j +1           − (φ D * ) 1 j              ⎥                     (56)
+                                          2 x j +1 − x j              2 x j − x j −1 ⎥
+                                       j+                          j−
+                               ⎢⎣                                                    ⎦
+                                                              ⎡ C − C j −1 ⎤
+                                    R j − 1 = − (φ v ) j − 1 ⎢ j               ⎥,                          (57)
+                                           2                2
+                                                              ⎣⎢ x j − x j −1 ⎦⎥
+where j refers to the discrete data points and xj is the location of the data in space. In this form,
+the finite difference equations are written without assuming equally spaced data (implicitly
+assumed in Equation (54) and (55)). Alternatively, the rates can be fit using the analytical or
+numerical solution to the governing reactive transport equation, taking into account the
+appropriate boundary and initial conditions as necessary. If a species is affected by more than
+one reaction, then all of the relevant reactions need to be factored into the analysis and this is
+generally best accomplished with modern numerical reactive transport software. An example in
+which rates were determined using pore water solute data from marine sediments and the
+numerical software CrunchFlow is shown in Figure 16 (Maher et al. 2006).
+    Using mineral profiles Determining rates from mineral profiles is generally more difficult,
+both because the mineral profiles reflect integrated rates, but also because the movement of the
+reaction fronts can introduce additional difficulties of interpretation. Determining intrinsic rates
+(per unit surface area mineral) can be difficult because the spatial variation of reactive surface
+area across the reaction front needs to be factored in. An example involving the Santa Cruz
+Chronosequences is shown in Figure 17 and is discussed in more detail in the Case Studies
+section below (Maher et al. 2009).
+
+                                             CASE STUDIES
+     To make clear the power and flexibility of a reactive transport approach in fluid-rock
+interaction, it is perhaps most instructive at this point to consider some specific case studies.
+Several topics are considered, including 1) estimation of rates at the field scale, with examples
+coming from the field of biogeochemical cycling (Dale et al. 2008), chemical weathering (Maher
+et al. 2009), and contaminant remediation (Mayer et al. 2006). We conclude this section with a
+discussion of the ways in which isotopic studies can be integrated with multicomponent reactive
+transport modeling to improve our understanding and quantification of individual pathways
+within the overall fluid-rock interaction process.
+Rates of anaerobic methane oxidation in marine sediments
+     The first example involves the use of reactive transport modeling to estimate the rate of
+anaerobic oxidation of methane (AOM) in marine sediments and is based on the study of Dale et
+al. (2008). The study was sufficiently detailed that, in addition to providing estimates of field-
+scale rates of reaction, it yielded important new insights in to the form of the rate law for AOM,
+with consideration of both thermodynamic and kinetic effects. Specifically, the dataset and the
+modeling allowed the authors to explore the bioenergetic limitations on AOM by comparing
+observed and simulated in situ catabolic energy yields.
+    The Skagerrak study area is a sequence of marine sediments located in the Norwegian
+Trench parallel to the southern coast of Norway, with a maximum depth of 700 m (Knab et al.
+2008). The reactive transport modeling framework is validated with two gravity cores from the
+
+
+                                                        22
+Fluid-Rock Interaction: A Reactive Transport Approach                          Steefel & Maher
+
+site that show a zone of anaerobic oxidation of methane 0.5 meter thick at 1 meter depth. Dale et
+al. (2008) developed a one-dimensional diffusion-reaction model for these marine sediments
+following the general approach outlined in Berner (1980) and Boudreau (1997), writing a set of
+coupled partial differential equations for the depth profile of solutes and solids. While
+tortuosity-corrected molecular diffusion is the dominant transport process considered, they also
+included a bioirrigation term to capture the non-local transport of solutes (especially sulfate) at
+the top of the profile.
+     The reaction network considered in the model includes a complex suite of organic carbon
+degradation pathways (Table 3 and Figure 18). Labile and refractory organic carbon undergo
+extracellular hydrolysis to low molecular weight dissolved organic compounds (LMW-DOC),
+defined as glucose for the purposes of the mass balance and Gibbs energy calculations, described
+with reactions R1 and R2 respectively (Table 3). The LMW-DOC then undergoes fermentation
+to produce acetate and H2 (R3, ferm), which then provide the electrons and Gibbs energy for
+hydrogenotrophic (R4, hySR) and acetotrophic (R5, acSR) sulfate reduction and for
+hydrogenotrophic (R6, hyME) and acetotrophic (R7, acME) methanogenesis. Additionally, the
+H2 and acetate drive acetogenesis (R9, acet) and acetotrophy (R10, actr) respectively. The
+remaining microbial reaction is AOM, which produces H2 (R8, AOM). These electron donor
+reactions represent catabolic pathways in which energy is generated. Anabolic pathways that
+synthesize biomass are presumably active as well (Rittmann and McCarty 2001; Dale et al.
+2006), although it was shown in an earlier paper that the assumption of a steady-state biomass
+was justified for modeling microbial respiration in most marine sediments (Dale et al. 2006).
+This eliminates the need for an explicit calculation of the time and space evolution of the
+biomass for this case.
+     The reactions in Table 3 represent the catabolism between electron donors and acceptors
+written in each case as the transfer of one electron. The rate of uptake of an electron donor by a
+particular catabolic pathway, therefore, follows the stoichiometries in Table 3 and is modulated
+by both a kinetic term, FK, and a thermodynamic term, FT, following the pioneering work of Jin
+and Bethke (2005). According to their approach as implemented in the Skagerrak study, the rate
+is given by
+                                            RD = υ max FK FT ,                                   (58)
+where υ max is the maximum rate of electron donor (ED) utilization, with the biomass implicit in
+the rate constant. The kinetic factor is given by a standard dual Monod expression
+                                     ⎛ [ ED ] ⎞ ⎛ [ E A ] ⎞
+                                FK = ⎜
+                                     ⎜ K E + [ ED ] ⎟⎟ ⎜⎜ K E + [ E A ] ⎟⎟
+                                                                           ,                     (59)
+                                     ⎝ D             ⎠⎝ A                ⎠
+where [ED] and [EA] refer to the activities of the electron donor and acceptor respectively and
+K ED and K E A are the half-saturation constants for the electron donor and acceptor respectively.
+The thermodynamic driving force, which is assumed to drive the reaction in only one direction,
+is given by (Jin and Bethke 2005)
+                                          ⎡ ⎛           ⎛ ∆Gnet ⎞ ⎞ ⎤
+                                 FT = max ⎢0, ⎜ 1 − exp ⎜       ⎟ ⎟⎥ ,                           (60)
+                                          ⎣ ⎝           ⎝ χ RT ⎠ ⎠ ⎦
+
+
+                                                    23
+Fluid-Rock Interaction: A Reactive Transport Approach                      Steefel & Maher
+
+where ∆GNET is the fraction of the Gibbs energy of catabolism that provides a thermodynamic
+drive for the reaction (further defined below) and χ is the average stoichiometric coefficient, R is
+the gas constant, and T is the absolute temperature. The average stoichiometric coefficient, χ, is
+equivalent to the number of protons translocated across the cell membrane during catabolism and
+is assumed equal to 1 in anaerobic metabolism (Jin and Bethke 2005). As is apparent from
+Equation (59) and (60), both FK and FT are dimensionless and vary from 0 to 1. As pointed out,
+inclusion of such a thermodynamic term removes the need for kinetic inhibition terms as are
+often found in microbial rate models (Dale et al. 2008).
+    In the formulation of Dale et al. (2008) as adapted from Jin and Bethke (2005), the ∆GNET
+term is the sum of two Gibbs energy terms of opposite sign
+                                    ∆GNET = ∆GINSITU + ∆GBQ ,                                  (61)
+
+where ∆GINSITU is the in situ Gibbs energy yield of the catabolic process (Table 3) and ∆GBQ is
+the bioenergetic energy quantum (Hoehler 2004; Dale et al. 2006)
+                                   ∆GINSITU = ∆G 0′ + RT ln [Q ] .                             (62)
+
+Here ∆G 0′ is the standard Gibbs energy of catabolism at the in situ temperature and corrected for
+neutral pH (implying the same conditions for ∆GINSITU). This was done to provide an ion activity
+product, Q, defined only in terms of electron donors and acceptors, but one could also define
+these more generally in terms of a standard Gibbs energy of reaction if the hydrogen ion was
+included in the expression. The minimum bioenergetic energy, ∆GBQ, is the minimum that can
+be exploited by living cells to synthesize adenosine tri-phosphate (ATP) and is coupled to the
+transfer of 3-4 protons across the cellular membrane. Under actively growing conditions, this is
+usually considered to require ~60 kJ mol ATP-1 (Schink 1997; Jin and Bethke 2005). Hoehler
+(2004) argued instead that a lower limit of 9-12 kJ mol ATP-1 was more reasonable in energy-
+starved communities, leading to a suggested energy minimum on an electron equivalent basis of
+1.125 to 1.5 kJ e-mol-1.
+     The authors of the Skagerrak study proceeded to calibrate the model on the basis of data
+collected from the S13 station. The first step was to fit the sulfate data (Figure 19a, g), which
+was carried out by including a non-local source of sulfate due to bioirrigation (Dale et al. 2008).
+The measured CH4 profile (Figure 19a) shows the characteristic concave-up shape of AOM.
+However, the expanded scale in Figure 19b also shows that the CH4 exhibits tailing from depth
+into the sulfate reduction zone, where it persists at a concentration of 10-30 µM CH4. To capture
+this behavior, some tuning of the kinetic and bioenergenetic parameters of the reaction network
+was required.
+     The modeling shows that at the depth of the maximum AOM rate, FK and FT for AOM are
+equal to 0.18 and 0.002, respectively (Figure 20a, b). The maximum AOM rate, therefore, is
+strongly reduced by the low bioenergetic drive as a result of thermodynamic conditions very
+close to the bioenergetic energy minimum ∆GBQ. In contrast, hydrogenotrophic sulfate reduction
+(hySR), which is considered to consume the H2 and therefore provide the thermodynamic drive
+for spontaneous methane oxidation (Hoehler 2004), is limited by the kinetic drive, FK, rather
+than by the thermodynamic drive, FT (Figure 20b, f). The modeling clearly demonstrates that the
+CH4 tail in the sulfate reduction zone is very sensitive to the value of the bioenergetic minimum,
+∆GBQ, for AOM (Figure 21). Based on the simulations, the field data suggest a value for
+
+
+                                                24
+Fluid-Rock Interaction: A Reactive Transport Approach                       Steefel & Maher
+
+
+∆GBQ − AOM of about 1.42 kJ e-mol-1 (compare simulated profiles using 2 kJ e-mol-1 and 0 kJ e-
+mol-1).
+     The simulations demonstrate that the ∆GBQ for AOM acts as a kind of thermodynamic
+switch which enables AOM only when H2 levels are maintained at low levels by the sulfate
+reducing bacteria (Dale et al. 2006; Dale et al. 2008). Furthermore, it is clear that the pore water
+concentrations in a natural setting of this kind are functions of the kinetic and bioenergetic
+driving forces of potentially all of the processes affecting reactive intermediates, not just those of
+the reaction pathway itself. Although kinetically possible, a particular reaction pathway may be
+limited bioenergetically by other reactions taking place within the microbial network (Dale et al.
+2008).
+Rates of chemical weathering
+     The second example involves the use of reactive transport modeling to estimate the rates of
+chemical weathering at the Santa Cruz chronosequence (soils of different ages) and relies
+primarily on the study by Maher et al. (2009). The chronosequence is defined by a series of five
+marine terraces at different elevations within and northwest of the city of Santa Cruz, California.
+The local climate is Mediterranean, with cool wet winters and dry hot summers. Precipitation
+averages 727 mm annually. The ages of Terraces 1-5 are estimated to be 65 kyr, 90 kyr, 137
+kyr, 199 kyr, and 226 kyr, respectively (White et al. 2009). The local bedrock is covered by 1-10
+m of sediment, principally sands, derived from long shore marine transport of local fluvial
+sediment from the Santa Cruz Mountains. The spatial distribution of moisture varies seasonally
+in the upper terrace soils. However, beneath an argillic horizon at about 1 m depth, moisture
+contents remain essentially constant throughout the course of the year. Pump tests suggested
+minimal lateral flow through the argillic horizon, so the deeper portions of the weathering profile
+behave essentially as a one-dimensional column characterized by steady unsaturated flow at
+0.088m/yr as suggested by chloride mass balance (White et al. 2009). The sediments making up
+the soils are uncemented, so the estimate of a specific surface area of 1.94 m2/g for the primary
+minerals based on grain size and a surface roughness factor is likely a maximum value (Maher et
+al. 2009). The volume fractions of the primary minerals K-feldspar and plagioclase along with
+the secondary mineral kaolinite are shown in Figure 22 for the youngest terrace (SCT 1) and the
+oldest terrace (SCT 5).
+     Present-day and long-term weathering rates were estimated using the code CrunchFlow.
+Unsaturated flow was assumed to be steady-state at 0.088 m/yr. Molecular diffusion was
+calculated with the diffusion coefficients given in Table 2. Electrochemical migration was also
+calculated using the approach outlined above and more thoroughly described in Giambalvo et al.
+(2002). K-feldspar and plagioclase dissolution rates were calculated with a variety of rate laws,
+but we will focus here on the two providing a good fit to the data while also minimizing the
+discrepancy between experimental and field weathering rates. The first rate law considered was
+proposed by Hellmann and Tisserand (2006) based on their extensive experimental studies of
+albite feldspar as a function of Gibbs energy. They proposed a composite rate law very similar
+in form to that suggested by Burch et al. (1993) that consists of two individual parallel rate laws:
+1) a far from equilibrium rate law, R1, with a strongly nonlinear dependence on the Gibbs
+energy, ∆G, and 2) a close to equilibrium rate law, R2, with a nearly linear dependence on the
+Gibbs energy
+
+
+
+                                                 25
+Fluid-Rock Interaction: A Reactive Transport Approach                                          Steefel & Maher
+
+
+                                                       ⎧⎪        ⎡            ⎛ ∆G ⎞ ⎤ ⎫⎪
+                                                                                    3.81
+                                               −12
+                  R1 (mol/m /s) = 1.02 × 10
+                            2
+                                                        ⎨1 − exp ⎢ −0.0000798 ⎜    ⎟ ⎥⎬                          [63]
+                                                      ⎪⎩         ⎢⎣           ⎝ RT ⎠ ⎥⎦ ⎭⎪
+                                                                                    1.17
+                                                         −14
+                                                               ⎡        ⎛ ∆G ⎞ ⎤
+                         R2 (mol/m /s) = 1.81 × 10
+                                   2
+                                                               ⎢1 − exp ⎜ −  ⎟⎥            .                     [64]
+                                                               ⎣        ⎝ RT ⎠ ⎦
+.
+     A second rate law that is considered is referred to as the Al-inhibition model (AIM) and is
+based on the principle that aluminosilicate dissolution rates are controlled by the formation and
+destruction of an Al-deficient and Si-rich precursor complex (Gautier et al. 1994; Oelkers et al.
+1994; Carroll and Knauss 2005). The rate law considered has the form:
+                                               K 'f            ⎡        ⎛ ∆G ⎞ ⎤
+                             R = A ⋅ k1                        ⎢1 − exp ⎜ −   ⎟⎥                                 [65]
+                                          K +a
+                                           '
+                                           f
+                                                  1/ 3
+                                                  Al ( OH )3   ⎣        ⎝ 3RT ⎠ ⎦
+where Kf’ is the equilibrium constant for the reaction describing the precursor complex and is
+calculated from the experimental data of Carroll and Knauss (2005) and described in Maher et al.
+(2006). The factor of 3 in the denominator of the exponential expression is the Temkin
+coefficient (Oelkers et al. 1994). For kaolinite precipitation, a linear TST model is used
+(Aagaard and Helgeson 1982).
+
+
+Focusing on the mineral volume fractions in Terrace 5, Figure 23 shows that the reactive
+transport modeling integrated out to 226 kyr captures the geometry of the steep K-feldspar and
+relatively broad plagioclase fronts very accurately. It is noteworthy that these fits were obtained
+using virtually the same rate constant and rate law for K-feldspar and albite—the difference in
+the profiles, in fact, reflects the differences in the solubilities of the two minerals. The model
+also captures the kaolinite profile fairly well, which indicates that most of the clay developed in
+the argillic horizon is the result of the early coincidence of the plagioclase and K-feldspar
+dissolution fronts and does not involve significant quantities of translocated clays (Maher et al.
+2009). It should be noted that experimentally-determined rate laws from either the parallel rate
+law of Hellmann and Tisserand (2006) or the aluminum inhibition model of (Oelkers et al. 1994)
+can used to match the mineral profiles with virtually no adjustment from experimentally
+determined values. The rate constants determined in this study are summarized in Table 4.
+Thus, the oft-cited discrepancy between laboratory and field rates (White and Brantley 2003)
+does not exist when the nonlinear approach to equilibrium is accounted for, although the
+supersaturation of secondary phases is an important aspect and also needs to be considered, as
+discussed below.
+     To use either of the experimentally-determined rate laws described above and to have them
+succeed in matching the field weathering data, it is also necessary to allow for significant
+supersaturation with respect to kaolinite. The effect of the kaolinite supersaturation, either due to
+very slow kaolinite growth or to formation of a more soluble precursor phase (Steefel and Van
+Cappellen 1990), is to allow the pore water fluid to approach closer to equilibrium where the
+rates of dissolution are slower, particularly in the case where a nonlinear dependence on Gibbs
+energy prevails. The role of slow kaolinite precipitation was hypothesized in an earlier study of
+
+                                                        26
+Fluid-Rock Interaction: A Reactive Transport Approach                      Steefel & Maher
+
+mineral dissolution in marine sediments (Maher et al. 2006), but pore water data to constrain the
+saturation state of kaolinite was lacking. In the study of the Santa Cruz Chronosequences,
+however, pore water data provide an independent, present-day constraint on the kaolinite
+saturation state. The data indicate that if the kaolinite equilibrium constant determined by Yang
+and Steefel(2007) at 22ºC and pH 4 is used, the pore waters are 3-4 orders of magnitude
+supersaturated with respect to this phase. Pore waters that were closer to equilibrium with
+respect to kaolinite would have the effect of making the system more undersaturated with respect
+to the feldspars, since clay precipitation modulates their saturation state by uptake of aluminum
+and silica (Steefel and Van Cappellen 1990; Maher et al. 2009). As is apparent from Figure 24,
+the same model used to closely reproduce mineral profiles in Figure 23 (a result that involves
+integrating over 226 kyr) succeeds in capturing the present-day pore water chemistry and the
+resulting mineral saturation states.
+Relative mineral solubilities from reaction front separation
+     Reactive transport modeling of the separation of mineral fronts can be used to estimate their
+relative solubilities with a fair degree of accuracy. This was pointed out as a possibility
+indirectly by Lichtner (1993), but appears not to have been pursued in the context of a real field
+system until the study of chemical weathering at the Santa Cruz chronosequences by Maher et al.
+(2009). In the study at Santa Cruz, the reactive transport modeling showed that the use of
+equilibrium constants for the specific compositions of feldspar reported, namely a plagioclase
+with 30% anorthite (An30) and pure K-feldspar (Arnorsson and Stefansson 1999), could not
+match the observed separation of the K-feldspar and plagioclase weathering fronts. A
+significantly better match (see Figure 23) was achieved by using end-member compositions of
+pure K-feldspar and sodic plagioclase (An0). As it turns out, the front positions are quite
+sensitive to the equilibrium constants used, since in the local equilibrium limit the front
+separation should be a function only of the thermodynamics (Lichtner 1993). Maher et al.
+(2009) reached the same conclusion using numerical modeling with the reactive transport
+software CrunchFlow. These results, which are considered to be robust, suggested a model in
+which the An30 plagioclase was better described as an intergrowth of fine scale lamellae of albite
+and anorthite such that the anorthitic component dissolved first, leaving the albite as the
+surviving reactant controlling the front positions once weathering had proceeded to a sufficient
+extent (Maher et al. 2009).
+Rates of biogeochemical reactions in heterogeneous media
+     A third example involves simulations of rates in the subsurface to predict the effectiveness
+and longevity of a remediation treatment for acid mine drainage. This is a topic of interest to
+researchers and engineers interested in contaminant transport and remediation, in addition to
+geochemists, and we now see these groups exploring the topic of fluid-rock interaction with
+much greater depth and focus than was the case previously. The study area is a permeable
+reactive barrier for treatment of mine drainage high in iron and sulfate and low in pH at the
+Nickel Rim mine site in Ontario, Canada (Mayer et al. 2006). The permeable barrier consists of
+an organic carbon mixture designed to promote microbial reduction of sulfate so as to precipitate
+sparingly soluble iron sulfide (FeS). The aquifer is bounded by bedrock and is well constrained
+hydrologically, with a known flux across the domain. The water chemistry monitoring network,
+the most important of the data used to constrain the rates of reaction and thus the performance of
+the barrier, consists of 12 well nests aligned parallel to the direction of groundwater flow (Figure
+25). Solid phase data (Herbert Jr. et al. 2000) was also used to constrain the reaction network.
+
+                                                27
+Fluid-Rock Interaction: A Reactive Transport Approach                      Steefel & Maher
+
+
+
+    Significant spatial variations are observed in the amount of sulfate and iron removed within
+the barrier (Figure 26), with the differences attributed primarily to variations in groundwater
+flow velocities. The rate of sulfate reduction in the barrier is observed to decline over time as the
+organic carbon is depleted (Benner et al. 2002).
+    The modeling of the biogeochemical reaction network at the site is carried out with a
+simpler approach than was used in Dale et al. (2008). The principal reaction involves the
+oxidation of organic carbon by sulfate to produce dissolved sulfide according to
+                                    1                1
+                          CH 2O(s) + SO 42- → HCO3- + H 2S(aq) + H 2O                           (66)
+                                    2                2
+This reaction is modeled using a standard dual Monod kinetic scheme, that is, essentially the
+formulation given in Equation (58) without the thermodynamic limitation term, FT. The sulfide
+produced in this reaction combines with dissolved Fe(II) to precipitate mackinawite (FeS).
+Elemental sulfur is also detected and is modeled as another parallel sulfate reduction reaction
+that goes to an intermediate redox state.
+     Combining the groundwater flow field and reaction network developed for the site, Mayer et
+al. (2006) were able to match the observed solute concentration distribution remarkably well
+(compare Figure 26 and 27).
+     In matching the concentration contours at 23 months, Mayer et al. (2006) demonstrated that
+such data, when interpreted with appropriately mechanistic reactive transport modeling, could
+provide a reasonable estimate of spatially and temporally variable reaction rates in the subsurface
+(Figure 28). The analysis thus allows them to further develop estimates for the efficacy and
+longevity of the permeable reactive barrier. Such analyses, to the extent that they can be fully
+validated, suggest the possibility that reactive transport modeling can provide significant cost
+savings over expensive field tests, although there is probably no scenario in which the approach
+dispenses with field testing altogether.
+Isotopic reactive transport approaches for deciphering physical and chemical
+processes
+     Early reactive transport modeling studies involving isotopes tend to use lumped parameter
+models describing a generic isotopic exchange reaction (Richter and Liang 1993; Johnson and
+DePaolo 1997; Maher et al. 2003). Other approaches use dimensional analysis to simplify
+systems in order to quantify key parameters (Fantle and DePaolo 2007). Both approaches
+generally consider the isotopic variations in isolation from the overall chemical evolution of the
+system, thus limiting the amount of information that can be extracted from the isotopic data.
+Most importantly, isotopic variations can provide an additional tracer of reaction pathways
+within ambiguous reaction networks. An important new development is the rigorous
+incorporation of isotopes into multicomponent models such that the isotopic variations are
+considered in conjunction with the major element chemistry and thus provide an additional
+framework for identifying and quantifying physical and chemical processes. As we view the
+development of isotopic reactive transport models as an important new frontier in fluid-rock
+interaction, we provide a few examples to illustrate the variety of questions that can be
+approached with the coupling.
+
+
+                                                 28
+Fluid-Rock Interaction: A Reactive Transport Approach                      Steefel & Maher
+
+      With respect to physical processes such as transport and transport pathways, naturally
+occurring variations in the isotopic composition of waters can be used to determine preferential
+flow paths (Luo et al. 2000) or to determine net recharge rates throughout an aquifer (Maher et
+al. 2003; Singleton et al. 2006). Singleton et al. (2006) used Sr isotopic variations in an
+unconfined basaltic aquifer to calculate the long-term net infiltration flux along a flow path. The
+approach relied on the isotopic variations imparted to the waters from the lithology, with high
+87
+   Sr/86Sr values (0.712) occurring in the unsaturated zone due to presence of granitic sediments
+(Maher et al. 2003), and relatively low values (0.707) associated with underlying basalts. By
+accounting for the basalt-fluid interaction along the flow path, regions of high infiltration rates
+stemming from human activities could be quantitatively distinguished from natural recharge
+conditions. This example highlights the ability to use isotopically distinct sources to quantify
+additional flux terms in the reactive transport equation (e.g. infiltration fluxes), thus obtaining
+additional information that could not be extracted from a simple mixing model.
+     Isotopes can also be used to decipher individual reaction rates in systems where a key
+component (e.g. Ca, Na, Si, Al) is derived from multiple reactions, or cycled within a reaction
+network (Maher et al. 2006). For example, in deep-sea sediments silicate dissolution results in
+the release of Ca to the pore water. Some of this Ca may then be incorporated into newly formed
+calcite along with the initial seawater Ca. Concurrently, changes in the porewater chemistry
+and/or Ostwald ripening may result in calcite recrystallization, whereby the porewater Ca is
+exchanged with both the initial marine calcite and the newly formed calcite. To constrain the
+rates of mineral transformation in this system, Maher et al. (2006) incorporated the (234U/238U)
+isotopic system into a reactive transport model (CrunchFlow) in order to use the U isotopic
+variations in pore fluid, silicate minerals and bulk calcite as an additional mass transfer
+constraint. In this model, the processes of preferential release of 234U from solids to the fluid due
+to α-recoil (during the decay of 238U), dissolution of silicate minerals, and the co-precipitation of
+U into calcite were considered. Although the primary mineral dissolution rates could also be
+constrained by the aqueous Ca and Si profiles, the measured isotopic data for the fluid and the
+calcite could only be reconciled with the model if a substantial fraction (ca. 30%) of the primary
+calcite was recrystallized (Figure 29). This isochemical process would otherwise be
+undetectable and the sensitivity of isotopes to mineral-fluid exchange provided a unique means
+of detecting the substantial recrystallization that took place. Mineral-fluid exchange during early
+diagenesis has important implications for the integrity of a material such as calcite that is
+commonly used for paleoceanographic studies and studies of this type can be used to understand
+more clearly how the isotope systems may be modified.
+     The previous examples highlight isotopic reactive transport approaches involving relatively
+heavy isotope pairs where mass dependent fractionation is of minor importance relative to other
+signatures such as those imposed by variations in lithology and radioactive decay. However, for
+many isotopic systems of interest in biogeochemical cycles, isotopic variations derive from both
+kinetic and equilibrium effects. An advantage of the integration of isotopes into reactive
+transport models is that diffusion coefficients specific to each isotope can be implemented to
+account for kinetic effects resulting from aqueous or gaseous diffusion. For kinetic isotope
+effects that occur as a result of biological or enzymatic processes, the fractionation factor can be
+defined as the ratio of the rate constants for each isotope. Similarly, equilibrium constants can be
+defined for each isotope system to reflect the equilibrium fractionation factors. This ability to
+track the systematics of individual isotope pairs in conjunction with major element chemistry
+offers unique opportunities that are just beginning to be explored.
+
+                                                 29
+Fluid-Rock Interaction: A Reactive Transport Approach                          Steefel & Maher
+
+     A recent study by Dale et al. (2009) provides an interesting example where the coupling of
+the major element chemistry is used to interpret sulfur isotopic data from organic rich muds of
+the Namibian Shelf. At this site, the supply of hypoxic water coupled with high primary
+productivity results in anoxic conditions at the sediment-water interface. The anoxic conditions
+favor the accumulation of particulate organic carbon, resulting in extremely high rates of sulfate
+reduction (100 mM/year of SO42-). The high rates of sulfate reduction coupled with the notable
+lack of oxidants results in H2S concentrations of approximately 10mM. In this setting,
+Thiomargarita namibiensis, a non-phototrophic large sulfur bacteria produces SO42- and NH4+ by
+catalyzing the reaction between H2S and NO3- (Schulz et al. 1999; Bruchert et al. 2003). The
+SO42- then becomes available to oxidize organic carbon or methane. In order to understand the
+coupling between the C, N, and S cycles, and the role of Thiomargarita in the oxidation-
+reduction cycle of S, a multicomponent reactive transport model was developed that includes an
+explicit representation of the individual S isotopes (34S, 32S) in addition to the major chemical
+components (Dale et al. 2009). The measurements used to constrain the 1-D model include pore
+water concentrations, solid phase analyses of C, N, S, reactive Fe and elemental S, and rates of
+sulfate reduction determined using 35S-sulfate whole-core incubations. The porosity and
+sedimentation rate over the 5 meter deep core were also constrained to account for the effect of
+compaction during burial.
+     The reaction network and major geochemical pathways in relationship to expected isotopic
+fractionations (ε) are shown in Figure 30. The particulate organic carbon (POC) is characterized
+as three reactive fractions according to a multi-G model (Westrich and Berner 1984) and is
+degraded via sulfate reduction, methanogenesis and dissimilatory Fe reduction. CH4 diffusing
+upwards was allowed to be consumed by anaerobic oxidation of methane (AOM). The NO3- is
+assumed to be confined within the Thiomargarita cell and thus denitrification is not considered.
+The maximum fractionation for dissimilatory sulfate reduction (εSR) derived from both reactive
+transport model approaches for marine sediments (Goldhaber and Kaplan 1980; Rudnicki et al.
+2001; Wortman et al. 2001) and theoretical approaches suggest εSR values of 70 to 80‰
+(Farquhar et al. 2003), whereas the maximum value measured under laboratory conditions is on
+the order of 47‰ (Bruchert, 2004). Because sulfide oxidizing bacteria have not been grown in
+pure cultures, the fractionation of sulfide during sulfide oxidation (εSOx) is not well known, but is
+expected to be ~ 5 ‰. By using the constraints from detailed modeling of the C, N, S cycles to
+balance the S isotope system, the values for εSR and the value of εSOx due to the activity of
+Thiomargarita can also be constrained.
+    To formulate the isotopic system, rate constants are prescribed for each isotope for each
+reaction pathway so that the overall rate (Ri) is simply the sum of the two reaction rates:
+                                 Ri = 32 Ri + 34 Ri = 32ki 32 S + 34 ki 34 S                     (67)
+where 32ki and 34ki are the corresponding rate constants. The individual reaction rates for the
+isotopic species can then be formulated as:
+                                                    ⎛ α 32 S ⎞
+                                       32
+                                            Ri = Ri ⎜ 34 i 32 ⎟                                  (68)
+                                                    ⎝ S + αi S ⎠
+using the ratio of the two rate constants to define the fractionation factor αi:
+
+
+
+                                                    30
+Fluid-Rock Interaction: A Reactive Transport Approach                      Steefel & Maher
+
+                                              32
+                                                   k         εi
+                                        αi = 34 = 1 +                                          (69)
+                                                   k        1000
+Because the fractionation factor associated with sulfate reduction is observed to increase with a
+decrease in the rates of sulfate reduction, εSR was equated with the rate of sulfate reduction using
+a linear function:
+                                       ε SR = (ε SR ) max − mSR ri                             (70)
+
+where mSR describes the gradient of change of εSR as a function of rate (ri) of sulfate reduction or
+anaerobic methane oxidation (AOM). Figure 32 shows the results of using the major element
+chemistry alone to constrain the values for εSR and εSOx. The δ34SSO4 increases with depth in the
+zone of sulfate reduction. The δ34SH2S rapidly decreases to a minimum of -24% by 10 cm depth,
+followed by a progressive increase with depth. The values of εSOx and εSR-max of 25‰ and
+100‰ are the model values required to fit the isotope profiles in Figure 31, and a corresponding
+sensitivity analysis revealed the uniqueness of these parameters. However, these model-derived
+fractionations are far greater than previous laboratory based estimates (as summarized in
+Bruchert (2004)) suggesting that the model for the SOx pathway may be missing an additional
+process. Dale et al. (2009) suggest that this process may be a stepped disproportionation of S in
+the cell from H2S to So to SO42-. The disproportionation step (e.g. So to SO42-.) would occur with
+a large and opposite fractionation between H2S and SO42-. Including this additional step in the
+model resulted in model values for εSOx and εSR-max of 5‰ and 78‰. These valuesare
+consistent with the theoretical and laboratory values. While multi-stepped disproportionation by
+Thiomargarita has not been determined experimentally, this example highlights the utility of the
+reactive transport approach in using natural isotopic data to infer reaction pathways.
+     An additional important aspect of the data and model presented by Dale et al. (2009) is
+shown in Figure 32: the measured δ34S values for the solid phases show greater depletion in FeS2
+suggesting fractionation during precipitation, although the fractionation factor that would be
+predicted is zero. In addition, both the H2S and values of the authigenic phases continue to
+change with depth beneath the zone of sulfate reduction, suggestive of ongoing exchange
+between the aqueous H2S pool and the reactive portions of the solids. To consider this
+possibility, Dale et al. (2009) considered a separate exchange process where discrete fractions of
+the solids (fex) are allowed to undergo isotopic exchange with the fluid. The model was found to
+reproduce all of the observed data if fex was on the order of 0.6 to 0.8 which means that 60 to
+80% of the solid phase exchanges with the fluid. This result is similar to the isotopic exchange
+observed in the U isotopic data discussed above and seems to suggest that even during early
+diagenesis modification of the isotopic and possibly trace element features are likely. In addition,
+this ongoing exchange during diagenesis may be overlooked in settings where complete profiles
+are not available.
+    As the field of isotope geochemistry considers more complex biogeochemical and
+geochemical systems, the ability to constrain the isotope systematics using major element
+chemistry offers a number of advantages for determining isotopic fractionations associated with
+specific processes. Conversely, as in the case of the Maher et al. (2006) and the Dale et al.
+(2009) studies, inclusion of the isotope variations can reveal intricacies of the reaction network
+and mechanisms that were not detectable from the major element chemistry alone. The presence
+of multiple reaction pathways can make the interpretation of measured data difficult, but the
+
+
+                                                       31
+Fluid-Rock Interaction: A Reactive Transport Approach                    Steefel & Maher
+
+incorporation of isotopic data into overall framework improves the chances of deciphering the
+system behavior.
+
+                              CONCLUDING REMARKS
+     A good understanding of the coupling between transport and (bio)geochemical kinetics is
+essential in the study of fluid-rock interaction. In this chapter, we have shown that in open
+systems characterized by transport, the characteristic time scales of reaction need to be compared
+with the characteristic time scales for transport—geologic time is often irrelevant. The transport
+processes that are relevant for the study of water-rock interaction include advection, due in most
+cases to Darcy flow through porous media, molecular diffusion modified by electrochemical
+migration where charged species are present, and hydrodynamic dispersion. An idealized
+version of the reactive transport (or advection-dispersion-reaction) equation was presented and
+the important non-dimensional quantities were briefly derived and discussed.
+     The treatment of fluid-rock interaction systems as well-mixed reactors was challenged and it
+was shown how an analysis of macrodispersion, which has been widely discussed in the
+hydrologic literature, can be used to produce a residence time probability density function that
+predicts the ensemble of reaction times for flow paths through heterogeneous media. Real water-
+rock systems are typically characterized by physical, chemical, and microbiological
+heterogeneities that can give rise to concentration gradients, and thus to spatially variable
+reaction rates. It was shown that it is necessary to upscale reaction rates in fluid-rock systems
+that are not perfectly mixed—simple averaging that does not take into account the multi-scale
+character of most porous media will inevitably result in rates that are scale dependent.
+     The remainder of the chapter examined the potential of modern numerical reactive transport
+modeling for solving important problems in fluid-rock interaction. Three different types of
+models were proposed to describe reactive transport in porous media, with the choice depending
+to some extent on the scale of interest and the architecture of the porous medium: 1) continuum
+models, 2) pore scale models, and 3) multiple continua or hybrid models involving a
+combination of scales. It was shown that various data, ranging from pore water chemistry to
+mineral volume fractions, may be used to constrain reactive transport models for fluid-rock
+interaction. Case studies are presented that demonstrate that reactive transport modeling can be
+used to estimate rates in 1) marine sediments characterized by anaerobic oxidation of methane,
+2) chemical weathering, and 3) a permeable reactive barrier used to remediate groundwater
+contamination. Finally, the power of integrating isotopic systematics into mechanistic reactive
+transport modeling was briefly explored and the case was made that incorporation of isotopic
+data into overall framework of multicomponent reactive transport models improves our chances
+of deciphering complex biogeochemical systems.
+
+                                ACKNOWLEDGMENTS
+    We are pleased to be able to contribute this chapter to a volume honoring the career of
+Jacques Schott, who has championed a mechanistic and quantitative understanding of
+geochemistry now for over 30 years. We thank Sergi Molins-Rafa for his careful review of the
+manuscript. Funding from the Office of Science at the U.S. Department of Energy through the
+Geoscience Program in the Office of Basic Energy Sciences (Contract No. DE-AC02-
+05CH11231) is gratefully acknowledged.
+
+                                               32
+Fluid-Rock Interaction: A Reactive Transport Approach                    Steefel & Maher
+
+
+                                       REFERENCES
+Aagaard P and Helgeson HC (1982) Thermodynamic and kinetic constraints on reaction rates
+        among minerals and aqueous solutions, I. Theoretical considerations. American Journal
+        of Science 282:237-285
+Aris R (1956) On the dispersion of a solute in a fluid flowing through a tube. Proc. Royal Society
+        London Series A 235:67-77
+Arnorsson S and Stefansson A (1999) Assessment of feldspar solublity constants in water in the
+        range 0 degrees to 350 degrees C at vapor saturation pressures. American Journal of
+        Science 299:173-209
+Bahr JM and Rubin J (1987) Direct comparison of kinetic and local equilibrium formulations for
+        solute transport affected by surface reactions. Water Resources Research 23:438-452
+Bear J (1972) Dynamics of Fluids in Porous media. Dover, New York
+Benner SG, Blowes DW, Ptacek CJ, and Mayer KU (2002) Rates of sulfate reduction and metal
+        sulfide precipitation in a permeable reactive barrier. Applied Geochemistry 17:301-320
+Berner RA (1980) Early Diagenesis: A Theoretical Approach. Princeton University Press,
+        Princeton
+Bethke CM and Johnson TM (2002) Paradox of groundwater age. Geology 30:107-110
+Boudreau BP (1997) Diagenetic Models and their Implementation. Springer-Verlag,
+Bruchert V (2004) Physiological and ecological aspects of sulfur isotope fractionation during
+        bacterial sulfate reduction. In Sulfur Biogeochemistry--Past and Present AP Amend, KJ
+        Edwards, and TW Lyons (ed) Geological Society of America, p 1-16
+Bruchert V, Joergensen BB, Neumann K, Riechmann D, Schloesser M, and Schulz HN (2003)
+        Regulation of bacterial sulfate reduction and hydrogen sulfide fluxes in the central
+        Namibian coastal upwelling zone. Geochimica Cosmochimica Acta 67:4505-4518
+Burch TE, Nagy KL, and Lasaga AC (1993) Free-energy dependence of albite dissolution
+        kinetics at 80 degreees C and pH 8.8. Chemical Geology 105:137-162
+Carroll SA and Knauss KG (2005) Dependence of labradorite dissolution kinetics on CO2(aq),
+        Al(aq), and temperature. Chemical Geology 217:213-225
+Cirpka OA (2002) Choice of dispersion coefficients in reactive transport calculations on
+        smoothed fields. Journal of Contaminant Hydrology 48:261-282
+Cochepin B, Trotignon L, Bildstein O, Steefel CI, Lagneau V, and Van der Lee J (2008)
+        Intercomparison of predictions on a 2-D cementation experiment in porous medium.
+        Advances in Water Resources 31:1540-1551
+Dagan G (1988) Time-dependent macrodispersion for solute transport in anisotropic
+        heterogeneous aquifers. Water Resources Research 24:1491-1500
+Dagan G (1989) Flow and transport in porous formations. Springer-Verlag, Berlin; New York
+Dale AW, Bruchert V, Alperin M, and Regnier P (2009) An integrated sulfur isotope model for
+        Namibian shelf sediments. Geochimica Cosmochimica Acta 73:1923-1944
+Dale AW, Regnier P, Knab NJ, Joergensen BB, and Van Cappellen P (2008) Anaerobic
+        oxidation of methane (AOM) in marine sediments from Skagerrak (Denmark): II.
+        Reaction-transport modeling. Geochimica Cosmochimica Acta 72:2880-2894
+Dale AW, Regnier P, and Van Cappellen P (2006) Bioenergetic controls on anaerobic oxidation
+        of methane (AOM) in coastal marine sediments: A theoretical analysis. American
+        Journal of Science 306:246-294
+Darcy H (1856) Les fontaines publiques de la ville de Dijon. Dalmont, Paris
+
+
+                                               33
+Fluid-Rock Interaction: A Reactive Transport Approach                    Steefel & Maher
+
+Daugherty RL and Franzini JB (1965) Fluid Mechanics with Engineering Applications.
+       McGraw-Hill, New York
+Denbigh K (1981) The Principles of Chemical Equilibrium. Cambridge University Press,
+       Cambridge
+Dobson PF, Kneafsey TJ, Sonnenthal EL, Spycher NF, and Apps JA (2003) Experimental and
+       numerical simulation of dissolution and precipitation: implications for fracture sealing at
+       Yucca Mountain. Journal of Contaminant Hydrology 62-63:459-476
+Fantle MS and DePaolo DJ (2007) Ca isotopes in carbonate sediment and pore fluid from ODP
+       Site 807A: The Ca2+(aq)-calcite equilibrium fractionation factor and calcite
+       recrystallization rates in Pleistocene sediments. Geochimica Cosmochimica Acta
+       71:2524-2546
+Gautier JM, Oelkers EH, and Schott J (1994) Experimental study of K-feldspar dissolution rates
+       as a function of chemical affinity at 150C and pH 9. Geochimica Cosmochimica Acta
+       58:4549-4560
+Gelhar LW (1986) Stochastic subsurface hydrology from theory to applications. Water
+       Resources Research 22:135S-145S
+Gelhar LW (1993) Stochastic subsurface hydrology. Prentice-Hall, Englewood Cliffs, N.J.
+Gelhar LW and Axness CL (1983) Three-dimensional stochastic analysis of macrodispersion in
+       aquifers. Water Resources Research 19:161-180
+Gelhar LW, Welty C, and Rehfeldt KR (1992) A critical-review of data on field-scale dispersion
+       in qquifers. Water Resources Research 28:1955-1974
+Giambalvo ER, Steefel CI, Fisher AT, Rosenberg ND, and Wheat CG (2002) Effect of fluid-
+       sediment reaction on hydrothermal fluxes of major elements, eastern flank of the Juan de
+       Fuca Ridge. Geochimica Cosmochimica Acta 66:1739-1757
+Goldhaber MB and Kaplan IR (1980) Mechanisms of sulfur incorporation and isotope
+       fractionation during early diagenesis in sediments of the Gulf of California. Marine
+       Chemistry 9:95-143
+Haggerty R, Schroth MH, and Istok JD (1998) Simplified method of "Push-Pull" test data
+       analysis for determining in situ reaction rate coefficients. Groun Water 36:314-324
+Harvey C and Gorelick SM (2000) Rate-limited mass transfer or macrodispersion: Which
+       dominates plume evolution at the Macrodispersion Experiment (MADE) site? Water
+       Resources Research 36:637-650
+Helgeson HC (1968) Evaluation of irreversible reactions in geochemical processes involving
+       minerals and aqueous solutions—I.                Thermodynamic relations. Geochimica
+       Cosmochimica Acta 32:853-877
+Helgeson HC, Garrels RM, and MacKenzie FT (1969) Evaluation of irreversible reactions in
+       geochemical processes involving minerals and aqueous solutions—II. Applications.
+       Geochimica Cosmochimica Acta 33:455-482
+Hellmann R and Tisserand D (2006) Dissolution kinetics as a function of Gibbs free energy of
+       reaction: an experimental study based on albite feldspar. Geochimica Cosmochimica
+       Acta 70:364-383
+Herbert Jr. RB, Benner SG, and Blowes DW (2000) Solid phase iron-sulfur geochemistry of a
+       reactive barrier for treatment of mine drainage. Applied Geochemistry 15:1331-1343
+Hoehler TM (2004) Biological energy requirements as quantitative boundary conditions for life
+       in the subsurface. Geobiology 2:205-215
+
+
+
+                                               34
+Fluid-Rock Interaction: A Reactive Transport Approach                    Steefel & Maher
+
+Jin QA and Bethke CM (2005) Predicting the rate of microbial respiration in geochemical
+       environments. Geochimica Cosmochimica Acta 69:1133-1143
+Johnson TM and DePaolo DJ (1997) Rapid exchange effects on isotope ratios in groundwater
+       systems, 1. Development of a transport-dissolution-exchange model. Water Resources
+       Research 33:187-195
+Kang Q, Lichtner PC, and Zhang D (2007) An improved lattice Boltzmann model for
+       multicomponent reactive transport in porous media at the pore scale. Water Resources
+       Research 43, doi:10.1029/2006WR005551
+Knab NJ, Cragg BA, Borowski C, Parkes JR, and Pancost R (2008) Anaerobic oxidation of
+       methane (AOM) in marine sediments from Skagerrak (Denmark): I. Geochemical and
+       micrbiological analyses. Geochimica Cosmochimica Acta 72:2868-2879
+Lasaga AC (1981) Rate laws in chemical reactions. In Kinetics of Geochemical Processes. Vol 8
+       ACLaRJ Kirkpatrick (ed) Mineralogical Society of America, p 135-169
+Lasaga AC (1984) Chemical kinetics of water-rock interactions. Journal of Geophysical reserach
+       89:4009-4025
+Lasaga AC (1998) Kinetic theory in the earth sciences. Princeton University Press, Princeton
+Li L, Peters CA, and Celia MA (2006) Upscaling geochemical reaction rates using pore-scale
+       network modeling. Advances in Water Resources 29:1351-1370
+Li L, Peters CA, and Celia MA (2007a) Applicability of averaged concentrations in determining
+       geochemical reaction rates in heterogeneous porous media American Journal of Science
+       307:1146-1166
+Li L, Peters CA, and Celia MA (2007b) Effects of mineral spatial distribution on reaction rates in
+       porous media. Water Resources Research 43, DOI: 10.1029/2005WR004848
+Li L, Steefel CI, and Yang L (2008) Scale dependence of mineral dissolution rates within single
+       pores and fractures. Geochimica Cosmochimica Acta 72:99-116.
+Lichtner PC (1985) Continuum model for simultaneous chemical reactions and mass transport in
+       hydrothermal systems. Geochimica Cosmochimica Acta 49:779-800
+Lichtner PC (1988) The quasi-stationary state approximation to coupled mass transport and
+       fluid-rock interaction in a porous medium. Geochimica Cosmochimica Acta 52:143-165
+Lichtner PC (1993) Scaling properties of time-space kinetic mass transport equations and the
+       local equilibrium limit. American Journal of Science 293:257-296
+Lichtner PC (1996) Continuum formulation of multicomponent-multiphase reactive transport. In
+       Reactive transport in porous media. Vol 34 PC Lichtner, CI Steefel, and EH Oelkers (ed)
+       Mineralogical society of America, Washington, D. C., p 1-81
+Lichtner PC (1998) Modeling reactive flow and transport in natural systems. Proceedings of the
+       Rome Seminar on Environmental Geochemistry, 5-72
+Lichtner PC and Kang Q (2007) Upscaling pore-scale reactive transport equations using a
+       multiscale      continuum       formulation.   Water      Resources      Research      43,
+       doi:10.1029/2006WR005664
+Luo SD, Ku TL, Roback R, Murrell MT, and McLing TL (2000) In-situ radionuclide transport
+       and preferential groundwater flows at INEEL (Idaho): Decay-series disequilibrium
+       studies. Geochimica Cosmochimica Acta 64:867-881
+Maher K, DePaolo DJ, Conrad ME, and Serne RJ (2003) Vadose zone infiltration rate at
+       Hanford, Washington, inferred from Sr isotope measurements. Water Resources Research
+       39:1029-1043
+
+
+
+                                               35
+Fluid-Rock Interaction: A Reactive Transport Approach                   Steefel & Maher
+
+Maher K, Steefel CI, DePaolo DJ, and Viani BE (2006) The mineral dissolution rate conundrum:
+       Insights from reactive transport modeling of U isotopes and pore fluid chemistry in
+       marine sediments. Geochimica et Cosmochimica Acta 70:337-363
+Maher K, Steefel CI, White AF, and Stonestrom DA (2009) The role of reaction affinity and
+       secondary minerals in regulating chemical weathering rates at the Santa Cruz Soil
+       Chronosequence, California. Geochimica Cosmochimica Acta 73:2804-2831
+Malmström ME, Destouni G, Banwart SA, and Strömberg BHE (2000) Resolving the scale-
+       dependence of mineral weathering rates. Environmental Science Technology 34:1375-
+       1378
+Mayer KU, Benner SG, and Blowes DW (2006) Process-based reactive transport modeling of a
+       permeable reactive barrier for the treatment of mine drainage. Journal of Contaminant
+       Hydrology 85:195-211
+Meile C and Tuncay K (2006) Scale dependence of reaction rates in porous media. Advances in
+       Water Resources 29:62-71
+Murphy WM, Oelkers EH, and Lichtner PC (1989) Surface reaction versus diffusion control of
+       mineral dissolution and growth rates in geochemical processes. Chemical Geology
+       78:357-380
+Navarre-Sitchler A, Steefel CI, Yang L, Tomutsa L, and Brantley SL (2009) Evolution of
+       porosity and diffusivity associated with chemical weathering of a basalt clast. Journal of
+       Geophysical Research--Earth Surface Processes, doi:10.1029/2008JF001060
+Newman JS (1991) Electrochemical Systems. Prentice-Hall, Englewood Cliffs, New Jersey
+Oelkers EA (1996) Physical and chemical properties of rocks and fluids for chemical mass
+       transport calculations. In Reactive Transport in Porous Media. Vol 34 PC Lichtner, CI
+       Steefel, and EH Oelkers (ed) The Mineralogical Society of America, Washington, D.C., p
+       131-191
+Oelkers EH, Schott J, and Devidal J-L (1994) The effect of aluminum, pH, and chemical affinity
+       on the rates of aluminosilicate dissolution reactions. Geochimica et Cosmochimica Acta
+       58:2011-2024
+Onsager L (1931) Reciprocal relations in irreversible processes II. Physical Review 38:2265-
+       2279
+Ortoleva P, Chadam J, Merino E, and Sen A (1987) Geochemical self-organization II: The
+       reactive-infiltration instability. American Journal of Science 287:1008-1040
+Palandri JL and Kharaka YK (2004) A compilation of rate parameters of water-mineral
+       interaction kinetics for application to geochemical modeling. USG Survey. Water-
+       Resources Investigations Reports 04-1068
+Pharmamenko EI (1967) Electrical Properties of Rock. Plenum Press,
+Plummer LN, Busenberg E, Bohlke JK, Nelms DL, Michel RL, and Schlosser P (2001)
+       Groundwater residence times in Shenandoah National Park, Blue Ridge Mountains,
+       Virgina, USA: a multi-tracer approach. Chemical Geology 179:93-111
+Pokrovsky OS, Golubev SV, and Schott J (2005) Dissolution kinetics of calcite, dolomite and
+       magnesite at 25 degrees C and 0 to 50 atm pCO(2). Chemical Geology 217:239-255
+Prigogine I (1967) Introduction to the Thermodynamics of Irreversible Processes. Interscience,
+       New York
+Pruess K and Narisimhan TN (1985) A practical method for modeling fluid and heat flow in
+       fractured porous media. Society of Petroleum Engineers Journal 25:14-26
+
+
+
+                                               36
+Fluid-Rock Interaction: A Reactive Transport Approach                     Steefel & Maher
+
+Richter FM and Liang Y (1993) The rate and consequences of Sr diagenesis in deep-sea
+        carbonates. Earth and Planetary Science Letters 117:553-565
+Rudnicki MD, Elderfield H, and Spiro B (2001) Fractionation of sulfur isotopes during bacterial
+        sulfate reduction in deep ocean sediments at elevated temperatures. Geochimica
+        Cosmochimica Acta 65:777-789
+Schink B (1997) Energetics of syntrophic cooperation in methanogenic degradation.
+        Microbiology and Molecular Biology Reviews 61:262-280
+Schnoor JL (1990) Kinetics of chemical weathering: a comparison of laboratory and field
+        weathering rates. In Aquatic Chemical Kinetics: Reaction Rates of Processes in Natural
+        Waters W Stumm and JJ Morgan (ed) Wiley, p 475-504
+Schulz HN, Brinkhoff T, Ferdelman TG, Hernandez Marine M, Teske A, and Joergensen BB
+        (1999) Dense populations of a giant sulfur bacterium in Namibian shelf sediments.
+        Science 284:493-495
+Singleton MJ, Maher K, DePaolo DJ, Conrad ME, and Dresel PE (2006) Dissolution rates and
+        vadose zone drainage from strontium isotope measurements of groundwater in the Pasco
+        Basin, WA unconfined aquifer. Journal of Hydrology 321:39-58
+Skagius K and Neretnieks I (1986) Diffusivity measurements and electrical-resistivity
+        measurements in rock samples under mechanical stress. Water Resources Research
+        22:570-580.
+Snodgrass MF and Kitanidis PK (1998) A method to infer in-situ reaction rates from push-pull
+        experiments. Ground Water 36:645-650
+Spiegelman M, Kelemen PB, and Aharonov E (2001) Causes and consequences of flow
+        organization during melt transport: The reaction infiltration instability in compactible
+        media. Journal of Geophysical Research 106:2061-2077
+Steefel CI (2007) Geochemical kinetics and transport. In Kinetics of Water-Rock Interaction SL
+        Brantley, J Kubicki, and AF White (ed) Springer, New York, p 545-589
+Steefel CI, DePaolo DJ, and Lichtner PC (2005) Reactive transport modeling: An essential tool
+        and a new research approach for the Earth Sciences. Earth and Planetary Science Letters
+        240:539-558
+Steefel CI and Lasaga AC (1990) The evolution of dissolution patterns: Permeability change due
+        to coupled flow and reaction. In Chemical Modeling of Aqueous Systems II. Vol 416 D
+        Melchior and RL Bassett (ed) American Chemical Society, Washington, p 212-225.
+Steefel CI and Lasaga AC (1994) A coupled model for transport of multiple chemical species
+        and kinetic precipitation/dissolution reactions with application to reactive flow in single
+        phase hydrothermal systems. Am. J. Sci. 294:529-592
+Steefel CI and Lichtner PC (1994) Diffusion and reaction in rock matrix bordering a
+        hyperalkaline fluid-filled fracture. Geochimica et Cosmochimica Acta 58:3595-3612
+Steefel CI and Lichtner PC (1998a) Multicomponent reactive transport in discrete fractures: II.
+        Infiltration of hyperalkaline groundwater at Maqarin, Jordan, a natural analogue site.
+        Journal of Hydrology 209:200-224
+Steefel CI and Lichtner PC (1998b) Multicomponent reactive transport in discrete fractures: I.
+        Controls on reaction front geometry. Journal of Hydrology 209:186-199
+Steefel CI and MacQuarrie KTB (1996) Approaches to modeling of reactive transport in porous
+        media. In Reactive Transport in Porous Media. Vol 34 PC Lichtner, CI Steefel, and EH
+        Oelkers (ed) The Mineralogical Society of America, Washington, D.C., p 83-130
+
+
+
+                                                37
+Fluid-Rock Interaction: A Reactive Transport Approach                  Steefel & Maher
+
+Steefel CI and Van Cappellen P (1990) A new kinetic approach to modeling water-rock
+       interaction: the role of nucleation, precursors, and Ostwald ripening. Geochimica et
+       Cosmochimica Acta 54:2657-2677
+Taylor GI (1953) The dispersion of soluble matter in a solvent flowing through a tube. Proc.
+       Royal Society London Series A 219:196-203
+Thompson JB (1959) Local equilibrium in metasomatic processes. Researches in Geochemistry
+       1:427-457
+Tompson AFB, Carle SF, Rosenberg ND, and Maxwell RM (1999) Analysis of groundwater
+       migration from artificial recharge in a large urban aquifer: A simulation perspective.
+       Water Resources Research 35:2981-2998
+Varni M and Carrera J (1998) Simulation of groundwater age distributions. Water Resources
+       Research 34
+Weare JH, Stephens JR, and Eugster HP (1976) Diffusion metasomatism and mineral reaction
+       zones; general principles and application to feldspar alteration. American Journal of
+       Science 276:767-816
+Weissmann GS, Zhang Y, LaBolle EM, and Fogg GE (2002) Dispersion of groundwater age in
+       an alluvial aquifer system. Water Resources Research 38:1198
+Westrich JT and Berner RA (1984) The role of sedimentary organic matter in bacterial sulfate
+       reduction--the G model tested. Limnology and Oceanography 29:236-249
+White AF and Brantley SL (2003) The effect of time on the weathering of silicate minerals: why
+       do weathering rates differ in the laboratory and field? Chem. Geol. 202:479-506
+White AF, Schulz MS, Stonestrom DA, Vivit DV, Fitzpatrick V, Bullen TD, Maher K, and Blum
+       AE (2009) Chemical weathering of a marine terrace chronosequence, Santa Cruz,
+       California: Controls on solute fluxes and comparisons of long-term and contemporary
+       mineral weathering rates. Geochimica Cosmochimica Acta 73:2769-2803
+Wortman UG, Bernasconi SM, and Boettcher ME (2001) Hypersulfidic deep biosphere indicates
+       extreme sulfur isotope fractionation during single-step microbial sulfate reduction.
+       Geology 29:647-650
+Yang L and Steefel CI (2007) Kaolinite dissolution and precipitation kinetics at 22°C and pH 4.
+       Geochimica Cosmochimica Acta 72:99-116
+Yeh GT and Tripathi VS (1989) A critical evaluation of recent developments in
+       hydrogeochemical transport models of reactive multichemical components. Water
+       Resources Research 25:93-108
+Zhu C (2005) In situ feldspar dissolution rates in an aquifer. Geochimica Cosmochimica Acta
+       69:1435-1453
+
+
+
+
+                                              38
+Fluid-Rock Interaction: A Reactive Transport Approach                          Steefel & Maher
+
+
+
+
+                                        FIGURE CAPTIONS
+
+
+
+
+                 Figure 1. Derivation of a continuity equation (Fick’s Second Law).
+
+
+
+
+       Figure 2. Spreading of an initially sharp solute plume as a result of molecular diffusion.
+
+
+
+
+                                                  39
+Fluid-Rock Interaction: A Reactive Transport Approach                            Steefel & Maher
+
+
+
+
+Figure 3. Comparison of diffusion profiles in the case of a dilute, mildly acidic solution (pH 4) on the left
+reacting with an albite grain located 2 cm to the right. The left panel shows a calculation using differing
+diffusion coefficients for the ions (see Table 2) and includes electrochemical migration. The right panel
+shows a calculation in which identical diffusion coefficients for all species are used—in this case,
+electrochemical migration vanishes and diffusion occurs according to Fick’s Law. From Steefel (2007).
+
+
+
+
+                          Figure 4. Tortuous diffusion paths in porous material.
+
+
+
+
+                                                     40
+Fluid-Rock Interaction: A Reactive Transport Approach                         Steefel & Maher
+
+
+
+
+Figure 5. A. Schematic representation of the parabolic velocity distribution that develops in the case of
+Poiseuille flow. B: Comparison of non-reactive tracer breakthrough profile using a Taylor-Aris
+dispersion coefficient (Taylor 1953) and a full two-dimensional calculation of transport in a cylindrical
+tube using the analytical solution for Poiseuille flow.
+
+
+
+
+Figure 6. A. Heterogeneous permeability field for 2D problem. B. Concentration field at 0.25 years as
+a result of flow from left to right across the heterogeneous domain. After Steefel (2007).
+
+
+
+
+                                                   41
+Fluid-Rock Interaction: A Reactive Transport Approach                         Steefel & Maher
+
+
+
+
+Figure 7. Comparison of solute breakthrough curves for the case of the heterogeneous permeability field
+shown in Figure 6A, calculated with a dispersivity, α, = 0, and a 1D homogeneous permeability field
+calculated with α = 50 centimeters. After Steefel (2007).
+
+
+
+
+Figure 8. Microtomographic images of porosity (dark voxels) in unweathered (Panel A) and weathered
+(Panel B) basalt. Note the increase in pore connectivity in the weathered sample, which has the effect of
+increasing the diffusivity of the material. From Navarre-Sitchler et al. (2009).
+
+
+
+
+                                                   42
+Fluid-Rock Interaction: A Reactive Transport Approach                         Steefel & Maher
+
+
+
+
+Figure 9. Comparison of results from diffusion experiments and models for unweathered (top) and
+weathered (bottom) basalt. A) µXRF image of Br concentrations in physical diffusion experiments after 7
+days. Higher concentrations of Br appear whiter. B) Contour plot of Br concentrations from 3D pore
+network simulation at same scale as µXRF images for comparison. C) Concentration profiles of Br in
+physical diffusion experiments (solid line), 1D model results (dotted line) and 3D model results (dashed
+line). From Navarre-Sitchler et al. (2009).
+
+
+
+
+Figure 10. Effect of the non-dimensional Péclet number on the shape of a concentration profile. The
+length scale is given by the flow distance, with flow from left to right.
+
+
+
+
+                                                  43
+Fluid-Rock Interaction: A Reactive Transport Approach                               Steefel & Maher
+
+
+
+
+Figure 11. Effect of the non-dimensional Damköhler number on the shape of a concentration profile at
+steady-state. A large Damköhler number indicates that the reaction kinetics are rapid compared to
+transport rates over the length scale considered, or equivalently, that the characteristic time for transport is
+significantly less than the characteristic time for reaction. The local equilibrium approximation is
+justified in such cases.
+
+
+
+
+                                                      44
+Fluid-Rock Interaction: A Reactive Transport Approach                             Steefel & Maher
+
+
+
+
+Figure 12. A: pH distribution for the 2D heterogeneous flow field shown in Figure 6. pH at the left side
+of the flow domain is fixed at 5. The principal reaction is the dissolution of plagioclase with a rate law
+that includes dissolved aluminum inhibition (Oelkers et al. 1994). B. The saturation state of the pore fluid
+with respect to plagioclase (log Q/Keq) varies spatially, resulting in a heterogeneous distribution of surface
+reaction versus transport control of the rate. From Steefel (2007).
+
+
+
+
+                                                     45
+Fluid-Rock Interaction: A Reactive Transport Approach                     Steefel & Maher
+
+
+
+
+Figure 13. Chlorofluorocarbon (CFC) ages compared to simulated CFC ages based on high resolution
+groundwater flow modeling from a heterogeneous alluvial fan aquifer in California (Weissmann et al.
+2002).
+
+
+
+
+Figure 14. Residence time distribution for the two-dimensional flow case presented in Figure 9.
+Residence times are presented in terms of probabilities and are calculated recursively based on the
+breakthrough curve shown in Figure 7. From Steefel (2007).
+
+
+
+
+                                                46
+Fluid-Rock Interaction: A Reactive Transport Approach                            Steefel & Maher
+
+
+
+
+Figure 15. The reactive-infiltration instability results in “wormholing”, as regions experiencing an
+increase in porosity and permeability as a result of mineral dissolution accelerate their growth at the
+expense of adjacent regions. The wormholing rate is at a maximum under transport-controlled conditions
+(Panel A)—at lower Damköhler numbers (Panel B), fingers are more diffuse and the difference between
+the growth rates of individual fingers is less. From Steefel (2007).
+
+
+
+
+Figure 16. A. Fit of the sulfate and ammonia profiles at Site 984 in the North Atlantic with the reactive
+transport code CrunchFlow allows the determination of the rate of microbially-mediated sulfate reduction.
+B. Fit of the calcium and alkalinity profiles provides the rates of both plagioclase dissolution and calcite
+precipitation (Maher et al. 2006).
+
+
+
+
+                                                    47
+Fluid-Rock Interaction: A Reactive Transport Approach                          Steefel & Maher
+
+
+
+
+Figure 17. Fitting of the profiles of plagioclase and potassium feldspar from Terrace 5 (226,000 years) at
+the Santa Cruz Chronosequence (Maher et al. 2009) using the reactive transport code CrunchFlow.
+
+
+
+
+Figure 18. Schematic representation of the reaction network in which particulate organic carbon (POC)
+undergoes hydrolysis to LMW-DOC, which is then fermented to H2 and acetate. From (Dale et al. 2008).
+
+
+
+
+                                                   48
+Fluid-Rock Interaction: A Reactive Transport Approach                          Steefel & Maher
+
+
+
+
+Figure 19. Measured (symbols) and modeled (lines) concentrations (top row) and rates (bottom row) for
+station S13 at Skagerrak. All rates are in production or consumption of solutes per unit volume of pore
+water. The shaded band indicates the sulfate-methane transition zone and the horizontal dashed line
+shows the depth of maximum AOM rate. See Table 3 for definition of individual reaction pathways.
+From (Dale et al. 2008).
+
+
+
+
+Figure 20. Model results for kinetic driving forces, FK, and thermodynamic forces, FT, and total driving
+forces, FTOT for various reaction pathways for stations S13 and S10 at Skagerrak. From Dale et al. (2008).
+
+
+
+
+                                                   49
+Fluid-Rock Interaction: A Reactive Transport Approach                            Steefel & Maher
+
+
+
+
+Figure 21. The effect of changes in ∆GBQ − AOM on the CH4 tail in the sulfate reduction zone. The
+measured data is shown as symbols. From Dale et al. (2008).
+
+
+
+
+Figure 22. Profile evolution between SCT 1 (65 ka) and SCT 5 (226 ka). The zone of peak kaolinite
+accumulation referred to as the argillic horizon is shown as thick dashed lines, and the average water table
+depth is shown as a light stippled line. Data summarized from White et al. (2009).
+
+
+
+
+                                                    50
+Fluid-Rock Interaction: A Reactive Transport Approach                         Steefel & Maher
+
+
+
+
+Figure 23. Model profiles corresponding to the SCT 5 (226 ka). Model Profiles corresponding to the
+ages of the younger terraces are shown for reference and the SCT 5 profile is shown in bold. A-C: Profile
+evolution for K-feldspar and albite dissolution and kaolinite precipitation. D-E: overall reaction rates
+(mol/L(porous media)/sec) as a function of depth for individual minerals. From Maher et al (2009).
+
+
+
+
+                                                   51
+Fluid-Rock Interaction: A Reactive Transport Approach                       Steefel & Maher
+
+
+
+
+Figure 24. Saturation state profiles from model simulations compared to values calculated from aqueous
+concentrations. From Maher et al (2009).
+
+
+
+
+Figure 25. Schematic description of Nickel Rim mine tailings site and the investigation area for
+permeable reactive barrier (Mayer et al. 2006).
+
+
+
+
+                                                 52
+Fluid-Rock Interaction: A Reactive Transport Approach                          Steefel & Maher
+
+
+
+
+Figure 26. Concentration contours of dissolved sulfate, iron, sulfide, alkalinity and pH in the Nickel Rim
+permeable reactive barrier (Mayer et al. 2006).
+
+
+
+
+Figure 27. Simulated concentration contours for SO4, Fe, H2S, alkalinity, and pH after 23 months of
+operation of the PRB (Mayer et al. 2006).
+
+
+                                                   53
+Fluid-Rock Interaction: A Reactive Transport Approach                              Steefel & Maher
+
+
+
+
+Figure 28. Simulated contours of mineral volume fractions for mackinawite, siderite, elemental sulfur,
+and gypsum after 23 months of operation of the PRB (Mayer et al. 2006).
+
+
+
+
+Figure 29. Summarized from Maher et al. (2006). (A) Measured bulk (symbols) and model (234U/238U) of
+the calcite fractions. The (234U/238U) of the new and recystallized calcite is greater than the bulk calcite or
+primary marine due to the α-recoil enrichment of the pore fluid. The recrystallization process not only
+enriches the calcite (234U/238U) but also lowers the pore fluid (234U/238U) at depth (not shown) due to
+exchange of U. The primary marine calcite reflects the (234U/238U) for closed system decay of U in calcite.
+B) The resulting distribution of different calcite pools showing the increase in new and recrystallized
+calcite components.
+
+
+
+
+                                                      54
+Fluid-Rock Interaction: A Reactive Transport Approach                         Steefel & Maher
+
+
+
+
+Figure 30. Conceptual model of the S isotope fractionations at the Namibia site from Dale et al. (2009).
+The εSOx and εSR fractionation factors that were constrained with the model are indicated by “?”. The
+parameters used in the model accompanied with a detailed description of the reaction network can be
+found in Table 3 of Dale et al (2009).
+
+
+
+
+                                                  55
+Fluid-Rock Interaction: A Reactive Transport Approach                          Steefel & Maher
+
+
+
+
+Figure 31. Summarized from Dale et al. (2009). (a) measured (symbols) and modeled lines (lines) for
+SO42- and H2S(aq) profiles, (b) measured and model pore water NO3- profiles and the rate of microbial
+sulfide oxidation (rSOx) for the top 30 cm; ( c) baseline model simulations using rates determined from
+elemental chemistry and values εSOxand εSR-max of 25 and 100‰ determined by best fit to the data ; (d)
+case with sulfide oxidation occurring with an additional disproportionation step and εSOxand εSR-max of 5
+and 78‰. Thick grey line shows the rate-dependent fractionation for sulfate reduction.
+
+
+
+
+                                                   56
+Fluid-Rock Interaction: A Reactive Transport Approach                       Steefel & Maher
+
+
+
+
+Figure 32. Summarized from Dale et al. (2009). (a) Model and measured δ34S profiles for solid phases
+showing the model for the downhole decrease in δ34S due to exchange between solids and the aqueous
+H2S ; (b) measured (symbols) and modeled lines (lines) for SO42- and H2S(aq) profiles. Thick grey line
+shows the rate-dependent fractionation for sulfate reduction.
+
+
+
+
+                                                 57
+Fluid-Rock Interaction: A Reactive Transport Approach                                       Steefel & Maher
+
+            Table 1. Range of values of hydraulic conductivity and permeability (Bear 1972).
+
+
+ K (cm/s)          102      101    100    10-1     10-2   10-3    10-4    10-5      10-6    10-7    10-8    10-9      10-10
+ κ (cm2)           10-3     10-4   10-5   10-6     10-7   10-8    10-9    10-10     10-11   10-12   10-13   10-14     10-15
+ Unconsolidated    Clean           Clean Sand or          Very Fine Sand, Silt, Loess, Loam
+ Sand & Gravel     Gravel
+                                   Sand & Gravel
+ Unconsolidated                                    Peat           Stratified Clay           Unweathered Clay
+ Clay & Organic
+ Consolidated      Highly Fractured Rocks          Oil Reservoir Rocks    Sandstone         Limestone       Granite
+ Rocks
+
+
+
+
+                                                          58
+Fluid-Rock Interaction: A Reactive Transport Approach                                   Steefel & Maher
+
+Table 2. Tracer diffusion coefficients of ions at infinite dilution in water at 25°C. Modified from Lasaga
+                                                   (1998).
+
+
+                                        Di x 105                                Di x 105
+               Cation                   cm2/s            Anion                  cm2/s
+               H+                       9.31             OH-                    5.27
+               Li+                      1.03             F-                     1.46
+                     +                                        -
+               Na                       1.33             Cl                     2.03
+                 +                                            -
+               K                        1.96             Br                     2.01
+               Rb+                      2.06             I-                     2.00
+               Cs+                      2.07             IO3-                   1.06
+               NH4+                     1.98             HS-                    1.73
+                     +                                                 -
+               Ag                       1.66             HSO4                   1.33
+                     2+                                           -
+               Mg                       0.705            NO2                    1.91
+               Ca2+                     0.793            NO3-                   1.90
+               Sr2+                     0.794            HCO3-                  1.18
+               Ba2+                     0.848            H2PO4-                 0.846
+                     2+                                                     -
+               Mn                       0.688            H2AsO4                 0.905
+                    2+                                                      -
+               Fe                       0.719            H2SbO4                 0.825
+               Co2+                     0.699            SO42-                  1.07
+               Ni2+                     0.679            SeO42-                 0.946
+                     2+                                           2-
+               Cu                       0.733            CO3                    0.955
+                     2+                                                2-
+               Zn                       0.715            HPO4                   0.734
+               Cd2+                     0.717            CrO42-                 1.12
+               Pb2+                     0.945            MoO42-                 0.991
+               UO22+                    0.426            PO43-                  0.612
+                    3+
+               Cr                       0.594
+                    3+
+               Fe                       0.607
+               Al3+                     0.559
+
+
+
+
+                                                   59
+Fluid-Rock Interaction: A Reactive Transport Approach                        Steefel & Maher
+
+        Table 3. Reaction network implemented in reactive transport modeling of Skagerrak
+           sediments undergoing anaerobic oxidation of methane (Dale et al. 2008).
+ Rate       Type        Reaction Stoichiometry
+ R1         hydr        CH 2O LAB → 1 6C6 H12O6(aq)
+ R2         hydr        CH 2O REF → 1 6C6 H12O6(aq)
+ R3         ferm        1 24 C6 H12O6(aq) +1 6 H 2O → 1 12 CH 3COO- +1 6H 2(aq) +1 6 H + +1 12 HCO-3
+ R4         hySR        1 2 H 2(aq) +1 8SO2-4 +1 8 H + → 1 8 HS- +1 2 H 2O
+ R5         acSR        1 8CH 3COO- +1 8SO42- → 1 8 HS- +1 4 HCO3-
+ R6         hyME        1 2 H 2(aq) +1 8 HCO-3 +1 8 H + → 1 8CH 4 + 3 8 H 2O
+ R7         acME        1 8CH 3COO- +1 8H 2O → 1 8CH 4 +1 8 HCO3-
+ R8         AOM         1 8CH 4 + 3 8 H2O → 1 2 H 2 +1 8 HCO-3 +1 8 H +
+ R9         acet        1 2 H 2(aq) +1 4 HCO-3 +1 8 H + → 1 8CH 3COO- +1 2H 2O
+ R10        actr        1 8CH 3COO- +1 2H 2O → 1 2 H 2 +1 4 HCO3- +1 8 H +
+
+
+
+
+                                               60
+Fluid-Rock Interaction: A Reactive Transport Approach                              Steefel & Maher
+
+                  Table 4: Summary of rate constants for Santa Cruz, terrace 5 (SCT 5)
+
+
+                                               Albitea           K-feldsparb            Kaolinitec
+                                           log rate constant   log rate constant     log rate constant
+                                             (mol/m2/sec)        (mol/m2/sec)          (mol/m2/sec)
+     Maher et al. (2009)                        25 ˚C               25 ˚C                 25 ˚C
+     TST Rate Law                             -14.3± 0.3           -14.7± 0.2           -19.6 ± 3
+     Al-Inhibition Rate Law                   -12.1± 0.3           -12.4± 0.2           -19.4 ± 3
+     Close-to-Equilibrium      Rate
+     Law                              k1      -12.5± 0.3           -13.6± 0.2           -19.7 ± 3
+                                      k2      -14.3± 0.3           -14.8± 0.2
+     White et al. (2009)
+     Weathering Gradient Modeld               -15.3                -15.3                   n.d.
+
+
+a: surface area of 1.94 m2/g (White et al. 2009), activation energy of 69.8 kJ/mol (Hellmann and
+Tisserand, 2006).
+b: surface area of 1.94 m2/g (White et al. 2009), activation energy of 38 kJ/mol (Palandri and Kharaka
+2004).
+c: surface area of 10 m2/g (White et al. 2009), activation energy of 22.2 kJ/mol (Palandri and Kharaka
+2004).
+d:: at a flow rate of 0.058 m/yr determined from fit to solid data using spreadsheet model.
+n.d.: not determined
+
+
+
+
+                                                      61
+

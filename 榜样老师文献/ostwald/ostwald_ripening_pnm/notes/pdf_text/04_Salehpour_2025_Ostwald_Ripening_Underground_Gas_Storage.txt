@@ -1,0 +1,555 @@
+                                                                                       Ostwald Ripening in Underground Gas Storage
+
+                                                   Mohammad Salehpour,1 Tian Lan,1 Nicolas Bueno,2 Md Zahidul Islam Laku,2 Yashar Mehmani,2 and Benzhong Zhao1, ∗
+                                                                              1
+                                                                                Department of Civil Engineering, McMaster University, Hamilton, ON, Canada
+                                                              2
+                                                                  Department of Energy and Mineral Engineering, The Pennsylvania State University, University Park, PA, USA
+                                                                     Underground gas storage is central to both climate mitigation and energy transition strategies, supporting
+                                                                  both long-term carbon sequestration and seasonal hydrogen storage. A key mechanism governing the fate of
+                                                                  injected gases is Ostwald ripening—the curvature-driven mass transfer between trapped gas ganglia in porous
+                                                                  media. While ripening is well understood in open systems, its behavior in geometrically confined porous struc-
+                                                                  tures remains poorly characterized, especially over long timescales relevant to subsurface operations. Here, we
+                                                                  present ultra-high-resolution microfluidic experiments that capture the evolution of residually trapped hydrogen
+                                                                  over weeks in realistic, heterogeneous pore geometries under well-defined boundary conditions. We observe a
+arXiv:2509.00044v1 [cond-mat.soft] 24 Aug 2025
+
+
+
+
+                                                                  distinct two-stage dynamic: a rapid local equilibration among neighboring bubbles, followed by slow global de-
+                                                                  pletion driven by long-range diffusion toward low–chemical potential boundaries. Building on these insights, we
+                                                                  develop and validate a continuum model that couples microscale capillary pressure–saturation (Pc –S) relation-
+                                                                  ships, extracted via the pore-morphology method, with macroscopic diffusive transport. The model accurately
+                                                                  predicts gas saturation evolution without fitting parameters and collapses experimental results across a range
+                                                                  of experimental conditions. Extending the model to reservoir scales, we estimate equilibration timescales (teq )
+                                                                  for CO2 and H2 in homogeneous sandstone aquifers. We find that ripening occurs much faster than convective
+                                                                  dissolution in CO2 sequestration, and on timescales comparable to seasonal H2 storage operations. These find-
+                                                                  ings establish a quantitative framework linking pore-scale heterogeneity to field-scale gas redistribution, with
+                                                                  implications for the design and longevity of subsurface storage strategies.
+
+
+                                                                          INTRODUCTION                                      as bubble mobilization can increase the risk of CO2 leakage.
+                                                                                                                            In addition, ripening-induced redistribution of bubbles mod-
+                                                                                                                            ifies local flow and chemical conditions, thereby influencing
+                                                    Underground gas storage is essential to addressing contem-
+                                                                                                                            geochemical reactions such as rock dissolution and mineral
+                                                 porary energy and environmental challenges [1]. Geologic
+                                                                                                                            precipitation [10].
+                                                 sequestration of carbon dioxide (CO2 ) provides a long-term
+                                                 solution for reducing atmospheric greenhouse gas concentra-                   Ostwald ripening, first described in the late 19th century,
+                                                 tions by permanently storing CO2 in deep geological forma-                 has been extensively studied in open systems, where gas bub-
+                                                 tions [2, 3]. Concurrently, seasonal underground hydrogen                  bles grow unconstrained by geometry. Its investigation within
+                                                 (H2 ) storage offers a scalable means of buffering the inter-              porous media, however, is a more recent development. Pore-
+                                                 mittency of renewable energy sources, thereby facilitating the             scale observations have revealed that geometric confinement
+                                                 reliable integration of low-carbon energy into the broader en-             fundamentally controls the ripening dynamics. In micromod-
+                                                 ergy infrastructure [4].                                                   els with homogeneous pore structures, an initially polydis-
+                                                                                                                            perse population of gas bubbles evolves toward a monodis-
+                                                    As gases such as CO2 and H2 are injected into the subsur-               perse state, with bubbles attaining uniform size [11]. This be-
+                                                 face, they displace the wetting ambient brine in a drainage                havior changes markedly in the presence of pore-scale hetero-
+                                                 process. Upon subsequent reinvasion of the brine—referred                  geneity. Pore-scale modeling studies predict that under such
+                                                 to as imbibition—portions of the injected gas become immo-                 heterogeneity, ripening leads to a stable equilibrium distribu-
+                                                 bilized as discrete ganglia surrounded by the wetting phase,               tion of bubble sizes, governed by the interplay between initial
+                                                 in a process known as residual trapping. In geological carbon              conditions and the underlying pore geometry [12–14]. Re-
+                                                 sequestration, residual trapping primarily occurs as buoyant               cent X-ray computed tomography (CT) experiments of hydro-
+                                                 CO2 migrates upward [5]. In underground hydrogen storage,                  gen storage in rock cores reveal that ripening behavior is dic-
+                                                 it arises from the cyclical drainage and imbibition of the pore            tated by ganglion size: medium-sized ganglia fragment, larger
+                                                 space during repeated injection and withdrawal cycles [6].                 ganglia grow, and smaller ones dissolve completely [15–17].
+                                                    Once trapped, these isolated gas ganglia partially dissolve             These CT observations, however, are typically limited to
+                                                 into the surrounding aqueous phase. Over time, molecular                   small subdomains and short timeframes (∼1 day), providing
+                                                 diffusion drives mass exchange between bubbles of differ-                  only a partial—and potentially unrepresentative—snapshot of
+                                                 ing sizes and curvatures—a process known as Ostwald ripen-                 the ripening process. Concurrently, continuum-scale models
+                                                 ing [7–9]. This redistribution of mass causes some bubbles                 have been developed that couple capillary pressure–saturation
+                                                 to shrink and eventually vanish, while others to grow suf-                 (Pc –S) relationships with Henry’s law to describe the macro-
+                                                 ficiently to overcome capillary constraints, regain buoyancy,              scopic evolution of Ostwald ripening in porous media [18, 19].
+                                                 and migrate upward to rejoin the mobile gas plume. Such                    However, the appropriate choice of Pc –S relationships for
+                                                 dynamics may prove advantageous for underground hydrogen                   modeling ripening remains unclear, and the predictive accu-
+                                                 storage by reducing residual hydrogen losses; however, they                racy of these models has yet to be tested against experimen-
+                                                 pose a significant concern in geological carbon sequestration,             tal data. A promising approach for extracting Pc –S relation-
+                                                                                                                                           2
+
+ships from microscale geometry was recently proposed by
+Mehmani and Xu [19], and is validated in this work.                    4.25 mm               0.1 mm
+   In this study, we perform microfluidic experiments to inves-
+tigate Ostwald ripening of hydrogen in realistic pore geometry                                                          microscope
+                                                                                                                  10X
+under well-defined boundary conditions. By achieving ultra-
+high-resolution imaging (0.3 µm/pixel) across the entire mi-
+crofluidic domain, we track the collective evolution of a large
+bubble population while simultaneously resolving the inter-                                                                      0.17 mm
+face curvature—and thus the capillary pressure—of individual                      10.19 mm
+bubbles with high accuracy. Each experiment spans over 15                                                                      hot plate
+days, an order of magnitude longer than in previous studies,
+allowing us to capture long-term dynamics. We observe that
+neighboring bubbles rapidly reach local equilibrium, as pore-
+scale heterogeneities provide a multitude of metastable con-
+figurations that facilitate equilibration through Ostwald ripen-   FIG. 1. We conduct microfluidic experiments of hydrogen Ostwald
+                                                                   ripening in micromodels patterned with realistic pore geometries
+ing. In contrast, equilibration with the boundaries—which are
+                                                                   and well-defined boundary conditions. Ultra-high-resolution imag-
+much larger than a typical pore throat—occurs significantly        ing (0.3 µm/pixel) is achieved by scanning the entire micromodel
+more slowly, governed by the timescale of long-range diffu-        in a serpentine pattern using overlapping sub-windows (indicated by
+sive mass transfer.                                                dashed lines).
+   Crucially, we demonstrate for the first time that a contin-
+uum model incorporating microscale pore-geometry charac-
+teristics can accurately predict the evolution of gas saturation   rate for a total of 50 pore volumes. Subsequently, water is
+without the use of fitting parameters. When applied to rep-        reinjected for a total of 100 pore volumes, resulting in the
+resentative sandstone formations, the model yields character-      residual trapping of hydrogen [20] with an initial gas satura-
+istic equilibration times for CO2 , H2 , and CH4 , showing that    tion Sginit ranging from 0.49 to 0.65. To establish well-defined
+Ostwald ripening proceeds significantly faster than convective     boundary conditions, hydrogen bubbles are deliberately re-
+dissolution in carbon sequestration scenarios and occurs on        tained in both the inlet and outlet channels, which are sig-
+timescales comparable to seasonal hydrogen storage cycles.         nificantly larger than the pore throats in the porous matrix.
+These findings establish the first validated, predictive frame-    These larger bubbles exhibit lower chemical potential, thereby
+work that links pore-scale heterogeneity to field-scale gas re-    driving diffusive mass transfer from the porous matrix toward
+distribution.                                                      the boundaries. The system is allowed to equilibrate until
+                                                                   high-precision single-crystal quartz resonant pressure sensors
+                                                                   (XTALX LUQS1, Phase Sensors) at both the inlet and outlet
+              MICROFLUIDIC EXPERIMENTS                             return to atmospheric pressure. Once pressure equilibrium is
+                                                                   reached, the inlet and outlet valves are closed, thereby isolat-
+   We conduct microfluidic experiments to investigate Ost-         ing the micromodel and initiating the Ostwald ripening pro-
+wald ripening among residually trapped hydrogen bubbles in         cess. Experiments are conducted at two distinct temperatures,
+porous media. The micromodel is fabricated from a two-             40◦ C and 80◦ C, with each experiment lasting 24 days and 15
+dimensional X-ray CT image of a Canadian sandstone, pre-           days, respectively, except in one case where the experiment
+serving the pore-scale heterogeneities characteristic of natural   was terminated prematurely due to an overnight power out-
+porous media in the subsurface (Fig. 1). The resulting struc-      age. The micromodel is mounted on the motorized stage of an
+ture exhibits a median pore size of 42 µm, a median pore-          upright microscope (BX51, Olympus), and time-lapse imag-
+throat size of 10.6 µm, and a porosity of 0.3 (SI Appendix,        ing is performed by scanning the domain in a serpentine pat-
+Fig. S1). The micromodel is laterally bounded by inlet and         tern. This imaging protocol yields an ultra-high resolution of
+outlet channels with widths of 100 µm and 170 µm, respec-          0.3 µm/pixel, with each full-frame image composed of 120
+tively. The device is fabricated by Interface Fluidics (Canada)    stitched sub-images (Materials and Methods).
+using deep reactive ion etching (DRIE) to a depth of 7.8 µm
+on a silicon wafer, followed by anodic bonding to borosili-
+cate glass. This approach provides high mechanical integrity                                   RESULTS
+and hermetic sealing, effectively preventing hydrogen leakage
+during long-term experiments. A heating element is placed          Pore-scale Observations. The sizes of trapped hydrogen
+beneath the micromodel to maintain uniform and controlled          bubbles span more than two orders of magnitude, ranging
+temperature conditions throughout the experiments.                 from single-pore bubbles to ganglia that extend across mul-
+   To initiate each experiment, the micromodel is first satu-      tiple pores. Due to spatial confinement, large ganglia possess
+rated with deionized water (MilliporeSigma). Research-grade        multiple hydrogen–water interfaces. The ultra-high resolution
+hydrogen gas (Air Liquide) is then introduced at a constant        of our experiments enables accurate measurement of in-plane
+                                                                                                                                            3
+
+
+
+
+FIG. 2. Pore-scale observations of Ostwald ripening in an experiment conducted at 80◦ C. (A) Trapped hydrogen bubbles range in size from
+single-pore bubbles to ganglia spanning multiple pores. All hydrogen–water interfaces associated with a given bubble exhibit uniform in-plane
+curvature, as illustrated by least-squares circle fitting (dashed red lines). (B) Small water droplets are visible within some trapped bubbles
+at the onset of the experiment due to condensation. (C) Evolution of hydrogen–water interfaces for bubbles located near the center of the
+micromodel, with interface contours color-coded by time. Neighboring bubbles rapidly reach local equilibrium: some grow, others shrink, and
+some remain unchanged. (D) Long-term evolution of hydrogen–water interfaces for the same bubble population. All bubbles progressively
+shrink due to diffusive mass transfer toward the left and right boundaries.
+
+
+interface curvature via least-squares circle fitting. We find            ating on surface imperfections within the micromodel. Once
+that all interfaces associated with a given bubble exhibit the           formed, these condensed water droplets remain largely un-
+same in-plane curvature, although neighboring bubbles dis-               changed throughout the experiment (SI Appendix, Fig. S3) and
+play distinct values (Fig. 2A). This uniformity within individ-          have a negligible impact on the ripening process, as demon-
+ual bubbles indicates local capillary equilibrium, consistent            strated later.
+with 3D tomography observations of residually trapped CO2
+                                                                            We examine a 1.5 mm×1.5 mm region near the center
+bubbles [21, 22]. A survey of the entire bubble population in
+                                                                         of the micromodel in the experiment conducted at 80◦ C
+the micromodel shows that initial in-plane curvatures vary by
+                                                                         with an initial gas saturation of Sginit = 0.49. Within
+an order of magnitude, with no apparent correlation to bubble
+                                                                         this domain, some bubbles grow, others shrink, and some
+size (SI Appendix, Fig. S2).
+                                                                         remain unchanged, reaching apparent equilibrium within
+   We observe water droplets within some trapped bubbles at              approximately 5 hours (Fig. 2C). This rapid re-equilibration
+the onset of the experiment (Fig. 2B). These droplets arise              is facilitated by pore-scale heterogeneity, which offers a
+from condensation triggered by a sudden increase in system               wide range of metastable configurations. As a result, in-
+pressure during water reinjection, which is carried out to dis-          dividual ganglia require only minimal volume adjustments
+place hydrogen immediately prior to the experiment. The                  to achieve capillary equilibrium with their neighbors. At
+abrupt pressure rise increases the total pressure inside the hy-         this stage, boundary effects have not yet reached the central
+drogen bubble, but the partial pressure of water vapor cannot            region. Over a longer timescale of 1 to 15 days, however,
+adjust rapidly enough via diffusion. As a result, the vapor              we observe that all bubbles gradually shrink due to diffu-
+becomes supersaturated and condenses, preferentially nucle-              sive mass loss driven by Ostwald ripening toward the left
+                                                                                                                                                            4
+
+and right boundaries (Fig. 2D). A high-resolution time-lapse        A 60                                                                            0.7
+                                                                                                 σr
+video of the experiment is provided in SI Appendix, Movie S1.
+                                                                                 50                                                                 0.6
+
+Two-stage Ripening. Pore-scale observations of individual                        40                                                                 0.5
+
+
+
+
+                                                                    r̄ ± σr [µm]
+bubbles reveal a distinct two-stage evolution during the ripen-
+                                                                                                                                                    0.4
+
+
+
+
+                                                                                                                                                          Sg [−]
+ing process. To quantify this behavior, we track the residual                    30
+gas saturation (Sg ), the average in-plane radius of curvature                                                                                      0.3
+                                                                                 20
+(r̄), and the standard deviation of radius of curvature (σr ) for
+a population of bubbles within a 1.5 mm-long window that                                                                                            0.2
+                                                                                 10
+spans the full width of the micromodel. This analysis window                                                                                        0.1
+is centered within the device, equidistant from the left and                       0
+right boundaries. Figure 3A presents these measurements for                                                                                         0
+                                                                                  10 -1               10 0         10 1             10 2
+an experiment conducted at 80◦ C. We find that σr decreases
+                                                                                                                t [hr]
+rapidly at the start of the experiment, reaching a minimum          B 3.5              10 -8
+value near zero within five hours, while Sg and r̄ remain rel-                                                      total interfacial energy
+atively constant over the same period. The near-zero value of                      3                                gas-solid interfacial energy
+                                                                                                                    gas-liquid interfacial energy
+σr indicates that bubbles in the central region have reached
+                                                                                 2.5                                                                    10 2
+capillary equilibrium, each attaining the same interface curva-
+                                                                                                                                                        10 1
+
+
+
+
+                                                                    Fo-o-p [J]
+ture. We refer to this rapid equilibration phase as local ripen-                   2
+ing (Stage 1).
+    As the ripening process progresses, bubbles in the central                   1.5                                                                    10 0
+region begin to experience the influence of the boundaries,                        1                                                                    10 -1
+which exhibit lower chemical potentials due to the larger aper-
+                                                                                                                                                    t [hr]
+ture sizes. This chemical potential gradient drives hydrogen                     0.5
+diffusion from the center toward the boundaries, leading to a
+                                                                                   0
+gradual decrease in Sg as bubbles shrink. This depletion phase                     0.55        0.5       0.45    0.4      0.35        0.3       0.25
+is accompanied by a monotonic increase in r̄. Meanwhile,                                                        Sg [−]
+σr rises to nonzero values, as diffusive mass loss disrupts
+the capillary equilibrium established in Stage 1. Shrinking         FIG. 3. (A) Temporal evolution of the residual gas saturation Sg (cir-
+bubbles struggle to maintain metastable configurations with         cles), average in-plane radius of curvature r̄ (squares), and standard
+their neighbors, resulting in a broader distribution of curva-      deviation of radius of curvature σr (gray shaded area) for a popula-
+tures. We refer to this slow, boundary-driven depletion as          tion of bubbles located in the center of the micromodel in an exper-
+global ripening (Stage 2) (Fig. 3A). Plotting the evolution of      iment conducted at 80◦ C. During the first 5 hours, σr rapidly de-
+                                                                    creases to near zero, indicating local capillary equilibrium, while
+Sg across the entire micromodel reveals the same two-stage
+                                                                    Sg and r̄ remain relatively constant (i.e. Stage 1). Over longer
+ripening process across all experimental conditions, though         timescales, Sg gradually decreases as bubbles shrink due to diffusive
+the distinction between Stage 1 and Stage 2 becomes less pro-       mass transfer toward the boundaries, accompanied by an increase
+nounced, as bubbles near the boundaries begin to lose mass as       in both r̄ and σr (i.e. Stage 2). (B) Evolution of the out-of-plane
+soon as the experiment starts (Fig. 4A).                            component of interfacial energy Fo-o-p (triangles) as a function of Sg
+    To elucidate the thermodynamic driving force underlying         for the same bubble population. Fo-o-p is decomposed into gas-solid
+                                                                    (squares) and gas-liquid (circles) contributions, with symbols color-
+the ripening process, we examine the evolution of interfacial
+                                                                    coded by time. Fo-o-p declines steeply in Stage1 (red shaded area),
+energy as a function of gas saturation for the same population      driven by a precipitous drop in gas–solid interfacial energy, while
+of bubbles located at the center of the micromodel. We define       the gas–liquid interfacial energy increases slightly. These trends per-
+the reference energy as that of a fully water-saturated micro-      sist into Stage 2, albeit at a much slower rate.
+model and assign it a value of zero. Owing to the quasi-two-
+dimensional geometry of the micromodel, the in-plane com-
+ponent of interfacial energy scales linearly with gas saturation    of the gas–solid and gas–liquid contributions and serves as a
+and thus offers limited insight into ripening dynamics. We          thermodynamic indicator of the system’s progression toward
+therefore focus our analysis on the out-of-plane component of       equilibrium during the ripening process.
+interfacial energy given by Fo-o-p = (γgs − γls )blgs + γbπlgl ,       As expected, Fo-o-p decreases monotonically in time as
+where γgs , γls , and γ are the interfacial tensions of the gas-    the system evolves toward a lower-energy configuration
+solid, liquid-solid, and gas-liquid interfaces, respectively; lgs   (Fig. 3B). The steepest decline occurs during Stage 1, as
+and lgl are the corresponding interfacial lengths; and b is the     large bubbles retract from narrow pore throats (Fig. 2C),
+micromodel gap thickness. Assuming that water perfectly             leading to a rapid decline in gas–solid interfacial energy.
+wets the solid, Young’s equation yields γgs −γls = γ, simplify-     This decline, however, is partially offset by a concurrent
+ing the expression to Fo-o-p = γblgs +γbπlgl . This formulation     increase in gas–liquid interfacial energy. These trends persist
+represents the total out-of-plane interfacial energy as the sum     into Stage 2, albeit at a much slower rate, as diffusive mass
+                                                                                                                                               5
+
+loss to the boundaries drives bubbles to further reduce their     tally observed evolution of gas saturation without the need for
+contact with the solid surface while transitioning toward         any fitting parameters (Fig. 4A). A full derivation of the model
+lower-curvature interfaces (Fig. 2D). The thermodynamic de-       and underlying assumptions is provided in the SI Appendix.
+scription of multiphase flow in porous media, which couples
+capillary pressure, saturation, and interfacial area, has been    A 0.7
+extensively explored [23–25]. However, its application to
+Ostwald ripening remains very limited [26] and represents a           0.6
+promising direction for future investigation.
+                                                                      0.5
+Continuum Model of Ripening. To capture the macroscopic
+dynamics of Ostwald ripening in porous media with pore-
+scale heterogeneity, we develop a continuum model based on            0.4
+the pore-network formulation of Bueno et al. [27]. The model
+describes the spatiotemporal evolution of the molar fraction          0.3
+of dissolved gas in the aqueous phase, denoted χ, and is given
+by
+                                                                      0.2
+                                                                           -1                       0                    1               2        3
+                                                                10                     10                   10             10        10
+       H                dSg                   ∂χ     Dw 2
+            −1 H              χ + Sg + 1          =      ∇ χ,
+     RT ρ̄w             dPc                   ∂t      τ           B     1
+                                                            (1)
+where H is Henry’s constant in volatility form (with units of
+                                                                      0.9
+pressure per molar fraction), R is the universal gas constant,
+T is the absolute temperature, ρ̄w is the molar density of the                  45
+
+aqueous phase, Dw is the molecular diffusion coefficient of           0.8       40
+
+the gas in the aqueous phase, and τ is the tortuosity of the                    35
+
+porous medium. Assuming both χ and Sg vary only along the             0.7       30
+longitudinal direction, we solve Equation 1 in one dimension                    25
+(1D). Following the Bruggeman relation [28], we further as-           0.6       20
+sume τ = ϕ−1 , where ϕ is the porosity. The term dSg /dPc                            0       0.2        0.4   0.6     0.8    1
+captures the pore-scale coupling between interfacial curvature
+and gas redistribution, linking saturation changes to capillary       0.5
+                                                                                     10 -6                    10 -4              10 -2       10 0
+pressure gradients. Rather than imposing an empirical cap-
+illary pressure–saturation relationship, we compute dSg /dPc
+directly using a modified pore-morphology method (PMM)
+adapted for ripening, with the micromodel pore geometry as        FIG. 4. (A) Temporal evolution of the residual gas saturation Sg
+                                                                  over the entire micromodel. Square symbols denote experiments
+direct input (Materials and Methods). This approach allows
+                                                                  conducted at 80◦ C, while circle symbols represent experiments con-
+us to explicitly encode the influence of pore-scale geometry      ducted at 40◦ C. Solid lines indicate model predictions (Eqs. 1). (B)
+on macroscopic ripening dynamics [19].                            Non-dimensionalizing time by the characteristic diffusion timescale
+   We impose Dirichlet boundary conditions on the molar           Tc and normalizing Sg by its initial value Sginit collapses the satu-
+concentration at the left and right inlet channels of the do-     ration evolution from different experiments. Inset: Pc –Sg relation-
+main, specified by Henry’s law as χ = (Pw + Pc − Pv )/H,          ship computed from pore-scale geometry using the modified pore-
+                                                                  morphology method.
+where Pw is the water pressure (equal to atmospheric pres-
+sure in our experiments) and Pv is the saturated vapor pres-
+sure of water. Assuming the liquid phase is perfectly wet-           Noting that the dimensionless prefactor H/(RT ρ̄w ) ≫
+ting to the micromodel, we calculate the capillary pressure Pc    1, due to the low solubility of gases in water, and that
+                                                                       dS           dS
+at the boundaries using the Young-Laplace equation, Pc =          H dPgc χ = dPgc Pg ≫ Sg , Equation 1 in 1D simplifies
+2γ(d−1 + b−1 ), where γ is the gas-water interfacial tension,     to a diffusion equation:
+d is the constant width of the boundary channels and b is                                                 −1 2
+the gap thickness of the micromodel. To relate changes in                      ∂χ               ρ̄g dSg        ∂ χ
+                                                                                   = Dw ϕ H             +1         ,       (2)
+gas saturation to variations in dissolved concentration, we                    ∂t              ρ̄w dPc         ∂x2
+solve for the capillary pressure as Pc = H (χ − χ0 ) + Pv ,       where ρ̄g is the partial molar density of the gas phase. We
+where χ0 is the equilibrium molar concentration of dissolved      define the characteristic timescale as the diffusion timescale,
+gas under ambient temperature and pressure, assuming zero         Tc = L2c /Deff , where the characteristic length Lc is set by
+gas–liquid interface curvature. We then invert the capillary      the length of the micromodel, and the effective diffusivity
+pressure–saturation relationship to obtain Sg . Remarkably,                                   h
+                                                                                                 ρ̄ dS
+                                                                                                            i−1
+the model described by Equation 1 captures the experimen-         is given by Deff = Dw ϕ H ρ̄wg dPgc + 1       . Rescaling time
+                                                                                                                                       6
+
+t by Tc , and residual gas saturation Sg by its initial value,            0
+perfectly collapses the saturation evolution curves across
+different experimental conditions (Fig. 4B).                            0.5
+
+
+Large-scale implications. Saline aquifers are widely re-                  1
+garded as a promising geological setting for large-scale un-
+                                                                        1.5
+derground gas storage due to their widespread availability and
+substantial storage capacity [3, 4, 29]. Among these, macro-
+                                                                          2
+scopically homogeneous saline aquifers—particularly those
+composed of consolidated sandstones—are especially well-
+                                                                        2.5
+suited owing to their enhanced predictability, containment se-
+curity, and operational reliability. Notable examples include
+                                                                          3
+the Mount Simon Sandstone in the Illinois Basin and the Basal
+Cambrian Sandstone in Western Canada. Both formations                     10 0           10 1           10 2          10 3           10 4
+have been extensively characterized and exhibit a high degree
+of homogeneity over meter to tens-of-meter scales, with rel-
+                                                                     FIG. 5. Equilibriation time (teq ) for three gases commonly consid-
+atively uniform porosity and permeability, despite underlying        ered for subsurface storage: CO2 (red), H2 (green), and CH4 (blue).
+heterogeneity at the pore scale [30, 31].                            Shaded regions indicate the range of teq values corresponding to the
+   Residual trapping in such formations has been investigated        observed variability in the characteristic wavelength of saturation
+through core flooding experiments conducted under reservoir-         heterogeneity (λ ∼ 0.11 − 0.63 cm), as reported in the literature.
+relevant conditions. These experiments typically involve gas
+injection into a brine-saturated core (drainage), followed by
+brine reinjection (imbibition), thereby mimicking the pri-
+mary processes responsible for residual trapping. When cou-          constitutive models are validated against published experi-
+pled with X-ray computed tomography (CT) imaging, these              mental and field data (SI Appendix). Across all three gases,
+tests enable direct visualization of the spatial distribution of     teq increases with depth, but the change becomes marginal be-
+trapped gas along the core [15, 32]. Analysis of four satura-        yond approximately 1 km, where increases in Dw are largely
+tion profiles reveals that the residual gas saturation varies on     offset by rising H, and variations in ρ̄g are minor. Across all
+the centimeter scale and can be reasonably approximated by           depths, CO2 exhibits the shortest equilibriation time, followed
+a sinusoidal function: Sginit = Ŝg sin(2π/λ x) + S̄g , where        by H2 and then CH4 . The equilibriation time also varies sub-
+x is the longitudinal distance, λ ∼ 0.11 − 0.63 cm is the            stantially with λ. For a macroscopically homogeneous saline
+wavelength, Ŝg ∼ 0.03 − 0.1 is the amplitude of saturation          aquifer at a depth of 1 km, with ϕ = 0.2 and λ ∼ 0.11 − 0.63
+variation, and S̄g ∼ 0.26 − 0.46 is the mean saturation (SI          cm as inferred above, the estimated teq for CO2 ranges from
+Appendix). Furthermore, we apply our modified PMM code               approximately 20 to 500 days, with a median value of 300
+to extract Pc -Sg relationships from publicly available 3D X-        days (Fig. 5). This is substantially shorter than the onset
+ray CT scans of homogeneous sandstone cores (SI Appendix,            time of convective dissolution in mobile CO2 plumes, typi-
+Fig. S5). These curves are more appropriate for predicting           cally 10–100 years in similar saline aquifers [33, 34]. In the
+ripening, as they reflect equilibrium configurations of discon-      absence of sinks such as fractures, ripening-induced equili-
+nected ganglia and avoid the viscous effects or hysteresis com-      bration is not expected to compromise residual trapping, as
+monly associated with experimental measurements (Materials           only minimal volume adjustments are required to reach lo-
+and Methods). Noting that dSg /dPc is approximately con-             cal capillary equilibrium given the broad range of metastable
+stant over the relevant saturation range (Sg ∈ 0.2−0.6), Equa-       bubble configurations at the pore scale (Fig. 2C). Meanwhile,
+tion 2 can be expressed as an evolution equation for Sg :            the estimated teq for H2 ranges from approximately 50 to
+                                                                     1,500 days, with a median of 700 days—comparable to the
+                       ∂Sg        ∂ 2 Sg                             6–12 month injection–withdrawal cycles characteristic of sea-
+                           = Deff        ,                    (3)
+                        ∂t        ∂x2                                sonal underground hydrogen storage, yet orders of magnitude
+which admits a well-known analytical solution in the absence         shorter than the million-year timescales required to dissolve
+of a concentration sink (e.g., a fracture). Specifically, the ini-   an entire column of residually trapped gas via ripening [35].
+tial variations in Sg decay exponentially with a characteristic      Depth-dependent ripening arises from the increase in hydro-
+equilibriation time teq = λ2 /(4π 2 Deff ).                          static pressure with depth, which elevates the equilibrium con-
+   We estimate teq for three gases commonly considered for           centration of dissolved gas, thereby creating a vertical concen-
+subsurface storage: H2 , CO2 , and natural gas (CH4 ). To            tration gradient and sustaining an upward diffusive flux. Our
+account for depth-dependent effects, we develop constitutive         analysis does not account for ripening in the vertical direction.
+models that capture the nonlinear variation of Dw , H, and ρ̄g          The results above pertain to local ripening (Stage 1). A
+with depth, incorporating geothermal and hydrostatic gradi-          second implication arises from global ripening (Stage 2),
+ents while neglecting the influence of brine salinity. These         also captured by our experimentally validated continuum
+                                                                                                                                   7
+
+model (Eq. 2). Mehmani and Xu [19] solved a linearized               focus on how pore geometry, wettability, and flow conditions
+form of this model to examine bubble depletion in an infinite,       influence the initial saturation heterogeneity.
+microscopically heterogeneous porous medium, where large                Altogether, this study provides a quantitative framework
+bubbles in cavities or fractures act as constant-concentration       for understanding and predicting Ostwald ripening in subsur-
+sinks. Their analysis showed that the mass flux into such            face porous media. By directly linking pore-scale geometry
+sinks may decrease, remain constant, or increase depending           to continuum-scale gas transport, our approach establishes a
+on whether ripening proceeds in linear, cylindrical, or radial       physics-based foundation for assessing the long-term security
+geometries. The latter two geometries are especially relevant        and efficiency of geological gas storage systems.
+to annular gaps behind wellbore casings and their cement
+sheath, where ripening can sustain or even accelerate leakage.
+Because these outcomes are direct mathematical conse-                               MATERIALS AND METHODS
+quences of Equation 2, now corroborated by experiments,
+they underscore wellbore integrity as a critical vulnerability                                  Imaging
+in underground gas storage—an issue evidenced by recent
+explosions and uncontrolled releases linked to wellbore                  We visualize the ripening process using an upright bright-
+corrosion in underground gas storage facilities [36].                field microscope (BX51, Olympus) equipped with a 10× ob-
+                                                                     jective lens and a scientific CMOS camera (BUC3D-1000C,
+                                                                     BestScope) featuring a 10-megapixel sensor. To capture the
+                                                                     entire micromodel at ultra-high resolution, we employ a mo-
+                        CONCLUSIONS                                  torized XY stage (EK 14 mot, Marzhauser Wetzlar), which
+                                                                     is programmed to traverse the field of view in a serpentine
+   Ostwald ripening plays a critical role in governing the long-     pattern with 35% overlap between adjacent frames. Each
+term fate of residually trapped gas in subsurface gas storage.       scan acquires 15 columns and 8 rows of images, yielding
+Through high-resolution microfluidic experiments performed           a total of 120 individual frames, with each frame spanning
+under well-defined boundary conditions, we present the first         1.14 mm × 0.85 mm. These images are stitched using the
+long-term investigation of Ostwald ripening dynamics within          Grid/Collection Stitching plugin in Fiji [37], producing a
+heterogeneous porous media. Our results provide direct ex-           composite image with a spatial resolution of 0.3 µm/pixel that
+perimental evidence that ripening proceeds in two distinct           enables detailed observation of pore-scale ripening dynamics
+stages: a rapid local equilibration driven by pore-scale hetero-     across the entire micromodel.
+geneity, followed by a slower global depletion governed by               To characterize the trapped hydrogen bubbles, we devel-
+long-range diffusive mass transfer toward boundary regions           oped a custom image analysis pipeline in MATLAB. First,
+with lower chemical potentials (Figs. 2–3).                          a dry image of the micromodel is processed using intensity
+   Leveraging these insights, we develop and validate a              thresholding and morphological operations to extract the pore
+continuum-scale model that couples pore-scale capillary              structure. This step also generates a binary mask that iden-
+pressure-saturation (Pc -S) relationships to diffusive mass          tifies the solid matrix, which is subsequently applied to all
+transport. Crucially, this study is the first to demonstrate that    time-lapse frames to exclude static grain regions. Gas bub-
+Pc -S curves extracted using a simplified pore morphology            bles are then identified via adaptive thresholding and mask
+method adapted for ripening can accurately predict the evolu-        subtraction. Each identified bubble is uniquely labeled and
+tion of gas saturation driven by Ostwald ripening, without the       analyzed to determine its centroid position, projected area,
+need for fitting parameters (Fig. 4). Applying the validated         pore occupancy number, gas–water and gas–solid interfacial
+model to macroscopically homogeneous sandstone aquifers,             lengths, and Euler characteristic. This enables robust tracking
+we estimate characteristic equilibration times (teq ) for CO2 ,      and morphological analysis of individual bubbles throughout
+H2 , and CH4 under reservoir-relevant conditions. We find that       the ripening process.
+teq increases with depth but plateaus beyond approximately
+1 km due to compensating thermophysical trends. Among
+these gases, CO2 equilibrates most rapidly, followed by H2                               Pore morphology model
+and CH4 (Fig. 5).
+   Our findings show that Ostwald ripening occurs signifi-              We parameterize the continuum model using a capil-
+cantly faster than the onset of convective dissolution in mo-        lary pressure–saturation (Pc –Sg ) relationship derived directly
+bile CO2 plumes during geologic carbon sequestration. In             from the binary image of the micromodel pore geometry.
+contrast, the characteristic timescale of ripening is compa-         Our approach follows the method proposed by Mehmani and
+rable to the seasonal injection–withdrawal cycles typical of         Xu [19], a variant of the classical pore-morphology method
+underground hydrogen storage. Notably, our analysis reveals          (PMM) [38] adapted to capture Ostwald ripening dynamics.
+that the equilibration timescale is sensitive to the spatial wave-   Let I denote the binary image, where solid and void regions
+length of saturation heterogeneity—a parameter we quantify           are represented by 0 and 1, respectively. Our PMM involves
+using existing core-scale experiments. Future studies should         two successive morphological operations—erosion followed
+                                                                                                                                               8
+
+by dilation—using a circular structuring element Br of ra-                     E. M. Thaysen, G. J. Strobel, C. Schmidt-Hattenberger, et al.,
+dius r. The erosion operation, I ⊖ Br , identifies all pixels                  Enabling large-scale hydrogen storage in porous media–the sci-
+for which the entire structuring element lies within the void                  entific challenges, Energy Environ. Sci. 14, 853 (2021).
+space. The dilation operation, I ⊕ Br , subsequently expands               [5] S. Krevor, M. J. Blunt, S. M. Benson, C. H. Pentland,
+                                                                               C. Reynolds, A. Al-Menhali, and B. Niu, Capillary trapping
+these pixels outward by a distance r. In this framework, r                     for geologic carbon dioxide storage–From pore scale physics
+corresponds to the in-plane radius of curvature of gas–liquid                  to field scale implications, Int. J. Greenhouse Gas Control 40,
+interfaces, and thus to a specific capillary pressure via the                  221 (2015).
+Young–Laplace equation. To compute the saturation S as-                    [6] E. M. Thaysen, I. B. Butler, A. Hassanpouryouzband, D. Fre-
+sociated with Pc = 2γ/r, we evaluate (I ⊖ Br ) ⊕ Br and                        itas, F. Alvarez-Borges, S. Krevor, N. Heinemann, R. Atwood,
+calculate the ratio of nonzero pixels in the resulting image to                and K. Edlmann, Pore-scale imaging of hydrogen displacement
+the total number of void pixels in I. The discrete Pc –S data                  and trapping in porous media, Int. J. Hydrogen Energy 48, 3091
+                                                                               (2023).
+obtained from this modified PMM are then fit to a smooth,                  [7] W. Ostwald, Studien über die bildung und umwandlung fester
+differentiable curve [19], enabling computation of dSg /dPc                    körper. 1. abhandlung: Übersättigung und überkaltung, Z. Phys.
+in the continuum model (Eq. 2).                                                Chem. 22, 289 (1897).
+   The key distinction between the classical PMM [38] and the              [8] P. W. Voorhees, The theory of ostwald ripening, J. Stat. Phys.
+variant of Mehmani and Xu [19] lies in their treatment of dis-                 38, 231 (1985).
+connected ganglia. Classical PMM excludes isolated clusters                [9] X. Fu, L. Cueto-Felgueroso, and R. Juanes, Thermodynamic
+                                                                               coarsening arrested by viscous fingering in partially miscible
+to ensure that the nonwetting phase remains connected to an                    binary mixtures, Phys. Rev. E 94, 033111 (2016).
+inlet, making it well suited for modeling invasion percolation.           [10] J. Jiménez-Martı́nez, J. D. Hyman, Y. Chen, J. W. Carey, M. L.
+In contrast, the ripening-specific variant used here retains dis-              Porter, Q. Kang, G. Guthrie Jr, and H. S. Viswanathan, Homog-
+connected ganglia, consistent with the absence of advective                    enization of dissolution and enhanced precipitation induced by
+flow and the dominant role of local curvature in establishing                  bubbles in multiphase flow systems, Geophys. Res. Lett. 47,
+capillary equilibrium. As a result, the Pc –S relationship for                 e2020GL087163 (2020).
+ripening is effectively isotropic and independent of flow di-             [11] K. Xu, R. Bonnecaze, and M. Balhoff, Egalitarianism among
+                                                                               bubbles in porous media: An Ostwald ripening derived anti-
+rection. In invasion-driven processes, by contrast, the Pc –S                  coarsening phenomenon, Phys. Rev. Lett. 119, 264502 (2017).
+curve is highly sensitive to inlet geometry: an inlet compris-            [12] J. A. de Chalendar, C. Garing, and S. M. Benson, Pore-scale
+ing a single narrow pore can produce a nearly flat Pc –S curve,                modelling of ostwald ripening, J. Fluid Mech. 835, 363 (2018).
+while broader or more connected inlets yield steeper relation-            [13] Y. Mehmani and K. Xu, Pore-network modeling of Ostwald
+ships. In some cases, the initial distribution of trapped gas                  ripening in porous media: How do trapped bubbles equilibrate?,
+among pores of varying sizes can have a non-trivial influence                  J. Comput. Phys. 457, 111041 (2022).
+on the resulting Pc –S curve [13]. In such cases, PMM must                [14] D. Singh, H. A. Friis, E. Jettestuen, and J. O. Helland, Ostwald
+                                                                               ripening of gas bubbles in porous media: Impact of pore geom-
+be applied selectively to the initially occupied pores. For the                etry and spatial bubble distribution, Adv. Water Resour. 187,
+pore geometry considered in this study, however, this sensitiv-                104688 (2024).
+ity was found to be minor and is therefore neglected.                     [15] Y. Zhang, B. Bijeljic, Y. Gao, S. Goodarzi, S. Foroughi, and
+Acknowledgements                                                               M. J. Blunt, Pore-scale observations of hydrogen trapping and
+This research is jointly supported by the Natural Sciences and                 migration in porous rock: Demonstrating the effect of Ostwald
+Engineering Research Council of Canada (NSERC) Alliance                        ripening, Geophys. Res. Lett. 50, e2022GL102383 (2023).
+                                                                          [16] Z. Jangda, H. Menke, A. Busch, S. Geiger, T. Bultreys,
+Grants under ALLRP 592525-23 and ALLRP 567631-24 (for
+                                                                               H. Lewis, and K. Singh, Pore-scale visualization of hydrogen
+MS, TL, BZ) and the National Science Foundation, United                        storage in a sandstone at subsurface pressure and temperature
+States under Grant No. CBET-2348723 (for NB, ZL, YM).                          conditions: Trapping, dissolution and wettability, J. Colloid In-
+                                                                               terface Sci. 629, 316 (2023).
+                                                                          [17] M. Boon, T. Rademaker, C. W. Winardhi, and H. Hajibeygi,
+                                                                               Multiscale experimental study of H2 /brine multiphase flow
+                                                                               in porous rock characterizing relative permeability hysteresis,
+  ∗
+     robinzhao@mcmaster.ca                                                     hydrogen dissolution, and Ostwald ripening, Sci. Rep. 14, 1
+ [1] S. Krevor, H. De Coninck, S. E. Gasda, N. S. Ghaleigh,                    (2024).
+     V. de Gooyert, H. Hajibeygi, R. Juanes, J. Neufeld, J. J. Roberts,   [18] Y. Li, C. Garing, and S. M. Benson, A continuum-scale repre-
+     and F. Swennenhuis, Subsurface carbon dioxide and hydrogen                sentation of Ostwald ripening in heterogeneous porous media,
+     storage for a sustainable energy future, Nat. Rev. Earth Environ.         J. Fluid Mech. 889, A14 (2020).
+     4, 102 (2023).                                                       [19] Y. Mehmani and K. Xu, A continuum theory of diffusive bub-
+ [2] K. S. Lackner, A guide to CO2 sequestration, Science 300, 1677            ble depletion in porous media, Adv. Water Resour. 185, 104625
+     (2003).                                                                   (2024).
+ [3] M. L. Szulczewski, C. W. MacMinn, H. J. Herzog, and                  [20] M. Buchgraber, A. R. Kovscek, and L. M. Castanier, A study
+     R. Juanes, Lifetime of carbon capture and storage as a climate-           of microscale gas trapping using etched silicon micromodels,
+     change mitigation technology, Proc. Natl. Acad. Sci. U.S.A.               Transp. Porous Med. 95, 647 (2012).
+     109, 5185 (2012).                                                    [21] M. Andrew, B. Bijeljic, and M. J. Blunt, Pore-by-pore capil-
+ [4] N. Heinemann, J. Alcalde, J. M. Miocic, S. J. Hangx,                      lary pressure measurements using X-ray microtomography at
+     J. Kallmeyer, C. Ostertag-Henning, A. Hassanpouryouzband,                 reservoir conditions: Curvature, snap-off, and remobilization
+                                                                                                                                               9
+
+     of residual CO2 , Water Resour. Res. 50, 8760 (2014).                      Mount Simon Sandstone aquifer, Int. J. Greenhouse Gas Con-
+[22] C. Garing, J. A. de Chalendar, M. Voltolini, J. B. Ajo-Franklin,           trol 5, 146 (2011).
+     and S. M. Benson, Pore-scale capillary pressure analysis using        [31] S. Weides, I. Moeck, J. Majorowicz, and M. Grobe, The Cam-
+     multi-scale X-ray micromotography, Adv. Water Resour. 104,                 brian Basal Sandstone Unit in central Alberta—An investiga-
+     223 (2017).                                                                tion of temperature distribution, petrography, and hydraulic and
+[23] S. M. Hassanizadeh and W. G. Gray, Thermodynamic basis of                  geomechanical properties of a deep saline aquifer, Can. J. Earth
+     capillary pressure in porous media, Water Resour. Res. 29, 3389            Sci. 51, 783 (2014).
+     (1993).                                                               [32] S. Goodarzi, Y. Zhang, S. Foroughi, B. Bijeljic, and M. J. Blunt,
+[24] J. E. McClure, M. A. Berrill, W. G. Gray, and C. T. Miller, Influ-         Trapping, hysteresis and ostwald ripening in hydrogen storage:
+     ence of phase connectivity on the relationship among capillary             A pore-scale imaging study, Int. J. Hydrogen Energy 56, 1139
+     pressure, fluid saturation, and interfacial area in two-fluid-phase        (2024).
+     porous medium systems, Phys. Rev. E 94, 033102 (2016).                [33] A. Riaz, M. Hesse, H. Tchelepi, and F. Orr, Onset of convection
+[25] M. Ebadi, J. McClure, P. Mostaghimi, and R. T. Armstrong,                  in a gravitationally unstable diffusive boundary layer in porous
+     Investigating an extended multiphase flow model that includes              media, J. Fluid Mech. 548, 87 (2006).
+     specific interfacial area, Comput. Methods Appl. Mech. Eng.           [34] G. S. Pau, J. B. Bell, K. Pruess, A. S. Almgren, M. J. Lijewski,
+     418, 116594 (2024).                                                        and K. Zhang, High-resolution simulation and characterization
+[26] C. Wang, Y. Mehmani, and K. Xu, Capillary equilibrium of                   of density-driven flow in CO2 storage in saline aquifers, Adv.
+     bubbles in porous media, Proc. Natl. Acad. Sci. U.S.A. 118,                Water Resour. 33, 443 (2010).
+     e2024069118 (2021).                                                   [35] M. J. Blunt, Ostwald ripening and gravitational equilibrium:
+[27] N. Bueno, L. Ayala, and Y. Mehmani, Ostwald ripening of                    Implications for long-term subsurface gas storage, Phys. Rev.
+     multi-component bubbles in porous media: A theory and a                    E 106, 045103 (2022).
+     pore-scale model of how bubble populations equilibrate, Adv.          [36] A. Goodman Hanson, B. Kutchko, G. Lackey, D. Gulliver, B. R.
+     Water Resour. 182, 104581 (2023).                                          Strazisar, K. A. Tinker, R. Wright, F. Haeri, N. Huerta, S. Baek,
+[28] Bruggeman, Von DAG, Berechnung verschiedener physikalis-                   et al., Subsurface hydrogen and natural gas storage (state of
+     cher Konstanten von heterogenen Substanzen. I. Dielek-                     knowledge and research recommendations report), (2022).
+     trizitätskonstanten und Leitfähigkeiten der Mischkörper aus        [37] S. Preibisch, S. Saalfeld, and P. Tomancak, Globally optimal
+     isotropen Substanzen, Annalen der physik 416, 636 (1935).                  stitching of tiled 3D microscopic image acquisitions, Bioinfor-
+[29] F. M. Orr Jr, Onshore geologic storage of CO2 , Science 325,               matics 25, 1463 (2009).
+     1656 (2009).                                                          [38] R. Hazlett, Simulation of capillary-dominated displacements
+[30] C. R. Medina, J. A. Rupp, and D. A. Barnes, Effects of reduc-              in microtomographic images of reservoir rocks, Transport in
+     tion in porosity and permeability with depth on storage capacity           porous media 20, 21 (1995).
+     and injectivity in deep saline aquifers: A case study from the
+

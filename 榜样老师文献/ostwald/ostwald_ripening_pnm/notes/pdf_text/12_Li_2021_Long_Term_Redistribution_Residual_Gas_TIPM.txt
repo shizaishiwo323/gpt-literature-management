@@ -1,0 +1,1222 @@
+Transport in Porous Media (2022) 141:231–253
+https://doi.org/10.1007/s11242-021-01722-y
+
+
+
+
+Long‑Term Redistribution of Residual Gas Due
+to Non‑convective Transport in the Aqueous Phase
+
+Yaxin Li1     · Franklin M. Orr Jr.1 · Sally M. Benson1
+
+Received: 23 June 2021 / Accepted: 19 November 2021 / Published online: 26 November 2021
+© The Author(s), under exclusive licence to Springer Nature B.V. 2021
+
+
+Abstract
+Geological CO2 sequestration is an effective approach to mitigate greenhouse gas emis-
+sions by permanently trapping CO2 in the subsurface. A large portion of injected CO2 is
+trapped by capillary forces in pores and eventually dissolves into the reservoir brine due
+to convective mixing to achieve permanent entrapment. In regions where convective mix-
+ing is slow, non-convective transport can play an important role in redistributing resid-
+ually trapped CO2 , but the mechanisms and timescales for redistribution have yet to be
+explored thoroughly. In previous work, we have shown that capillary pressure difference
+among residually trapped gas ganglia can induce Ostwald ripening, thereby redistribut-
+ing the separate-phase gas through diffusion despite the gas phase remaining trapped over
+the entire course of equilibration. In this study, we show from a thermodynamic point of
+view that other natural gradients in geologic formations— hydrostatic pressure, geothermal
+gradients and capillary heterogeneity—can also redistribute CO2 by non-convective trans-
+port. Mechanisms for resulting non-convective transport include molecular diffusion, the
+sedimentation effect and potentially the Soret effect. Results show that hydrostatic pressure
+dominates redistribution such that the separate-phase gas is transported upward through
+molecular diffusion and accumulates under the seal at the steady state. A typical timescale
+for gas phase redistribution is 105 years/m; for a 100-m-thick formation, redistribution is
+complete after ∼ 107 years. Although non-convective transport is an extremely slow pro-
+cess, it causes local accumulation of the gas phase and in some settings may remobilize the
+trapped gas phase.
+
+Keywords Residual trapping · Thermodynamic equilibrium · Non-convective transport ·
+CO2 sequestration
+
+
+1 Introduction
+
+In a geological formation where a continuous gas phase migrates due to buoyancy forces,
+formation brine imbibes into the trailing edge of the gas plume. During imbibition, the
+gas phase at the trailing edge becomes disconnected into many individual gas ganglia that
+
+
+* Yaxin Li
+  yaxinl@stanford.edu
+1
+    Department of Energy Resources Engineering, Stanford University, Stanford, CA, USA
+
+
+                                                                                             13
+                                                                                     Vol.:(0123456789)
+232                                                                                  Y. Li et al.
+
+
+are trapped in the pore spaces. This trapping mechanism is referred to as residual trap-
+ping (Roof 1970; Kumar et al. 2004; Mo et al. 2005; Hesse et al. 2006; Juanes et al. 2006;
+Suekane et al. 2008; Iglauer et al. 2011; Krevor et al. 2012). Residually trapped gas widely
+exists along the migration path of the gas phase in many natural geological formations,
+such as oil and gas reservoirs, methane-rich undersea sediments and saline formations for
+geological storage of CO2 (Claypool and Kaplan 1974; Chatzis et al. 1983; Kumar et al.
+2005; Lei and Seol 2020).
+    In the context of geological CO2 storage, the long-term entrapment of residually trapped
+gas enhances the security of CO2 storage, since residually trapped CO2 can immobilize
+a large portion of injected CO2Pentland et al. (2011); Burnside and Naylor (2014). One
+theory for the long-term fate of residually trapped CO2 is that the separate-phase CO2 will
+eventually dissolve into the formation brine, a process that is accelerated by convective
+mixing Bourg et al. (2015); Jiang and Tsuji (2015). Convective mixing originates from the
+fact that the aqueous solution of CO2 near the top of the aquifer is slightly denser than the
+“fresh” brine underneathTeng et al. (1997). This density contrast drives the CO2 solution to
+sink and brings more “fresh” brine into contact with separate-phase CO2 , thereby enhanc-
+ing CO2 dissolution Ennis-King et al. (2005); Riaz et al. (2006); Hassanzadeh et al. (2007);
+Neufeld et al. (2010). Studies have shown that the timescale for onset of convective mix-
+ing strongly depends on Rayleigh number, a combination of reservoir conditions and fluid
+properties Ennis-King et al. (2003). For reservoirs with low permeability ( k < 10 mD), dis-
+solution of residually trapped CO2 is likely to be a slow process, occurring in thousands of
+years or longer after injection of CO2Riaz et al. (2006).
+    Non-convective transport of dissolved gas in the aqueous phase and its impact on the
+separate-phase gas have drawn little attention. Examples of non-convective transport of
+dissolved gas include molecular diffusion due to concentration gradients, sedimentation of
+solute molecules in the gravitational field, the Soret effect due to heat flow in the system
+Mashimo (1988); Goldobin and Brilliantov (2011). As shown in Fig. 1, convective mixing
+mainly occurs in regions where the CO2-saturated brine is in significant contact with the
+“fresh” brine; however, in regions containing a large amount of residually trapped gas, the
+aqueous phase is saturated with dissolved CO2 , and the contact with “fresh” brine is lim-
+ited. In these regions, convective mixing will be extremely slow due to significantly lower
+density contrast in the aqueous phase. We have previously shown that non-convective trans-
+port due to Ostwald ripening in heterogeneous porous media can result in gas saturation
+changes on the timescale of years Li et al. (2020). Over the long term, the impacts of non-
+convective transport can accumulate and potentially play an important role in redistributing
+the residually trapped gas. Since geological CO2 storage aims at permanent entrapment of
+CO2 , it is important to understand these non-convective processes and assess their signifi-
+cance for the security of CO2 storage.
+    The first attempt to quantify non-convective transport in geological formations was
+performed in a system containing brine and residually trapped methane bubbles Goldobin
+and Brilliantov (2011). The authors show mathematically that in the presence of trapped
+methane bubbles, methane molecules dissolved in the aqueous phase are out of thermody-
+namic equilibrium, which create a driving force for non-convective transport of methane
+molecules in the aqueous phase. The authors neglect its influence on the separate-phase
+methane by simply treating the trapped methane bubbles as “infinite” sources. Recently,
+several studies have shown that non-convective transport of dissolved gas can change the
+distribution of residually trapped gas throughout the system, while the residual gas remains
+trapped and immobile over the entire course of equilibration. One mechanism for gas redis-
+tribution is Ostwald ripening due to capillary pressure difference among trapped gas. The
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                        233
+
+
+
+
+Fig. 1  A conceptual illustration of a CO 2 sequestration aquifer and the system this study focuses on. Con-
+vective mixing occurs in the regions where the mobile plume of CO 2 is in contact with a large amount of
+“fresh” brine to enhance CO 2 dissolution into the aquifer. In regions where little “fresh” brine is avail-
+able to induce significant convective mixing, we study the non-convective transport of CO 2 dissolved in the
+aqueous phase and its impact on the long-term fate of residually trapped CO 2 . Non-convective transport
+can result from hydrostatic pressure, geothermal gradients and capillary heterogeneity. By neglecting any
+regional flow of groundwater, the studies system is reduced to a one-dimensional closed column with resid-
+ually trapped gas throughout the system initially
+
+
+
+gradient of capillary pressure throughout the system induces inter-ganglion diffusion of
+gas molecules in the aqueous phase, causing trapped gas ganglia to grow or shrink. At
+steady state, all the gas ganglia in the system approach the equilibrium capillary pressure
+and coexist stably due to presence of the porous matrix (Garing et al. 2017; Xu et al. 2017;
+de Chalendar et al. 2018, 2019; Li et al. 2020). Another mechanism for non-convective
+transport is the sedimentation effect, where dissolved CO2 molecules drift in the aqueous
+solution due to gravity, making trapped gas bubbles aligned in the direction of gravity re-
+equilibrate Xu et al. (2019).
+   These relevant studies have focused on only one specific type of non-convective trans-
+port at a time, when in reality a number of non-convective processes are occurring simul-
+taneously. In fact, many natural gradients in geological formations can cause thermody-
+namic disequilibrium to potentially induce non-convective transport, including hydrostatic
+pressure (Muskat 1930; Sage and Lacey 1939), geothermal gradients (Schulte et al. 1980;
+Whitson et al. 1994; Padua 1999; Espósito et al. 2000; Galliero et al. 2016) and capillary
+heterogeneity at the continuum scale Pini et al. (2012). In addition, simplifications such
+as the ideal-solution assumption can yield results deviating significantly from that in real
+
+
+                                                                                               13
+234                                                                                   Y. Li et al.
+
+
+fluids. Therefore, current studies do not quantify the significance of non-convective trans-
+port and its impact on residually trapped gas. These limitations necessitate a systematic
+approach for evaluating non-convective transport from a fundamental perspective.
+   Despite the limitations of these studies, their conclusions suggest that residually trapped
+gas may not remain trapped and disconnected over the long term, even without any con-
+vective flow. At the pore scale, the mass of residually trapped gas ganglia is redistributed
+through non-convective transport in the aqueous phase while the ganglia remain immobi-
+leGaring et al. (2017), Xu et al. (2017), de Chalendar et al. (2018, 2019), at the continuum
+scale, this redistribution results in saturation change of the gas phase throughout the system
+Xu et al. (2019), Li et al. (2020). In regions where the saturation of residual gas increases,
+these initially disconnected, residually trapped gas ganglia can aggregate and potentially
+become remobilized and migrate into different locations in the storage reservoir. There-
+fore, it is important to characterize non-convective transport in the presence of residually
+trapped gas. Understanding how these processes in turn affect the distribution of residually
+trapped gas and at what timescales in real geological systems are important problems to be
+addressed.
+   To fill this knowledge gap, we develop a fundamental description of non-convective
+transport of dissolved gas from a thermodynamic point of view, integrating the impact
+of hydrostatic pressure, geothermal gradient, the sedimentation effect and capillary het-
+erogeneity. In this paper, residual gas redistribution through non-convective transport is
+demonstrated and characterized by numerical solutions within various systems. We report
+the timescale for resulting gas redistribution and its influence on long-term gas migration
+in geological formations. Lastly, we compare the relative significance of non-convective
+transport and convective mixing.
+
+
+
+2 Non‑convective Transport in the Aqueous Phase Due
+   to the Gradients of Thermodynamic Potential
+
+2.1 Basic Theory
+
+As shown in Fig. 1, this study focuses on a two-phase fluid system in a porous medium,
+where the aqueous phase is continuous and the gas phase is residually trapped. The gas
+phase remains dispersed and immobile during the entire equilibration process. Therefore,
+the gas phase is redistributed only through non-convective transport in the aqueous phase.
+By neglecting any convective flow of the aqueous phase such as regional flow of ground-
+water, the system is reduced to a one-dimensional vertical column. We take water and
+supercritical CO2 at reservoir conditions as an example fluid pair; however, this theory can
+be equally well applied to any non-reacting binary mixtures that are mutually soluble.
+
+2.1.1 Equilibrium Condition Under Isothermal Condition
+
+We focus on the thermodynamic potential of CO2 dissolved in the aqueous phase, which
+consists mostly of free CO2 molecules due to low pH in the aqueous phase Peng et al.
+(2013). We assume that the residual gas and aqueous phases are at equilibrium, so that the
+concentration of dissolved CO2 is the CO2 solubility at the local reservoir conditions. We
+define the partial molar free energy of dissolved CO2 as FCO . In the aqueous phase, the
+                                                            aq
+                                                               2
+criteria for equilibrium under isothermal condition in a centrifugal field (gravity in this
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                            235
+
+
+case) can be written as Muskat (1930); Sage and Lacey (1939); Schulte et al. (1980); Whit-
+son et al. (1994); Firoozabadi (2016)
+                                                        dT = 0,                            (1)
+
+                                                  dP = −𝜌w gdz,                            (2)
+                                            (             )
+                                      aq      aq
+                                    dFCO = d 𝜇CO + MCO2 gz = 0,
+                                        2                   2
+                                                                                           (3)
+
+where T is temperature, P is pressure, 𝜌w is the density of water, g is gravitational accelera-
+tion, z is elevation, 𝜇CO is the chemical potential of CO2 molecules dissolved in the aque-
+                       aq
+                          2
+ous phase, and MCO2 is the molar weight of CO2 molecules.
+   The chemical potential is dependent on both composition and pressure, i.e.,
+                                ( aq )                ( aq )
+                                  𝜕𝜇CO |               𝜕𝜇CO |
+                           aq
+                                                                                            (4)
+                                       2  | dx               2  | dP,
+                       d𝜇CO =             |    CO   +           |
+                              2    𝜕xCO2 |P       2
+                                                         𝜕P     |xCO2
+
+where xCO2 is the mole fraction of CO2 in the aqueous phase. The composition-dependent
+part of the chemical potential can be written as
+
+                                 aq (   )|             (         )
+                                𝜇CO xCO2 || = 𝜇0 + RTln 𝛾CO2 xCO2 ,
+                                   2
+                                                                                           (5)
+                                          |P
+where 𝜇0 is the chemical potential of pure CO2 as a reference, R is the gas constant, and
+𝛾CO2 is the activity coefficient of CO2 . Due to the low concentration of CO2 in the aqueous
+phase (approximately 2% in mole fraction) at reservoir conditions, the activity coefficient
+can be approximated as a constant 𝛾 = 55.508, which is independent of concentration xCO2
+                                     𝜕𝛾CO
+Spycher et al. (2003). As a result, 𝜕x 2 is approximated as 0 in our interested range of tem-
+                                            CO2
+perature and pressure. Therefore, the first term in RHS of Eq. 4 can be written as
+                             ( aq )
+                               𝜕𝜇CO |                RT
+                                                                                           (6)
+                                     2   | dx     =     dx .
+                               𝜕xCO2 ||P CO2 xCO2 CO2
+                                                   aq
+                                              𝜕𝜇CO |
+In the second term in RHS of Eq. 4,      |
+                                         |     equals to V̄ CO2, the partial molar volume of
+                                                  𝜕P
+                                                        2
+
+                                         |xCO2
+dissolved CO2 according to the second law of thermodynamics Sage and Lacey (1939);
+Goldberg (1953). Combining Eq. 2, the second term in RHS of Eq. 4 can be written as
+                          ( aq )
+                             𝜕𝜇CO |
+                                     | dP = −V̄ 𝜌 gdz.                                   (7)
+                                 2
+
+                              𝜕P     |              CO2 w
+                                     |xCO2
+
+Substitute Eqs. 4, 6 and 7 into Eq. 3, we obtain the equilibrium condition, i.e.,
+                           aq         RT       (                )
+                        dFCO =           dx   + MCO2 − V̄ CO2 𝜌w gdz = 0.                  (8)
+                                2    xCO2 CO2
+
+Equation 8 is the condition for sedimentation–diffusion equilibrium Archibald (1947),
+Wales et al. (1948), Goldberg (1953), Williams et al. (1958), Mashimo (1988), Rasa et al.
+
+
+                                                                                    13
+236                                                                                      Y. Li et al.
+
+
+(2005), Fujita (2016), Perrin (2013). The term xRT dxCO2 denotes molecular diffusion,
+                                                          CO2
+
+(driven by the )concentration gradients of CO2 in the aqueous phase. The term
+  MCO2 − V̄ CO2 𝜌w gdz denotes the sedimentation effect caused by a centrifugal field (gravity
+ in this case). In fields relevant to geology, the term “sedimentation” typically describes the
+ deposition of particles at the macroscopic level such as sand grains; in a broad sense, sedi-
+ mentation can occur in solutions of single molecules as well, such as aqueous solutions of
+ protein. In fact, sedimentation–diffusion equilibrium in a centrifugal field has become a
+ well-established method to accurately measure the molecular weight of protein, where the
+ centrifugal field is significantly exaggerated by ultracentrifugation Goldberg (1953), Teller
+ (1973), Cole et al. (2008), Zhao et al. (2013). At the equilibrium state, the concentration
+ profile of dissolved protein becomes non-uniform due to the balance between the sedimen-
+ tation effect and molecular diffusion.
+     Many theoretical studies in petroleum reservoirs have shown that on a spatial scale of
+ hundreds of meters, the sedimentation effect of molecules can lead to significant compo-
+ sition variation in hydrocarbon mixture Muskat (1930), Sage and Lacey (1939), Schulte
+ et al. (1980), Whitson et al. (1994), Lira-Galeana et al. (1994), Padua (1999), Espósito
+ et al. (2000), Galliero et al. (2016). In this study, we show mathematically that the sedi-
+ mentation effect can occur in the aqueous phase with dissolved CO2 as well, where the CO2
+ molecules tend to sink to the bottom of the system.
+     Therefore, the aqueous phase that is initially out of equilibrium will equilibrate through
+ non-convective transport of dissolved CO2 driven by the gradient of partial molar free
+ energy. The net flux of dissolved CO2 can be described by the generalized form of Fick’s
+ law, i.e.,
+                                                          aq
+                                               𝜏DcCO2 dFCO2
+                                     J=−                        ,                               (9)
+                                                 RT      dz
+where 𝜏 is tortuosity for diffusion in porous (media, cCO)2 is the CO2 concentration in mol
+                                                                                        m3
+                                                                                            , and
+J is the CO2 flux in m2 s . Here, we use 𝜏 = 𝜙 1 − SCO to account for the reduced available
+                     mol                           ̄ init
+                                                          2
+area open to diffusion, where 𝜙 is the porosity, S̄ init is the average initial gas saturation.
+                                                         CO2
+Under isothermal conditions, the system approaches equilibrium by fulfilling Eqs. 1, 2 and
+3, and no geothermal gradients are present.
+
+
+2.1.2 Steady State Under Non‑isothermal Condition
+
+When a geothermal gradient is imposed on the system, i.e., dT ≠ 0, the problem falls into
+the category of non-equilibrium thermodynamics. The difference compared to an isother-
+mal system is that at the steady state, the entropy of the non-isothermal system continues
+increasing due to the heat transferred into the system through geothermal gradients (Kem-
+pers 1989; Firoozabadi et al. 2000; Firoozabadi 2016; Nikpoor et al. 2016). The condition
+for the system to approach steady state becomes
+                                   aq                      aq
+                                d𝜇CO                     𝜕𝜇CO
+                                        2
+                                            + MCO2 g =          2
+                                                                    ∇T,                       (10)
+                                  dz                      𝜕T
+where ∇T is the geothermal gradient. Here, we use the term “steady state” instead of “equi-
+librium” to describe the state when the flux in the system does not vary with time.
+
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                           237
+
+
+  We compare the concentration term and the thermal gradient term in Eq. (4-26.1) in
+Haase (1968) to obtain an explicit form, i.e.,
+                              ( aq )
+                                𝜕𝜇CO |
+                                                                                (11)
+                                      2   |
+                                          |       dT = R𝛼T dT,
+                                   𝜕T     |P,xCO2
+
+where 𝛼T = Dx thermx is defined as thermal diffusion factor, xw is the water mole fraction,
+                D
+                 CO2 w
+
+Dtherm is the thermal diffusion coefficient, and D is the molecular diffusion coefficient.
+Detailed derivation can be found in Online Resource. Equation 11 indicates that the chemi-
+cal potential disequilibrium can result from a thermal gradient dT, driving the CO2 mole-
+cules to drift along the direction of the thermal gradient, known as the Soret effect (Kem-
+pers 1989, 2001; Platten 2006; Rahman and Saghir 2014). It should be noted that the
+significance of the Soret effect in CO2-water systems is still unclear. To the authors’ knowl-
+edge, there are few experimental studies that measure the thermal diffusion factor 𝛼T in
+such systems. Therefore, Eq. 11 merely illustrates that chemical potential disequilibrium
+due to thermal gradients potentially serves as another mass transfer mechanism. In fact, the
+impact of geothermal gradients is complicated involving multiple processes that can inter-
+active with each other such as density-driven convection Wooding (1957); Donaldson
+(1962). Complications of non-isothermal systems will be discussed in detail in Sect. 4.1.
+
+
+2.2 The Role of Residually Trapped Gas in Thermodynamic Potential
+
+When residually trapped CO2 ganglia coexist with the reservoir brine, we assume that the
+chemical potential of the dissolved CO2 is at local equilibrium with the chemical potential
+of the separate-phase CO2 in the gas ganglionSuekane et al. (2008), i.e.,
+                                               aq       g
+                                             𝜇CO = 𝜇CO ,
+                                                    2       2
+                                                                                         (12)
+
+where 𝜇CO denotes the chemical potential of CO2 in the gas phase. In other words, the con-
+         g
+           2
+centration of dissolved CO2 is at its local solubility, depending on local temperature and
+the pressure in the adjacent CO2 ganglia. This local equilibrium assumption suggests that
+any spatial variation of chemical potential among residually trapped CO2 ganglia will lead
+to a chemical potential gradient in dissolved CO2 , inducing non-convective transport of
+CO2 in the aqueous phase. For example, variation of capillary pressure among residually
+trapped gas results in concentration gradients in the aqueous phase, inducing inter-ganglion
+diffusion to redistribute the mass among residually trapped gas Xu et al. (2017), de Chal-
+endar et al. (2018, 2019), Xu et al. (2019), Li et al. (2020).
+   In this study, we demonstrate that concentration variations caused by hydrostatic pres-
+sure gradients induce non-convective transport. The chemical potential of residually
+trapped gas 𝜇CO (T, P) is determined by local temperature T and local gas-phase pressure
+               g
+                 2
+P, where the gas-phase pressure is P = Pw + Pc, the sum of local water pressure Pw and the
+capillary pressure Pc. As can be seen, the water pressure varies with depth z due to hydro-
+static pressure, i.e., Pw = −𝜌w gz ; under non-isothermal conditions, the temperature T(z)
+varies with depth as well. Although CO2 in the two phases reaches equilibrium locally, it is
+out of global equilibrium due to changes of water pressure and temperature with depth.
+Therefore, in regions where the two phases coexist, the solubility of dissolved CO2 will
+vary with depth, inducing molecular diffusion of dissolved CO2 , thus redistributing the
+CO2 until the system approaches an equilibrium or a steady state.
+
+                                                                                  13
+238                                                                                    Y. Li et al.
+
+
+   By taking capillary pressure into consideration, we obtain an expression for the local
+solubility of dissolved CO2 , i.e.,
+                                                                    ( )
+                                                 (            ) Pc Sw
+                      xCO2 (T(z), P(z)) = xCO2 ,0 T(z), Pw (z) + dP      ,           (13)
+                                                                 dx
+                                                                     (z)
+                                                                  CO2
+
+                                                                    (     )
+where xCO2 ,0 is the CO2 solubility at the local reservoir condition T, Pw , Sw is the satura-
+tion of the aqueous phase, and dxdP is a partition coefficient of CO2 in the aqueous phase.
+                                  CO2
+
+Under reservoir conditions, the partition coefficient is a strong function of pressure and
+thus varies with depth Spycher et al. (2003). To accurately calculate CO2 solubility while
+reducing computational complexity, we compute one partition coefficient dxdP at each res-
+                                                                               CO2
+
+ervoir pressure Pw based on CO2 partition data provided in Spycher et al. (2003). These
+partition coefficients are then treated as constants for calculating the CO2 concentration
+change due to a change of capillary pressure. This approximation is reasonable since the
+change of capillary pressure is on the order of 103 Pa, which is much smaller than the reser-
+          ( ) Pw (∼ 10 Pa). Eq. 13 shows that the spatial distribution (z) and the capillary
+voir pressure           7
+
+pressure Pc of residually trapped CO2 ganglia determine the strength of molecular diffu-
+sion. In turn, molecular diffusion can change the capillary pressure of gas ganglia by redis-
+tributing separate-phase CO2 , influencing the driving force for diffusion.
+
+
+2.3 Relaxation of the Ideal‑solution Assumption
+
+As shown in Eq. 3, the direction and magnitude of the sedimentation effect is determined
+by the partial molar volume of dissolved CO2 , V̄ CO2. Partial molar volume of a dissolved
+substance is defined as the molar volume increase of the solution when adding an infini-
+tesimal amount of the pure substance. It represents the “true” molar volume of the solute
+accounting for the interaction between components in the solution. In solutions with strong
+non-ideality, partial molar volume of a substance differs significantly from its molar vol-
+ume at the pure state. Figure 2a compares the partial molar volume of dissolved CO2 and
+the molar volume of pure CO2 at reservoir conditions. The data are generated by ECO2N,
+an equation of state specifically designed for applications on geological CO2 storage in
+aquifers Pruess and Spycher (2007). ECO2N describes the thermodynamic properties of
+CO2-water-NaCl system over a wide range of temperature (10 o C - 100 oC), pressure (up
+to 600 bar) and salinity condition (up to saturated NaCl brine). The fluid properties within
+this range achieve an excellent agreement with experimental data Spycher et al. (2003);
+Spycher and Pruess (2005). As can be seen, the molar volume of dissolved CO2 estimated
+by ideal solution assumption deviates significantly from its true partial molar volume. The
+partial molar volume of dissolved CO2 is approximately constant within the interested pres-
+sure and temperature range, since the properties of the aqueous phase seldom vary. There-
+fore, here we only show the curve for partial molar volume at 50 o C for better visualization,
+as other curves within the temperature range 50oC–90o C overlap this curve.
+   As a result, accurate quantification of the sedimentation effect relies on relaxation of the
+ideal solution assumption. As we show in Fig. 2b, the ideal-solution assumption leads to
+a negative CO2 flux, suggesting that CO2 would migrate upward under this circumstance.
+This result is consistent with the conclusion in Xu et al. (2019), which concludes that CO2
+molecules are “buoyant” in the aqueous phase, and thus the gas phase accumulates at the
+top of the system under ideal solution assumption. However, Fig. 2b also shows that when
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                         239
+
+
+(a)                                                     (b)
+
+
+
+
+Fig. 2  a Comparison between the partial molar volume of dissolved CO 2 and the CO 2 molar volume esti-
+mated by ideal solution assumption. The estimation under ideal solution assumption is the molar volume
+of pure CO 2 . The ideal solution assumption leads to overestimation of the molar volume of dissolved CO 2 .
+Here, we only show the curve for partial molar volume at 50 o C for better visualization, as other curves
+within the temperature range 50 o C - 90 o C overlap this curve. b Comparison of the CO 2 fluxes in the aque-
+ous phase due to sedimentation, calculated with or without ideal solution assumption. The flux is calculated
+using Eq. 3 and Eq. 9 by assuming 𝜏 = 1 and CO 2 concentration constant. The ideal solution assumption
+leads to an “upward” CO 2 flux due to sedimentation; while in a more realistic solution accounting for non-
+ideality, the CO 2 flux due to sedimentation is “downward”
+
+
+relaxing the ideal solution assumption, the direction of the CO2 flux due to sedimentation
+is reversed to positive, and the magnitude of the flux is nearly a constant within the inter-
+ested range of reservoir conditions. Therefore, the CO2 flux due to sedimentation is down-
+ward, which agrees well with the fact that CO2 solution is slightly denser than pure water
+Teng et al. (1997), Garcia (2001), Riaz et al. (2006).
+
+
+3 Redistribution of Residually Trapped Gas
+
+3.1 Mathematical Formulation of the Gas Redistribution Problem
+
+As shown in Fig. 1, when neglecting any convection in the horizontal direction, the studied
+system can be reduced to a one-dimensional column of porous medium which initially con-
+tains residually trapped CO2 ganglia and an aqueous phase at local equilibrium with the gas
+phase. We focus on the redistribution of the gas phase; at the continuum scale, this redis-
+tribution is manifested as change of the gas phase saturation. The gas phase is assumed to
+remain immobile during redistribution such that the only mass transfer mechanism is non-
+convective transport of dissolved CO2 in the aqueous phase. The mass balance of CO2 in
+this column can be written as
+                            (                              )
+                         𝜕 𝜙Sw 𝜌w xCO2 𝜙SCO2 𝜌CO2 yCO2          𝜕J
+                                         +                    =    ,                   (14)
+                         𝜕t     Mw              MCO2            𝜕z
+
+
+
+
+                                                                                                13
+240                                                                                   Y. Li et al.
+
+
+where Mw is the molar weight of the aqueous phase, SCO2 is the saturation of separate-phase
+CO2 , and 𝜌CO2 is the density of the separate-phase CO2 . The two terms on the left hand side
+represent the mass of CO2 in the aqueous phase and in the gaseous phase, respectively. As
+we show in the previous work Li et al. (2020), the derivative of the first term is small com-
+pared to the second term, so that the first term is neglected during our calculation. Detailed
+explanation can be found in Online Resource. Using Eq. 9 to represent the flux J, the mass
+balance equation becomes
+                           (             )        (             aq )
+                        𝜕 𝜙SCO2 𝜌CO2           𝜕      𝜏DcCO2 𝜕FCO2
+                                            =       −                 ,                   (15)
+                        𝜕t      MCO2           𝜕z       RT     𝜕z
+
+where the gradient of the partial molar free energy is represented by Eq. 3.
+    The top and bottom boundaries of the system are closed J(z = 0, L) = 0, where L is
+the column height. The initial condition for the system is stable coexistence of residually
+trapped CO2 and the aqueous phase throughout the entire column. The initial distribution
+of residually trapped CO2 saturation is generated by macroscopic percolation simulation,
+a reduced-physics approach to accurately quantify both residual trapping and capillary
+heterogeneity trapping Ni et al. (2021) (see Online Resource for details). The generated
+gas saturation maps have taken into consideration the impact of capillary heterogeneity
+and hysteresis. The aqueous phase CO2 concentration is linked to the gas phase saturation
+through capillary pressure curves according to Eq. 13. We use a capillary pressure model
+consistent with our previous study Li et al. (2020), which is shown in detail in Online
+Resource. The current capillary pressure model is adopted here to represent the follow-
+ing key features of residually trapped gas. First, pore-scale modeling of Ostwald Ripening
+using conically shaped pore throats by de Chalendar et al. (2018) shows that for pore-filling
+bubbles, a volume increase will push the bubble interface into local pore throats, leading
+to an increase of capillary pressure. This trend in capillary pressure for growing bubbles
+is consistent with the pore-scale analysis by McClure et al. (2016). Second, the capillary
+pressure of residually trapped gas at the end of imbibition is on the same order of magni-
+tude as the entry pressure of the rock Garing et al. (2017). At a low gas saturation, the cap-
+illary pressure of residually trapped gas can vary within this range due to different spatial
+distribution and connectivity of the gas phase McClure et al. (2016). To date, there are no
+direct measurements available for the capillary pressure curves of trapped gas ganglia in
+real rocks during Ostwald Ripening, and future work involving these measurements would
+be beneficial.
+    In summary, the system represented by Eq. 15 and the above boundary conditions and
+initial conditions can be solved numerically to obtain the redistribution process of residu-
+ally trapped gas phase. The system is solved by an explicit Euler scheme in this study.
+The physical properties of the example system studied here are representative of a typical
+carbon sequestration reservoir Krevor et al. (2012); Pini et al. (2012), shown in Online
+Resource.
+
+
+3.2 Redistribution of Residually Trapped Gas
+
+3.2.1 The Impact of Hydrostatic Pressure
+
+In regions of the system where the two phases coexist, the dissolved CO2 concentration
+is determined by local equilibrium between the two phases. Under isothermal conditions,
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                         241
+
+
+CO2 solubility increases with depth due to hydrostatic pressure, creating a concentration
+gradient in the aqueous phase. This concentration gradient induces an upward diffusive
+flux of CO2 . At the same time, the sedimentation effect creates a downward flux of dis-
+solved CO2 . The system approaches steady state when the two fluxes counterbalance each
+other throughout the column.
+   Figure 3 shows the redistribution of residually trapped gas in a homogeneous column
+under isothermal conditions. As can be seen, the CO2 concentration gradient induces an
+upward diffusive flux in the aqueous phase to transport CO2 toward the top of the column.
+As a result, the gas phase accumulates at the top of the column underneath the seal. The
+increase in gas saturation under the seal leads to an increase in capillary pressure, raising
+the local CO2 concentration at the top of the system (Eq. 13). The gas phase is eventu-
+ally depleted at the bottom of the column, where the CO2 concentration drops below local
+
+
+
+
+ (a)
+
+
+
+
+(b)
+
+
+
+
+Fig. 3  Redistribution of the gas phase due to non-convective transport in a homogeneous system under iso-
+thermal condition. a The evolution of the gas phase saturation and the capillary pressure profile during
+redistribution of the residual gas phase. b The evolution of CO 2 concentration profile during redistribution
+of the residual gas phase. The entry pressure profile and capillary pressure curves can be found in Online
+Resource
+
+
+                                                                                                13
+242                                                                                    Y. Li et al.
+
+
+solubility under water pressure. The net concentration gradient decreases with redistribu-
+tion of the gas phase; at steady state, the concentration gradient counterbalances the sedi-
+mentation effect such that the net flux of CO2 becomes zero. The saturation profile of the
+gas phase achieves capillary-gravity-sedimentation equilibrium to minimize the CO2 par-
+tial molar free energy gradient in the two-phase zone. Therefore, due to the sedimentation
+effect, the steady-state CO2 concentration gradient is nonzero. For the system shown in
+Fig. 3, the steady state is reached in approximately 2.5 × 107 years.
+    In this work, we only focus on the non-convective transport and neglected any mobi-
+lization of the gas phase. It should be noted that in regions where the gas phase satura-
+tion increases, the gas phase is highly likely to become mobile at some point. Although
+gas-phase mobilization is beyond the scope of this study, characterization of resulting gas
+mobilization is an interesting topic for future research and is underway as our ongoing
+study.
+
+
+3.2.2 The Impact of Capillary Heterogeneity
+
+Evolution of the gas saturation in heterogeneous systems is similar to that for a homogene-
+ous system, but local variations in capillary pressure can temporarily and locally acceler-
+ate or counteract the upward flux of CO2 . Figure 4 shows redistribution of the residual
+gas phase in a heterogeneous system under isothermal conditions. The reservoir conditions
+are the same as for the homogeneous case shown in Fig. 3. As can be seen, although the
+CO2 solubility gradient due to hydrostatic pressure is similar to the homogeneous case, the
+non-uniform capillary pressure profile imposes additional concentration gradients between
+layers, initiating local redistribution of the gas phase. Concentration gradients due to capil-
+lary heterogeneity are reduced over time, depending on the thickness of the layers and the
+contrast in rock properties. Eventually, concentration gradients due to hydrostatic pressure
+regain its dominant role in transporting the gas phase to the top of the column. The steady-
+state distribution of the gas phase follows capillary-gravity-sedimentation equilibrium sim-
+ilar to the homogeneous case shown in Fig. 3. The overall timescale for the heterogeneous
+system to reach steady state does not differ significantly from that for the homogeneous
+case, due to the same dominant driving force.
+    It should be noted that the main assumption here is that the gas phase remains immobile
+during the entire course of evolution. In one-dimensional systems considered here, migra-
+tion of the gas is limited in the vertical direction; mobilization of the gas phase in two-
+dimensional models may induce convective flow and thus potentially change the behavior
+of gas redistribution. This is an interesting topic and is currently undertaken as our ongoing
+study.
+
+
+3.2.3 The Impact of Geothermal Gradients
+
+Figure 5 compares the steady state of residual gas redistribution in a non-isothermal case
+with a geothermal gradient of 25 oC/km with the isothermal case shown in Fig. 3. The
+properties other than the geothermal gradient are the same in both cases. As shown in
+Fig. 5 a, c and e, the timescale for equilibration is ten times longer in the non-isothermal
+cases. Although the two cases exhibit a similar pattern during saturation evolution, and the
+steady-state distribution of the gas phase in both cases follows capillary-gravity-sedimen-
+tation equilibrium, comparison of Fig. 5b and d shows that the initial CO2 concentration
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                         243
+
+
+
+
+(a)
+
+
+
+
+(b)
+
+
+
+
+Fig. 4  Redistribution of the gas phase due to non-convective transport in a heterogeneous system under iso-
+thermal condition. a The evolution of the gas phase saturation and the capillary pressure profile during
+redistribution of the residual gas phase. b The evolution of CO 2 concentration profile during redistribution
+of the residual gas phase. The entry pressure profile and capillary pressure curves can be found in Online
+Resource
+
+
+gradient in the aqueous phase is 50% smaller than in the isothermal case. The redistribu-
+tion process is decelerated by this reduced driving force due to the geothermal gradient.
+   The reduction of CO2 solubility gradient originates from the opposite dependence of sol-
+ubility on pressure and temperature. When the geothermal gradient is sufficiently large, the
+solubility at the top will eventually exceed that at the bottom, altering the direction of the
+solubility gradient. In this case, the net flux of non-convective transport of CO2 becomes
+downward, causing the gas phase to accumulate in the lower portion of the system. For the
+reservoir condition given in the example case in Fig. 3 (75 o C and 25 MPa), the geothermal
+gradient sufficient to reverse the CO2 solubility gradient is 40oC/km. In a shallower reser-
+voir, the required geothermal gradient could be smaller. See Online Resource for details.
+   However, in a realistic scenario where the mobilization of the gas phase is taken
+into consideration, the gas phase is highly likely to become mobile when its saturation
+
+                                                                                                13
+244                                                                                                   Y. Li et al.
+
+
+       (a)                           (c)
+
+
+
+
+                                                               (e)
+
+
+
+
+(b)                           (d)
+
+
+
+
+Fig. 5  a Steady-state saturation distribution and b steady-state CO 2 mole fraction in the aqueous phase of
+the homogeneous, isothermal case shown in Fig. 3. c Steady-state saturation distribution and d steady-state
+CO 2 mole fraction in the aqueous phase of a homogeneous, non-isothermal case with a geothermal gradient
+of 25 o C. Other parameters of the non-isothermal case are the same as the isothermal case. e Evolution of
+CO 2 saturation at different elevations in both the isothermal case and the non-isothermal case. Redistribu-
+tion of the gas phase exhibits the same pattern in both cases; however, the time scale of redistribution in the
+non-isothermal case is 10 times longer since the geothermal gradient reduces the CO 2 concentration gradi-
+ent in the aqueous phase
+
+
+increases. At some point, the gas phase accumulating in the lower portion would flow back
+to the top due to buoyancy forces. Nonetheless, a geothermal gradient can mitigate the
+upward diffusive flux and thus can delay the upward migration of the gas phase.
+
+
+3.3 Comparison of Non‑convective Fluxes
+
+Figure 6 compares the direction and magnitude of the driving forces for molecular diffu-
+sion and sedimentation. As can be seen, non-convective transport under isothermal condi-
+tion is dominated by molecular diffusion driven by CO2 solubility gradients due to hydro-
+static pressure. Under typical reservoir conditions for CO2 sequestration, the net driving
+force under isothermal condition is negative to create an upward net flux, causing the gas
+phase to accumulate in the upper portion of the system. The upward net flux decreases
+as the depth of the reservoir increases. In non-isothermal system, the upward net flux
+of CO2 decreases or even reverses downward due to a geothermal gradient. Therefore, a
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                       245
+
+
+         (a)                                           (b)
+
+
+
+
+Fig. 6  Comparison of the driving forces for molecular diffusion and the sedimentation effect at different
+reservoir conditions under a isothermal conditions and b non-isothermal conditions. The net flux of non-
+convective transport is upward under isothermal conditions, dominated by molecular diffusion due to CO 2
+solubility gradient; however, geothermal gradients can reduce or even reverse the net flux
+
+
+geothermal gradient can mitigate this upward migration of trapped gas by reducing the
+contribution of molecular diffusion by decreasing the solubility gradient. The impact of
+the Soret effect is not included in this section due to its high uncertainty involving lack of
+experimental data and complex molecular interactions. Detailed discussion on complexity
+of the Soret effect is shown in Sect. 4.1.
+   On the other hand, the flux due to the sedimentation effect remains nearly constant due
+to negligible variation in CO2 partial molar volume under reservoir conditions relevant
+to CO2 sequestration. Under isothermal conditions, the impact of sedimentation effect is
+small compared to molecular diffusion. The flux due to the sedimentation effect is down-
+ward, forming a counter-flux to balance molecular diffusion due to CO2 solubility gradient.
+In a recent study exploring the impact of sedimentation on gas-phase redistribution Xu
+et al. (2019), the authors adopted the ideal-solution assumption by using the molar volume
+of pure CO2 to replace its partial molar volume. They therefore concluded that the CO2 flux
+due to sedimentation is upward, causing the gas phase to accumulate in the upper portion
+of the system. As we show in Figs. 2 and 6, in reality, the ideal-solution assumption is a
+poor predictor of the partial molar volume for the CO2/water system at reservoir pressure
+and temperatures, and in fact, the sedimentation is downward.
+
+
+
+
+                                                                                             13
+246                                                                               Y. Li et al.
+
+
+4 Significance of Residual Gas Redistribution Due to Non‑convective
+   Transport
+
+4.1 Complexities Under Non‑isothermal Conditions
+
+In addition to molecular diffusion and the sedimentation effect, non-isothermal systems
+may induce an additional flux of non-convective transport as shown in Eq. 10, which
+describes the mass flux of CO2 induced by the geothermal gradient dT ≠ 0 . This phe-
+nomenon, also known as the Soret effect, occurs when a non-uniform temperature pro-
+file feeds energy into the system, which creates a heat flow that can separate differ-
+ent species in the aqueous phase Haase (1968); Garriga et al. (2002); Groot and Mazur
+(2013); Eslamian (2012). According to Eq. 11, the driving force for diffusion due to the
+Soret effect is co-determined by the geothermal gradient ∇T and the thermal diffusion
+factor 𝛼T . The characteristics of non-convective transport due to the Soret effect relies
+on accurate measurement of the value of 𝛼T .
+    To our knowledge, no experimental data are currently available on 𝛼T in water-CO2
+systems. One approach to determine 𝛼T is to perform Monte Carlo molecular simulation
+of water-CO2 systems, which is beyond the scope of this study. Most available exper-
+imental measurements of 𝛼T focus on hydrocarbon fluids, aqueous solutions of alco-
+hols and polymers Emery and Drickamer (1955), Tichacek et al. (1956), Shukla and
+Firoozabadi (1998), Ning and Wiegand (2006), Stadelmaier and Kohler (2009), Esla-
+mian (2012), which can seldom be directly generalized to water-CO2 systems. Both the
+sign and magnitude of 𝛼T differ significantly from mixture to mixture due to complex
+molecular-level interactions between species. For reference, 𝛼T in water–ethanol sys-
+tems at 25 oC ranges from -0.5 to +0.29, and 𝛼T in water–methanol systems at 40 oC
+ranges from -0.46 to 1.17 Tichacek et al. (1956).
+    In fact, solute transport in non-isothermal systems can become extremely com-
+plicated due to coexistence of other processes, such as convective flow due to Ray-
+leigh–Benard instability. In this case, the assumption of non-convection used in this
+study needs to be relaxed. The impact of geothermal gradients on solute transport and
+redistribution of residually trapped CO2 remains an interesting topic for future study.
+Nonetheless, geothermal gradients can significantly reduce the rate at which trapped
+CO2 accumulates underneath a seal.
+
+
+
+4.2 Timescales for Residual Gas Redistribution
+
+To quantify the timescale for residual gas redistribution due to non-convective trans-
+port, here we develop the concept of the “gas depletion rate.” As can be seen in Figs. 3,
+4 and 5, the gas phase begins to be depleted from the bottom of the system, forming
+a gas-depleted zone containing only the aqueous phase. Figure 7a tracks the temporal
+location of the boundary between the gas-depleted zone and the two-phase zone. As
+can be seen, the boundary moves at an approximately constant speed before reaching
+equilibrium. In the heterogeneous case, the velocity of the boundary fluctuates weakly
+due to capillary heterogeneity, while the overall velocity remains similar to that for the
+homogeneous case. This result serves as additional evidence that capillary heterogeneity
+has a local rather than global effect on the system.
+
+
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                            247
+
+
+(a)                                                     (b)
+
+
+
+
+Fig. 7  a The temporal elevation of the boundary between the gas-depleted zone and the two-phase zone
+during redistribution of residual gas. The cases shown here correspond to cases in Figs. 3, 4 and 5. b Deple-
+tion time per unit length tm = 1v under different reservoir conditions. All the data points are under isothermal
+conditions. Depletion time for three different values of average initial gas saturation is shown here, suggest-
+ing that the timescale for gas redistribution also depends on the total amount of residually trapped gas in
+addition to reservoir condition. Within reservoir conditions relevant to CO 2 storage, the timescale is on the
+order of hundreds of thousands years per meter of upward migration
+
+
+
+   The slope of the line in Fig. 7a is the velocity of the boundary of the gas-depleted
+zone v, which can be obtained by combining and Eq. 9 and 15. We substitute 𝜌CO2 S̄ CO
+                                                                                    init
+                                                                                           𝜙
+                                                                                         2
+for mCO2 , which is the average amount of CO2 in the gas phase initially in place. There-
+fore, the velocity of the boundary v when it moves to location z can be estimated by:
+
+                                           J              𝜏DcCO2       d𝜇
+                                   v=           =−                        .                               (16)
+                                         mCO2         𝜙𝜌CO2 S̄ CO
+                                                               init
+                                                                    RT dz
+                                                                  2
+
+
+The time required to deplete the gas phase in a unit length is simply the inverse of the
+depletion rate, i.e., tm = 1v . This depletion time can be used as a characteristic time to meas-
+ure the timescale of gas redistribution. Figure 7b shows the depletion time under different
+reservoir conditions relevant to CO2 sequestration. As can be seen, both reservoir condi-
+tions and saturation of residually trapped gas can determine the timescale of gas redistribu-
+tion by determining the magnitude of driving forces and the total amount of gas. Under iso-
+thermal conditions, the timescale for residual gas redistribution is on the order of 105 years
+per meter. This time scale agrees well with the cases reported in Figs. 3 and 4, where the
+depletion time per unit length is approximately 5 × 105 years per meter. For a typical CO2
+sequestration reservoir shown in Figs. 3 and 4 with a 50-meter-thick gas-depleted zone, one
+can expect that the gas redistribution will approach equilibrium in 25 million years. This
+extended time period suggests that gas redistribution due to non-convective transport is
+extremely slow such that the residually trapped gas can remain stably trapped for millions
+of years.
+   A study on the impact of gravity-induced flux on gas redistribution Xu et al. (2019)
+reported a gas depletion rate on the order of thousands of years per meter in a demonstra-
+tive case, which is ten times faster than the rate we predict. Three factors explain the order
+
+                                                                                                  13
+248                                                                                       Y. Li et al.
+
+
+of magnitude differences between our results. First, the transport mechanisms investigated
+in these two studies are different. In our study, the transport mechanism is a combination of
+molecular diffusion due to hydrostatic gradients and a downward sedimentation effect due to
+gravity in a non-ideal solution, while Xu et al. (2019) studied an upward sedimentation effect
+in an ideal-solution setting. Second, the model in Xu et al. (2019) is calculated for a very shal-
+low and high-temperature CO2 storage reservoir (10 MPa and 60 oC), where the CO2 density
+is 325 kg/m3. Under these conditions, the driving forces for non-convective transport are much
+higher than would be expected for a typical CO2 storage reservoir such as that used in our cal-
+culations (25 MPa and 75 oC, 717 kg/m3). The low density of the gas phase contains less CO2,
+which also contributes to accelerating the gas phase redistribution. Third, their hypothetical
+pore geometry for demonstrative purposes accelerates gas redistribution as a secondary factor.
+In our work, the model is based on actual properties of a Berea sandstone, which is a com-
+monly used analogue for CO2 storage studies Krevor et al. (2012), and more realistic pressure
+and temperature for CO2 storage, leading to a larger timescale for gas redistribution. The time
+scale derived from our model is representative of realistic scenarios for CO2 storage.
+
+4.3 Comparison Between Timescales of Convective and Non‑convective Transport
+
+Dissolution of CO2 due to convective mixing is another mechanism affecting the long-term
+fate of stored CO2Bourg et al. (2015). While non-convective transport mechanisms lead to
+accumulation at the top of the storage reservoir, convective mixing can gradually reduce the
+CO2 accumulated under the seal. Therefore, comparison between the timescales of the two
+competing mechanisms is relevant to long-term security of CO2 storage. The characteristics
+and timescales of convective mixing vary significantly at different stages of the process. There
+exist various methods to decompose convective mixing into multiple flow regimes Emami-
+Meybodi et al. (2015). Here for simplicity, we pick three time points to mark the beginning,
+the middle and the late stage of convective mixing as characteristic times, which are the onset
+of instability, end of early convection Hassanzadeh et al. (2007) and convective shutdown-
+Hewitt et al. (2013), respectively.
+    Figure 8 shows the timescale comparison between convective mixing and gas-phase redis-
+tribution due to non-convective transport. Here, the progress of convective mixing is charac-
+terized by the above three time points, where the parameters used in these calculations include
+reservoir thickness H = 100 m, temperature T = 75 oC, brine density difference Δ𝜌 = 10 kg/
+m3, water viscosity 𝜇w = 3.8 × 10−4 Pa s, diffusion coefficient D = 5 × 10−9 ­m2/s and poros-
+ity 𝜌 = 0.2. Two examples of CO2 storage projects are shown on the same plot Bickle et al.
+(2007), Strandli (2015). As can be seen, the timescales of convective mixing and non-convec-
+tive mixing are approximately the same order of magnitude in reservoirs with low permeabil-
+ity (k < 10 mD). In reservoirs with higher permeability (k > 10 mD) such as the Illinois basin
+and Sleipner, convective mixing is orders of magnitude faster than non-convective transport.
+Only after the convection shuts down will non-convective transport dominate redistribution of
+dissolved CO2.
+
+
+5 Implications for Geological Gas Migration and Conclusions
+
+This study demonstrates that non-convective transport through the aqueous phase will
+redistribute residually trapped gas, driven by disequilibrium of partial molar free energy
+potentials. From the perspective of geological storage of CO2 , residually trapped gas is
+
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                       249
+
+
+
+
+Fig. 8  Timescale comparison between CO 2 dissolution due to convective mixing and CO 2 redistribu-
+tion due to non-convective transport. Three key characteristic times are adopted here to describe the pro-
+gress of dissolution, including onset of instability, end of early convectionHassanzadeh et al. (2007) and
+convective shutdownHewitt et al. (2013). The parameters used in these calculations include reservoir
+thickness H = 100 m, temperature T = 75 oC, brine density difference Δ𝜌 = 10 kg/m3, water viscosity
+𝜇w = 3.8 × 10−4 Pa s, diffusion coefficient D = 5 × 10−9 ­m2/s and porosity 𝜙 = 0.2
+
+
+
+expected to be redistributed in the storage reservoir at a rate of approximately 105 years
+per meter. This extremely slow redistribution rate suggests that residually trapped CO2 will
+remain immobilized for over many hundreds of thousands of years when no convective
+flow of the gas phase is considered. However, during redistribution of the gas phase, in
+some portions of the reservoir, CO2 saturations will increase, causing remobilization of the
+trapped gas. This could accelerate the accumulation of CO2 underneath the seal.
+    The mechanisms for gas migration studied in this work may also contribute to second-
+ary basin-scale migration of natural gas. Secondary migration refers to the movement of
+natural gas in a porous reservoir toward the trap after leaving the organic-rich source rock
+Schowalter (1979). A widely accepted theory of secondary migration states that the natural
+gas moves updip in the form of a continuous phase driven by buoyancy, leaving “residual
+stains” along the migration pathways. Although a residual gas trapping along the migration
+pathways has been demonstrated in laboratory experiments Horseman et al. (1999), little
+field evidence for residual gas is evident in core samples taken along possible gas migration
+pathways. The lack of evidence for residually trapped gas is rationalized by the hypothesis
+that gas only migrates in a meter-thick layer below the dipping seal and whatever residual
+gas is left behind is dissolved and diluted by formation water Schowalter (1979); McAu-
+liffe (1979). Gas redistribution due to the diffusion processes discussed in this work may
+also contribute to the absence of the residual gas along natural gas migration pathways. In
+addition to diffusing into the formation water, gas-phase redistribution may aggregate the
+disconnected residual gas, which may re-initiate convective flow for the trapped gas phase
+at some point. Considering that the timescale for the diffusion-induced gas redistribution
+is relatively short compared to the geological timescale for natural gas migration, this new
+mechanism could potentially accelerate secondary migration of natural gas.
+    To summarize, this study quantifies redistribution of residually trapped gas due to
+non-convective transport from a fundamental perspective. Non-convective transport of
+
+                                                                                             13
+250                                                                                                   Y. Li et al.
+
+
+residually trapped gas results from the thermodynamic potential disequilibrium due to
+hydrostatic pressure, geothermal gradients and capillary heterogeneity. The mechanisms
+of resulting mass transfer include molecular diffusion, the sedimentation effect and poten-
+tially the Soret effect. Mathematical modeling shows that molecular diffusion induced by
+hydrostatic pressure dominates the gas-phase redistribution by transporting CO2 upward.
+Eventually, the gas phase accumulates under the seal. The timescale for redistribution
+under isothermal conditions is on the order of 105 years per meter of upward migration
+at the reservoir scale. Geothermal gradients can somewhat mitigate the accumulation of
+the gas phase by reducing the solubility gradient of dissolved CO2 . In addition, geological
+heterogeneity leads to faster non-convective redistribution at a local scale, but in the long
+run, concentration gradients caused by the hydrostatic pressure gradient dominate the long-
+term redistribution of CO2 . It is shown that the residually trapped gas phase could remain
+trapped over an extended time period when no convective flow of the gas phase is consid-
+ered. However, accumulation of the gas phase due to capillary heterogeneity may remobi-
+lize some of the trapped CO2 and thus significantly accelerate the redistribution process.
+
+Supplementary Information The online version contains supplementary material available at https://​doi.​
+org/​10.​1007/​s11242-​021-​01722-y.Supplementary Information The online version contains supplementary
+material available at https://​doi.​org/​10.​1007/​s11242-​021-​01722-y.
+
+Funding This study was funded by the Global Climate and Energy Project (GCEP), the Stanford Center for
+Carbon Storage (SCCS), and the Center of Nanoscale Controls on Geologic CO2 (NCGC) funded by the
+U.S. Department of Energy, under contract number DE-AC02-05CH11231.
+
+ Data Availability This study focuses on developing a generalizable, conceptual model; therefore, no field
+data is used. All parameters used for the conceptual model are listed in the Online Resource with relevant
+references.
+
+Code Availability Not applicable.
+
+Declarations
+Conflicts of interest The authors acknowledge no conflicting financial support for this work.
+
+
+
+
+References
+Archibald, W.: A demonstration of some new methods of determining molecular weights from the data of
+     the ultracentrifuge. J. Phys. Chem. 51(5), 1204–1214 (1947)
+Bickle, M., Chadwick, A., Huppert, H.E., Hallworth, M., Lyle, S.: Modelling carbon dioxide accumulation
+     at sleipner: implications for underground carbon storage. Earth Planet. Sci. Lett. 255(1–2), 164–176
+     (2007)
+Bourg, I.C., Beckingham, L.E., DePaolo, D.J.: The nanoscale basis of co2 trapping for geologic storage.
+     Environ. Sci Technol. 49(17), 10265–10284 (2015)
+Burnside, N., Naylor, M.: Review and implications of relative permeability of co2/brine systems and resid-
+     ual trapping of co2. Int. J. Greenh. Gas Control 23, 1–11 (2014)
+de Chalendar, J.A., Garing, C., Benson, S.M.: Pore-scale modelling of ostwald ripening. J. Fluid Mech. 835,
+     363–392 (2018)
+de Chalendar, J.A., Garing, C., Benson, S.M.: Pore-scale modelling of ostwald ripening-corrigendum. J.
+     Fluid Mech. 866, 929–929 (2019)
+Chatzis, I., Morrow, N.R., Lim, H.T., et al.: Magnitude and detailed structure of residual oil saturation. Soc.
+     Pet. Eng. J. 23(02), 311–326 (1983)
+Claypool, G.E., Kaplan, I.: The origin and distribution of methane in marine sediments Natural gases in
+     marine sediments, pp. 99–139. Springer, Berlin (1974)
+
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                           251
+
+
+Cole, J.L., Lary, J.W., Moody, T.P., Laue, T.M.: Analytical ultracentrifugation: sedimentation velocity and
+      sedimentation equilibrium. Methods Cell. Biol. 84, 143–179 (2008)
+De Groot, S.R., Mazur, P.: Non-equilibrium thermodynamics. Courier Corporation, USA (2013)
+Donaldson, I.: Temperature gradients in the upper layers of the earth’s crust due to convective water flows. J.
+      Geophys. Res. 67(9), 3449–3459 (1962)
+Emami-Meybodi, H., Hassanzadeh, H., Green, C.P., Ennis-King, J.: Convective dissolution of co2 in saline
+      aquifers: progress in modeling and experiments. Int. J. Greenh. Gas Control 40, 238–266 (2015)
+Emery, A., Jr., Drickamer, H.: Thermal diffusion in polymer solutions. J. Chem. Phys. 23(12), 2252–2257
+      (1955)
+Ennis-King, J., Paterson, L., et al.: Role of convective mixing in the long-term storage of carbon dioxide
+      in deep saline formations. In: SPE annual technical conference and exhibition, Society of Petroleum
+      Engineers (2003)
+Ennis-King, J., Preston, I., Paterson, L.: Onset of convection in anisotropic porous media subject to a rapid
+      change in boundary conditions. Phys. Fluids 17(8), 084107 (2005)
+Eslamian, M.: Advances in thermodiffusion and thermophoresis (soret effect) in liquid mixtures. Frontiers
+      in Heat and Mass Transfer (FHMT) 2(4) (2012)
+Espósito, R.O., Castier, M., Tavares, F.W.: Calculations of thermodynamic equilibrium in systems subject to
+      gravitational fields. Chem. Eng. Sci. 55(17), 3495–3504 (2000)
+Firoozabadi, A.: Thermodynamics and applications in hydrocarbon energy production. McGraw-Hill Edu-
+      cation, USA (2016)
+Firoozabadi, A., Ghorayeb, K., Shukla, K.: Theoretical model of thermal diffusion factors in multicompo-
+      nent mixtures. AIChE J. 46(5), 892–900 (2000)
+Fujita, H.: Mathematical theory of sedimentation analysis. Elsevier, Berlin (2016)
+Galliero, G., Bataller, H., Croccolo, F., Vermorel, R., Artola, P.A., Rousseau, B., Vesovic, V., Bou-Ali, M.,
+      De Zárate, J.M.O., Xu, S., et al.: Impact of thermodiffusion on the initial vertical distribution of spe-
+      cies in hydrocarbon reservoirs. Microgravity Sci. Technol. 28(2), 79–86 (2016)
+Garcia, J.E.: Density of aqueous solutions of co2. Tech. rep., Lawrence Berkeley National Lab.(LBNL),
+      Berkeley, CA (United States) (2001)
+Garing, C., de Chalendar, J.A., Voltolini, M., Ajo-Franklin, J.B., Benson, S.M.: Pore-scale capillary pres-
+      sure analysis using multi-scale x-ray micromotography. Adv. Water Resour. 104, 223–241 (2017)
+Garriga, A., Kurchan, J., Ritort, F.: Strong soret effect in one dimension. J. Statist. Phys. 106(1–2), 109–123
+      (2002)
+Goldberg, R.J.: Sedimentation in the ultracentrifuge. J. Phys. Chem. 57(2), 194–202 (1953)
+Goldobin, D.S., Brilliantov, N.V.: Diffusive counter dispersion of mass in bubbly media. Phys. Rev. E 84(5),
+      056328 (2011)
+Haase, R.: Thermodynamics of irreversible processes. Addison-Wesley, Boston (1968)
+Hassanzadeh, H., Pooladi-Darvish, M., Keith, D.W.: Scaling behavior of convective mixing, with applica-
+      tion to geological storage of co2. AIChE J. 53(5), 1121–1131 (2007)
+Hesse, M., Tchelepi, H.A., Orr, F.M., et al.: Scaling analysis of the migration of co2 in saline aquifers. In:
+      SPE Annual Technical Conference and Exhibition, Society of Petroleum Engineers (2006)
+Hewitt, D.R., Neufeld, J.A., Lister, J.R.: Convective shutdown in a porous medium at high rayleigh number.
+      J. Fluid Mech. 719, 551–586 (2013)
+Horseman, S., Harrington, J., Sellin, P.: Gas migration in clay barriers. Eng. Geol. 54(1–2), 139–149 (1999)
+Iglauer, S., Paluszny, A., Pentland, C.H., Blunt, M.J.: Residual co2 imaged with x-ray micro-tomography.
+      Geophysical Research Letters 38(21), 0094–8276 (2011). https://​doi.​org/​10.​1029/​2011G​L0496​80
+Jiang, F., Tsuji, T.: Impact of interfacial tension on residual co2 clusters in porous sandstone. Water Resour.
+      Res. 51(3), 1710–1722 (2015)
+Juanes, R., Spiteri, E., Orr, Jr F., Blunt, M. J.: Impact of relative permeability hysteresis on geological co2
+      storage. Water Resour. Res. 42(12), 0043–1397 (2006). https://​doi.​org/​10.​1029/​2005W​R0048​06
+Kempers, L.: A comprehensive thermodynamic theory of the soret effect in a multicomponent gas, liquid, or
+      solid. J. Chem. Phys. 115(14), 6330–6341 (2001)
+Kempers, L.J.: A thermodynamic theory of the soret effect in a multicomponent liquid. J. Chem. Phys.
+      90(11), 6541–6548 (1989)
+Krevor, S.C.M., Pini, R., Zuo, L., Benson, S.M.: Relative permeability and trapping of co2 and water in
+      sandstone rocks at reservoir conditions. Water Resour. Res. 48(2) (2012). https://​doi.​org/​10.​1029/​
+      2011W​R0108​59
+Kumar, A., Noh, M., Pope, G., Sepehrnoori, K., Bryant, S., Lake, L., et al.: Reservoir simulation of co2 stor-
+      age in deep saline aquifers. In: SPE/DOE Symposium on Improved Oil Recovery, Society of Petroleum
+      Engineers (2004)
+
+
+
+
+                                                                                                 13
+252                                                                                                       Y. Li et al.
+
+
+Kumar, A., Noh, M.H., Ozah, R.C., Pope, G.A., Bryant, S.L., Sepehrnoori, K., Lake, L.W., et al.: Reservoir
+      simulation of co 2 storage in aquifers. Spe J. 10(03), 336–348 (2005)
+Lei, L., Seol, Y.: Pore-scale investigation of methane hydrate-bearing sediments under triaxial condition.
+      Geophys. Res. Lett. 47(5), e2019GL086 (2020). https://​doi.​org/​10.​1029/​2019G​L0864​48
+Li, Y., Garing, C., Benson, S.M.: A continuum-scale representation of ostwald ripening in heterogeneous
+      porous media. Journal of Fluid Mechanics 889 (2020). https://​doi.​org/​10.​1017/​jfm.​2020.​53
+Lira-Galeana, C., Firoozabadi, A., Prausnitz, J.M.: Computation of compositional grading in hydrocarbon
+      reservoirs application of continuous thermodynamics. Fluid Phase Equilibria 102(2), 143–158 (1994)
+Mashimo, T.: Self-consistent approach to the diffusion induced by a centrifugal field in condensed matter:
+      sedimentation. Phys. Rev. A 38(8), 4149 (1988)
+McAuliffe, C.D.: Oil and gas migration-chemical and physical constraints. AAPG Bullet. 63(5), 761–781
+      (1979)
+McClure, J.E., Berrill, M.A., Gray, W.G., Miller, C.T.: Influence of phase connectivity on the relationship
+      among capillary pressure fluid saturation and interfacial area in two-fluid-phase porous medium sys-
+      tems. Phys. Rev. E 94(3), 033102 (2016)
+Mo, S., Zweigel, P., Lindeberg, E.G., Akervoll, I., et al.: Effect of geologic parameters on co2 storage in
+      deep saline aquifers. In: SPE Europec/EAGE Annual Conference, Society of Petroleum Engineers
+      (2005). https://​doi.​org/​10.​2118/​93952-​MS
+Muskat, M.: Distribution of non-reacting fluids in the gravitational field. Phys. Rev. 35(11), 1384 (1930)
+Neufeld, J.A., Hesse, M.A., Riaz, A., Hallworth, M.A., Tchelepi, H.A., Huppert, H.E.: Convective dissolu-
+      tion of carbon dioxide in saline aquifers. Geophysical Res. Lett. 37(22) (2010). https://​doi.​org/​10.​1029/​
+      2010G​L0447​28
+Ni, H., Møyner, O., Kurtev, K.D., Benson, S.M.: Quantifying co2 capillary heterogeneity trapping through
+      macroscopic percolation simulation. Adv. Water Resour. 155(103), 990 (2021)
+Nikpoor, M.H., Dejam, M., Chen, Z., Clarke, M.: Chemical-gravity-thermal diffusion equilibrium in two-
+      phase non-isothermal petroleum reservoirs. Energy Fuels 30(3), 2021–2034 (2016)
+Ning, H., Wiegand, S.: Experimental investigation of the soret effect in acetone/water and dimethylsulfox-
+      ide/water mixtures. J Chem Phys. 125 (22), 221102 (2006). https://​doi.​org/​10.​1063/1.​24021​59
+Padua, K.: Nonisothermal gravitational equilibrium model. SPE Reserv. Eval. Eng. 2(2), 211–217 (1999)
+Peng, C., Crawshaw, J.P., Maitland, G.C., Trusler, J.M., Vega-Maza, D.: The ph of co2-saturated water at
+      temperatures between 308 k and 423 k at pressures up to 15 mpa. J. Supercrit. Fluids 82, 129–137
+      (2013)
+Pentland, C., El-Maghraby, R., Georgiadis, A., Iglauer, S., Blunt, M.: Immiscible displacements and capil-
+      lary trapping in co2 storage. Energy Procedia 4, 4969–4976 (2011)
+Perrin, J.: Brownian movement and molecular reality. Courier Corporation, USA (2013)
+Pini, R., Krevor, S.C., Benson, S.M.: Capillary pressure and heterogeneity for the co2/water system in sand-
+      stone rocks at reservoir conditions. Adv. Water Resour. 38, 48–59 (2012)
+Platten, J.K.: The soret effect: a review of recent experimental results. J. Appl. Mech. 73(1), 5–15 (2006).
+      https://​doi.​org/​10.​1115/1.​19925​17
+Pruess, K., Spycher, N.: Eco2n-a fluid property module for the tough2 code for studies of co2 storage in
+      saline aquifers. Energy Convers. Manag. 48(6), 1761–1767 (2007)
+Rahman, M., Saghir, M.: Thermodiffusion or soret effect: historical review. Int. J. Heat Mass Transf. 73,
+      693–705 (2014)
+Rasa, M., Erné, B., Zoetekouw, B., van Roij, R., Philipse, A.: Macroscopic electric field and osmotic pres-
+      sure in ultracentrifugal sedimentation-diffusion equilibria of charged colloids. J. Phys.: Condensed
+      Matter 17(15), 2293 (2005)
+Riaz, A., Hesse, M., Tchelepi, H., Orr, F.: Onset of convection in a gravitationally unstable diffusive bound-
+      ary layer in porous media. J. Fluid Mech. 548(1), 87–111 (2006)
+Roof, J., et al.: Snap-off of oil droplets in water-wet pores. Soc. Petrol. Eng. J. 10(01), 85–90 (1970)
+Sage, B.H., Lacey, W.N.: Gravitational concentration gradients in static columns of hydrocarbon fluids.
+      Trans. AIME 132(01), 120–131 (1939)
+Schowalter, T.T.: Mechanics of secondary hydrocarbon migration and entrapment. AAPG Bullet. 63(5),
+      723–760 (1979)
+Schulte, A, et al.: Compositional variations within a hydrocarbon column due to gravity. In: SPE annual
+      technical conference and exhibition, Society of Petroleum Engineers (1980)
+Shukla, K., Firoozabadi, A.: A new model of thermal diffusion coefficients in binary hydrocarbon mixtures.
+      Ind. Eng. Chem. Res. 37(8), 3331–3342 (1998)
+Spycher, N., Pruess, K.: Co2-h2o mixtures in the geological sequestration of co2 ii partitioning in chloride
+      brines at 12–100 c and up to 600 bar. Geochimica et Cosmochimica Acta 69(13), 3309–3320 (2005)
+
+
+
+
+13
+Long‑Term Redistribution of Residual Gas Due to Non‑convective…                                          253
+
+
+Spycher, N., Pruess, K., Ennis-King, J.: Co2-h2o mixtures in the geological sequestration of co2 i assess-
+     ment and calculation of mutual solubilities from 12 to 100 c and up to 600 bar. Geochimica et cosmo-
+     chimica acta 67(16), 3015–3031 (2003)
+Stadelmaier, D., Kohler, W.: Thermal diffusion of dilute polymer solutions: the role of chain flexibility and
+     the effective segment size. Macromolecules 42(22), 9147–9152 (2009)
+Strandli, C.W.: Multilevel pressure measurements for monitoring and prediction of CO 2 and displaced
+     brine migration. Stanford University, USA (2015)
+Suekane, T., Nobuso, T., Hirai, S., Kiyota, M.: Geological storage of carbon dioxide by residual gas and
+     solubility trapping. Int. J. Greenh. Gas Control 2(1), 58–64 (2008)
+Teller, D.C.: [14] characterization of proteins by sedimentation equilibrium in the analytical ultracentrifuge
+     Methods in enzymology, pp. 346–441. Elsevier, Hoboken (1973)
+Teng, H., Yamasaki, A., Chun, M.K., Lee, H.: Solubility of liquid co2in water at temperatures from 278 k to
+     293 k and pressures from 6.44 mpa to 29.49 mpa and densities of the corresponding aqueous solutions.
+     J. Chem. Thermodyn. 29(11), 1301–1310 (1997)
+Tichacek, L., Kmak, W., Drickamer, H.: Thermal diffusion in liquids; the effect of non-ideality and associa-
+     tion. J. Phys. Chem. 60(5), 660–665 (1956)
+Wales, M., Williams, J., Thompson, J., Ewart, R.: Sedimentation equilibria of polydisperse non-ideal solutes
+     experiment. J. Phys. Chem. 52(6), 983–998 (1948)
+Whitson, C. H., Belery, P., et al.: Compositional gradients in petroleum reservoirs. In: University of Tulsa
+     centennial petroleum engineering symposium, Society of Petroleum Engineers (1994)
+Williams, J., Van Holde, K.E., Baldwin, R.L., Fujita, H.: The theory of sedimentation analysis. Chem. Rev.
+     58(4), 715–744 (1958)
+Wooding, R.: Steady state free thermal convection of liquid in a saturated permeable medium. J. Fluid
+     Mech. 2(3), 273–285 (1957)
+Xu, K., Bonnecaze, R., Balhoff, M.: Egalitarianism among bubbles in porous media: an ostwald ripening
+     derived anticoarsening phenomenon. Phys. Rev. Lett. 119(26), 264502 (2017)
+Xu, K., Mehmani, Y., Shang, L., Xiong, Q.: Gravity-induced bubble ripening in porous media and its impact
+     on capillary trapping stability. Geophys. Res. Lett. 46(23), 13804–13813 (2019)
+Zhao, H., Brautigam, C.A., Ghirlando, R., Schuck, P.: Overview of current methods in sedimentation veloc-
+     ity and sedimentation equilibrium analytical ultracentrifugation. Current Protocols Protein Sci. 71(1),
+     20 (2013)
+
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps and
+institutional affiliations.
+
+
+
+
+                                                                                                 13
+

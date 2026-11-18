@@ -1,0 +1,846 @@
+                                                                                                                                                   www.nature.com/npjcompumats
+
+
+
+
+                  ARTICLE                 OPEN
+
+                  PRISMS-PF: A general framework for phase-ﬁeld modeling
+                  with a matrix-free ﬁnite element method
+                                        1✉                                                                                                          1✉
+                  Stephen DeWitt            , Shiva Rudraraju2,3, David Montiel1, W. Beck Andrews                  1
+                                                                                                                       and Katsuyo Thornton
+
+
+                     A new phase-ﬁeld modeling framework with an emphasis on performance, ﬂexibility, and ease of use is presented. Foremost
+                     among the strategies employed to fulﬁll these objectives are the use of a matrix-free ﬁnite element method and a modular,
+                     application-centric code structure. This approach is implemented in the new open-source PRISMS-PF framework. Its performance is
+                     enabled by the combination of a matrix-free variant of the ﬁnite element method with adaptive mesh reﬁnement, explicit time
+                     integration, and multilevel parallelism. Benchmark testing with a particle growth problem shows PRISMS-PF with adaptive mesh
+                     reﬁnement and higher-order elements to be up to 12 times faster than a ﬁnite difference code employing a second-order-accurate
+                     spatial discretization and ﬁrst-order-accurate explicit time integration. Furthermore, for a two-dimensional solidiﬁcation benchmark
+                     problem, the performance of PRISMS-PF meets or exceeds that of phase-ﬁeld frameworks that focus on implicit/semi-implicit time
+                     stepping, even though the benchmark problem’s small computational size reduces the scalability advantage of explicit time-
+                     integration schemes. PRISMS-PF supports an arbitrary number of coupled governing equations. The code structure simpliﬁes the
+                     modiﬁcation of these governing equations by separating their deﬁnition from the implementation of the numerical methods used
+1234567890():,;
+
+
+
+
+                     to solve them. As part of its modular design, the framework includes functionality for nucleation and polycrystalline systems
+                     available in any application to further broaden the phenomena that can be used to study. The versatility of this approach is
+                     demonstrated with examples from several common types of phase-ﬁeld simulations, including coarsening subsequent to spinodal
+                     decomposition, solidiﬁcation, precipitation, grain growth, and corrosion.
+                     npj Computational Materials (2020)6:29 ; https://doi.org/10.1038/s41524-020-0298-5
+
+
+
+
+                  INTRODUCTION                                                                          only the numerical methods that are easiest to implement are
+                  Phase-ﬁeld models are one of the foundational tools of computa-                       used, namely ﬁnite difference methods and Fourier-spectral
+                  tional materials science and are used to study microstructure                         methods1,3. While substantial efforts over the past twenty years
+                  evolution during a variety of processes, including solidiﬁcation,                     have been focused on techniques that greatly improve perfor-
+                  grain growth, and solid-state phase transformations. A detailed                       mance such as adaptive mesh reﬁnement and multilevel
+                  review of phase-ﬁeld models and their applications can be found                       parallelism11–17, these techniques are often neglected in user-
+                  in refs 1–8. Phase-ﬁeld models are almost exclusively solved                          developed single-purpose codes, as they are time-consuming to
+                  numerically, yet developing software to perform phase-ﬁeld                            implement.
+                                                                                                           An alternative paradigm based on developing and utilizing
+                  simulations can be challenging for two reasons. First, phase-ﬁeld
+                                                                                                        open-source community frameworks is spreading through the
+                  simulations at scientiﬁcally relevant length and time scales are
+                                                                                                        phase-ﬁeld community7. This type of framework contains building
+                  computationally intensive, often requiring millions of computing                      blocks for a variety of phase-ﬁeld models. Therefore, developers’
+                  core hours on parallel computing platforms9,10. Therefore,                            time can be spent extending the capability of the framework
+                  computational performance and parallel scalability are leading                        rather than implementing basic features in a new single-purpose
+                  concerns when choosing a numerical approach. Second, a                                code. Examples of such community frameworks are FiPy18,
+                  simulation code written for one application is often not                              MOOSE19–21, OpenPhase22, AMPE23, and MMSP24.
+                  transferable to another application without extensive modiﬁca-                           In this article, we introduce PRISMS-PF, a new open-source
+                  tions. Different applications require different numbers of phase-                     community framework for phase-ﬁeld modeling, which is a key
+                  ﬁeld variables, different forms of the free energy functional, and                    component of the open-source multiscale materials modeling
+                  may require the solution of additional coupled equations (e.g.,                       framework developed by the PRISMS Center25. PRISMS-PF was
+                  mechanical equilibrium). Even within a single application, such as                    created upon four principles:
+                  grain growth in a polycrystalline metal, multiple approaches with
+                  very different governing equations are common7.                                          1. The computational performance, including parallel scalabil-
+                     As a response to these challenges, a standard approach is to                             ity, should meet or exceed that of typical phase-ﬁeld codes.
+                  develop a different code for each application7. A single-purpose                         2. The framework should support a variety of phase-ﬁeld
+                  code has hard-coded governing equations, which reduces                                      models to be useful to a large cross section of the phase-
+                  computational overhead and permits numerical approaches                                     ﬁeld community.
+                                                                                                           3. The interface for creating or modifying a set of governing
+                  tailored for the problem at hand. However, this approach has its
+                                                                                                              equations should be straightforward and as separated as
+                  limitations. Creating and maintaining a number of separate codes,
+                                                                                                              possible from the numerical methods used to solve them.
+                  each with its own tests and documentation, can be difﬁcult. Often,
+
+                  1
+                   University of Michigan, Department of Materials Science and Engineering, 2300 Hayward St., Ann Arbor, MI 48109, USA. 2University of Michigan, Department of Mechanical
+                  Engineering, 2350 Hayward St., Ann Arbor, MI 48109, USA. 3Present address: University of Wisconsin, Madison, WI 53706, USA. ✉email: stvdwtt@umich.edu; kthorn@umich.edu
+
+
+                  Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences
+                                                                            S. DeWitt et al.
+                  2
+                        4. The framework should be open source in order to enable              discretization. Although basic, this code is representative of a
+                           widespread adoption, modiﬁcation, and development by                type of ﬁnite difference code commonly employed for phase-ﬁeld
+                           the members of the phase-ﬁeld community.                            modeling1,8. The scaling tests were performed for a coupled
+                         Embodying these four principles, PRISMS-PF enables scientists         Cahn–Hilliard/Allen–Cahn system of equations describing the
+                      and engineers in the phase-ﬁeld community to rapidly develop             growth of two particles in three dimensions. The initial conditions
+                      and employ phase-ﬁeld models to explore the frontiers of the             and ﬁnal solution are shown in Fig. 1. This system of equations is a
+                      ﬁeld. The computational performance of PRISMS-PF is enabled              simpliﬁed version of the models commonly used for solid-state
+                      through the use of a matrix-free variant of the ﬁnite element            transformations and solidiﬁcation. Full descriptions of this test
+                      method, as opposed to the matrix-based ﬁnite element methods             problem, computing environment, and FD code are found in the
+                      traditionally applied for phase-ﬁeld modeling (e.g., in MOOSE). In       Supplementary Information. The PRISMS-PF calculations were
+                      combination with Gauss–Lobatto elements, this matrix-free                performed with linear elements, so that the theoretical order of
+                      approach permits efﬁcient explicit time integration. PRISMS-PF           accuracy and degrees of freedom (DOF) equal those for the FD
+                      also leverages adaptive mesh reﬁnement and multilevel paralle-           code. The calculations on the regular and adaptive meshes have
+                      lism for further increases in performance. Furthermore, PRISMS-PF        ~3.4 × 107 DOF and 3.0 × 106 DOF, respectively.
+                      contains functionality for nucleation and for efﬁciently handling           The results of the strong scaling tests on 16–512 computing
+                      large polycrystalline systems, two common phenomena in                   cores are given in Fig. 2. From Fig. 2a, the PRISMS-PF calculations
+                      physical systems studied by phase-ﬁeld modeling, to broaden its          on a regular mesh have the longest run times, followed by the FD
+                      applicability. Finally, PRISMS-PF is integrated with the Materials       calculations and then by the PRISMS-PF calculations with adaptive
+                                                                                               mesh reﬁnement (except for 512 cores, where the ﬁnite difference
+                      Commons26 information repository and collaboration platform to
+                                                                                               calculation is slightly faster than the PRISMS-PF calculation with
+                      collect, store, and share a detailed record of each simulation. A
+                                                                                               adaptive meshing). A detailed analysis of the computational cost
+                      more detailed discussion of the methods mentioned above and
+                                                                                               of calculations using these two codes is presented in the next
+                      their implementation in a code structure that delivers perfor-
+                                                                                               section.
+                      mance, ease of use, and ﬂexibility and adaptability to a wide range
+                                                                                                  Figure 2b shows the parallel efﬁciency (the ratio of the time
+                      of applications is given in the “Methods” section of this article.
+                                                                                               assuming ideal scaling to the actual time) for the strong scaling
+1234567890():,;
+
+
+
+
+                                                                                               tests. For PRISMS-PF with a regular mesh, the parallel efﬁciency is
+                      RESULTS AND DISCUSSION                                                   above 90% for 5.3 × 105 DOF/core or more (64 cores or less), and
+                      To demonstrate the performance and ﬂexibility of PRISMS-PF, we           decreases to 68% at 6.6 × 104 DOF/core (512 cores). For the FD
+                      compare its performance to that of typical approaches and                calculation, the parallel efﬁciency is above 90% for 1.1 × 106 DOF/
+                                                                                               core or more (32 cores or less), and decreases to 43% at 6.6 × 104
+                      present examples of its use to investigate several physical
+                                                                                               DOF/core (512 cores). While the PRISMS-PF calculations exhibit
+                      phenomena. The comparisons are to a ﬁnite difference code
+                                                                                               improved parallel efﬁciency, the improvement is not driven by a
+                      and to other open-source frameworks for phase-ﬁeld modeling.
+                                                                                               reduction in the absolute deviation from the ideal time, which is
+                      Examples of the use of PRISMS-PF to study coarsening subsequent
+                                                                                               actually larger for PRISMS-PF than for FD (see Fig. 2c) due to the
+                      to spinodal decomposition, precipitate growth, grain boundary
+                                                                                               more complex data structures involved. Instead, the improved
+                      nucleation, different formulations of interfacial energy anisotropy,
+                                                                                               parallel efﬁciency is driven by the longer baseline wall time of the
+                      grain growth, and corrosion are presented to demonstrate its
+                                                                                               16-core calculation for PRISMS-PF. The longer baseline time leads
+                      ﬂexibility.
+                                                                                               to longer ideal times for PRISMS-PF, meaning that it can have a
+                                                                                               larger absolute deviation from ideality but still have a lower
+                      Parallel scaling: PRISMS-PF vs. ﬁnite difference code                    relative deviation from ideality, as measured by the parallel
+                      To evaluate the parallel scaling efﬁciency of PRISMS-PF, a set of        efﬁciency.
+                      strong scaling tests were performed for PRISMS-PF and a custom-             For the adaptive mesh calculations with PRISMS-PF, Fig. 2a
+                      developed, optimized ﬁnite difference (FD) code written by the           shows that additional cores decrease the wall time up to 256 cores
+                      authors. The FD code is written in the Fortran language and              (1.2 × 104 DOF/core), after which, the wall time starts to increase.
+                      employs MPI parallelization. The spatial discretization utilizes         Unlike the calculations on regular meshes, the parallel efﬁciency in
+                      second-order, centered ﬁnite differences on a regular grid. Like         Fig. 2b for the adaptive mesh calculations does not asymptotically
+                      PRISMS-PF, the FD code employs a forward Euler time                      approach unity as the DOF per core increases. This ﬁnding
+
+
+
+
+                      Fig. 1 Two-particle benchmark problem. The (a) initial and (b) ﬁnal solution for the two-particle test problem used for performance
+                      comparisons to the ﬁnite difference code.
+
+
+                      npj Computational Materials (2020) 29         Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences
+                                                                            S. DeWitt et al.
+                                                                                                                                                   3
+
+
+
+
+Fig. 2 Strong scaling behavior. The strong scaling behavior on 16–512 cores for PRISMS-PF with either a regular or adaptive mesh compared
+with the ﬁnite difference code is described in the text. a The wall time for the calculations, with dashed lines that give the ideal scaling
+behavior, where product of the time and the number of cores is ﬁxed at the 16-core value. b The parallel efﬁciency for the calculations. c The
+estimated communication time, deﬁned as the difference between the observed time and the ideal time.
+
+
+
+
+Fig. 3 Performance comparison with a ﬁnite difference code. Performance comparison results between PRISMS-PF and the ﬁnite difference
+code for the two-particle test problem. These plots show the wall time on 16 cores at a range of error levels. Dashed gray lines mark error
+levels corresponding to approximately three, ﬁve, and seven points in the interface for the ﬁnite difference calculations. a Comparison
+between PRISMS-PF with a regular mesh and linear, quadratic, and cubic elements and the ﬁnite difference code. b Comparison between
+PRISMS-PF with cubic elements and a regular or adaptive mesh and the ﬁnite difference code.
+
+suggests that the adaptive meshing calculation is out of the ideal          resources. With this in mind, we performed a second comparison
+scaling regime even for 16 cores (1.9 × 105 DOF/core). At the same          between PRISMS-PF and the custom FD code, in which we
+DOF per core as the 16-core adaptive meshing calculation, the               examined the error and the wall time for simulations using the
+parallel efﬁciency for a PRISMS-PF calculation on a regular mesh is         same test problem as the previous section. A detailed description
+~81% (i.e., it is out of the ideal scaling regime). To correct for the      of the test conditions is found in the Supplementary Information.
+deviation from ideality in the 16-core baseline adaptive meshing            The error for each simulation is deﬁned as the L2 norm of the
+calculation, Fig. 2b also shows the parallel efﬁciency results with         difference between its solution and the solution from a simulation
+the adaptive meshing calculations shifted downward be equal to              that is highly resolved in time and space.
+the regular mesh results at 1.9 × 105 DOF/core. The corrected                  Figure 3 shows the relationship between the time required for
+curve for the adaptive meshing calculations overlaps with the               PRISMS-PF and FD simulations and their error. Table 1 uses these
+regular mesh curve and then continues on to lower DOF/core                  results to determine the speedup factor for PRISMS-PF compared
+values. This behavior indicates that the adaptive meshing                   with the ﬁnite difference code for levels of error resulting from
+calculations exhibit similar scaling performance to the calculations        three, ﬁve, and seven points across the particle/matrix interface in
+on regular meshes.                                                          the FD simulations. On a regular mesh with linear elements (which
+   In summary, PRISMS-PF maintains near-ideal strong scaling up             have the same spatial order of accuracy as the FD discretization),
+to 5.3 × 105 DOF/core on regular meshes. It shows improved                  PRISMS-PF requires an order of magnitude more run time than a
+parallel efﬁciency over a ﬁnite difference code, although the wall          FD calculation with the same error. This ﬁnding conﬁrms the
+time is about one order of magnitude larger. The PRISMS-PF                  common wisdom that FD codes are more computationally
+calculations on adaptive meshes exhibited similar scaling perfor-           efﬁcient than ﬁnite element codes in terms of raw throughput.
+                                                                               Despite this disadvantage, Fig. 3 and Table 1 show that PRISMS-
+mance as the calculations on regular meshes when corrected for
+                                                                            PF can leverage higher-order elements and adaptive meshing to
+being outside the ideal scaling regime due to their fewer DOF.
+                                                                            become substantially faster than the FD code for this test case.
+                                                                            From Fig. 3a, increasing the element degree reduces the run time
+Computational cost at ﬁxed error: PRISMS-PF vs. ﬁnite difference            for the PRISMS-PF calculations across all error levels examined.
+code                                                                        With a regular mesh, PRISMS-PF with quadratic or cubic elements
+When performing a phase-ﬁeld calculation, one must balance the              is slower than the FD code when the allowed error is set to that of
+objectives of reducing the error and the required computational             the FD code with three points in the interface. As the allowed error
+
+Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences     npj Computational Materials (2020) 29
+                                                                S. DeWitt et al.
+4
+     Table 1.   The ratio of the wall time for the ﬁnite difference calculations to the wall time for the PRISMS-PF calculations for simulations with the same
+     observed error (EL2) for three values of EL2 that correspond to different numbers of grid points in the interface for the ﬁnite difference calculations
+     (λFD ≈ 3, 5, 7).
+
+    PRISMS-PF element and mesh type                    EL2 = 88.18 (λFD ≈ 7 pts.)             EL2 = 142.0 (λFD ≈ 5 pts.)             EL2 = 508.2 (λFD ≈ 3 pts.)
+
+    Linear elements, regular mesh                        0.0471a                                0.0279                               0.0390a
+    Quadratic elements, regular mesh                     3.08                                   0.900                                0.377
+    Cubic elements, regular mesh                         5.79                                   1.90                                 0.541a
+    Cubic elements, adaptive mesh                      41.3                                   12.0                                   2.67a
+     a
+     Extrapolated value.
+
+
+
+
+    Fig. 4 Solidiﬁcation benchmark problem. a The order parameter (left, and reﬂected with respect to the simulation domain) and the
+    temperature ﬁeld (right) at t = 1500 for a PRISMS-PF simulation of the solidiﬁcation of a pure material. Due to fourfold symmetry, the
+    simulation considers only one quarter of the dendrite. b The dimensionless velocity of the dendrite tip for the PRISMS-PF simulation and the
+    analytical sharp-interface steady-state solution from ref. 70. The simulation parameters are the same as those for PRISMS-PF (#2) in Table 2
+    (additional details can be found in the Supplementary Information).
+
+    is reduced, the PRISMS-PF calculations with quadratic or cubic                  reﬁnement remains faster. While the governing equations and
+    elements become faster than the FD calculations due to their                    initial conditions for the test problem are similar to those used in
+    increased spatial order of accuracy. When the error corresponds to              precipitation and solidiﬁcation simulations, note that the full
+    a typical level of resolution in the FD simulation (ﬁve points in the           diversity of phase-ﬁeld models cannot be represented by a single
+    interface), PRISMS-PF with cubic elements is 1.9 times faster than              test case. Changes to the governing equations could increase or
+    the FD code. At that error level, the run times for the PRISMS-PF               decrease the advantages of higher-order elements in PRISMS-PF.
+    with quadratic elements and the FD code are approximately the                   The beneﬁt of adaptive meshing is also strongly problem-
+    same. However, in general this speedup factor will depend on the                dependent. For problems that are not very amenable to adaptive
+    number of grid points required to resolve the interface, which will             meshing (e.g., the initial stages of spinodal decomposition) the
+    vary depending on the particular phase-ﬁeld model and coupled                   performance, relative to the FD code, would be similar to that of
+    physics that are utilized as well as the degree of accuracy intended            simulations on regular meshes. (See applications below for an
+    for the simulation. Unfortunately, to the authors’ knowledge there              example of a large-scale simulation of spinodal decomposition
+    is no systematic review of the minimum number of grid points                    and subsequent coarsening that leads to similar run time using
+    required for different types/applications of phase-ﬁeld models,                 PRISMS-PF and FD.) For problems especially amenable to adaptive
+    and the number has to be determined on a case-by-case basis                     meshing (e.g., the initial stages of particle nucleation), even larger
+    with convergence analysis. We can expect the use of higher-order                speedups due to adaptivity may be observed than those
+    elements to be more advantageous for problems that require                      presented here. It should be noted that FD codes can also utilize
+    higher resolution at the interface. As can be seen in Fig. 3b, the              adaptive meshing, albeit with a large increase in their complex-
+    speed of a PRISMS-PF calculation can be further increased with                  ity13. Even with these caveats, the tests presented here
+    adaptive meshing, with a negligible increase in error. With the                 demonstrate that PRISMS-PF does not sacriﬁce performance for
+    typical ﬁve-point interface resolution, PRISMS-PF with adaptive                 generality, and instead can yield improved performance over a
+    meshing is 12 times faster than the FD code for this test case. For             code employing a basic, yet common ﬁnite difference approach.
+    more accurate calculations corresponding to seven points in the
+    interface for the FD code, the PRISMS-PF calculations are up to                 Computational cost: PRISMS-PF vs. other open-source frameworks
+    41.3 times faster.                                                              As discussed in the introduction, open-source frameworks for
+       In summary, PRISMS-PF with cubic elements outperforms a                      phase-ﬁeld modeling are increasing in popularity. To compare the
+    representative FD code for a two-particle test problem at an error              performance of PRISMS-PF to other such frameworks, we
+    level corresponding to a typical choice of ﬁve points across the                reference results that have been uploaded to the PFHub phase-
+    interface for the FD calculation. Without adaptive meshing, the                 ﬁeld benchmarking website for 2D dendritic solidiﬁcation in a
+    PRISMS-PF calculation is nearly twice as fast and, with adaptivity              pure material27–29. Note that this benchmark problem can be
+    enabled, it is 12 times faster. At higher error levels, the PRISMS-PF           solved to reasonable accuracy using less than 20,000 DOF, a small
+    calculation with a regular mesh is slower than the FD calculation,              enough problem size that the advantage of the explicit time
+    although the PRISMS-PF calculation with adaptive mesh                           stepping scheme in PRISMS-PF over implicit/semi-implicit
+
+    npj Computational Materials (2020) 29              Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences
+                                                                                 S. DeWitt et al.
+                                                                                                                                                               5
+ Table 2.   Solidiﬁcation benchmark problem results.
+
+Phase-ﬁeld framework                Tip velocity            Absolute error             Relative error            Normalized computational costa (core-h)
+
+PRISMS-PF (#1)                      7.9 × 10−4              8.6 × 10−5                 10%                       0.016
+                                            −4
+PRISMS-PF (#2)                      8.6 × 10                1.7 × 10−5                  2%                       0.35
+MOOSE (#1)                          7.8 × 10−4              9.1 × 10−5                 10%                       0.029
+                                            −4
+MOOSE (#2)                          7.8 × 10                9.1 × 10−5                 10%                       0.10
+AMPE                                8.3 × 10−4              4.5 × 10−5                  5%                       14
+FiPy                                1.1 × 10−3              2.6 × 10−4                 30%                       79
+ A summary of the benchmark results uploaded to the PFHub phase-ﬁeld benchmarking website for the dendritic solidiﬁcation problem.
+ a
+  Due to differences in the processor clock speeds, the computational cost is scaled to approximate a calculation on a processor with a 3.0 GHz clock speed.
+
+
+schemes for large problems is minimal. Figure 4 shows the                        benchmark problem used here provides a neutral, community-
+PRISMS-PF solution to this benchmark problem. The tip velocity is                determined reference point that is directly relevant to an
+steadily approaching the sharp-interface solution, but does not                  important class of phase-ﬁeld simulations.
+fully converge before nearing the boundary of the computational
+domain. An extension of the domain size in the existing                          Applications
+benchmark that allowed the dendrite tips to reach steady-state                   The ﬂexibility of PRISMS-PF enables it to be utilized across a range
+velocity would permit a direct comparison with the sharp-                        of applications. PRISMS-PF contains 25 example applications that
+interface solution. Unfortunately, given the setup of the bench-                 simulate a variety of physical phenomena. In this section, we
+mark problem, the analytical solution does not provide the                       highlight seven areas in which PRISMS-PF has been applied to
+accurate solution for the problem. Therefore, a highly resolved                  showcase various aspects of the framework. Simulation results
+simulation is employed to benchmark the accuracy. Convergence                    from these applications are shown in Fig. 5. Table 3 includes
+tests in time and space indicate that the nondimensional tip                     standardized comparisons of the simulations for these applica-
+velocity is ~8.8 × 10−4 at the stopping time designated in the                   tions and one of the two-particle simulations from the FD
+problem deﬁnition (t = 1500).                                                    performance comparison above. The table shows the wide
+   Table 2 shows results for this benchmark problem for PRISMS-PF                variation of calculation sizes in the simulations, ranging from
+and selected results uploaded to the PFHub website using three                   under 400,000 DOF to ~1,000,000,000 DOF. The table also includes
+other open-source frameworks that focus on implicit or semi-                     a normalized performance metric, the number of core-seconds per
+implicit time stepping (MOOSE19, AMPE23, and FiPy18). The                        DOF required for each time step of the simulation. The normalized
+PRISMS-PF calculations required three orders of magnitude fewer                  performance metric varies by approximately an order of
+normalized core hours to complete than the calculations using                    magnitude. This variation originates from several factors including
+AMPE and FiPy, while having similar or lower error. The fastest                  the number of arithmetic operations in the governing equations,
+calculations using PRISMS-PF and MOOSE have similar computa-                     required iterative solutions to linear/nonlinear equations per time
+tional cost and tip velocity error.                                              step, additional overhead due to nucleation or grain remapping,
+   Each calculation represented in Table 2 was performed by a                    efﬁciency losses due to non-ideal parallel scaling, and differences
+primary developer of the listed open-source framework. Uploads                   in computing architecture.
+by users who are not primary developers of the framework used                       Spinodal decomposition followed by coarsening of the micro-
+were not included in this analysis as they are more likely to make               structure is a classic example of a phenomenon studied with
+substantially suboptimal decisions while performing the calcula-                 phase-ﬁeld modeling. To demonstrate the capabilities of PRISMS-
+tion. The two different PRISMS-PF results represent different                    PF for large simulations, we show in Fig. 5a the results of a
+parameter sets used to obtain different balances of computational                simulation of this phenomenon using the cahnHilliard application
+cost and numerical error. The two MOOSE results are from the                     with 9.6 × 108 DOF. This example is based on a previous
+same developer, but on different computers and with a different                  calculation performed using a ﬁnite difference code to study
+remeshing frequency. Details regarding the PRISMS-PF calcula-                    coarsening behavior subsequent to spinodal decomposition30.
+tions and the analysis of the data from the PFHub website can be                 The calculations were performed at the National Energy Research
+found in the Supplementary Information. The computational cost                   Scientiﬁc Computing Center (NERSC) on the Intel Xeon Phi Knights
+given in Table 2 for each result is normalized for reported                      Landing architecture. With its multilevel parallelism approach,
+processor clock speed in an attempt to make fair comparisons                     PRISMS-PF can leverage the strengths of this modern architecture,
+between calculations performed on different hardware systems.                    especially its high level of vectorization. Quadratic elements were
+While other hardware characteristics likely impact the computa-                  used in this calculation because the octree structure of the mesh
+tional cost of these simulations, the clock speed is the only                    did not permit an efﬁcient mesh with cubic elements (see the
+hardware information gathered on the PFHub website.                              Supplementary Information for a more detailed discussion
+   In summary, for tests using a dendritic solidiﬁcation benchmark               regarding this choice). The high density of interfaces eliminates
+problem, PRISMS-PF achieves more accurate results with similar or                the beneﬁts of adaptive mesh reﬁnement, and thus the simulation
+(often much) lower computational cost than other leading phase-                  was performed on a regular mesh. The simulation was performed
+ﬁeld frameworks. To reiterate the caveat from the previous                       on 1024 computing cores (16 nodes) for 5.6 days. A corresponding
+section, no single test problem can contain the full diversity                   calculation using the ﬁnite difference code from ref. 30 requires
+exhibited by phase-ﬁeld models. The relative performance of                      3.5 days on 1024 cores, assuming that the relationship between
+codes using explicit versus implicit/semi-implicit approaches                    the element size and error from the two-particle benchmark tests
+depends on many factors (e.g., computational problem size,                       holds. (The ﬁnite difference estimate was determined by doubling
+deviation from equilibrium, the presence of short time-scale                     the wall time of a ﬁnite difference simulation with half the
+phenomena such as nucleation, and the order of the partial                       simulated time of the PRISMS-PF simulation). This example
+differential equations). However, the dendritic solidiﬁcation                    demonstrates the application of PRISMS-PF to a system with
+
+Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences             npj Computational Materials (2020) 29
+                                                            S. DeWitt et al.
+6
+
+
+
+
+    Fig. 5 Example applications. Examples of ﬁve applications of PRISMS-PF. a The composition during a simulation of spinodal decomposition
+    and subsequent coarsening at t = 100,000 and t = 250,000. b The evolution of the particles in the scaled-up version of the two-particle growth
+    simulation. c A cross section of a 3D simulation of two precipitates in an Mg–Nd alloy (left) and a corresponding transmission electron
+    microscopy image (right). (Reproduced with permission from ref. 31. Copyright 2017 Acta Materialia Inc.) d The initial (left) and ﬁnal (right)
+    grain structure for a 2D grain growth simulation. The color represents the grain identiﬁcation number that remains associated with a grain, as
+    it is transferred between order parameters. e A 2D simulation of pitting corrosion. Snapshots are at times 0, 2 s, and 4 s. For each of these
+    times, the left frame (A) represents the metal surface in half of the system, and the right frame (B) represents the metal cation concentration in
+    the other half. f A 2D simulation of grain boundary nucleation showing the composition (upper) and the average of the order parameter
+    parallel to the grain boundary (lower). The grain boundary region with a decreased nucleation barrier is denoted by the dashed lines.
+    g Initially spherical particles evolved using two different functions to describe strong interfacial anisotropy: a conventional form (left), which
+    enables simulation of shapes with sharp corners and edges41, and a more sophisticated form (right), which enables ﬂatter facets and non-
+    centrosymmetric anisotropies42.
+
+
+    nearly one billion degrees of freedom with performance of only             governing equations as the two-particle simulations, but scaled up
+    slightly worse than a custom FD code under some unfavorable                to 128 particles, each with a random initial location and size. This
+    conditions (no adaptivity, quadratic rather than cubic elements).          calculation required 5.5 days on 512 computing cores to simulate
+       The performance tests presented in Figs 2 and 3 involved the            400 time units and shows the transition from particle growth to
+    simulated growth of two particles. However, matters of scientiﬁc           coarsening. From Table 3, this simulation requires ~2 × 10−7core-
+    or engineering interest often involve many interacting particles.          s/DOF-time step. This normalized performance is approximately
+    Thus, Fig. 5b shows a PRISMS-PF simulation using the same                  two times worse than the two-particle simulation with an adaptive
+
+    npj Computational Materials (2020) 29           Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences
+                                                                            S. DeWitt et al.
+                                                                                                                                                      7
+ Table 3. A summary of the performance (measured in core-seconds per DOF for a single time step) of selected simulations presented in this article
+ including the two-particle simulation (cubic elements, adaptive mesh with Δx = 100/64) and simulations from seven applications highlighted in this
+ section.
+
+Application                              DOF                Cores           No. of time steps          Wall time (s)         Core-s/DOF-time step
+
+Two particles                            1,341,692a         16b             50,000                     400                   9.54 × 10−8
+Spinodal decomposition                   909,513,218        1024c           3,125,000                  483,100               1.74 × 10−7
+128 particles                            90,925,928d        512b            4,000,000                  656,640               2.48 × 10−72.36 × 10−7
+                                         372,928,960e
+Mg–Nd precipitate                        965,000a           64b             15,000,000                 54,000                2.39 × 10−7
+Precipitate-free zone                    285,762    d
+                                                            64    b
+                                                                            1,500,000                  6710                  1.86 × 10−71.72 × 10−7
+                                         2,219,878e
+Particle w/strong anisotropy             4,019,691a         16b             400,000                    34,900                3.47 × 10−7
+Grain growth                             6,774,756      a
+                                                            6 f
+                                                                            40,000                     8290                  1.8 × 10−7
+Corrosion                                396,294            64    b
+                                                                            4,300,000                  44,700                1.78 × 10−6
+ DOF degrees of freedom.
+ a
+   Calculated using the average DOF.
+ b
+   2.6 GHz Intel Xeon E5-2670 (Sandy Bridge).
+ c
+   1.4 GHz Intel Xeon Phi 7250 (Knights Landing).
+ d
+   At 5% of the full simulated time.
+ e
+   At the full simulated time.
+ f
+   3.5 GHz Intel Xeon E5-1650 (Ivy Bridge).
+
+
+mesh on 16 computing cores (9.5 × 10−8 core-s/DOF-time step).               reaction rate tracks the dissolution of the metal. A continuity
+This discrepancy indicates non-ideal weak scaling, potentially due          equation for the electric potential is solved using the nonlinear
+to imperfect load balancing. A comparable FD calculation is                 solver described in the “Methods” section38. Figure 5e shows the
+expected to take 17.2 days on 512 cores, more than twice as long,           evolution of the metal surface and the dissolving metal cation
+assuming the same relationship between element size and error               concentration in the electrolyte as a pit grows.
+from the two-particle tests holds (and determined by scaling the                The nucleation capabilities of PRISMS-PF have also been used to
+wall time of a simulation with 3% of the total simulated time in the        study precipitate nucleation in grain boundaries and the
+PRISMS-PF simulation).                                                      associated creation of precipitate-freezones39. Figure 5f shows
+   PRISMS-PF has already been applied toward advancing the                  the results from the nucleationModel_preferential application. This
+understanding of lightweight structural components, the primary             application uses a coupled Cahn–Hilliard/Allen–Cahn model
+testbed for the PRISMS integrated software framework25, to
+                                                                            similar to the one used in the ﬁnite difference performance
+simulate the evolution of precipitates in magnesium-rare earth
+                                                                            comparisons and leverages the ﬂexibility of PRISMS-PF in handling
+alloys31. Simulations of isolated precipitates were shown to be
+largely consistent with experimental observations. A two-                   nucleation. Nuclei are added explicitly via a nucleation probability
+precipitate simulation (see Fig. 5c) demonstrated a precipitate             that depends on the local nucleation rate, which is calculated
+interaction mechanism to explain outliers. These simulations used           dynamically for each element. This method is described with more
+the Kim–Kim–Suzuki model32 and linear elasticity to account for             detail in the “Methods” section below and in the “Nucleation
+misﬁt strain between the precipitate and the matrix. PRISMS-PF              Algorithm Description” section of the Supplementary Information.
+contains an application named MgRE_precipitate_single_Bppp for              The nucleation rate function in the nucleation application ﬁle
+performing these and similar simulations.                                   includes a spatial dependence for the nucleation barrier (in
+   Another common application of phase-ﬁeld modeling is grain               addition to a dependence on the supersaturation) to mimic the
+growth in polycrystals. The grainGrowth_dream3D application uses            effect of preferential nucleation at a grain boundary. The use of
+the grain-remapping algorithm (largely based on ref. 33), described         adaptive meshing is particularly effective here because the
+in the “Methods” section, to simulate grain growth in an isotropic          composition and order parameter ﬁelds are nearly uniform across
+system using the Fan and Chen model34. The initial microstructure           the majority of the domain at the beginning of the simulation.
+containing 739 grains is imported from Dream3D35. Figure 5f                     The user interface for PRISMS-PF permits straightforward
+shows this initial microstructure as well as an evolved structure           modiﬁcation of governing equations to add more physical
+that contains 186 grains. The grain remapping led to a 62-fold              phenomena by those who are familiar with C++ programming.
+reduction in the number of order parameters to just 12 shared               PRISMS-PF contains three similar applications with different
+order parameters to track the grains; no artiﬁcial coalescence was          approaches for handling interfacial energy anisotropy. Each of
+observed during the simulation. Less than 9% of the simulation
+                                                                            these is an extension of a single-particle version of the
+time was spent on the grain-remapping algorithm, a small cost for
+                                                                            Cahn–Hilliard/Allen–Cahn application used in the ﬁnite difference
+the nearly two orders of magnitude reduction in the number of
+order parameters and thus equations to be solved.                           performance comparisons. The CHAC_anisotropyRegularized and
+   The use of phase-ﬁeld models to describe microstructure                  CHAC_anisotropy applications use a standard form of the
+evolution in electrochemical systems has been an area of                    anisotropy40, with and without a fourth-order regularization term
+increasing interest. In this area, an application for corrosion is          that prevents a lack of convergence of the numerical solution with
+under development using a phase-ﬁeld model developed by                     increasing resolution, which can occur with strong anisotropies
+Chadwick et al.36. The electric potential and the transport of ions         (i.e., leading to edges or corners)41. The facetAnisotropy application
+in the electrolyte are calculated using the smoothed boundary               uses the same regularization term, but has a more sophisticated
+method37 to apply boundary conditions along the metal surface. A            and versatile anisotropy function42. Figure 5g shows examples of
+Cahn–Hilliard equation with a source term proportional to the               simulations using these applications.
+
+Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences       npj Computational Materials (2020) 29
+                                                           S. DeWitt et al.
+8
+    Future work                                                               METHODS
+    PRISMS-PF remains under active development, with initiatives to           PRISMS-PF utilizes advanced numerical methods to enable computational
+    improve its accessibility, performance, and scope. To reduce the          performance at the frontier of the ﬁeld while also supporting common
+    barrier to entry, particularly in educational contexts, PRISMS-PF         applications of phase-ﬁeld modeling. While variants of all of the methods
+                                                                              described below have been previously applied in the phase-ﬁeld
+    applications are under development for the nanoHUB website43              community or the wider numerical partial differential equation community,
+    with a graphical user interface (GUI) developed using the Rappture        to the authors’ knowledge PRISMS-PF is currently the only open-source
+    Toolkit44. The incorporation of implicit time stepping into PRISMS-       framework to combine all of these methods within the context of phase-
+    PF is being investigated for systems that are near equilibrium, in        ﬁeld modeling. PRISMS-PF is structured so that users can leverage these
+    which explicit time stepping is inefﬁcient. The existing nonlinear        advanced methods without detailed knowledge of their implementation.
+    solver can be applied to compute the implicit update, but                 This structure allows users to focus on the unique governing equations and
+    improved parallel preconditioning options are required. An                parameters for their particular application. This article describes version 2.1
+                                                                              of PRISMS-PF47.
+    extension to the grain-remapping algorithm that can more
+    accurately handle irregularly shaped grains is also planned.
+    Another focus of near-term development is improved integration            Code structure
+    with other computational tools. Tight coupling with the PRISMS-           PRISMS-PF is written in the C++ programming language and built upon
+                                                                              the deal.II ﬁnite element library48. The structure of PRISMS-PF reﬂects the
+    Plasticity45 framework for crystal and continuum plasticity will
+                                                                              principles set forth in the “Introduction”, particularly that it should
+    enable the simulation of dynamic recrystallization. Finally,              accommodate a wide variety of governing equations and that those
+    integration is planned with ThermoCalc, a CALPHAD software                governing equations should be straightforward to modify and be as
+    package, and with CASM46, a ﬁrst-principles statistical mechanics         separated as possible from the numerical methods used to solve them.
+    software package, to provide thermodynamic and kinetic informa-           Therefore, PRISMS-PF is broken into two main components: the core library
+    tion directly to PRISMS-PF. This integration provides an alternative      and the PRISMS-PF applications. The core library contains shared
+    to the current approach of manually inserting thermodynamic and           functionality for use in any PRISMS-PF calculation, including the methods
+                                                                              described later in this section. An application describes a particular type of
+    kinetic parameters for a given material system into the input
+                                                                              simulation, deﬁning an arbitrary number of coupled governing equations
+    parameters ﬁle.                                                           and the associated boundary/initial conditions and parameters. The
+                                                                              structure of PRISMS-PF allows three levels of engagement: (1) using a
+    Conclusions                                                               preset application and changing the parameters, (2) creating a custom
+                                                                              application, and (3) modifying the core library. Thus, PRISMS-PF
+    This article describes a new phase-ﬁeld modeling framework,
+                                                                              accommodates a range of users, from those with no programming
+    PRISMS-PF, with four guiding principles: high performance,                expertise to expert programmers who want full control over their
+    ﬂexibility, ease of use, and open access. One characteristic aspect       calculations.
+    of PRISMS-PF is its use of a matrix-free variant of the ﬁnite element        The core library performs the actual ﬁnite element calculations, parses
+    method, which enables efﬁcient explicit time stepping by                  input, generates and adapts the mesh, initializes variables, outputs results,
+    eliminating the need to diagonalize the mass matrix as in                 handles nucleation, and performs grain remapping. At the heart of the
+    traditional ﬁnite element methods. This method, combined with             core library is the solver loop, which is structured to maximize ﬂexibility
+                                                                              and performance. A ﬂow chart of the solver loop is given in Fig. 6. One
+    advanced adaptive meshing and parallelization strategies, is key
+                                                                              cycle of this loop is performed in each time step in the solution of the
+    to the framework’s competitive performance. A benchmark test of           governing equations (or once for a purely time-independent calculation).
+    two precipitates, in which mesh adaptivity provides a signiﬁcant          To control what operations are necessary for a particular governing
+    speedup, demonstrated that PRISMS-PF was up to 12 times faster            equation in the solver loop, governing equations are classiﬁed as
+    than a basic, custom-developed ﬁnite difference code at the same          “explicit time-dependent”, “time-independent”, or “auxiliary.” Explicit
+    level of error. Even for a test case involving spinodal decomposi-
+    tion and subsequent coarsening with no mesh adaptivity and
+    quadratic, rather than cubic elements, the performance of PRISMS-
+    PF is close to that of the ﬁnite difference code. In addition,
+    comparison of the results for a dendritic solidiﬁcation benchmark
+    problem demonstrate that PRISMS-PF yields a similar or higher
+    accuracy with similar or lower computational cost than three other
+    open-source frameworks for phase-ﬁeld modeling. A second
+    characteristic aspect of PRISMS-PF is its modular, application-
+    centric structure. It is structured such that users primarily interact
+    with applications that contain governing equations, initial/
+    boundary conditions, and parameters. In an application, an
+    arbitrary number of coupled governing equations are input into
+    simple C++ functions, giving users substantial ﬂexibility in their
+    construction. The core library contains shared functionality for the
+    applications and shields users from most of the numerical
+    complexity, allowing them to focus on their system of interest.
+    The core library also includes functionalities for nucleation and for     Fig. 6 Flowchart of the solver loop. A ﬂowchart showing the
+    polycrystalline systems that can be activated in any application,         structure of the solver loop in PRISMS-PF. The solver loop consists of
+    thereby broadening the scope of phenomena that can be                     four stages. The ﬁrst stage is for updating the mesh, the list of nuclei,
+    investigated. The versatility of this approach is demonstrated by         and the list of grains and their assignment to order parameters. In
+    its use in a range of applications, including precipitate nucleation,     the second stage, all of the governing equations that are to be
+                                                                              updated explicitly are updated. The third stage is the loop
+    dendritic solidiﬁcation, grain growth, and corrosion. In sum, this
+                                                                              implementing the nonlinear solver discussed below. The ﬁnal stage
+    new phase-ﬁeld modeling framework provides the performance,               of the solver loop is to output variable values to ﬁle (including
+    ﬂexibility, ease of use, and open availability to drive breakthroughs     postprocessed variables) and to save checkpoints at user-speciﬁed
+    across the ﬁeld of materials science.                                     time increments.
+
+
+    npj Computational Materials (2020) 29          Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences
+                                                                                 S. DeWitt et al.
+                                                                                                                                                                  9
+time-dependent equations solve an initial boundary value problem (e.g.,          PRISMS-PF uses Gauss–Lobatto ﬁnite elements instead of traditional
+the Allen–Cahn equation) via explicit time stepping. Time-independent            Lagrangian ﬁnite elements. The quadrature points for Gauss–Lobatto
+governing equations solve boundary value problems for sets of linear or          elements coincide with the element nodes, and this feature yields
+nonlinear equations that are time-independent (e.g., Poisson’s equation).        improved conditioning for higher-order elements, and efﬁcient explicit
+Auxiliary equations are relational expressions that can be directly              time stepping due to a trivially invertible diagonal “mass matrix” (a matrix
+calculated from known values at each time step, but do not contain any           where each element is given by Mij = ϕiϕj, where ϕn is the nth shape
+derivatives with respect to time (e.g., the chemical potential in the split      function). This combination of the matrix-free ﬁnite element approach with
+form of the Cahn–Hilliard equation).                                             sum-factorization and Gauss–Lobatto elements has been previously shown
+   A PRISMS-PF application deﬁnes a set of governing equations, initial          to signiﬁcantly outperform matrix-based calculations for wave and ﬂuid
+conditions, boundary conditions, and parameters. Each application is             dynamics calculations50.
+derived from the MatrixFreePDE class in the core library. This class
+structure allows any application to selectively override behavior in the core
+                                                                                 Explicit time stepping
+library for increased customization. An application requires a set of input
+ﬁles, each for the purpose of (1) setting constant parameters, (2) setting       The default scheme of time discretization in PRISMS-PF is the forward
+the governing equations, (3) setting the initial and boundary conditions, (4)    Euler method. The advantages of this explicit scheme are that it is simple
+deﬁning the custom class for the application, and (5) containing the main        to implement1,5,51–53, the calculation for each time step is fast1,5,51–53,
+C++ function. Additional ﬁles to deﬁne postprocessing expressions and            and it scales well for parallel calculations54–56. The disadvantages are
+the nucleation rate are optional.                                                that it is only ﬁrst-order accurate, and the time step is limited by the
+   The contents of the ﬁve mandatory app ﬁles are brieﬂy discussed               Courant–Friedrichs–Lewy (CFL) condition. Implicit and semi-implicit
+below. For a more detailed description of the application ﬁles, please           schemes are alternatives that permit stable calculations with larger
+refer to the PRISMS-PF user manual49. The parameters ﬁle is a parsed text        time steps, but require the solution of a linear or nonlinear system of
+ﬁle that contains numerical parameters (e.g., mesh parameters) and               equations at each time step. This process is time intensive, and parallel
+model parameters (e.g., diffusivity). The model parameters differ                scaling often suffers when the number of degrees of freedom (DOF)
+between applications, and are allowed to have various data types (e.g.,          exceeds a few million due to the lack of effective parallel precondi-
+ﬂoating-point number, tensor of ﬂoating-point numbers, boolean). The             tioners, except for a small class of problems for which physics-based or
+type of boundary condition for each governing equation is also set in the        geometric multigrid preconditioners are available57–59. Efﬁcient imple-
+parameters ﬁle. The equations source ﬁle contains the attributes of the          mentations of implicit/semi-implicit schemes also require signiﬁcant
+variables in the governing equations as well as expressions for the terms        user effort to select/implement the solution strategy (monolithic/
+in the governing equations themselves. Another mandatory source ﬁle              staggered), appropriate preconditioner, time-step size, and convergence
+                                                                                 tolerances59. As a result of the advantages of explicit time integration, a
+contains expressions for the initial conditions for each variable and
+                                                                                 recent review of phase-ﬁeld modeling noted that a majority of the
+expressions for Dirichlet boundary conditions that vary in time or space
+                                                                                 papers it highlighted as making high-impact contributions to materials
+(simpler boundary conditions can be fully speciﬁed in the parameters
+                                                                                 design employed this approach8.
+ﬁle). Users have ﬂexibility in customizing the governing equations, initial
+                                                                                    In the context of PRISMS-PF, explicit time stepping is attractive for four
+conditions, and boundary conditions because they are entered into C++
+                                                                                 reasons. First, the time step for phase-ﬁeld simulations is often limited to
+functions that can use loops and conditional statements alongside
+                                                                                 values near the CFL condition by the physics of interest (e.g., sharp
+standard arithmetic operations. The class deﬁnition ﬁle is a C++ header
+                                                                                 gradients in the interface, topological changes), decreasing the
+ﬁle that deﬁnes all of the members of the class, including member
+                                                                                 advantage of taking larger time steps while using implicit/semi-implicit
+variables representing each of the model parameters in the parameters
+                                                                                 methods. Second, the improved parallel scaling for explicit methods
+ﬁle. The ﬁnal mandatory application ﬁle is a source ﬁle containing the C+
+                                                                                 enables the types of simulations for which PRISMS-PF is designed, with
++ main function. This ﬁle can be modiﬁed to change the overall ﬂow of a
+                                                                                 hundreds of millions (or more) of DOF. Third, the diagonal mass matrix
+simulation, but is identical for the majority of applications.
+                                                                                 provided by the Gauss–Lobatto elements permits efﬁcient explicit time
+   Beyond the core library and the applications, the third primary
+                                                                                 stepping without any ad hoc mass lumping to diagonalize the mass
+component of PRISMS-PF is a test suite containing a battery of unit tests
+                                                                                 matrix as is required in traditional ﬁnite element approaches with
+and regression tests. Following best practices, continuous integration           Lagrange elements50. Fourth, the simplicity of explicit methods reduces
+testing is used (i.e., the test suite is run after every change to the code in   the possible ways novice users can make ill-informed choices that
+the public PRISMS-PF repository47).                                              substantially reduce code performance.
+
+Matrix-free ﬁnite element calculations                                           Adaptive mesh reﬁnement
+For improved computational performance over typical ﬁnite element                Adaptive mesh reﬁnement can greatly improve the speed of a simulation
+codes, PRISMS-PF takes advantage of the matrix-free ﬁnite element                with a negligible decrease in accuracy14,60. Phase-ﬁeld calculations are
+capabilities in the deal.II ﬁnite element library48. For a detailed              particularly well suited for adaptive meshing, since order parameters are
+discussion of this approach, please refer to ref. 50; a brief summary is         nearly uniform outside the interfacial regions14. Despite these beneﬁts, the
+provided below. A central ingredient of any ﬁnite element code is the            use of a regular mesh for computationally intensive phase-ﬁeld simulations
+evaluation of a discrete differential operator that approximates a term in       is still a common practice due to the complexity of implementing adaptive
+the governing equation(s). The discrete operator can typically be                meshing (e.g., refs 9,61).
+evaluated as a matrix-vector product (or a set of matrix-vector products).          PRISMS-PF utilizes the adaptive mesh reﬁnement capabilities from the
+The standard approach is to assemble a global sparse matrix                      deal.II48 and p4est62 libraries. The mesh is a set of connected quadtrees/
+representing the discrete differential operator for the entire mesh and          octrees (a “forest of quadtrees/octrees”62), a structured approach that
+then multiply it with a vector. However, storing even a sparse matrix is         offers improved efﬁciency over unstructured approaches, while maintain-
+memory intensive for problems with many degrees of freedom, and                  ing the ﬂexibility to represent arbitrary geometries62. In PRISMS-PF, the
+calculations are often limited by memory bandwidth rather than the               user selects an upper and lower bound for one or more variables to deﬁne
+speed of the ﬂoating-point operations50.                                         the interfacial regions. The mesh is maximally reﬁned in this region of
+   To circumvent the performance issues related to storing sparse matrices,      interest, and is allowed to gradually coarsen to a user-deﬁned minimum
+PRISMS-PF uses a matrix-free approach (also referred to as a cell-based          level outside of it. Over the course of a simulation, the mesh is periodically
+approach) as implemented in deal.II library48. The contributions to the          regenerated using updated values of the model variables. Thus, as the
+global matrix-vector product are calculated element-by-element, and then         solution evolves, so does the mesh.
+summed together. Furthermore, for improved performance, the underlying
+deal.II implementation enables sum factorization for the matrix-free
+approach. Sum factorization refers to a restructuring of the calculation of      Multilevel parallelism
+function values and derivatives on the quadrature points of the unit cell        Parallel computation is crucial for phase-ﬁeld codes to reduce the run
+into a product of sums along each direction using 1D basis functions. This       times of large simulations. Using features of the deal.II48, p4est62, and
+strategy for computing and assembling operators signiﬁcantly reduces the         Threading Building Blocks63 libraries, PRISMS-PF employs three levels of
+number of arithmetic operations and, more importantly, lends itself for          parallelism: distributed memory parallelization, task-based threading, and
+efﬁcient implementation using multilevel parallelism. Furthermore,               vectorization. On the distributed memory level, the domain is decomposed
+
+
+Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences              npj Computational Materials (2020) 29
+                                                                   S. DeWitt et al.
+10
+     such that each core stores only the reﬁned mesh and corresponding                a polycrystalline microstructure (e.g., from electron backscatter diffraction
+     degrees of freedom for its subdomain. This allows for calculations across        or Dream3D35) as the initial condition for a simulation.
+     multiple computing nodes, and permits calculations that require more
+     memory than is available on a single compute node64. Each core
+                                                                                      Automatic capture of simulation data and metadata
+     independently performs calculations to update its portion of the mesh,
+     and communicates the variable values along the subdomain boundary to             PRISMS-PF is integrated with the Materials Commons26 information
+     cores storing adjacent subdomains employing the Message Passing                  repository and collaboration platform that is speciﬁcally designed for
+     Interface (MPI) protocol. Task-based parallelism is utilized to divide the       materials scientists. Using the Materials Commons command line tool68,69,
+     computational load within a node/core across all available threads. Finally,     information from the PRISMS-PF input ﬁles are automatically parsed and
+     vectorization up to the AVX-512 standard is permitted, corresponding to          uploaded to Materials Commons. The same tool can be used to upload the
+     operations on eight double-precision ﬂoating-point numbers per clock             results of the simulation, creating a comprehensive record that can be
+     cycle. The sum-factorization approach used in PRISMS-PF is particularly          published for broader dissemination. This capability was utilized for the
+     well suited for efﬁcient vectorization50. From the perspective of a PRISMS-      simulations presented in the “Results and Discussion” section of this article,
+                                                                                      which can be viewed at the hyperlink given in the “Data Availability”
+     PF user, this multilevel parallelism scheme is nearly invisible; the user sets
+                                                                                      section below.
+     the number of MPI processes at run time, and parallelization is handled in
+     the background.
+                                                                                      DATA AVAILABILITY
+     Nonlinear Newton/Picard solver                                                   All of the input ﬁles, analysis scripts, and data described in this article are available on
+     Many of the partial differential equations involved in phase-ﬁeld                Materials Commons: https://materialscommons.org/mcapp/#/data/dataset/e4cf967e-
+     modeling are nonlinear. The nonlinear terms for evolution equations              88a9-4dcb-900b-dd304baa4a0b.
+     are straightforwardly handled with explicit time-integration methods.
+     However, a nonlinear solver is necessary for nonlinear time-independent
+     partial differential equations, such as the continuity equation for the          CODE AVAILABILITY
+     electric potential in the corrosion model described in the “Results and          PRISMS-PF is an open-source computer code under the GNU Lesser General Public
+     Discussion” section. In PRISMS-PF, a hybrid Newton/Picard approach is            License version 2.1. The source code for PRISMS-PF is available at the following
+     taken to leverage the performance of Newton’s method and the simple              hyperlink: https://github.com/prisms-center/phaseField. The ﬁnite difference codes
+     implementation of Picard’s method38. Each governing equation is solved           used in the performance comparisons are available upon request.
+     using Newton’s method, and if there are multiple nonlinear equations,
+     they are coupled using a Picard (ﬁxed-point) iteration until convergence
+     is reached38. For the Newton iterations, backtracking line search is used        Received: 10 September 2019; Accepted: 25 February 2020;
+     to determine the step size to ensure stability without compromising the
+     quadratic convergence rate51. Linear equations with no coupling to
+     other non-explicit-time-dependent equations are only solved during the
+     ﬁrst iteration of the nonlinear solver to avoid unnecessary calculation
+     overhead.                                                                        REFERENCES
+                                                                                       1. Moelans, N., Blanpain, B. & Wollants, P. An introduction to phase-ﬁeld modeling
+     Nucleation                                                                           of microstructure evolution. Calphad Comput. Coupling Phase Diagr. Thermochem.
+     Nucleation is an important phenomenon in a number of systems of                      32, 268–294 (2008).
+     interest for phase-ﬁeld modeling, such as solid-state transformations,            2. Shen, C. & Wang, Y. Phase-ﬁeld microstructure modeling. in ASM Handbook.
+     solidiﬁcation, and recrystallization1. To aid in the treatment of these              Vol. 22A (eds Furrer, D. U. & Semiatin, S. L.) 297–308 (ASM International, 2009).
+                                                                                       3. Chen, L. Q. Phase-ﬁeld models for microstructure evolution. Annu. Rev. Mater. Sci.
+     systems, PRISMS-PF contains functionality to assist in the placement of
+                                                                                          32, 113–140 (2002).
+     nuclei during a simulation. PRISMS-PF uses the explicit nucleation
+                                                                                       4. Emmerich, H. Advances of and by phase-ﬁeld modelling in condensed-matter
+     approach65, where supercritical nuclei are stochastically introduced at a
+                                                                                          physics. Adv. Phys. 57, 1–87 (2008).
+     time and spatial location determined by a nucleation probability function.
+                                                                                       5. Provatas, N. & Elder, K. Phase-Field Methods in Materials Science and Engineering
+     The probability function is typically determined from classical nucleation
+                                                                                          (Wiley-VCH, 2010).
+     theory65,66, although any probability model can be utilized. In PRISMS-PF,
+                                                                                       6. Steinbach, I. Phase-ﬁeld models in materials science. Model. Simul. Mater. Sci. Eng.
+     users specify the desired probability function, which can depend on the
+                                                                                          17, 073001 (2009).
+     value of any model variable, spatial location, and time. Different phases
+                                                                                       7. DeWitt, S. & Thornton, K. Phase ﬁeld modeling of microstructural evolution. in
+     can have different nucleation probabilities and different nucleus properties
+                                                                                          Computational Materials System Design (eds Shin, D. & Saal, J.) 67–87 (Springer,
+     (e.g., size and shape). The initial nuclei are ellipsoids with an arbitrary
+                                                                                          Cham, 2018).
+     rotation with respect to simulation axes. The details of the algorithm used       8. Tonks, M. R. & Aagesen, L. K. The phase ﬁeld method: mesoscale simulation
+     to place the nuclei on a distributed mesh (where each processor stores               aiding material discovery. Annu. Rev. Mater. Res. 49, 79–102 (2019).
+     only a portion of the mesh, as in PRISMS-PF) are described in the                 9. Poulsen, S. O. & Voorhees, P. W. Early stage phase separation in ternary alloys: a
+     Supplementary Information.                                                           test of continuum simulations. Acta Mater. 113, 98–108 (2016).
+                                                                                      10. Takaki, T. et al. Primary arm array during directional solidiﬁcation of a single-
+     Grain remapping                                                                      crystal binary alloy: large-scale phase-ﬁeld study. Acta Mater. 118, 230–243
+                                                                                          (2016).
+     For simulations of polycrystalline systems, the naive approach of assigning
+                                                                                      11. Plapp, M. & Karma, A. Multiscale ﬁnite-difference-diffusion-Monte-Carlo method
+     one-order parameter per grain is intractable even for small systems with
+                                                                                          for simulating dendritic solidiﬁcation. J. Comput. Phys. 165, 592–619 (2000).
+     hundreds of grains. To handle polycrystalline systems, PRISMS-PF uses the
+                                                                                      12. Plapp, M. & Karma, A. Multiscale random-walk algorithm for simulating interfacial
+     grain remapping approach67. Each order parameter stores multiple grains,
+                                                                                          pattern formation. Phys. Rev. Lett. 84, 1740–1743 (2000).
+     and grains are transferred between order parameters as needed to prevent
+                                                                                      13. Greenwood, M. et al. Quantitative 3D phase ﬁeld modelling of solidiﬁcation using
+     direct contact that would lead to artiﬁcial coalescence between neighbor-
+                                                                                          next-generation adaptive mesh reﬁnement. Comput. Mater. Sci. 142, 153–171
+     ing grains with the same order parameter. The advantage of this approach
+                                                                                          (2018).
+     is that the evolution equations and data structures are unchanged from
+                                                                                      14. Provatas, N., Goldenfeld, N. & Dantzig, J. Efﬁcient computation of dendritic
+     those of a typical phase-ﬁeld simulation. The process used to transfer
+                                                                                          microstructures using adaptive mesh reﬁnement. Phys. Rev. Lett. 80, 3308–3311
+     grains is largely based on the approach from ref. 33. A recursive ﬂood-ﬁll           (1998).
+     algorithm is used to identify the elements in each grain. A simpliﬁed            15. Hötzer, J., Kellner, M., Steinmetz, P., Dietze, J. & Nestler, B. Large-scale phase-ﬁeld
+     representation of each grain is created, and these simpliﬁed representa-             simulations of directional solidiﬁed ternary eutectics using high-performance
+     tions are used to identify grains to be transferred. Finally, these grains are       computing. In High Performance Computing in Science and Engineering ’16:
+     transferred to new order parameters. The details of this process, which              Transactions of the High Performance Computing Center Stuttgart (HLRS) 2016 (eds
+     includes communication over a distributed mesh, are discussed in the                 Nagel, W., Kröner, D., & Resch, M.) 635–646 (Springer, Cham, 2017).
+     Supplementary Information. A similar process is employed when importing
+
+
+     npj Computational Materials (2020) 29                Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences
+                                                                                                 S. DeWitt et al.
+                                                                                                                                                                                               11
+16. Hötzer, J. et al. Application of large-scale phase-ﬁeld simulations in the context of        47. PRISMS-PF GitHub Repository. https://github.com/prisms-center/phaseField (2019).
+    high-performance computing. In High Performance Computing in Science and                     48. Bangerth, W., Hartmann, R. & Kanschat, G. deal.II—a general-purpose object-
+    Engineering ’15: Transactions of the High Performance Computing Center, Stuttgart                oriented ﬁnite element library. ACM Trans. Math. Softw. 33, 24-es (2007).
+    (HLRS) 2015 (eds Nagel, W., Kröner, D., & Resch M.) 659–674 (Springer, Cham,                 49. DeWitt, S. PRISMS-PF User Manual v2.1. https://prisms-center.github.io/
+    2016).                                                                                           phaseField/doxygen_ﬁles/manual.html (2018).
+17. Hötzer, J. et al. The parallel multi-physics phase-ﬁeld framework PACE3D. J.                 50. Kronbichler, M. & Kormann, K. A generic interface for parallel cell-based ﬁnite
+    Comput. Sci. 26, 1–12 (2018).                                                                    element operator application. Comput. Fluids 63, 135–147 (2012).
+18. Guyer, J. E., Wheeler, D. & Warren, J. A. FiPy: partial differential equations with          51. Press, W. H., Teukolsky, S. A., Vetterling, Wi. T. & Flannery, B. P. Numerical Recipies
+    python. Comput. Sci. Eng. 11, 6–15 (2009).                                                       (Cambridge University Press, 2007).
+19. Gaston, D., Newman, C., Hansen, G. & Lebrun-Grandié, D. MOOSE: a parallel                    52. Hirsch, C. Numerical Computation of Internal and External Flows: The Fundamentals
+    computational framework for coupled systems of nonlinear equations. Nucl. Eng.                   of Computational Fluid Dynamics (Butterworth-Heinemann, 2007).
+    Des. 239, 1768–1778 (2009).                                                                  53. Tóth, G., De Zeeuw, D. L., Gombosi, T. I. & Powell, K. G. A parallel explicit/implicit
+20. Tonks, M. R., Gaston, D., Millett, P. C., Andrs, D. & Talbot, P. An object-oriented              time stepping scheme on block-adaptive grids. J. Comput. Phys. https://doi.org/
+    ﬁnite element framework for multiphysics phase ﬁeld simulations. Comput. Mater.                  10.1016/j.jcp.2006.01.029 (2006).
+    Sci. 51, 20–29 (2012).                                                                       54. Gruber, R., Ahusborde, E., Azaïez, M., Keller, V. & Latt, J. High performance com-
+21. Schwen, D., Aagesen, L. K., Peterson, J. W. & Tonks, M. R. Rapid multiphase-ﬁeld                 puting for partial differential equations. Comput. Fluids. https://doi.org/10.1016/j.
+    model development using a modular free energy based approach with auto-                          compﬂuid.2010.07.001 (2011).
+    matic differentiation in MOOSE/MARMOT. Comput. Mater. Sci. 132, 36–45 (2017).                55. Zhang, J. et al. Extreme-scale phase ﬁeld simulations of coarsening dynamics on
+22. Tegeler, M. et al. Parallel multiphase ﬁeld simulations with OpenPhase. Comput.                  the sunway TaihuLight supercomputer. SC ‘16: Proceedings of the International
+    Phys. Commun. 215, 173–187 (2017).                                                               Conference for High Performance Computing, Networking, Storage and Analysis.
+23. Dorr, M. R., Fattebert, J.-L., Wickett, M. E., Belak, J. F. & Turchi, P. E. A. A numerical       34–45 (2016).
+    algorithm for the solution of a phase-ﬁeld model of polycrystalline materials. J.            56. Tennyson, P. G., Karthik, G. M. & Phanikumar, G. MPI + OpenCL implementation
+    Comput. Phys. 229, 626–641 (2010).                                                               of a phase-ﬁeld method incorporating CALPHAD description of Gibbs energies
+24. MMSP GitHub Repository. https://github.com/mesoscale/mmsp (2019).                                on heterogeneous computing platforms. Comput. Phys. Commun. https://doi.org/
+25. Aagesen, L. et al. PRISMS—an integrated, open source framework for accelerating                  10.1016/j.cpc.2014.09.014 (2015).
+    predictive structural materials science. JOM 70, 2298–2314 (2018).                           57. Kelley, C. T. Iterative Methods for Linear and Nonlinear Equations (Society for
+26. Puchala, B. et al. The materials commons: a collaboration platform and infor-                    Industrial and Applied Mathematics, 1995).
+    mation repository for the global materials community. JOM 68, 1–10 (2016).                   58. Pyzara, A., Bylina, B. & Bylina, J. The inﬂuence of a matrix condition number on
+27. PFHub Benchmark Problem 3. https://pages.nist.gov/pfhub/benchmarks/benchmark3.                   iterative methods’ convergence. Proc. Fed. Conf. Comput. Sci. Inf. Syst. 459–464
+    ipynb/ (2019).                                                                                   (2011).
+28. Jokisaari, A. M., Voorhees, P. W., Guyer, J. E., Warren, J. A. & Heinonen, O. G. Phase       59. Keyes, D. E. et al. Multiphysics simulations. Int. J. High. Perform. Comput. Appl. 27,
+    ﬁeld benchmark problems for dendritic growth and linear elasticity. Comput.                      4–83 (2013).
+    Mater. Sci. 149, 336–347 (2018).                                                             60. Rosam, J., Jimack, P. K. & Mullis, A. A fully implicit, fully adaptive time and space
+29. Boettinger, W. J., Warren, J. A., Beckermann, C. & Karma, A. Phase-ﬁeld simulation               discretisation method for phase-ﬁeld simulation of binary alloy solidiﬁcation. J.
+    of solidiﬁcation 1. Annu. Rev. Mater. Res. 32, 163–194 (2002).                                   Comp. Phys. 225, 1271–1287 (2007).
+30. Andrews, W. B., Elder, K. L. M., Voorhees, P. W. & Thornton, K. Coarsening of                61. Shimokawabe, T. et al. Peta-scale phase-ﬁeld simulation for dendritic solidiﬁca-
+    bicontinuous microstructures via surface diffusion. Preprint at http://arxiv.org/                tion on the TSUBAME 2.0 supercomputer. SC ‘11: Proceedings of 2011 International
+    abs/2002.09428 (2020).                                                                           Conference for High Performance Computing, Networking, Storage and Analysis.
+31. DeWitt, S. et al. Misﬁt-driven β′′′ precipitate composition and morphology in Mg-                1–11 (2011).
+    Nd alloys. Acta Mater. 136, 378–389 (2017).                                                  62. Burstedde, C., Wilcox, L. C. & Ghattas, O. p4est: scalable algorithms for parallel
+32. Kim, S. G., Kim, W. T. & Suzuki, T. Phase-ﬁeld model for binary alloys. Phys. Rev. E             adaptive mesh reﬁnement on forests of octrees. SIAM J. Sci. Comput. 33,
+    60, 7186–7197 (1999).                                                                            1103–1133 (2011).
+33. Permann, C. J., Tonks, M. R., Fromm, B. & Gaston, D. R. Order parameter re-                  63. Reinders, J. Intel threading building blocks: outﬁtting C++ for multi-core pro-
+    mapping algorithm for 3D phase ﬁeld model of grain growth using FEM. Comput.                     cessor parallelism. J. Comput. Sci. Coll. https://doi.org/10.1145/1559764.1559771
+    Mater. Sci. 115, 18–25 (2016).                                                                   (2007).
+34. Fan, D., Chen, S. P., Chen, L.-Q. & Voorhees, P. W. Phase-ﬁeld simulation of {2-D}           64. Bangerth, W., Burstedde, C., Heister, T. & Kronbichler, M. Algorithms and data
+    Ostwald ripening in the high volume fraction regime. Acta Mater. 50, 1895–1907                   structures for massively parallel generic adaptive ﬁnite element codes. ACM
+    (2002).                                                                                          Trans. Math. Softw. 38, 14 (2011).
+35. Groeber, M. A. & Jackson, M. A. DREAM.3D: a digital representation environment               65. Simmons, J. P., Shen, C. & Wang, Y. Phase ﬁeld modeling of simultaneous
+    for the analysis of microstructure in 3D. Integr. Mater. Manuf. Innov. 3, 56–72                  nucleation and growth by explicitly incorporating nucleation events. Scr. Mater.
+    (2014).                                                                                          43, 935–942 (2000).
+36. Chadwick, A. F., Stewart, J. A., Enrique, R. A., Du, S. & Thornton, K. Numerical             66. Jokisaari, A. M., Permann, C. & Thornton, K. A nucleation algorithm for the cou-
+    modeling of localized corrosion using phase-ﬁeld and smoothed boundary                           pled conserved-nonconserved phase ﬁeld model. Comput. Mater. Sci. 112,
+    methods. J. Electrochem. Soc. 165, C633–C646 (2018).                                             128–138 (2016).
+37. Yu, H.-C., Chen, H.-Y. & Thornton, K. Extended smoothed boundary method for                  67. Krill, C. E. & Chen, L.-Q. Computer simulation of {3-D} grain growth using a phase-
+    solving partial differential equations with general boundary conditions on                       ﬁeld model. Acta Mater. 50, 3059–3075 (2002).
+    complex boundaries. Model. Simul. Mater. Sci. Eng. 20, 075008 (2012).                        68. Materials Commons API GitHub Repository. https://github.com/materials-
+38. Putti, M. & Paniconi, C. Picard and Newton linearization for the coupled model for               commons/mcapi/ (2019).
+    saltwater intrusion in aquifers. Adv. Water Resour. 18, 159–170 (1995).                      69. PRISMS-PF Materials Commons CLI Plugin GitHub Repository. https://github.com/
+39. Porter, D. A. & Easterling, K. E. Phase Transformations in Metals and Alloys (Van                prisms-center/prismspf_mcapi (2019).
+    Nostrand Reinhold Company, 1981).                                                            70. Karma, A. & Rappel, W. J. Quantitative phase-ﬁeld modeling of dendritic growth
+40. Kobayashi, R. Modeling and numerical simulations of dendritic crystal growth.                    in two and three dimensions. Phys. Rev. E - Stat. Phys., Plasmas, Fluids, Relat.
+    Phys. D. Nonlinear Phenom. 63, 410–423 (1993).                                                   Interdiscip. Top. https://doi.org/10.1103/PhysRevE.57.4323 (1998).
+41. Wise, S. M. et al. Quantum dot formation on a strain-patterned epitaxial thin ﬁlm.
+    Appl. Phys. Lett. 87, 1–3 (2005).
+42. Salvalaglio, M., Backofen, R., Bergamaschini, R., Montalenti, F. & Voigt, A. Faceting
+    of equilibrium and metastable nanostructures: a phase-ﬁeld model of surface                  ACKNOWLEDGEMENTS
+    diffusion tackling realistic shapes. Cryst. Growth Des. 15, 2787–2794 (2015).                This work was supported by the U.S. Department of Energy, Ofﬁce of Basic Energy
+43. DeWitt, S. & Gentry, S. PRISMS-PF: Equilibrium Shape for a Misﬁtting Precipitate.            Sciences, Division of Materials Sciences and Engineering under Award #DE-
+    https://nanohub.org/resources/prismspfmisﬁt (2019).                                          SC0008637 as part of the Center for PRedictive Integrated Structural Materials
+44. Rappture Homepage. https://nanohub.org/infrastructure/rappture (2019).                       Science (PRISMS Center) at University of Michigan. This research used resources of
+45. Yaghoobi, M. et al. PRISMS-plasticity: an open-source crystal plasticity ﬁnite ele-          the National Energy Research Scientiﬁc Computing Center (NERSC), a U.S.
+    ment software. Comput. Mater. Sci. 169, 109078 (2019).                                       Department of Energy Ofﬁce of Science User Facility operated under Contract No.
+46. CASM GitHub Repository, v0.1.0. https://github.com/prisms-center/CASMcode                    DE-AC02-05CH11231. This research was also supported through computational
+    (2015).
+                                                                                                 resources and services provided by Advanced Research Computing at the University
+
+
+Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences                                   npj Computational Materials (2020) 29
+                                                                          S. DeWitt et al.
+12
+     of Michigan, Ann Arbor. The authors thank other contributors to the PRISMS-PF             Reprints and permission information is available at http://www.nature.com/
+     codebase, including Dr. Larry Aagesen, Mr. Jason Luce, and Mr. Xin Bo Qi.                 reprints
+
+                                                                                               Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims
+     AUTHOR CONTRIBUTIONS                                                                      in published maps and institutional afﬁliations.
+     S.D., S.R., and K.T. conceived this work. S.D. and S.R. were the primary developers of
+     the code, with additional contributions from D.M. and W.B.A., S.D. performed the
+     scaling and performance tests and associated analysis. S.D., D.M., and W.B.A.
+     performed the calculations in the applications section. S.D. provided the initial draft
+     of the paper, with contributions from the remaining authors. All of the authors                              Open Access This article is licensed under a Creative Commons
+     discussed the contents of the paper, edited the paper, and approved its publication.                         Attribution 4.0 International License, which permits use, sharing,
+                                                                                               adaptation, distribution and reproduction in any medium or format, as long as you give
+                                                                                               appropriate credit to the original author(s) and the source, provide a link to the Creative
+                                                                                               Commons license, and indicate if changes were made. The images or other third party
+     COMPETING INTERESTS
+                                                                                               material in this article are included in the article’s Creative Commons license, unless
+     The authors declare no competing interests.                                               indicated otherwise in a credit line to the material. If material is not included in the
+                                                                                               article’s Creative Commons license and your intended use is not permitted by statutory
+                                                                                               regulation or exceeds the permitted use, you will need to obtain permission directly
+     ADDITIONAL INFORMATION                                                                    from the copyright holder. To view a copy of this license, visit http://creativecommons.
+     Supplementary information is available for this paper at https://doi.org/10.1038/         org/licenses/by/4.0/.
+     s41524-020-0298-5.
+
+     Correspondence and requests for materials should be addressed to S.D. or K.T.             © The Author(s) 2020
+
+
+
+
+     npj Computational Materials (2020) 29                      Published in partnership with the Shanghai Institute of Ceramics of the Chinese Academy of Sciences
+

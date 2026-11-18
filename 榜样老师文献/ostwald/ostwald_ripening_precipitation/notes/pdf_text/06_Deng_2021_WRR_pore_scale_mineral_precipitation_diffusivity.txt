@@ -1,0 +1,939 @@
+RESEARCH ARTICLE                            A Pore-Scale Investigation of Mineral Precipitation
+10.1029/2020WR028483
+                                            Driven Diffusivity Change at the Column-Scale
+Key Points:
+                                            H. Deng1     , C. Tournassat1,2,3   , S. Molins1    , F. Claret2   , and C. I. Steefel1
+• P ore-scale reactive transport
+   modeling of diffusion controlled         Energy Geosciences Division, Lawrence Berkeley National Laboratory, Berkeley, CA, USA, 2BRGM, Orléans, France,
+                                            1
+   mineral precipitation                    3
+                                            Institut des Sciences de la Terre d’Orléans, Université d’Orléans—CNRS/INSU—BRGM, Orléans, France
+• Examined the evolution of pore
+   structures and averaged bulk
+   properties
+• Developed modified porosity-             Abstract Mineral precipitation affects the pore structure and thus transport properties of porous
+   diffusivity relationship that accounts   media. In this study, we investigated the pore-scale dynamics of precipitation in diffusion controlled
+   for pore-scale mineral precipitation
+   dynamics
+                                            systems and the resulting impacts on the effective diffusivity, using a micro-continuum reactive transport
+                                            model. Forty two-dimensional pore structures representing both idealized and realistic geometries were
+                                            simulated with consideration of different precipitation scenarios and rates. A homogeneous nucleation
+Supporting Information:
+                                            scenario reproduced patterns observed in previous experimental study showing mixing-induced
+Supporting Information may be found
+in the online version of this article.      precipitation, and a surface growth scenario captured the pattern for mineral precipitation on a substrate
+                                            with the same or similar mineral structures. In all cases, local precipitation resulted in the reduction in
+Correspondence to:
+                                            the average porosity of the domain (Φ) until the cessation of diffusive transport and the termination of
+H. Deng,                                    precipitation. The minimum porosity reached was referred to as the critical porosity (Φc). The effective
+hangdeng@lbl.gov                            diffusivity (Deff ) decreased with Φ and dropped sharply to effectively zero, that is, the critical effective
+                                            diffusivity (Deffc), as Φc was reached. These pore-scale dynamics can be captured by a revised Φ  Deff
+Citation:                                   relationship that explicitly considers the critical porosity and the corresponding effective diffusivity, and
+Deng, H., Tournassat, C., Molins, S.,       the pre-exponential coefficient and the exponent of the relationship varied with initial pore structure and
+Claret, F., & Steefel, C. I. (2021). A      the precipitation kinetics. Overall, the homogeneous nucleation scenario results in systematically larger
+pore-scale investigation of mineral
+precipitation driven diffusivity change     Φc and coefficients that give rise to a sharper decrease in diffusivity as Φc is approached, compared to the
+at the column-scale. Water Resources        surface growth scenario. The revised relationship was also implemented at continuum scale and used to
+Research, 57, e2020WR028483. https://       examine column scale diffusivity change and reactions.
+doi.org/10.1029/2020WR028483
+
+Received 27 JUL 2020
+                                            Plain Language Summary Mineral precipitation alters the internal structures of geo-
+Accepted 18 APR 2021                        materials, and thus affects how fluid and solutes migrate in these porous media. Typically, this alteration
+                                            has been modeled by assuming that the changes in transport properties are proportional to the amount
+                                            of mineral precipitation, following a simple power law function. However, previous experimental studies
+                                            have pointed out that in addition to the amount of mineral precipitation, how the structures of porous
+                                            media are altered by the mineral precipitates can be important as well. In our study, we used numerical
+                                            modeling that resolves the geometry of porous media explicitly to investigate how the structures evolve as
+                                            a result of mineral precipitation. In these simulations, we consider initial geometry of different complexity
+                                            and a range of precipitation rates that have been reported in previous studies. All the simulations showed
+                                            that a small amount of precipitation can result in plugging of the porous media, by clogging a small
+                                            portion of the transport pathways. Based on the simulation results, we demonstrated that the simple
+                                            power law function can be modified to account for these structural changes. We have also implemented
+                                            this modified power law relationship to simulate a column experiment published previously and showed
+                                            good agreements.
+
+
+                                            1. Introduction
+                                            Mineral dissolution and precipitation can change the structures of fractured porous media, and thus control
+                                            their mechanical and hydrodynamic properties. Mineral precipitation is widely observed and occurs when
+© 2021. The Authors.                        the fluid is over-saturated with respect to one or multiple mineral phases. Some conditions that can be en-
+This is an open access article under
+the terms of the Creative Commons           countered in natural and engineered systems and lead to mineral precipitation include (i) solubility change,
+Attribution-NonCommercial License,          for example, due to the presence of temperature gradients (Griffiths et al., 2016; Steefel & Lasaga, 1994),
+which permits use, distribution and         (ii) mixing of fluids (Emmanuel & Berkowitz, 2005; Tartakovsky et al., 2008), and (iii) mineral dissolution
+reproduction in any medium, provided
+the original work is properly cited and     that increases the concentration of key chemical species (Garcia-Rios et al., 2015; Li et al., 2017; Seigneur
+is not used for commercial purposes.        et al., 2019; Steefel & Lichtner, 1994; Xie et al., 2015). Understanding and predicting the evolution of Earth’s
+
+
+DENG ET AL.                                                                                                                                          1 of 16
+                  Water Resources Research                                                     10.1029/2020WR028483
+
+
+
+              systems resulting from mineral precipitation are important. For instance, mineralization of CO2 injected
+              into the underground as part of geologic carbon storage is an important permanent trapping mechanism
+              (Matter et al., 2016), and mineral precipitation can affect the efficiency of hydraulic fracturing and the per-
+              formance of other subsurface energy applications (Vankeuren et al., 2017). In addition, salt precipitation
+              alters the hydraulic properties of soils (Nachshon et al., 2011) and the porosity in coastal environments,
+              especially in the saltwater-freshwater mixing zones (Singurindy et al., 2004). Mineral precipitation is one
+              mechanism used to scavenge contaminants in aquifers (Wright et al., 2011), a by-product of remediation
+              technologies such as in situ chemical oxidation (Chen and Park, 2017), and can reduce the efficiency of
+              membranes used for water desalination (Rahardianto et al., 2008). Therefore, evaluating and predicting
+              mineral precipitation and its impacts on porous media are needed for improving management practices of
+              soils and groundwater resources.
+
+              In continuum scale modeling (Lichtner, 1996; Steefel & Lichtner, 1994; 1998; Steefel et al., 2005; Steefel,
+              Appelo, et al., 2015), the changes in flow and transport properties resulting from mineral precipitation, and
+              mineral reactions in general, are typically described by power law functions of porosity (ϕ). Commonly used
+              functional relations include the Kozeny-Carman relationship between porosity and permeability and Ar-
+              chie’s law that relates effective diffusivity to porosity. These relationships are easy to implement and allow
+              some considerations of system specificity such as textural heterogeneity through the empirical coefficients
+              (Cai et al., 2017; Luquot & Gouze, 2009; Menke et al., 2017; Peng et al., 2012; Smith et al., 2013; Steinwinder
+              & Beckingham, 2019).
+
+              However, adjusting the parameters alone in some cases fails to produce flow and transport properties that
+              are directly measured or inferred from observations. In flow-through experiments in carbonate rocks with
+              induced precipitation (Luquot & Gouze, 2009), it is observed that porosity-permeability relationship shifted
+              away from a power law relationship as precipitation progresses. Navarre-Sitchler et al. (2009) performed dif-
+              fusion experiments on weathered basalt samples and the corresponding parent materials and showed that
+              the effective diffusivity (Deff ) evaluated using micro-x-ray fluorescence spectroscopy cannot be fitted with a
+              simple form of Archie’s law given by Deff  Dm a m, where Dm is the molecular diffusion coefficient and a
+              and m are the empirical coefficients. In Chagneau et al. (2015), a set of column experiments were carried
+              out to assess the changes in the effective diffusivity of the system as a result of mineral precipitation. In the
+              study of Chagneau et al. (2015), a one-dimensional continuum reactive transport model using Archie’s law
+              either over-estimated the amount of precipitation or over-estimated the tracer transport.
+
+              These studies highlighted the need of further development of constitutive relations or other means to ac-
+              count for pore-scale dynamics that are not captured by bulk averaged parameters used in continuum scale
+              modeling. For this purpose, pore-scale experiments and modeling have been used to investigate microscopic
+              scale dynamics that arise from geometric and mineralogical heterogeneity and that can propagate to larg-
+              er scale processes (Cil et al., 2017; Deng et al., 2018; Chen et al., 2014; Molins et al., 2020; Zhang, Kang,
+              et al., 2010). For system evolution driven by mineral precipitation, the complexity of pore-scale dynamics
+              is compounded by the processes of nucleation and crystal growth. It was shown that the morphology and
+              texture of the precipitates depend on the substrates (Noiriel et al., 2016), supersaturation (Kim et al., 2020;
+              Rajyaguru et al., 2019; Zhang, Dehoff, et al., 2010), and local hydrodynamics (Poonoosamy et al., 2019).
+              Parallel pore-scale modeling studies were used to simulate precipitation patterns (Yoon et al., 2012), and
+              their dependence on fluid saturation (Prasianakis et al., 2017). Pore-scale models were also used to examine
+              system evolution and their dependence on different nucleation mechanisms, for example, epitaxial crystal
+              growth versus crystal growth along the direction of maximum concentration gradient or probabilistic nu-
+              cleation versus deterministic nucleation (Fazeli et al., 2020; Chen et al., 2014).
+
+              These studies with well controlled and characterized experiments and high-fidelity modeling have pro-
+              vided valuable data and important mechanistic understanding of precipitation-driven pore-scale dynam-
+              ics. While a few studies have examined permeability evolution following precipitation and its relationship
+              with respect to porosity change (Fazeli et al., 2020; Noiriel et al., 2016), how pore-scale dynamics translate
+              into continuum scale transport properties remains an open question. In our study, we aim to use carefully
+              designed pore-scale reactive transport simulations to address this gap. The complexity and uncertainties
+              of precipitation kinetics were considered by including different precipitation scenarios and rates. In the
+              following sections, we first present the model and simulation approach and then follow this with pore-scale
+
+
+DENG ET AL.                                                                                                            2 of 16
+                                         Water Resources Research                                                  10.1029/2020WR028483
+
+
+
+                                                                       simulation results and discussions of the revised mathematical relation
+                                                                       that integrates the pore-scale dynamics into column/continuum scale
+                                                                       simulations.
+
+
+                                                                       2. Methods
+                                                                         The approach taken in this work is the simulation of diffusion-reaction
+                                                                         processes in 2D domains derived from openly available digital rock data.
+                                                                         The simulations were performed systematically under different model
+                                                                         assumptions and over a range of parameters. The simulations used the
+                                                                         solution chemistry and major physical bulk properties of the experi-
+                                                                         mental work of Chagneau et al. (2015), in which celestite precipitation
+Figure 1. Illustration of the 2D domains of (a) the Finney pack geometry
+and (b) the quartz sand pack geometry, and of the fluid chemistry        was induced in the quartz sand packed column by the mixing of a Sr-
+boundary conditions used in the simulations.                             rich fluid and a sulfate-rich fluid introduced via diffusion from the two
+                                                                         ends, respectively. This allowed us to leverage the experimental data for
+                                                                         comparison and discussion. The precipitation reaction writes as follows.
+                                        All aqueous reactions and the corresponding equilibrium constants are summarized in the supporting
+                                        information.
+
+                                    Sr 2   SO42   SrSO 4  s  .
+                                    (1)
+
+
+
+                                    2.1. Pore Geometry
+
+                                    Two pore geometries were considered, using data archived at the digital rock portal (https://www.digital-
+                                    rocksportal.org/). One data set represents an idealized geometry from a random packing of hard spheres
+                                    with uniform radii (Finney, 2016). A three-dimensional (3D) volume image was generated using the re-
+                                    ported coordinates of the sphere centers, using a radius of 150 µm and a voxel size of 5 µm. The voxel size
+                                    was representative of the resolution of micro-tomography images, and the diameter was comparable to the
+                                    grain size used in the experiments of Chagneau et al. (2015). The other data set included grayscale synchro-
+                                    tron x-ray computed tomography images of a column that was packed with quartz sands of grain sizes of
+                                    420–600 µm (Molnar, 2016). The images had a resolution of 9.87 µm and were rescaled to a resolution of
+                                    5 µm such that the grain sizes were comparable with the Finney pack geometries. For the simulations, the
+                                    CT images from Molnar (2016) were segmented in MATLAB using Otsu’s method (Otsu, 1979) to generate
+                                    a binary volume image. The average porosity of the middle section of the Finney pack was 48%, whereas
+                                    the average porosity of the quartz pack was 33%. These values are on the higher and lower end of the values
+                                    reported for the experimental columns (42%  9%), respectively.
+
+                                    For our simulations, twenty two-dimensional (2D) domains were randomly selected from each 3D volume,
+                                    as illustrated in Figure 1. The domain size was 1 by 1 mm (200 by 200 grid cells) for the Finney pack geom-
+                                    etries (numbered as FGeo1-20) and was 1 by 1.75 mm (200 by 350 grid cells) for the quartz pack geometries
+                                    (numbered as QGeo1-20). The width was larger for the quartz pack geometries to ensure initial connected-
+                                    ness of the domain.
+
+
+                                    2.2. Reactive Transport Model for Precipitation Simulations
+
+                                    In our study, the code CrunchTope (Steefel, Appelo, et al., 2015) was used for all the reactive transport simu-
+                                    lations. For pore-scale simulations, modifications were made to implement the micro-continuum approach:
+                                    the pore geometry was explicitly represented, whereas porosity was used to keep track of partial volume
+                                    in individual grid cells due to precipitation. As the system considered was diffusion controlled, the main
+                                    governing equation written with respect to the total concentration of a chemical component Ψi is given as
+                                    follows:
+                                     Ψi
+                                    (2)      DΨi   i Ri ,
+                                     t
+
+
+DENG ET AL.                                                                                                                                3 of 16
+                  Water Resources Research                                                      10.1029/2020WR028483
+
+
+
+              where the local porosity (ϕ) is 1.0 in the pore space, 0.0 inside the mineral grains and is a fractional value
+              as precipitation progresses and occupies part of the grid cell. D is the diffusion coefficient, which is equal
+              to the molecular diffusion coefficient in the pore space, and is Dm in grid cells occupied by the precipitates
+              to account for the tortuosity caused by the presence of the solid phase. Two additional non-linear tortuosity
+              models ( D  Dm n0 , n0  2 or 3) were also tested for a subset of the simulation conditions to examine the
+              impacts of this assumption. For simplicity, we assumed that the molecular diffusion for all aqueous species
+              is the same, with Dm = 2.24 × 10−9 m2/s following that of the tracer in Chagneau et al. (2015). The total
+              concentration is the sum of the concentration of the primary species and those of other species that can
+              be expressed in terms of the primary species based on mass action laws. The concentrations of all primary
+              species were calculated by solving the mass balance equation (Equation 2). Spatial discretization for numer-
+              ically solving Equation 2 followed the image resolution.
+
+              The reaction term (last term on the right hand side) accounts for the concentration change caused by min-
+              eral reactions, with ϑi being the stoichiometric coefficient and one for celestite. Two precipitation conceptu-
+              alizations were considered to bracket different reaction mechanisms. In one scenario, homogeneous nucle-
+              ation was enabled in the pore space and provided the initial surface area for subsequent crystal growth. This
+              is referred to as the homogeneous nucleation (HN) scenario. In the other scenario, referred to as the surface
+              growth (SG) scenario, homogeneous nucleation in the pore space was not enabled. This is also equivalent of
+              assuming that heterogeneous nucleation is fast and crystal growth picks up immediately.
+
+                    Ri,nuc  Ri,tst , for HN
+              Ri  
+              (3)                             .
+                      R ,               for SG
+                     i,tst
+
+              Crystal growth rate was calculated from the transition state theory rate law (Ri,tst [mol / m 3s]) and is positive
+              for the precipitation reaction.
+                                                                m2
+                                                   IAP  1 
+                                                           m
+                                 nj     Ea  
+              R
+              (4)    Ak rxn  a j exp     1                .
+                                        RT            
+               i ,tst
+                                                    Ksp                                 
+
+                       
+              where A m / m2    3
+                                     is the bulk surface area of the mineral, k  mol / m s is the kinetic factor, a is the
+                                                                                 rxn
+                                                                                            2
+                                                                                                                         j
+
+              activity of any catalytic and inhibitory species, and nj is the corresponding reaction order. The Arrhenius
+                                                                                                                     
+              term accounts for the temperature (T [ K ]) effect, where Ea  J / mol  is the activation energy, and R J/mol K 
+              is the ideal gas constant. The thermodynamic driving force is measured by the saturation index, which is
+              the ratio of ionic activity product (IAP) to solubility (Ksp), and m1 and m2 are constants dependent on the
+              reaction mechanisms.
+
+              Homogeneous nucleation rate ( Ri,nuc [mol / m 3s] ) was described by the classical nucleation theory and was
+              implemented in CrunchTope as follows (Li et al., 2017):
+
+                                                            
+                                                            
+                                                 2 3        
+                                           16  v  
+              Ri ,nuc A0 J 0 exp  
+              
+              (5)                                           
+                                                          2 
+                                            
+                                    3 3   IAP      
+                                    3k BT  ln  K   
+                                             sp   
+
+              where A0 is unity (m 2 / m 3) and J0 is the kinetic factor with a value of 1.0 × 10−8 mol/m2s for celestite, which
+              is within the range inferred from the experimental study of Poonoosamy et al. (2019). v is the molecular
+              volume (8.21 × 10−29 m3 for celestite), α is the effective interfacial tension (0.092 J/m2 for celestite, Nielsen
+              & Söhnel, 1971), and kB is the Boltzmann constant. It is assumed that the nuclei formed via homogeneous
+              nucleation stay in the same grid cell, where the crystal growth continues.
+
+              For the homogeneous nucleation scenario, at a given time (t), the surface area used in Equation 4 was cal-
+              culated as
+
+
+DENG ET AL.                                                                                                              4 of 16
+                                            Water Resources Research                                                            10.1029/2020WR028483
+
+
+
+Table 1
+The Kinetic Data and Surface Area Setup for Different Precipitation Scenarios Simulated in This Study
+Scenario                                       Nucleation                  Crystal growth kinetic data                      Surface area         Reference
+                                                                                                                                             2
+Homogeneous nucleation                       0.092 J / m 2 *                     krxn  kMarty               Specific surface area 0.44 m /g    ssa0.44
+
+                                       J
+                                        0 1.0  10 8 mol / m 2s**           m1 0.5,
+                                                                                     m2 2
+
+                                                                               log kMarty  7.23 ***
+
+                                              0.092 J / m 2                    krxn  kusgs a 0.109          Specific surface area 0.44 m2/g   ssa0.44_
+                                                                                                H 
+                                                                                                                                                     usgs
+                                        J 1.0  10 8 mol / m 2s                  m
+                                                                                   1 m
+                                                                                       2 1
+                                         0
+
+                                                                               log kusgs  5.66 ****
+
+                                              0.092 J / m 2                      krxn  kMarty                Specific surface area 44 m2/g      ssa44
+
+
+                                        J
+                                         0 1.0  10 8 mol / m 2s            m1 0.5,
+                                                                                     m2 2
+
+                                                                                log kMarty  7.23
+
+Surface growth                                    N/A                              krxn  kMarty                    Porosity gradient area         pga
+
+                                                                               m1 2,
+                                                                                   m2 0.5
+
+                                                                                log kMarty  7.23
+
+                                                  N/A                            krxn  kusgs a 0.109               Porosity gradient area       pga_usgs
+                                                                                                H 
+
+
+                                                                                   m
+                                                                                   1 m
+                                                                                       2 1
+
+                                                                                 log kusgs  5.66
+
+The data are from *Nielsen & Söhnel (1971), **Poonoosamy et al. (2019), ***Marty et al. (2015), and **** Palandri (2004).
+
+
+
+                                                                                                          t
+                                       A  MW  ssa   Ri ,
+                                       (6)
+                                                                                                          0
+
+
+                                       where MW  g / mol is the molecular weight and ssa is the specific surface area (m2/g).
+
+                                       For the surface growth scenario, the surface area used in Equation 4 was the geometric surface area of the
+                                       solid phase and was calculated based on the pore geometry as the gradient of the local porosity using the
+                                       micro-continuum formulation derived from the volume averaging theorem (Soulaine et al., 2017 and ref-
+                                       erences therein):
+
+                                       A   .
+                                       (7)
+
+                                       In order to account for uncertainties introduced by the kinetic data, two sets of kinetic coefficients and
+                                       two specific surface areas were examined in the simulations. One kinetic formulation followed Paland-
+                                       ri (2004) and included a non-linear dependence on pH. The other kinetic formulation used was from Marty
+                                       et al. (2015) and was independent of any other species. The specific surface area of celestite varies substan-
+                                       tially, as reported in Chagneau et al. (2015). Accordingly, two values, 0.44 and 44 m2/g, were chosen as the
+                                       bounding cases. Overall, higher specific surface area and the kinetic coefficient from Marty et al. (2015)
+                                       would result in higher reaction rate. The parameters and kinetic scenarios are summarized in Table 1.
+
+                                       Mineral precipitation was used to update local porosity:
+
+                                        t  dt  t  RiVm dt,
+                                       (8)
+
+                                       where Vm is the molar volume of celestite and dt is the time step.
+
+
+DENG ET AL.                                                                                                                                         5 of 16
+                  Water Resources Research                                                      10.1029/2020WR028483
+
+
+
+              The precipitation simulations used boundary conditions similar to the experiment. The two ends of the
+              computational domain were assigned a Dirichlet boundary condition, in contact with a solution of 0.5 M
+              SrCl2 and a Na2SO4 solution of 0.5 M, respectively (Figure 1). The other two sides were assigned no flux
+              boundary conditions.
+
+
+              2.3. Numerical Tracer Experiments
+
+              During the precipitation simulations, pore structures were recorded at multiple time points. Numerical trac-
+              er experiments were performed to evaluate the corresponding effective diffusivity, similar in concept and
+              execution to those considered by Navarre-Sitchler et al. (2009) and Steefel, Beckingham, & Landrot (2015).
+              The governing equation of the numerical tracer experiments was similar to the precipitation simulations
+              but without the reaction term.
+
+              Ctracer
+              (9)          DCtracer  .
+                t
+
+              In the tracer simulations, the Dirichlet boundary on the left was considered as the inlet and was exposed
+              to a solution with a non-reactive tracer of 1 M. The pairing boundary, that is, the outlet, had a zero-gradi-
+              ent boundary condition and is where the tracer break-through curve (Ctracer  t  |x  L ) was monitored. Other
+              boundary conditions, spatial discretization, and diffusion coefficients were set up in the same way as the
+              precipitation simulations.
+
+              The effective diffusivity ( Deff ) is the bulk transport property of the entire computational domain and is
+              evaluated by fitting the tracer break-through curve from the numerical tracer experiments using the one-di-
+              mensional (1D) diffusion equation.
+
+              Ctracer         2Ctracer
+              (10)     Deff            .
+                t               x 2
+
+              Its relation with respect to the domain porosity (Φ), which is the average of the local porosity in all grid cells
+              in the domain (Φ   x  y  x, y ), was analyzed. In the following sections, porosity refers to the domain
+              porosity unless specified otherwise.
+
+              Numerical tracer experiments were performed for all Finney pack geometries and a subset of four quartz
+              sand pack geometries.
+
+
+              3. Simulation Results
+              3.1. Pore Geometry Evolution and Porosity Reduction
+
+              In the homogeneous nucleation scenario, a precipitation band formed in the pore space (Figure 2a–2c).
+              This type of pattern was observed in the microfluidic experiments by Zhang, Dehoff, et al. (2010), in which
+              calcium-carbonate precipitation was induced by the mixing of the calcium-rich and carbonate-rich fluids
+              in the analog porous media, and the precipitation band tracked the mixing line of the two fluids. Their ex-
+              perimental observation was also confirmed by the companion modeling work (Yoon et al., 2012), and the
+              initial surface area was assumed to be provided by the top and bottom surfaces of the microfluidic cell. In
+              our study, the initial surface area was created by the homogeneous nucleation in the fluid that was locally
+              supersaturated.
+
+              In contrast, under the surface growth scenario, the precipitates coated the mineral grains, and the precipita-
+              tion pattern was thus largely influenced by the initial pore structure (Figures 2d and 2e). This precipitation
+              pattern was consistent with the scenario when the substrate had a similar crystal structure to the precipitat-
+              ing mineral. Similar patterns have been observed in the experimental study of Noiriel et al. (2012) when the
+              injected fluid over-saturated with respect to calcium carbonate interacted with the calcite spar substrate. In
+              these cases, heterogeneous nucleation, which was not considered in our model, is fast, and the following
+              crystal growth is the dominant process.
+
+
+DENG ET AL.                                                                                                             6 of 16
+                                             Water Resources Research                                                         10.1029/2020WR028483
+
+
+
+
+Figure 2. Snapshots of pore geometry evolution for a Finney pack geometry (a)–(e) and a quartz sand pack geometry (f)–(j) for different precipitation setups:
+(a) (f)—ssa0.44, (b) (g)—ssa0.44_usgs, (c) (h)—ssa44, (d) (i)—pga, (e) (j)—pga_usgs. Note that due to the difference in reaction rate and geometry, each case
+reached the clogging point at different time steps, and the snapshots shown are thus at different times.
+
+
+                                        Across different precipitation model setups and initial pore geometries, the domain porosity (Φ) decreased
+                                        as a result of precipitation and reached a non-zero constant value afterward (Figure 3), indicating that the
+                                        precipitation reaction became inhibited. As the precipitates blocked the transport pathways, mixing of the
+                                        two fluids was suppressed, and thus, the precipitation reaction was no longer sustained. Here, the average
+                                        porosity within the 2D computational domain at the end of the precipitation reaction is referred to as the
+                                        critical porosity (Φc).
+
+                                        Under the surface growth scenario, domain porosity decreased continuously from the beginning of the
+                                        simulation until the critical porosity was reached. In comparison, in the homogeneous nucleation scenario,
+                                        the domain porosity remained unchanged initially as the nucleation dominated over the crystal growth
+                                        pathway. The decrease in Φ became evident once enough surface area had been created by nucleation for
+                                        the crystal growth to pick up. The critical porosity tended to be lower under the surface growth scenario.
+
+
+DENG ET AL.                                                                                                                                            7 of 16
+                  Water Resources Research                                                       10.1029/2020WR028483
+
+
+
+
+              Figure 3. Domain porosity (Φ) evolution for (a) 20 Finney pack geometries (FGeo1-20) and (b) 20 quartz sand pack
+              geometries (QGeo1-20) with different precipitation setups. Note that some cases had longer simulations as they
+              required longer to reach the clogging time point than other cases.
+
+
+              For instance, for the quartz pack geometries, surface growth simulations had critical porosity as low as 24%,
+              whereas the critical porosity of homogeneous nucleation simulations was always above 31%. This is because
+              in the surface growth scenario, precipitation occurred on the grain surfaces outside of the pore throats were
+              less effective in clogging the transport pathway (Figures 2d, 2e, 2i and 2j).
+
+              For the same precipitation conceptualization and geometry, a lower critical porosity was observed at a slow-
+              er reaction rate. For example, in the Finney pack simulations, the critical porosity for the ssa0.44 (specific
+              surface area = 0.44 m2/g) case was lower than the ssa44 (specific surface area = 44 m2/g) case by 3 percent-
+              age points. This is a result of the interplay between precipitation and diffusion, which is typically measured
+              by the Damköhler number (Da). At the lower precipitation rate (lower Da), in grid cells that are over-satu-
+              rated, less chemicals (Sr2+ and SO42−) are removed from the solution by precipitation and more are trans-
+              ported downgradient. As a result, more grid cells become oversaturated, and by the time when the transport
+
+
+DENG ET AL.                                                                                                               8 of 16
+                                              Water Resources Research                                                            10.1029/2020WR028483
+
+
+
+
+Figure 4. Effective diffusivity in relation to the porosity from the tracer simulations and the fitting line using Equation 11 for the five precipitation kinetic
+setups of all the Finney pack geometries (FGeo1-20). The goodness-of-fitting R2 parameter is 0.97 on average, and larger than 0.91 for all 100 cases except for
+two.
+
+
+
+                                         paths become clogged, more precipitation would have happened. As shown in Figure 2, the precipitation
+                                         band formed in the homogeneous nucleation scenario was thicker at a slower reaction rate, and the growth
+                                         of the grain surfaces was observable in a wider region in the surface growth cases.
+
+
+                                         etries and between ∼1% and 20% for the Finney pack geometries (Figure 3). The reduction in porosity is
+                                         The overall reduction in the domain porosity varied between less than 1%–12% for the quartz pack geom-
+
+                                         positively correlated with the initial porosity in the Finney pack geometries; whereas there is no clear cor-
+                                         relation between the porosity reduction and the initial porosity for the quartz pack geometries (Figure S1).
+                                         This implies that for the idealized hard sphere packing of Finney geometries, initial porosity is a good
+                                         indicator of the pore structure and connectivity. In contrast, for the quartz pack geometries, there is more
+                                         spatial heterogeneity in the pore structure, and porosity does not accurately reflect the connectivity of the
+                                         pore structures. For instance, it was reported that permeability of sandstones from different basins does not
+                                         vary monotonically with porosity and samples with comparable porosity can have different permeability
+                                         and thus connectivity (Zou et al., 2012).
+
+
+
+                                         3.2. Effective Diffusivity Evolution
+
+                                         The effective diffusivity decreased with the porosity (Figure 4). The initial effective diffusivity ranged be-
+                                         tween 1.1e−9 and 1.6e−9 m2/s in the 20 Finney pack geometries given a molecular diffusion coefficient of
+                                         2.24e−9 m2/s for the tracer. The relatively large initial effective diffusivity was indicative of the presence of
+                                         open transport pathways. As the porosity approached the clogging value, the effective diffusivity decreased
+                                         significantly. At the critical porosity, the effective diffusivity became effectively zero, as evidenced by the
+                                         termination of the mixing and precipitation. This was also expected in our simulations, as precipitation
+                                         was allowed to proceed until local porosity (ϕ) was effectively zero (a non-zero but negligible value was
+                                         used for numerical reasons). Such clogging has also been observed experimentally. In the experiments of
+                                         Zhang, Dehoff, et al. (2010), dissolution of the precipitated calcium carbonate was observed at the late stage,
+
+
+DENG ET AL.                                                                                                                                                  9 of 16
+                  Water Resources Research                                                           10.1029/2020WR028483
+
+
+
+
+              Figure 5. (a) Pre-exponential coefficient and (b) exponent of Equation 11 for all Finney pack geometries (filled circle)
+              and the subset of quartz sand pack geometries simulated (open square) for different precipitation kinetic setups.
+
+
+              confirming negligible transport through the precipitates and thus the termination of mixing and further
+              precipitation as observed in the simulations here.
+
+              These trends are consistent with what was observed in Navarre-Sitchler et al. (2009). Therefore, we account-
+              ed for the clogging effect of the precipitates on effective diffusivity by adopting the following mathematical
+              formulation:
+
+              Deff Deff c  aDm   c  ,
+                                                                                        n
+              (11)
+
+
+              where a and n are empirical coefficients. Theoretically, the value of Deffc can be determined by running the
+              numerical tracer experiment on the pore structure at the critical porosity. Here, because Dm  0 when
+                0 in the pore space that is clogged by the precipitates, Deff c  0, as also confirmed by the numerical
+              tracer experiments, which showed no break-through of the tracer after 10 million seconds. Therefore, a
+              value of 1e−15 m2/s was assumed for Deffc across all geometries and precipitation scenarios. This value is on
+              the same order of magnitude as the value used for unweathered basalt rocks in Navarre-Sitchler et al. (2009)
+              and provides a reasonable estimate for low diffusivity systems that can be encountered. Using a value of
+              0 or 1e−15 m2/s for Deffc did not affect the evaluation of the parameters a and n. Because each simulation
+              evolves differently and it was impossible to predict the clogging time a priori and thus set the output time
+              steps accordingly, data points are sparse in the region where the diffusivity drops dramatically within a
+              small porosity change and a relatively short time period.
+
+              For the Finney pack geometries (Figure 5), the pre-exponential coefficients (a) for the two surface growth
+              cases (i.e., “pga” and “pga_usgs”) were 0.24  0.06 (mean  standard deviation) and 0.29  0.07, respectively,
+              and were smaller than those for the three homogeneous nucleation cases (i.e., “ssa0.44”, “ssa0.44_usgs”, and
+              “ssa44”), which were 0.46  0.06, 0.45  0.07, and 0.49  0.08, respectively. Under the same precipitation sce-
+              nario, the reaction rate only had a minor impact on the pre-exponential coefficient. The exponent (n) in the
+              surface growth scenario, which was 0.41  0.08 and 0.36  0.09 for the two cases, was slightly larger than in
+              the homogeneous nucleation scenario. For the three homogeneous nucleation cases, n showed a larger var-
+              iation across different geometries, with values of 0.26  0.09, 0.30  0.13, and 0.29  0.16. For FGeo8, simula-
+              tions were performed with larger domain sizes for “ssa0.44_usgs” and “pga_usgs”. The simulations showed
+              similar evolution in the pore structures. The pre-exponential coefficient and exponent values were within
+              the ranges observed for different geometries. More information is provided in the supporting information.
+
+              Diffusion simulations of the quartz pack geometries resulted in similar observations (Figure 5). The pre-ex-
+              ponential coefficient was lower than that of the Finney pack geometries. It was 0.22  0.07, 0.3  0.09, 0.26
+               0.08 for “ssa0.44”, “ssa0.44_usgs”, and “ssa44”, respectively, which was larger than the two surface growth
+
+
+DENG ET AL.                                                                                                                   10 of 16
+                  Water Resources Research                                                     10.1029/2020WR028483
+
+
+
+              cases (0.11  0.1 and 0.14  0.1). The exponent values were 0.21  0.2, 0.38  0.22, 0.24  0.15 for the three
+              homogeneous nucleation cases, and were comparable to the average values of the Finney pack geometries.
+              The exponent for the two surface growth cases were on the higher end of the range observed for the Finney
+              pack geometries, with values of 0.47  0.25 and 0.44  0.21.
+
+              Everything else being equal, a smaller pre-exponential coefficient leads to a lower effective diffusivity. This
+              is consistent with the observation that the pre-exponential coefficients of the quartz pack geometries, for
+              which the initial diffusivity ranges between 3.2 and 7.2e−10 m2/s, are systematically lower than those of the
+              Finney pack geometries, for which the initial diffusivities are 1.1–1.6e−9 m2/s. A weak positive correlation
+              was observed between the pre-exponential coefficient and the initial diffusivity (supporting information).
+              The exponent controls the shape of the curve described by Equation 11. A small exponent corresponds
+              to a limited reduction in diffusivity at early stages of porosity reduction and a sharp decrease toward the
+              critical porosity. For instance, in the homogeneous nucleation scenario (for which the exponent tends to be
+              lower), the initial development of the precipitation bands did not necessarily translate to transport pathway
+              clogging and thus reduction in the diffusivity. In contrast, in the surface growth scenario, precipitation re-
+              sulted in grain dilation very early on, the pore throats and thus diffusivity decreased continuously from the
+              beginning of the simulations, corresponding to higher exponents. The trajectory of the diffusivity evolution
+              depends on not only the precipitation mechanism but also the pore structures. This is why large standard
+              deviations in the exponent were observed among different geometries. However, no clear correlation was
+              observed between the exponent and the initial porosity or diffusivity in our simulations. Additional pore
+              structure characteristics need to be examined in the future.
+
+
+
+              4. Discussion
+              Our work advances our understanding and predictive capability of precipitation driven alteration of porous
+              media in two ways. The modeling workflow presented enables the prediction of precipitation as a result
+              of the chemical gradients developed from pore structure heterogeneity and various chemical interactions,
+              in comparison with assumed uniform precipitation or other prescribed precipitation patterns. It therefore
+              gives a more truthful representation of the pore-scale dynamics. In addition, while considerable variations
+              were observed in the precipitation patterns among different geometries and precipitation kinetic setups,
+              the macroscopic Φ  Deff relationship was fairly consistent across all the simulations. This observation con-
+              firms the possibility of using this mathematical relationship for upscaling.
+
+              Our study is nevertheless based on 2D simulations (given the prohibitively high computational cost for hun-
+              dreds of full 3D simulations) of pore structures with fairly large pore sizes, whereas real systems involve three
+              dimensional processes and smaller pore sizes, especially ones in which diffusion is the dominant transport
+              mechanism. Regardless of these differences, we expect the major observations of our study to hold in a more
+              general sense. For instance, in the experimental study of (Rajyaguru et al., 2019), a chalk was used as a proxy
+              material to examine diffusion-reaction dynamics in low-permeability systems. The sample used in the exper-
+
+              was ∼0.66 μm, one order of magnitude lower than the resolution of our model, a thin precipitation disk was
+              iment had a porosity of 45%, comparable to the ones used in our study. Although the median pore throat size
+
+              observed due to homogeneous nucleation of barite, similar to the precipitation band predicted in our simula-
+              tions. More importantly, the experimental study also observed that the same amount of precipitates resulted
+              in a larger reduction of the diffusivity when homogeneous nucleation was dominant. This was in contrast to
+              when heterogeneous nucleation on the substrate (similar to the surface growth scenario in our simulations)
+              was dominant, consistent with our observation that homogeneous nucleation results in higher Φc and lower
+              porosity reduction. The traditional Archie’s law has been extensively evaluated experimentally and numeri-
+              cally, and the same formulation has been recovered for 2D and 3D domains. But the exponent of Archie’s law
+              was found to be lower in 2D, approximately equal to 1, than in 3D, approximately equal to 2, for various 3D
+              natural media (Hunt, 2004). Following these observations, we expect that Equation 11 is broadly applicable,
+              but the coefficients may be different in 3D due to the different number of degrees of freedom or different level
+              of disorder, in addition to varying with the precipitation scenario and pore geometries as shown in our simu-
+              lations. In this section, we discuss some of the assumptions and limitations, with the objective of increasing
+              clarity of the applicability of our results and highlighting some future research needs.
+
+
+
+DENG ET AL.                                                                                                           11 of 16
+                                              Water Resources Research                                                            10.1029/2020WR028483
+
+
+
+
+Figure 6. Comparison of the porosity evolution of 10 Finney pack geometries using the default linear grid-cell level tortuosity model (a), the nonlinear
+tortuosity model with exponent of 2 (b) and 3 (c), and the pre-exponential coefficient (d) and exponent (e) of the Φ  Deff relationship of the three cases.
+
+
+                                         4.1. Impacts of Mineral Precipitation Mechanisms and Texture
+
+                                         Our simulations accounted for the impacts of pore geometry and precipitation kinetics of homogeneous
+                                         nucleation and surface growth but did not resolve single crystals or the textures of the precipitates that can
+                                         vary with nucleation and crystal growth mechanisms (Chen et al., 2014; Fazeli et al., 2020).
+
+                                         Additional simulations for 10 Finney pack geometries and the “ssa44” case were performed to evaluate
+                                         how the texture of and thus tortuosity in the developing precipitates affect the macroscopic porosity-diffu-
+                                                                                                                       2         3
+                                         sivity evolution. These simulations used the non-linear relationships, Dm and Dm , at the grid cell level,
+                                         and showed the same trend as the linear tortuosity model simulations (Figure 6). However, for the higher
+                                         exponents, the critical porosity (Φc) was larger, that is, the porosity reduction was smaller. Across the 10
+                                         geometries simulated, the reduction was 1.6%–3.9% and 1.3%–3.3% for the exponent of 2 and 3, respectively;
+                                         compared to 1.9%–5.3% in the linear tortuosity model simulations. This is consistent with the conceptual-
+                                         ization that a larger exponent results in increased loss of connectivity for a given amount of porosity reduc-
+                                         tion. Accordingly, the transport pathways are clogged at a faster speed even though the precipitation rate is
+                                         the same, as illustrated by the thinner precipitation bands (Figures 6a–6c). The non-linear tortuosity model
+                                         did not affect the pre-exponential coefficient of the Φ  Deff relationship noticeably, which was 0.48  0.08
+                                         and 0.50  0.06 for the exponent of 2 and 3, respectively, or the exponent (n), which was 0.33  0.17 and 0.36
+                                          0.14 for the exponent of 2 and 3, respectively.
+
+                                         Another textural feature that may affect the macroscopic Φ  Deff relationship is the “microporosity”,
+                                         that is, nanopores that remain in the precipitates due to reduced nucleation and precipitation rate
+                                         under confinement. It has been reported that nucleation and precipitation in nanopores are prohibited
+                                         or significantly reduced (Stack et al., 2014) because of the pore-size controlled solubility (PCS) effect
+                                         (Emmanuel & Ague, 2009) or local transport limitations. If the PCS effect is dominant, and the diffusive
+
+
+DENG ET AL.                                                                                                                                                12 of 16
+                                              Water Resources Research                                                   10.1029/2020WR028483
+
+
+
+                                                                               transport through the nanopores is non-negligible, the mixing region
+                                                                               and the precipitation bands will continue to grow until precipitation
+                                                                               becomes undetectable, leading to phenomenological plugging of the
+                                                                               system. The corresponding Φc is expected to be lower than what would
+                                                                               be expected from our pore-scale simulations, whereas the correspond-
+                                                                               ing Deffc will be constrained by the tortuosity in the precipitates and
+                                                                               the thickness of the precipitation band, and is likely to be larger. In
+                                                                               contrast, if the predominant mechanism for the remaining nanopores
+                                                                               is local transport limitation, we may expect slight increase in Φc, and
+                                                                               Deffc is by definition close to zero. However, in order to quantitatively
+                                                                               evaluate the impacts of microporosity, information on the amount and
+Figure 7. Tracer flux at the outlet. The experimental observations are         tortuosity of the remaining nanopores is required. Thus, future stud-
+shown in the open black circles, in comparison with simulation results         ies on mechanistic understanding of various nucleation and crystal
+using the traditional form of Archie’s law (red dotted line) and using
+                                                                               growth processes that contribute to the creation of microporosity and
+the revised relationship with Deffc  1e−15 m2/s (green dotted line) and
+                                                                               proper conceptualization of these processes in pore-scale models are
+Deffc  5e−12 m2/s (blue dotted line). The traditional Archie’s law is given
+                                                                               needed.
+by Deff  1.3149 2, the exponent is the same as the revised relationship
+based on literature data, and the pre-exponential factor is determined
+based on the initial porosity and diffusivity reported in the experimental     4.2. Application of the Revised Relationship
+study.
+                                                                              The revised formulation (Equation 11) was implemented in 1D contin-
+                                                                              uum simulations similar to Chagneau et al. (2015), for comparison with
+                                         the column experiments. The 1D continuum model solves Equations 2, 4, 6, and 8 with equal discretization
+                                         of 0.1 mm. Each grid cell is a combination of mineral grains and pore space with an initial porosity (Φini) of
+                                         39% according to the CT image data. The precipitation rate follows the transition state theory rate law seed-
+                                         ed with a tiny surface area initially. More details are documented in the supporting information. For the four
+                                         parameters in Equation 11, the critical porosity (Φc) was set at 31% based on the post-reaction CT images.
+                                         The exponent was set to be 2 according to prior studies of 3D natural rocks (Hunt, 2004; Navarre-Sitchler
+                                         et al., 2009). The pre-exponential factor was constrained by the initial effective diffusivity (Deffini) of the
+                                         column, that is, 4.48e−10 m2/s:
+
+                                         a  Φ ini  Φc  
+                                                                                                   n
+                                         (12)            Deff ini .
+
+
+                                         There was no direct measurement of Deffc, and thus two values 1e−15 m2/s and 5e−12 m2/s were tested.
+                                         The simulation results were compared with the effluent tracer flux and the amount of precipitates from the
+                                         experiment.
+
+                                         In the experiment, tritiated water (HTO) was used as the tracer. The effluent flux peaked at ∼15 Bq/m2s
+                                         around day 6 and stayed around 8 Bq/m2s after day 15. The precipitates were observed in a ∼6 mm zone and
+                                         were largely located in a 0.35 mm thick disk, and amounted to 20–35 mg in different parallel experiments.
+                                         Compared to the simple form of Archie’s law, the revised relationship provides a better agreement with the
+                                         experimental observations (Figure 7 and Table S1). The case of Deffc  1e−15 m2/s implicitly assumes that
+
+                                         this simulation, the precipitates were present in a ∼7 mm zone and amounted to 20 mg by day 80. However,
+                                         diffusion limitation is the only mechanism for precipitation termination as in the pore scale simulations. In
+
+                                         the flux went to zero after about 20 days. A Deffc of 5e−12 m2/s effectively assumes the microporosity sce-
+                                         nario due to PCS effect as discussed above. The presence of microporosity was implied by the variable gray
+                                         values in the CT images collected in the experimental study (Chagneau et al., 2015), even though the indi-
+                                         vidual pores constitute the microporosity were not resolved given the resolution of the images. In this case,
+                                         the flux remained non-zero after the initial decrease and agreed well with the experimental observations.
+                                         As the suppression of precipitation in microporosity was not explicitly modeled, the simulation adopts a
+
+                                         precipitates was ∼113 mg within a ∼9.5 mm zone. Both are larger than the low Deffc case given the higher
+                                         simple treatment of setting the precipitation rate to zero when Φc was approached. The total amount of
+
+                                         diffusive flux and mixing. This over-estimation in precipitation may be attributed to sample heterogeneity
+                                         along the column that was not considered, and that different precipitation mechanisms may be present in
+                                         microporosity, that is, nano-pores.
+
+
+
+DENG ET AL.                                                                                                                                     13 of 16
+                                             Water Resources Research                                                                          10.1029/2020WR028483
+
+
+
+                                        5. Conclusions
+                                        In this study, we performed numerical investigation of pore-scale precipitation dynamics and their impacts
+                                        on effective diffusivity (Deff ). The modeling results reproduced precipitation patterns that were observed in
+                                        previous experiments. A precipitation band formed in the scenario of homogeneous nucleation, whereas
+                                        the precipitates coated the grain surfaces in the surface growth scenario. For all geometries and precipita-
+                                        tion rate setups simulated, the progress of the precipitation reaction led to the decrease of domain porosity
+                                        (Φ) and Deff until transport in the system was completely clogged. The surface growth scenario required
+                                        more precipitation than the homogeneous nucleation scenario to clog the system and was largely influ-
+                                        enced by the initial pore geometry. At a higher precipitation rate, the system was clogged with a smaller
+                                        amount of the precipitate, that is, the critical porosity (Φc) was higher. Based on these observations, the
+                                        Φ  Deff relationship (traditional Archie’s law) was revised to explicitly account for the clogging effect, that
+                                        is, Φc and the critical effective diffusivity (Deffc) were included in the relationship. The two fitting parame-
+                                        ters, the pre-exponential coefficient, and the exponent were between 0−1 for all simulations and showed
+                                        large variations across different geometries. For the surface growth scenario, the exponent was slightly
+                                        higher than for the homogeneous nucleation scenario. Application of this revised relationship in the 1D
+                                        continuum scale model produced improved results that agree better with the column experiment compared
+                                        to the traditional Archie’s law. The amount of precipitation is still over-estimated, which indicates that other
+                                        precipitation mechanisms may be present that reduced mineral precipitation. Future studies are needed to
+                                        better understand processes such as precipitation under confinement and to conceptualize these processes
+                                        for implementation in reactive transport models.
+
+
+
+                                        Data Availability Statement
+                                        All geometry data can be accessed through the digital rock portal (https://www.digitalrocksportal.org/).
+                                        The fluid chemistry and thermodynamic and kinetic data are available in the cited references: Chagneau
+                                        et al. (2015), Marty et al. (2015), Nielsen & Söhnel, (1971), Palandri (2004), and Poonoosamy et al. (2019).
+                                        The code of CrunchTope is available at https://bitbucket.org/crunchflow/crunchtope-dev. Example input
+                                        files and database for the CrunchTope simulation can be accessed at https://github.com/denghangPU/dif-
+                                        fusion-dominated-pore-scale-precipitation.git.
+
+
+
+Acknowledgments                         References
+The authors would like to acknowl-
+edge the funding support by the U.S.    Cai, J., Wei, W., Hu, X., & Wood, D. A. (2017). Electrical conductivity models in saturated porous media: A review. Earth-Science Reviews,
+Department of Energy, Office of            171, 419–433. https://doi.org/10.1016/j.earscirev.2017.06.013
+Fossil Energy, under Award Number       Chagneau, A., Claret, F., Enzmann, F., Kersten, M., Heck, S., Made, B., & Schafer, T. (2015). Mineral precipitation-induced porosity reduc-
+DE-AC02-05CH11231, the Agence              tion and its effect on transport parameters in diffusion-controlled porous media. Geochemical Transactions, 16. https://doi.org/10.1186/
+Nationale de la Recherche (ANR) under      s12932-015-0027-z
+Contract No. ANR-18-CE05-0035-01, a     Chen, H. L., & Park, E. (2017). Reduction in contaminant mass flux with induced oxide mineral precipitation in quasi-multidimensional
+grant overseen by the French National      systems. Environmental Earth Sciences, 76(14), 8. https://doi.org/10.1007/s12665-017-6807-2
+Research Agency (ANR) as part of the    Chen, L., Kang, Q., Carey, B., & Tao, W.-Q. (2014). Pore-scale study of diffusion-reaction processes involving dissolution and precipi-
+“Investissements d’Avenir” Program         tation using the lattice Boltzmann method. International Journal of Heat and Mass Transfer, 75, 483–496. https://doi.org/10.1016/j.
+LabEx VOLTAIRE, 10-LABX-0100, and          ijheatmasstransfer.2014.03.074
+the European Union’s Horizon 2020       Cil, M. B., Xie, M., Packman, A. I., & Buscarnera, G. (2017). Solute mixing regulates heterogeneity of mineral precipitation in porous me-
+research and innovation program under      dia. Geophysical Research Letters, 44(13), 6658–6666. https://doi.org/10.1002/2017gl073999
+Grant Agreement No. 847593.             Deng, H., Molins, S., Trebotich, D., Steefel, C., & DePaolo, D. (2018). Pore-scale numerical investigation of the impacts of surface rough-
+                                           ness: Upscaling of reaction rates in rough fractures. Geochimica et Cosmochimica Acta, 239, 374–389. https://doi.org/10.1016/j.
+                                           gca.2018.08.005
+                                        Emmanuel, S., & Ague, J. J. (2009). Modeling the impact of nano-pores on mineralization in sedimentary rocks. Water Resources Research,
+                                           45, 12. https://doi.org/10.1029/2008wr007170
+                                        Emmanuel, S., & Berkowitz, B. (2005). Mixing-induced precipitation and porosity evolution in porous media. Advances in Water Resources,
+                                           28(4), 337–344. https://doi.org/10.1016/j.advwatres.2004.11.010
+                                        Fazeli, H., Masoudi, M., Patel, R. A., Aagaard, P., & Hellevang, H. (2020). Pore-scale modeling of nucleation and growth in porous media.
+                                           ACS Earth and Space Chemistry, 4(2), 249–260. https://doi.org/10.1021/acsearthspacechem.9b00290
+                                        Finney, J. (2016). Finney packing of spheres. In Digital Rocks Portal. https://doi.org/10.5194/acp-2016-59-ac1
+                                        Garcia-Rios, M., Luquot, L., Soler, J. M., & Cama, J. (2015). Influence of the flow rate on dissolution and precipitation features during per-
+                                           colation of CO2-rich sulfate solutions through fractured limestone samples. Chemical Geology, 414, 95–108. https://doi.org/10.1016/j.
+                                           chemgeo.2015.09.005
+                                        Griffiths, L., Heap, M. J., Wang, F., Daval, D., Gilg, H. A., Baud, P., et al. (2016). Geothermal implications for fracture-filling hydrothermal
+                                           precipitation. Geothermics, 64, 235–245. https://doi.org/10.1016/j.geothermics.2016.06.006
+
+
+
+
+DENG ET AL.                                                                                                                                                                  14 of 16
+                    Water Resources Research                                                                           10.1029/2020WR028483
+
+
+              Hunt, A. G. (2004). Continuum percolation theory and Archie's law. Geophysical Research Letters, 31(19), 4. https://doi.
+                 org/10.1029/2004gl020817
+              Kim, D. H., Mahabadi, N., Jang, J., & van Paassen, L. A. (2020). Assessing the kinetics and pore-scale characteristics of biological calci-
+                 um carbonate precipitation in porous media using a microfluidic chip experiment. Water Resources Research, 56(2), 19. https://doi.
+                 org/10.1029/2019wr025420
+              Li, Q., Steefel, C. I., & Jun, Y.-S. (2017). Incorporating nanoscale effects into a continuum-scale reactive transport model for CO2-deterio-
+                 rated cement. Environmental Science & Technology, 51(18), 10861–10871. https://doi.org/10.1021/acs.est.7b00594
+              Lichtner, P. C. (1996). Chapter 1. Continuum formulation of multicomponent-multiphase reactive transport. In P. C. Lichtner, C. I. Steefel,
+                 & E. H. Oelkers (Eds.), Reactive transport in porous media (pp. 1–82). https://doi.org/10.1515/9781501509797-004
+              Luquot, L., & Gouze, P. (2009). Experimental determination of porosity and permeability changes induced by injection of CO2 into car-
+                 bonate rocks. Chemical Geology, 265(1–2), 148–159. https://doi.org/10.1016/j.chemgeo.2009.03.028
+              Marty, N. C. M., Claret, F., Lassin, A., Tremosa, J., Blanc, P., Madé, B., et al. (2015). A database of dissolution and precipitation rates for
+                 clay-rocks minerals. Applied Geochemistry, 55, 108–118. https://doi.org/10.1016/j.apgeochem.2014.10.012
+              Matter, J. M., Stute, M., Snaebjornsdottir, S. O., Oelkers, E. H., Gislason, S. R., Aradottir, E. S., et al. (2016). Rapid carbon mineralization
+                 for permanent disposal of anthropogenic carbon dioxide emissions. Science, 352(6291), 1312–1314. https://doi.org/10.1126/science.
+                 aad8132
+              Menke, H. P., Bijeljic, B., & Blunt, M. J. (2017). Dynamic reservoir-condition microtomography of reactive transport in complex car-
+                 bonates: Effect of initial pore structure and initial brine pH. Geochimica et Cosmochimica Acta, 204, 267–285. https://doi.org/10.1016/j.
+                 gca.2017.01.053
+              Molins, S., Soulaine, C., Prasianakis, N. I., Abbasi, A., Poncet, P., Ladd, A. J. C., et al. (2020). Simulation of mineral dissolution at the pore
+                 scale with evolving fluid-solid interfaces: Review of approaches and benchmark problem set. Computational Geosciences. https://doi.
+                 org/10.1007/s10596-019-09903-x
+              Molnar, I. L. (2016). Uniform quartz - Silver nanoparticle injection experiment. In Digital rocks portal. https://doi.org/10.1063/1.4965587
+              Nachshon, U., Shahraeeni, E., Or, D., Dragila, M., & Weisbrod, N. (2011). Infrared thermography of evaporative fluxes and dynamics of salt
+                 deposition on heterogeneous porous surfaces. Water Resources Research, 47, W12519. https://doi.org/10.1029/2011WR010776
+              Navarre-Sitchler, A., Steefel, C. I., Yang, L., Tomutsa, L., & Brantley, S. L. (2009). Evolution of porosity and diffusivity associated with
+                 chemical weathering of a basalt clast. Journal of Geophysical Research, 114. https://doi.org/10.1029/2008jf001060
+              Nielsen, A. E., & Söhnel, O. (1971). Interfacial tensions electrolyte crystal-aqueous solution, from nucleation data. Journal of Crystal
+                 Growth, 11(3), 233–242. https://doi.org/10.1016/0022-0248(71)90090-x
+              Noiriel, C., Steefel, C. I., Yang, L., & Ajo-Franklin, J. (2012). Upscaling calcium carbonate precipitation rates from pore to continuum scale.
+                 Chemical Geology, 318–319, 60–74. https://doi.org/10.1016/j.chemgeo.2012.05.014
+              Noiriel, C., Steefel, C. I., Yang, L., & Bernard, D. (2016). Effects of pore-scale precipitation on permeability and flow. Advances in Water
+                 Resources, 95, 125–137. https://doi.org/10.1016/j.advwatres.2015.11.013
+              Otsu, N. (1979). A threshold selection method from gray-level histograms. IEEE Transactions on Systems, Man, and Cybernetics, 9(1),
+                 62–66. https://doi.org/10.1109/tsmc.1979.4310076
+              Palandri, J. L. (2004). A compilation of rate parameters of water-mineral interaction kinetics for application to geochemical modeling
+                 [electronic resource]/by James L. Palandri and Yousif K. Kharaka, prepared in cooperation with the National Energy Technology Lab-
+                 oratory. Menlo Park, Calif: United States Department of Energy, U.S. Departtment of the Interior, U.S. Geological Survey. https://doi.
+                 org/10.3133/ofr20041068
+              Peng, S., Hu, Q. H., & Hamamoto, S. (2012). Diffusivity of rocks: Gas diffusion measurements and correlation to porosity and pore size
+                 distribution. Water Resources Research, 48, 9. https://doi.org/10.1029/2011wr011098
+              Poonoosamy, J., Westerwalbesloh, C., Deissmann, G., Mahrous, M., Curti, E., Churakov, S. V., et al. (2019). A microfluidic experiment and
+                 pore scale modelling diagnostics for assessing mineral precipitation and dissolution in confined spaces. Chemical Geology, 528.
+              Prasianakis, N. I., Curti, E., Kosakowski, G., Poonoosamy, J., & Churakov, S. V. (2017). Deciphering pore-level precipitation mechanisms.
+                 Scientific Reports, 7. https://doi.org/10.1038/s41598-017-14142-0
+              Rahardianto, A., McCool, B. C., & Cohen, Y. (2008). Reverse osmosis desalting of inland brackish water of high gypsum scaling propensity:
+                 Kinetics and mitigation of membrane mineral scaling. Environmental Science & Technology, 42(12), 4292–4297. https://doi.org/10.1021/
+                 es702463a
+              Rajyaguru, A., L'Hôpital, E., Savoye, S., Wittebroodt, C., Bildstein, O., Arnoux, P., et al. (2019). Experimental characterization of coupled
+                 diffusion reaction mechanisms in low permeability chalk. Chemical Geology, 503, 29–39. https://doi.org/10.1016/j.chemgeo.2018.10.016
+              Seigneur, N., Mayer, K. U., & Steefel, C. I. (2019). Reactive transport in evolving porous media. Reviews in Mineralogy and Geochemistry, 85,
+                 197–238. https://doi.org/10.2138/rmg.2019.85.7
+              Singurindy, O., Berkowitz, B., & Lowell, R. P. (2004). Carbonate dissolution and precipitation in coastal environments: Laboratory analysis
+                 and theoretical consideration. Water Resources Research, 40(4), 13. https://doi.org/10.1029/2003wr002651
+              Smith, M. M., Sholokhova, Y., Hao, Y., & Carroll, S. A. (2013). CO2-induced dissolution of low permeability carbonates. Part I: Characteri-
+                 zation and experiments. Advances in Water Resources, 62, 370–387. https://doi.org/10.1016/j.advwatres.2013.09.008
+              Soulaine, C., Roman, S., Kovscek, A., & Tchelepi, H. A. (2017). Mineral dissolution and wormholing from a pore-scale perspective. Journal
+                 of Fluid Mechanics, 827, 457–483. https://doi.org/10.1017/jfm.2017.499
+              Stack, A. G., Fernandez-Martinez, A., Allard, L. F., Bañuelos, J. L., Rother, G., Anovitz, L. M., et al. (2014). Pore-size-dependent cal-
+                 cium carbonate precipitation controlled by surface chemistry. Environmental Science & Technology, 48(11), 6177–6183. https://doi.
+                 org/10.1021/es405574a
+              Steefel, C. I., Appelo, C. A. J., Arora, B., Jacques, D., Kalbacher, T., Kolditz, O., et al. (2015). Reactive transport codes for subsurface envi-
+                 ronmental simulation. Computational Geosciences, 19(3), 445–478. https://doi.org/10.1007/s10596-014-9443-x
+              Steefel, C. I., Beckingham, L. E., & Landrot, G. (2015). Micro-continuum approaches for modeling pore-scale geochemical processes.
+                 Reviews in Mineralogy and Geochemistry, 80, 217–246. https://doi.org/10.2138/rmg.2015.80.07
+              Steefel, C. I., DePaolo, D. J., & Lichtner, P. C. (2005). Reactive transport modeling: An essential tool and a new research approach for the
+                 Earth sciences. Earth and Planetary Science Letters, 240(3–4), 539–558. https://doi.org/10.1016/j.epsl.2005.09.017
+              Steefel, C. I., & Lasaga, A. C. (1994). A coupled model for transport of multiple chemical species and kinetic precipitation/dissolution
+                 reactions with application to reactive flow in single phase hydrothermal systems. American Journal of Science, 294(5), 529–592. https://
+                 doi.org/10.2475/ajs.294.5.529
+              Steefel, C. I., & Lichtner, P. C. (1994). Diffusion and reaction in rock matrix bordering a hyperalkaline fluid-filled fracture. Geochimica et
+                 Cosmochimica Acta, 58(17), 3595–3612. https://doi.org/10.1016/0016-7037(94)90152-x
+
+
+
+DENG ET AL.                                                                                                                                          15 of 16
+                   Water Resources Research                                                                          10.1029/2020WR028483
+
+
+              Steefel, C. I., & Lichtner, P. C. (1998). Multicomponent reactive transport in discrete fractures: I. Controls on reaction front geometry.
+                 Journal of Hydrology, 209(1–4), 186–199. https://doi.org/10.1016/s0022-1694(98)00146-2
+              Steinwinder, J., & Beckingham, L. E. (2019). Role of pore and pore-throat distributions in controlling permeability in heterogeneous min-
+                 eral dissolution and precipitation scenarios.Water Resources Research, 55(7), 5502–5517. https://doi.org/10.1029/2019wr024793
+              Tartakovsky, A. M., Redden, G., Lichtner, P. C., Scheibe, T. D., & Meakin, P. (2008). Mixing-induced precipitation: Experimental study and
+                 multiscale numerical analysis. Water Resources Research, 44(6). https://doi.org/10.1029/2006wr005725
+              Vankeuren, A. N. P., Hakala, J. A., Jarvis, K., & Moore, J. E. (2017). Mineral reactions in shale gas reservoirs: Barite scale formation from
+                 reusing produced water as hydraulic fracturing fluid. Environmental Science & Technology, 51(16), 9391–9402.
+              Wright, R. N., Hartmann, T., & Fujita, Y. (2011). Inducing mineral precipitation in groundwater by addition of phosphate. Geochemical
+                 Transactions, 12, 8. https://geochemicaltransactions.biomedcentral.com/articles/10.1186/1467-4866-12-8
+              Xie, M., Mayer, K. U., Claret, F., Alt-Epping, P., Jacques, D., Steefel, C., et al. (2015). Implementation and evaluation of permeability-poros-
+                 ity and tortuosity-porosity relationships linked to mineral dissolution-precipitation. Computers & Geosciences, 19(3), 655–671. https://
+                 doi.org/10.1007/s10596-014-9458-3
+              Yoon, H., Valocchi, A. J., Werth, C. J., & Dewers, T. (2012). Pore-scale simulation of mixing-induced calcium carbonate precipitation and
+                 dissolution in a microfluidic pore network. Water Resources Research, 48(2). https://doi.org/10.1029/2011wr011192
+              Zhang, C., Dehoff, K., Hess, N., Oostrom, M., Wietsma, T. W., Valocchi, A. J., et al. (2010). Pore-scale study of transverse mixing induced
+                 CaCO3 precipitation and permeability reduction in a model subsurface sedimentary system. Environmental Science & Technology,
+                 44(20), 7833–7838. https://doi.org/10.1021/es1019788
+              Zhang, C., Kang, Q., Wang, X., Zilles, J. L., Müller, R. H., & Werth, C. J. (2010). Effects of pore-scale heterogeneity and transverse mixing on
+                 bacterial growth in porous media. Environmental Science & Technology, 44(8), 3085–3092. https://doi.org/10.1021/es903396h
+              Zou, C., Zhu, R., Liu, K., Su, L., Bai, B., Zhang, X., et al. (2012). Tight gas sandstone reservoirs in China: Characteristics and recognition
+                 criteria. Journal of Petroleum Science and Engineering, 88–89, 82–91. https://doi.org/10.1016/j.petrol.2012.02.001
+
+
+
+
+DENG ET AL.                                                                                                                                        16 of 16
+

@@ -1,0 +1,1854 @@
+                                                     Kinetic Theory of Multicomponent Ostwald Ripening in Porous Media
+
+                                                                              Nicolas Buenoa , Luis F. Ayalaa , Yashar Mehmania,∗
+                                                      a The Pennsylvania State University, Department of Energy and Mineral Engineering, University Park, PA, USA
+
+
+
+
+                                                 Abstract
+arXiv:2512.20665v1 [cond-mat.soft] 19 Dec 2025
+
+
+
+
+                                                 Partially miscible bubble populations trapped in porous media are ubiquitous in subsurface applications such
+                                                 as underground hydrogen storage (UHS), where cyclic injections fragment gas into numerous bubbles with
+                                                 distributions of sizes and compositions. These bubbles exchange mass through Ostwald ripening, driven by
+                                                 differences in composition and interfacial curvature. While kinetic theories have been developed for single-
+                                                 component ripening in porous media, accounting for bubble deformation and spatial correlations in pore size,
+                                                 no such theory exists for multicomponent systems. We present the first kinetic theory for multicomponent
+                                                 Ostwald ripening of bubbles in porous media. The formulation describes the bubble population with a
+                                                 number-density function g(s; t) in a 3D statistical space of bubble states s = (Rp , S b , y), consisting of pore
+                                                 size, bubble saturation, and composition. Evolution is governed by a population balance equation with
+                                                 closure through mean-field approximations that account for spatial correlations in pore size and ensure mass
+                                                 conservation. The theory generalizes previous single-component formulations, removing key limitations such
+                                                 as the inability to capture interactions between distant bubbles. Systematic validation against pore-network
+                                                 simulations across homogeneous, heterogeneous, correlated, and uncorrelated networks demonstrates good
+                                                 agreement without adjustable parameters. Pending challenges and limitations are discussed. Since the theory
+                                                 imposes no constraints on bubble count or correlation length, it enables predictions beyond the pore scale.
+                                                 Keywords: Porous media; Ostwald ripening; Multicomponent; Bubbles; Kinetic theory; Hydrogen storage
+
+
+                                                 1. Introduction
+
+                                                    Partially miscible bubble populations trapped inside porous media are ubiquitous, with applications in
+                                                 underground hydrogen storage (UHS) [1], geologic CO2 sequestration [2], removal of nonaqueous phase liquids
+                                                 from groundwater (NAPL) [3], bubble/water management in fuel cells and electrolyzers [4, 5], and air-water
+                                                 mass transfer in soils [6]. This work is motivated specifically by UHS, where H2 is seasonally injected into and
+                                                 withdrawn from an aquifer to buffer the intermittency of renewable energy sources (e.g., solar, wind). Cyclic
+                                                 injections during periods of peak and low demand (i.e., summer and winter) subject the porous medium to
+                                                 repeated drainage and imbibition that fragment the H2 into numerous bubbles. Since the first cycle is often
+                                                 preceded by injecting a cushion gas (e.g., CO2 , N2 , CH4 ), trapped bubbles end up with a distribution of
+
+
+                                                   ∗ Corresponding author
+
+                                                    Email address: yzm5192@psu.edu, 110 Hosler Building, University Park, PA, 16802 (Yashar Mehmani)
+
+
+
+                                                                                                                                                     December 25, 2025
+sizes and compositions [7]. Due to chemical potential differences, these bubbles are in disequilibrium and
+exchange mass to equilibrate. Two factors contribute to a bubble’s chemical potential: composition and
+interfacial curvature (assuming surface tension is constant, as we do here). These induce different dissolved
+concentrations of each species at the interface of each bubble, driving mass transfer by molecular diffusion.
+Such mass exchange between bubbles is called Ostwald ripening [8], which we aim to describe theoretically.
+   Ostwald ripening has been studied extensively in bulk fluids, where bubbles are always spherical with
+curvature κ inversely proportional to radius R [9–13]. When comprised of only one component, mass transfer
+between bubbles is purely curvature-driven. A hallmark of such ripening is that all bubbles coarsen into
+a single large bubble, because any configuration with more than one bubble has further room to minimize
+surface energy by reducing bubble count. Extensions to multicomponent bubbles in bulk fluids have also
+been made, where inter-bubble mass transfer is more complex [14–17]. By contrast, studies of ripening in
+porous media are a recent development and have focused almost exclusively on single-component bubbles.
+   Early microfluidic experiments [18] and pore-network modeling [19, 20] of single-component ripening
+revealed that equilibration is far more complex within the confinement of a porous medium. A bubble
+population in disequilibrium no longer evolves toward a single bubble, but toward another population with
+different bubble volumes V b and uniform curvature κ. This is because confinement exerts first-order control
+on κ, rendering it a non-monotonic function of V b —not so for spherical bubbles. Subsequent advances in
+pore-scale modeling [21–24], microfluidic experiments [25, 26], and in-situ X-ray µCT observations [27–29]
+have provided further evidence of ripening in complex microstructures, shed insight into controlling factors
+(e.g., pore-size distribution, wettability, initial condition), and enabled higher-fidelity simulations. Theories
+developed for single-component ripening fall into two categories: pore-scale and continuum. Continuum
+theories [26, 30, 31] describe how trapped-bubble saturation evolves due to gradients in κ or capillary pressure
+Pc at large scales. They have been used to assess the timescale and trajectory of bubble redistribution due
+to gravity and geothermal gradients [32–35]. Crucially, continuum theories assume local equilibrium within
+each representative elementary volume (REV). Pore-scale theories, by contrast, can capture the kinetics
+prior to local equilibrium and predict population statistics of bubbles, providing far more detail than a single
+aggregate quantity like saturation. The present work focuses on developing a pore-scale theory.
+   Pore-scale theories build upon the seminal works by Lifshitz & Slyozov [9] and Wagner [10] (LSW) for
+single-component bubbles in bulk fluids. The idea is to introduce a bubble number-density function g(R)
+that describes the statistical distribution of bubble radii R and evolve it with a population balance equation:
+
+                                              ∂g    ∂    dR
+                                                 +    (g    )=0                                              (1)
+                                              ∂t   ∂R dt
+
+Here, dR/dt is the rate of change of radius for bubbles with radius R, which we refer to as the phase velocity
+(i.e., velocity in the 1D statistical space of R). It is computed by assuming each bubble interacts with a mean
+field that represents the rest of the population. For bubbles with radius R, the phase velocity reads:
+
+                                      dR  1           1 1   1
+                                         ∝ (xmf − x) ∝ (   − )                                               (2)
+                                      dt  R           R Rc  R
+
+                                                       2
+where x is the dissolved concentration next to the R-bubble and xmf is the mean-field concentration. Since x
+is proportional to κ (or Pc ) by Henry’s law, and κ ∝ 1/R by Young-Laplace for spherical bubbles, the second
+proportionality in Eq.2 follows. Note xmf ∝ 1/Rc , where Rc is the critical radius below which bubbles shrink
+and above which they grow. Rc is a property of the mean field and equals the average radius of all bubbles
+in the population, obtained by imposing mass conservation on the total mass of bubbles. The factor 1/R can
+be viewed as the “distance” of the mean field from an R-bubble. LSW further showed that g(R) approaches
+a self-similar regime described by g(R) = Rc−4 f (R/Rc ), where f (·) is a complicated function.
+   The first extension of LSW theory to porous media was proposed by Yu et al. [36], under the assumption
+that trapped bubbles remain spherical throughout ripening. Therefore, the only difference from bulk fluids is
+that the pore network topology imposes a fixed distance across which bubbles interact. When this distance,
+l, is set to some multiple of the throat length lt , Eq.2 becomes:
+
+                                           dR  1           1 1    1
+                                              ∝ (xmf − x) ∝ (    − )                                                      (3)
+                                           dt  lt          lt Rc  R
+
+although l continuously grows with time as bubbles dissolve and disappear. Yu and co-workers derived similar
+self-similar solutions for g(R) and showed that Rc is now the harmonic average of all R in the population
+(again obtained by imposing mass conservation). Note that since bubble deformation by porous confinement
+is neglected, pore sizes Rp do not factor into this theory, making it best suited for homogeneous pore networks.
+   Bueno et al. [37] formulated the first theory accounting for bubble deformation, pore-size heterogeneity,
+and spatial correlation. The extension was non-trivial because it required defining the bubble number-density
+g(s) in a 2D statistical space, where each bubble state s = (Rp , S b ) has two coordinates: size of the occupied
+pore Rp and volume fraction of the pore occupied S b (bubble saturation). This required expressing Eq.1 as:
+
+                                        ∂g   ∂    dRp,s  ∂     dS b
+                                                              (g s ) = 0
+                                                       
+                                           +  (g ) +    b
+                                                                                                                          (4)
+                                        ∂t ∂Rp    dt    ∂S      dt
+
+where dRp /dt = 0 was assumed, entailing bubbles, once trapped in a pore, remain there forever or dissolve—
+they do not mobilize due to flow or capillarity. The phase velocity dSsb /dt for a bubble at state s is:
+
+                                                   dSsb    1
+                                                        ∝ 3 (κmf  − κs )                                                  (5)
+                                                    dt   R p lt s
+
+where κs denotes the curvature of the s-bubble and κmf
+                                                    s  is that of its mean field. Notice each s has its own
+mean-field curvature, and that bubble radius R no longer enters the formulation because it is ill-defined for
+a deformed bubble. Instead, κ is used, which is a U-shaped function of S b (bubbles are spherical at low S b
+and deformed at high S b ). To understand Eq.5, note the left-hand side is proportional to dVsb /dt, where Vsb
+                                 3
+denotes bubble volume and Vsb ∝ Rp,s Ssb . To account for spatial correlations in Rp , the κmf
+                                                                                            s  was defined by:1
+                                   Z
+                                                  ′                                 ′
+                           κmf
+                             s   ∝           p(S b |Rp′ ; t) p(Rp′ |Rp ; t) κs′ dS b dRp′                   (6)
+                                            ′ ,S b ′
+                                           Rp
+
+
+
+  1 We have simplified this and following expressions by assuming uniform throat size across the network. See Eq.17 in [37].
+
+
+
+
+                                                             3
+involving conditional probabilities:
+
+                                         g(Rp′ ; t)                         ′                  ′
+                      p(Rp′ |Rp ; t) ∝              p(Rp′ |Rp ; 0) ,   p(S b |Rp′ ; t) ∝ g(S b |Rp′ ; t)         (7)
+                                         g(Rp′ ; 0)
+
+The details of how these were derived are not important here. What matters is p(Rp′ |Rp ; t), the probability
+that a bubble residing at a pore of size Rp interacts with one at a pore of size Rp′ , is proportional to its initial
+condition at t = 0. Bueno and co-workers assumed that an s-bubble interacts only with its nearest neighbors,
+thereby neglecting interactions with distant bubbles. Hence, if two bubble groups reside in mutually distant
+pore sizes Rp and Rp′ such that p(Rp′ |Rp ; 0) = 0, then the clusters evolve independently, unaware of each
+other’s presence. This shortcoming was highlighted as a challenge in [37] for future theories to overcome. We
+also note that this theory did not conserve total bubble mass for networks with correlated pore size.
+   All above theories are for single-component bubbles. The only theoretical work on multicomponent
+bubbles trapped in porous media is that of Bueno et al. [38], who successfully described g(s) at equilibrium,
+now defined in a 3D statistical space s = (Rp , S b , y) where y is the mole fraction of bubbles. The kinetics, or
+timescale to reach equilibrium, could not be estimated. This theory built on an earlier equilibrium theory
+for single component bubbles by Mehmani & Xu [20], where the statistical space was 2D with s = (Rp , S b ).
+   In this work, we generalize the single-component kinetic theory of [37] to multicomponent bubble popula-
+tions trapped in porous media with heterogeneous and spatially correlated pore sizes. The proposed theory
+also addresses the challenge of remote-bubble interactions, ensures total bubble-mass conservation through
+provable theorems, and features a simpler formulation, making it superior to [37]. We systematically validate
+our theory against the pore-network model (PNM) of [38] across 19 cases spanning homogeneous, hetero-
+geneous, correlated, and uncorrelated networks with different bubble populations relevant to UHS. Good
+agreement is observed throughout. Pending challenges and limitations are discussed subsequently.
+   The paper is organized as follows: Section 2 describes the problem we aim to solve, its conceptualization,
+and assumptions. Section 3 briefly reviews the PNM of [38] used to validate our theory. Section 4 details
+the theory’s formulation. Section 5 discusses the validation test cases, and Section 6 presents the results. We
+discuss key limitations and implications for UHS in Section 7 and summarize main findings in Section 8.
+
+
+2. Problem description
+
+   We consider a porous medium with a rigid microstructure, as shown in Fig.1. The void space is con-
+ceptualized as a pore network, a computational graph consisting of nodes (or pores) and links (or throats).
+Pores provide storage volume for fluids, while throats impose mass-transfer resistance between them. Pore
+and throat sizes may be homogeneous or heterogeneous, and spatially correlated or uncorrelated. We as-
+sume the void space is occupied by a perfectly wetting (zero contact angle) liquid, and some pores contain
+a compressible gaseous bubble. The gas consists of two components that are partially soluble in the wetting
+phase. For concreteness, and without loss of generality, we consider bubbles to be binary mixtures of H2 and
+CO2 immersed in water as the wetting phase. The gas is assumed to be ideal and devoid of H2 O, and the
+
+
+                                                                4
+dissolved fractions of H2 and CO2 in water to be dilute. Bubbles exchange mass through Ostwald ripening,
+where concentration gradients of dissolved species drive Fickian diffusion. Such gradients exist because of
+differences in the species concentrations surrounding each bubble, which are dictated by the composition and
+curvature of each bubble. We assume each bubble occupies only one pore, and that pore shapes (but not
+sizes) are identical throughout the network. Lastly, we assume the interfacial tension between liquid and
+gas is not altered by bubble composition or dissolved concentrations. Our goal is to develop a theory that
+predicts the temporal evolution of bubble statistics, including composition, volume, and occupied-pore size.
+
+
+
+
+Figure 1: The porous microstructure is composed of a solid matrix and an interconnected void space. We conceptualize the void
+as a pore network, a computational graph that consists of nodes (pores) and links (throats). All pores contain a wetting phase
+(H2 O), and some are occupied by partially miscible, two-component (CO2 and H2 ) gaseous bubbles. Bubbles are confined to
+one pore and exchange mass via Ostwald ripening, driven by concentration gradients of dissolved species around each bubble.
+
+
+
+
+3. Pore-network modeling
+
+    We briefly review the pore-network model (PNM) of Bueno et al.[38], which we use to validate our theory
+for multicomponent Ostwald ripening. The two share many of the same equations. The governing equations
+of the PNM consist of a mass balance imposed at each pore i and for each species α:
+                                              zi              zi
+                                     dnα,i   X               X   Aij
+                                           =     Jij = Dα ρw         (xα,j − xα,i )                                       (8)
+                                      dt     j=1
+                                                                 L
+                                                             j=1 ij
+
+The variables nα,i , Jij , and zi denote the number of moles of species α in pore i, the diffusive flux (mol/s)
+from neighboring pore j to pore i, and the number of pores connected to pore i by a throat, respectively.
+To the right of the second equality, Dα is the molecular diffusion coefficient, ρw the molar density of water,
+and xα,i the mole fraction of species α dissolved in the wetting phase within pore i. The Aij and Lij are the
+cross-sectional area and length of the throat connecting pores i and j, through which species diffuse.
+    To transform Eq.8 into a system of ordinary differential equations (ODEs) in terms of the unknown xα,i ,
+we need constitutive relations expressing nα,i in terms of xα,i . The first such relation is nα,i = yα,i ρbi Vib +
+
+
+                                                              5
+xα,i ρw (Vp,i − Vib ), provided pore i is occupied by a gaseous bubble. The first term accounts for moles of α in
+the bubble, and the second term for dissolved moles in the wetting phase. Here, Vp,i , Vib , ρbi , and yα,i are the
+pore volume, bubble volume, gas molar density, and mole fraction of α in the gas, respectively. If pore i is
+vacant, then Vib = 0 and the expression simplifies to nα,i = xα,i ρw Vp,i . Recall bubbles occupy only one pore.
+   The second constitutive relation expresses yα,i in terms of xα,i by assuming each bubble is in local
+equilibrium with dissolved species in its pore. Under the dilute-solution assumption (Section 2), equilibrium
+takes the form of Henry’s law: xα,i Hα = yα,i Pib , where Hα is Henry’s constant and Pib the bubble pressure.
+Pib is related to the wetting-phase pressure Pw through Young-Laplace: Pib = Pw + σκi , where σ is interfacial
+tension and κi the bubble curvature in pore i. Since the wetting phase is stagnant (Section 2), Pw is constant.
+   The third relation expresses ρbi in terms of Pib using the ideal-gas law Pib = ρbi RT , per our assumption
+in Section 2. Here, R and T are the universal gas constant and absolute temperature, respectively. The
+final constitutive equation we need relates κi to Vib . For a semi-cubic pore i, defined as one whose maximal
+inscribed radius is Rp,i and volume satisfies Vp,i = (2Rp,i )3 , this relationship takes the form [21]:
+                                                   1
+                                           min   Vc,i 3
+                                                                                          Vib < Vc,i
+                                        
+                                        
+                                         κ
+                                         i                                          if
+                                                 Vib
+                κi = κi (Vib , Vp,i ) =                                                                          (9)
+                                                      Vib − Vc,i     Vib − Vc,i
+                                                                              
+                                           min
+                                                                                          Vib ≥ Vc,i
+                                        
+                                        κi
+                                                1+a              +b                 if
+                                                      Vp,i − Vc,i    Vp,i − Vib
+                3
+where Vc,i = 4πRp,i /3 is the volume of the maximal inscribed sphere, and κmin
+                                                                           i   = 2/Rp,i the corresponding
+curvature. Eq.9 is non-monotonic, with κi attaining its minimum κmin
+                                                                 i   at Vib = Vc,i . For Vib < Vc,i , the bubble
+is small and spherical. For Vib ≥ Vc,i , it is large and deformed by the pore’s confinement. The parameters a
+and b control this deformation and depend on pore shape (here a = 1 and b = 0.01). Following [38], we refer
+to Vc,i as the critical volume, bubbles with Vib < Vc,i as sub-critical, and those with Vib > Vc,i as super-critical.
+   The species balance Eq.8 combined with the above constitutive relations yields a system of nonlinear
+ODEs, which we solve using a modified Newton scheme with adaptive time stepping [20]. The modification
+avoids instabilities and divergence of Newton iterations near bubble disappearance events or when Vib crosses
+the critical volume Vc,i , where the derivative dκi /dVib is discontinuous. We also refer the reader to [38] for a
+lower bound on Vib , below which bubbles must be marked as “vanished” to prevent numerical instabilities.
+
+
+4. Theory of two-component Ostwald ripening in porous media
+
+4.1. Population balance formulation
+
+   We formulate a kinetic theory that predicts the temporal evolution of the statistics of a bubble population
+driven by two-component Ostwald ripening. The PNM of Section 3 models this evolution spatially, meaning
+each bubble is tracked individually and assigned a spatial position, while interacting with neighboring bubbles
+at other positions. In our theory, we do not track individual bubbles, but groups of bubbles sharing the same
+statistical state, s. We let this state s = (Rp , S b , y1 ) consist of three coordinates in a three-dimensional
+statistical space, referred to as the phase space. The first coordinate is the pore size Rp that bubbles at state
+
+
+                                                          6
+Figure 2: (a) Schematic of 3D phase space used to describe bubble statistics by the number-density function g(s; t). Each point
+in this space is a bubble state s with three coordinates Rp , S b , and y1 . The number of bubbles within an infinitesimal volume dΩ
+centered at s equals g(s; t) dΩ. The gray cloud denotes g(s; t) and the contours its 2D marginals projected onto the coordinate
+planes. (b) Schematic of a bubble at state s interacting with the rest of the population, conceptualized as a mean field.
+
+
+
+s occupy. The second is bubble saturation S b = V b /Vp , which denotes the volume fraction of the host pore
+each bubble in the group occupies. The third coordinate is the mole fraction of H2 for each bubble in the
+group, denoted by y1 . Since bubbles are binary mixtures, the mole fraction of CO2 follows from y2 = 1 − y1 .
+    To quantify the number of bubbles in each state s at any given time t, we introduce the number-density
+function (NDF) g(s; t). Concretely, the number of bubbles in an infinitesimal volume of phase space dΩ =
+dRp dS b dy1 centered at s equals g(s; t) dΩ. Figs.2-3 illustrate this conceptualization. Fig.2a depicts the 3D
+phase space with g(s; t) visualized as a cloud, along with its projections (or marginals) onto the coordinate
+planes. Fig.3 provides a simple example of how spatial information in the PNM is translated into statistical
+information in the theory. The left panel is a schematic of pure H2 (cyan; y1 = 1) and CO2 (red; y1 = 0)
+bubbles residing in pores of different sizes (Rp ) with different saturations (S b ). The remaining three panels
+visualize 2D projections of the corresponding g(s; t) onto the coordinate planes. Bubbles from the spatial
+picture are overlain on the phase-space plots to highlight which part of g(s; t) they represent. Pure-species
+bubbles (y1 = 0 or 1) are used for simplicity, as bubbles are generally mixtures with arbitrary mole fraction
+(y1 ∈ [0, 1]). The shadows on each plot represent 2D marginals of g(s; t), and the pink curves along the axes
+represent 1D marginals. The goal of our theory is to predict the temporal evolution of g(s; t).
+    We describe the evolution of g(s; t) in time with the following population balance equation:
+
+                   ∂g                               ∂g    ∂                ∂              ∂
+                      + ∇ · (g u) = 0        ⇒         +    b
+                                                              (g uS b ) +     (g uy1 ) +     (g uRp ) = 0                      (10)
+                   ∂t                               ∂t   ∂S               ∂y1            ∂Rp
+                                    dR       bdy1
+where u = (uRp , uS b , uy1 ) = ( dtp , dS
+                                         dt , dt ) is the velocity that advects g(s; t) through phase space. This
+
+velocity is determined purely by the physics of Ostwald ripening for a population of gaseous bubbles composed
+of two components (here H2 and CO2 ). We assume uRp = 0, implying that bubbles cannot change pore sizes
+
+
+
+                                                                 7
+Figure 3: (Left panel) Schematic of spatial arrangement of bubbles in a pore network. H2 bubbles are colored in cyan and CO2
+bubbles in red. (Three rightmost panels) Translation of spatial information in the pore network into statistical information in
+the theory. The three panels show projections of the number-density function g(s; t) onto the 2D coordinate planes of the 3D
+phase space (Fig.2). Bubbles from the first panel are annotated on these phase-space plots to emphasize which part of g(s; t)
+they represent. Shadows represent 2D marginals of g(s; t), and pink curves along the right/bottom axes the 1D marginals.
+
+
+
+by, for example, mobilizing from one pore to the next due to background flow or capillary action.2 This is
+consistent with our assumption in Section 2 that each bubble occupies only one pore and the wetting phase
+is stagnant (i.e., no flow). Computing u = (0, uS b , uy1 ) closes the theory, which we address in Section 4.2.
+    Given some initial condition (IC), g(s; t = 0), solving Eq.10 requires boundary conditions (BCs). Since
+we have assumed uRp = 0, no BCs are needed at Rp = 0 or Rp = Rpmax , where Rpmax is the maximum pore size
+in the network. At y1 = 0 and y1 = 1, the normal velocity uy1 always points toward the interior of the phase
+space, preventing bubbles from ever crossing either boundary. Otherwise, mole fractions would fall outside
+the valid interval [0, 1]. To also prevent new bubbles from being introduced (or “injected”), we set g = 0, or
+equivalently uy1 = 0, at y1 = 0 and y1 = 1. Following similar arguments, we set g = 0, or equivalently uS b = 0,
+at S b = 1. The only tricky boundary is S b = 0, because shrinking bubbles during ripening can indeed vanish
+and leave the phase space, in which case uS b < 0 holds. Since Eq.10 is first-order hyperbolic, no BC is needed
+at such outflow portions of the boundary—numerically, the upwind value of g gets used. If, however, uS b > 0
+holds, then we set g = 0 at such inflow portions to prevent introducing new bubbles into the population.
+
+
+4.2. Closure by mean-field approximation
+
+    To determine the phase-space velocity u, we must compute dS b /dt and dy1 /dt. We adopt a mean-field
+approximation that reduces the problem of a bubble interacting with multiple neighboring bubbles to the
+simpler problem of interaction with a single entity: the mean field. Consider a bubble at state s = (Rp , S b , y1 ),
+as shown in Fig.2b, that exchanges mass with surrounding bubbles. On average, its nearest neighbors lie
+a distance ls away. We therefore idealize the region r < ls as bubble-free, which is a disk/sphere of radius
+r = ls in 2D/3D. All bubbles in r > ls define the mean field, to which average properties are assigned, such as
+dissolved concentration xmf                      b mf                       mf
+                         α,s , bubble pressure (P )s , and gas composition yα,s . Mean-field properties are
+
+
+
+  2 One consequence of u                                                                             b
+                        Rp = 0 is that Eq.10 reduces to a series of 2D PDEs in the variables y1 and S for each fixed Rp .
+
+
+
+                                                              8
+computed from g(s; t), as shown later. Since bubbles can vanish during ripening, ls grows with time. For
+tractability, we assume the bubble-spacing parameter ls depends primarily on the pore-size coordinate Rp ,
+with S b and y1 playing secondary roles. This is reasonable because spatial correlations in Rp dictate where
+bubbles are initially trapped in the network (e.g., by cyclic injections of H2 ) and how curvature-driven mass
+transfer evolves. We therefore write lR hereafter to make this dependence explicit (Fig.2). Note the mean-field
+approximation requires a sufficiently large bubble population for ensemble statistics to have converged.
+   We now derive expressions for dSsb /dt and dy1,s /dt. To compute mass exchange between the s-bubble and
+the mean field (Fig.2b), we idealize transport in the wetting phase as radial diffusion toward a spherical (3D)
+or cylindrical (2D) surface at r = l0 , representing the bubble’s interface (specified later). The annular region
+from r = l0 to lR is bubble-free, with mass transfer governed by Fick’s second law in radial coordinates:
+
+                                                   1   d                   dxα
+                        0 = ∇ · (Dαe ρw ∇xα ) =             (rd−1 Dαe ρw       )   ∀r ∈ (l0 , lR )             (11)
+                                                  rd−1 dr                   dr
+
+Eq.11 assumes steady-state, radially symmetric transport, implying the wetting phase acts merely as a solute
+transport medium, not storage. Here, d is the network dimension (2 or 3), and Dαe = Dα ϕa /τ the restricted
+diffusion coefficient, which depends on molecular diffusivity Dα , tortuosity τ , and areal porosity ϕa . Appendix
+A shows ϕa = CAt /lt , with C = z/(2h) in 2D and C = z/(2lt ) in 3D. Here, z is the mean coordination number
+(neighbor count) of pores, h the network’s out-of-plane thickness in 2D, and At and lt are the mean cross-
+sectional area and length of throats. Solving Eq.11 with BCs xα (l0 ) = xα,s and xα (lR ) = xmf
+                                                                                             α,s yields:
+                                                                  
+                                                                   ln(r/l0 )
+                                                                  
+                                                                                   in 2D
+                                                                    ln(lR /l0 )
+                               xα (r) = xα,s + (xmf
+                                                 α,s − xα,s ) ·                                                (12)
+                                                                   1/r−1/l0
+                                                                  
+                                                                                   in 3D
+                                                                    1/lR −1/l0
+
+Recall xα,s is the dissolved concentration at the interface of the s-bubble.
+   Given Eq.12, we write a mole balance for the bubble at state s:
+                                                               
+                                             Dα ϕa dxα (r) 2πrh in 2D
+                                                               
+                            dnα,s
+                                  = −jA =         ρw         ·                                                 (13)
+                             dt                τ       dr      4πr2 in 3D
+                                                               
+
+
+where j is the molar flux of dissolved solute toward/away from the s-bubble, and A the surface area of the
+cylinder/sphere through which transport occurs. Note the product jA does not depend on r. Differentiating
+Eq.12 with respect to r and substituting into Eq.13, along with the expression for ϕa above, yields:
+                                                             
+                                                              2π
+                          dnα,s           At mf          C  ln(lR /l0 )      in 2D
+                                = Dα ρw (xα,s − xα,s ) ·                                                       (14)
+                            dt            lt             τ          4π
+                                                             
+                                                               lt /l0 −lt /lR in 3D
+
+   We next relate dnα,s /dt to dSsb /dt and dy1,s /dt. Following Section 3, the number of moles in the s-bubble
+is nα,s = yα,s ρbs Ssb Vp,s , where all variables retain their original meaning, except the pore index i is now
+replaced with the bubble state coordinate s. Invoking the same constitutive equations in Section 3, it is
+straightforward to see nα,s is fully determined by s = (Rp , S b , y1 ). Recall these constitutive equations include
+
+
+                                                           9
+the ideal-gas law ρbs RT = Psb , the Young-Laplace equation Psb = Pw + σκs (with Pw assumed constant), and
+the curvature-volume relation κs (Vsb , Vp,s ) in Eq.9 for the pore size Rp occupied by the s-bubble. As a result,
+the time derivative of nα,s = nα,s (Rp , S b , y1 ) can be expanded using the chain rule:
+                             dnα,s    ∂nα,s dRp,s
+                                               
+                                                 ∂nα,s dSsb    ∂nα,s dyα,s
+                                   = (  )  +(    b
+                                                       )     +(      )                                         (15a)
+                              dt     ∂Rp,s dt     ∂Ss dt       ∂yα,s dt
+                           ∂nα,s                b   Ssb dκs     ∂nα,s
+                               b
+                                  = yα,s Vp,s (ρs +    σ b ),         = Vp,s ρbs Ssb                 (15b)
+                            ∂S                      RT dSs       ∂yα
+where the first term in Eq.15a is zero since dRp,s /dt = 0 was assumed in Section 4.1. Eq.15b follows from
+substituting the above constitutive relations into the remaining two terms in Eq.15a and simplifying.
+   We now substitute Eq.15 into the left-hand side (LHS) of Eq.14, which results in two equations corre-
+sponding to α ∈ {1, 2}. To express this 2×2 ODE system in terms of only Ssb and y1,s as our primary variables,
+we use Henry’s law xα,s = yα,s Psb /Hα to replace xα,s on the right-hand side (RHS) of Eq.14. This yields:
+                                        Ssb dκs
+                                                    
+                                                         dS b
+                                                                                                            
+                 b b                b                                        D1
+          Vp,s ρs Ss y1,s Vp,s (ρs + RT σ dS b )  
+                                                                                        b mf          b
+                                                                             H1 ((y 1 P  )s  − (y 1 P   ) s )
+                                               s   dt      = ρw At Gs                                   
+                                                                                                                (16a)
+                                                                     l
+                                          b
+                                                                                                            
+          
+                 b b                  b  S s   dκ s
+                                                       dy 1
+                                                                      t     D2         b mf          b
+           Vp,s ρs Ss −y2,s Vp,s (ρs +       σ      )                        H2 ((y2 P )s    − (y2 P )s )
+                                        RT dSsb           dt
+where                                              
+                                                    2π
+                                               C  ln(lR /l0 )          in 2D
+                                          Gs =   ·                                                             (16b)
+                                               τ       4π
+                                                   
+                                                       lt /l0 −lt /lR   in 3D
+In Eq.16a, we have used dy2 /dt = −dy1 /dt, which holds for binary mixtures.
+   Right-multiplying both sides of Eq.16a by the inverse of the mass matrix on the LHS, we obtain:
+                                              −1          2
+                   dSsb               S b dκs
+                               
+                           1                             X    Dα
+                                 ρbs + s σ b                      (yα P b )mf − (yα P b )s
+                                                                                           
+                        =                          ρw Gs                   s                       (17a)
+                    dt    Vp,s        RT dSs             α=1
+                                                              Hα
+                                                2
+                    dy1,s    1    b b −1
+                                               X                Dα
+                                                                    (yα P b )mf − (yα P b )s
+                                                                                            
+                          =      ρ S     ρw Gs    (δ1α − y1,s )                                                (17b)
+                     dt     Vp,s s s           α=1
+                                                                H α
+                                                                             s
+
+
+which are explicit expressions for dSsb /dt and dy1,s /dt as intended. The Kronecker delta δ1α assumes a value
+of one for α = 1 and zero for α = 2. We note (yα P b )mf    mf    b mf
+                                                      s ̸= yα,s (P )s  and that (yα P b )mf   mf
+                                                                                         s = xα,s /Hα holds by
+
+Henry’s law. The latter implies that the solution of Eq.17 at large t asymptotes as xα,s → xmf
+                                                                                            α,s for all α and
+
+s. Unfortunately, the mathematical form of Eq.17 is numerically problematic when the population balance
+Eq.10 is solved with an Eulerian (grid-based) method, as done here with finite volumes: the curves dSsb /dt = 0
+and dy1,s /dt = 0 form a narrowing corridor in phase space that traps bubbles before they reach equilibrium
+(see Appendix B for details). An additional problem is that each state s interacts with a different mean-field
+xmf
+ α,s , and there is nothing in the expressions provided later that forces these mean-fields to converge to the
+
+same state at t → ∞. To address these challenges, we alter the driving force in Eq.17b as follows:
+                                                    −1        2
+                    dSsb                   Ssb dκs
+                                
+                            1      b
+                                                              X   Dα
+                                                                       (yα P b )mf − yα,s Psb
+                                                                                              
+                         =       ρs +          σ        ρw Gs                   s                              (18a)
+                     dt    Vp,s           RT dSsb             α=1
+                                                                  H α
+                                                                      
+                    dy1,s    1              −1             D1       D2
+                                  ρbs Ssb                                (y1mf − y1,s )
+                                          
+                          =                    Pw ρw Gs y2     + y1                                            (18b)
+                     dt     Vp,s                           H1       H2
+
+
+                                                         10
+   Eq.18 constitutes our final expressions for dSsb /dt and dy1,s /dt. Notice the RHS of Eq.18b is now driven
+by the difference between the s-bubble composition, y1,s , and the mean field, y1mf . Crucially, y1mf does not
+depend on s, ensuring all bubbles approach the same composition at t → ∞. We prove in Section 4.4 that
+because our theory conserves mole exchange between bubbles, y1mf → y1mix at large t, where y1mix is the bulk
+(or mixture) composition of all bubbles in the population. Therefore, bubbles are guaranteed to converge
+                                                                                                        mf
+to a physically meaningful equilibrium composition. Notice Eq.18 drives xα,s and y1,s towards xmf
+                                                                                               α,s and y1
+
+for all s. To derive Eq.18b, we have assumed Pw ≫ σκs for all s, which is valid for high-pressure subsurface
+environments (e.g., UHS). This allows setting P b ≈ Pw and pulling it out of the summation in Eq.17b. We
+caution that applying the same simplification to Eq.17a as well would be fatal, as the ODE system would
+then be driven solely by differences in bubble composition (i.e., y1mf − y1,s ), not curvature.
+   We close this section by returning to the inner radius l0 in Eq.12 and deriving an expression for it. Notice
+the smallest lR can be is a single throat length lt , corresponding to when all neighboring pores of the s-bubble
+are occupied by bubbles. Since there are z such neighbors, we can write analogously to Eq.8 in the PNM:
+
+                          dnα,s         zAt                            zAt mf
+                                = Dα ρw     (xα (lt ) − xα,s ) = Dα ρw     (xα,s − xα,s )                     (19)
+                           dt            lt                             lt
+
+The first equality follows from Eq.8, where by radial symmetry the dissolved concentration within all neigh-
+boring pores is xα (lt ). The second equality follows from substituting for xα (lt ) the expression from Eq.12
+with r = lR = lt . Comparing Eq.19 to Eq.14, we arrive at the following formula for l0 :
+                                                 
+                                                 e− 2πC
+                                                     zτ         in 2D
+                                       l0 = lt ·                                                              (20)
+                                                 (1 + 4πC )−1 in 3D
+                                                 
+                                                         zτ
+
+This, in turn, yields the expression below for the geometric factor Gs from Eq.16b:
+                                                        
+                                            1      τ    2 ln lR
+                                                        
+                                                                    in 2D
+                                      −1                      lt
+                                     Gs = +           ·                                                       (21)
+                                            z    4πC   (1 − lt ) in 3D
+                                                               lR
+
+Note Gs = z when lR = lt , which holds for a densely bubble-occupied network, and it decreases with lR . In
+summary, the closure equations from this section are Eqs.18 and 21. To complete the theory, we now need
+expressions that allow us to compute (yα P b )mf
+                                              s  and y1mf at any given time t. This is addressed next.
+
+4.3. Computing mean-field properties
+
+   In this section, we postulate explicit expressions for (yα P b )mf
+                                                                   s  and y1mf . We begin with (yα P b )mf
+                                                                                                        s  and
+propose the following, which accounts for potential spatial correlations in pore size Rp in the network:
+
+                                                        p(s′ , l|s)                         p(s′ , l|s)
+                                    Z                                                Z
+                                 −1                                       ′     −1
+                 (yα P b )mf
+                          s  = ls          (yα P b
+                                                   )s ′             dl ds   , ls   =                    dl ds′ (22)
+                                     s′ ,l                  l                         s′ ,l     l
+
+The p(s′ , l|s) is the conditional probability density function (PDF) of finding a bubble at state s′ a distance l
+from the bubble at state s (see Fig.2b). Eq.22 is essentially a weighted average of (yα P b )s′ , where the weights
+p(s′ , l|s) / l decline with distance from the s-bubble according to spatial correlations in bubble states.
+
+
+                                                        11
+   To compute p(s′ , l|s), we first apply Bayes’ theorem:
+
+                                                           p(s′ , l|s) = p(l|s′ , s) p(s′ |s)                                       (23)
+
+and set p(l|s′ , s) = δ(l − lss′ ), where δ(·) is the Dirac delta function. This expression for p(l|s′ , s) is consistent
+with our theory’s conceptualization in Fig.2b, meaning that once s and s′ are chosen, the interaction distance
+between them is fixed at lss′ . Recall the space between bubbles s and s′ is free of other bubbles. To estimate
+p(s′ |s) and lss′ , we assume much of the spatial correlation in bubble states is dictated pore size (i.e., the Rp
+coordinate of s). This justifies renaming lss′ to lRR′ (Fig.3b) and approximating p(s′ |s) as follows:
+
+                                                               ′                                   ′
+                      p(s′ |s) ≈ p(s′ |Rp ) = p(S b , y1′ |Rp′ , Rp ) p(Rp′ |Rp ) ≈ p(S b , y1′ |Rp′ ) p(Rp′ |Rp )                  (24)
+
+where the second equality follows from expanding s′ in terms of its coordinates and applying Bayes’ theorem.
+   The first PDF on the RHS of Eq.24 can be computed exactly from the NDF g(s′ ; t) as follows:
+                                                                 Z
+                            ′                          ′                            ′                  ′
+                       p(S b , y1′ |Rp′ ) = g(Rp′ , S b , y1′ ) /        g(Rp′ , S b , y1′ ) dy1′ dS b                              (25)
+                                                                   b ′ ′
+                                              | {z }              S ,y1
+                                                                   s′
+
+where t is suppressed for brevity. The second PDF on the RHS of Eq.24 is approximated as:
+                                                             Z
+                            ′             ′
+                         p(Rp |Rp ) ≃ f (Rp |Rp ; lRR ) FR /
+                                                     ′    ′    f (Rp′ |Rp ; lRR′ ) FR′ dRp′                                         (26)
+                                                                                   ′
+                                                                                  Rp
+
+where f (Rp′ , Rp ; l) is the joint PDF of pore sizes Rp′ and Rp separated by a distance l. This PDF describes
+the pore network itself (not bubble occupancy) and is assumed to be known; it can be computed from X-
+ray images of porous samples. The smaller the distance l, the larger the value of f (Rp′ , Rp ; l). The marginal
+f (Rp ) = f (Rp′ , Rp ; l) dRp′ is the pore-size distribution. For uncorrelated networks, f (Rp′ , Rp ; l) = f (Rp′ )f (Rp )
+         R
+
+for all l. The factor FR′ represents the fraction of bubble-occupied pores in the network that have sizes
+between Rp′ and Rp′ +δRp′ . Its multiplication by f (Rp′ |Rp ; lRR′ ) accounts for bubble occupancy, since p(Rp′ |Rp )
+represents the probability of two bubble-occupied pores interacting (not just any two pores). The denominator
+in Eq.26 ensures p(Rp′ |Rp ) integrates to one. FR′ can be computed exactly from g(s′ ; t) and f (Rp′ ) as follows:
+
+                       nb ′
+                                           Z
+                                                                  ′                    ′
+               FR′ = pR , nbR′ = δRp′                  g(Rp′ , S b , y1′ ; t) dy1′ dS b , npR′ = np f (Rp′ ) δRp′ (27)
+                       nR ′                 S b ′ ,y1′
+
+where np denotes the total number of pores in the network.
+   Substituting Eqs.23-24 into Eq.22, and relabeling the variables lss′ and ls as lRR′ and lR to explicitly
+signal our assumption that they depend solely on correlations in Rp (not S b or y1 ), we obtain:
+                                                           ′
+                                                      p(S b , y1′ |Rp′ ) p(Rp′ |Rp ) ′ b ′ ′                      p(R′ |R; lRR′ ) ′
+                      Z                                                                                        Z
+                 −1                                                                                     −1
+  (yα P b )mf
+           s  = lR                      (yα P b )s′                                 dy1 dS dRp ,       lR  =                     dRp (28)
+                        ′ ,S b ′ ,y ′
+                       Rp          1
+                                                                   lRR′                                         ′
+                                                                                                               Rp     lRR′
+
+                                                     ′   ′         ′′
+as the final expression for (yα P b )mf          b
+                                     s , with p(S , y1 |Rp ) and p(Rp |Rp ) evaluated from Eqs.25-27.
+
+   The bubble spacing lRR′ in Eq.28 grows as bubbles dissolve during ripening. To compute it, we propose:
+                                                                                dRR′
+                                                                       lRR′ =    1/d
+                                                                                                                                    (29)
+                                                                                FR′
+
+                                                                           12
+where dRR′ is the average distance of pores with size Rp from their nearest pore with size Rp′ . Thus, dRR′ is a
+property of the network itself (not bubble occupancy). For most networks, dRR′ ≈ lt is a good approximation,
+but more accurate values can be computed from an X-ray image. Recall d is the network dimension and FR′
+is given by Eq.27. While empirical, Eq.29 has a few desirable properties. In homogeneous networks, where
+                                                                                   1/d
+Rp assumes a single value (Rp′ = Rp ), Eq.29 reduces to lRR = L/nb , because dRR = lt and FR = nb /np ,
+                                                                1/d
+where nb is the total number of bubbles and L = lt np                 is the spacing between bubbles if spread uniformly
+across the network. In heterogeneous networks, when all pores of size Rp′ are bubble-occupied, lRR′ = dRR′
+as expected. As bubbles dissolve due to ripening, FR′ decreases from one to zero, causing lRR′ to increase.
+In Appendix C, we compare lRR′ computed from Eq.29 with direct PNM simulations and find acceptable
+agreement in heterogeneous networks with both correlated and uncorrelated pore sizes.3
+                                                                                  mf
+    Having formulated (yα P b )mf
+                               s , we now postulate the following expression for y1 :
+                                           Z                 Z
+                                     y1mf = y1,s g(s; t) ds / g(s; t) ds                                                   (30)
+                                                      s                    s
+
+which is the average of y1,s over all bubbles in the population. Notice y1mf does not depend on s, which forces
+all bubbles to converge to the same equilibrium composition and avoids the numerical difficulty discussed in
+Section 4.2. While Eq.30 does not account for spatial correlations in Rp , they are indirectly captured through
+(yα P b )mf
+         s  and the coupling between ODEs in Eq.18. The next section addresses the issue of species-mass
+conservation among bubbles and shows that both (yα P b )mf
+                                                        s  and y1mf must be corrected to honor it.
+
+4.4. Mass conservation
+
+    As a bubble population described by g(s; t) evolves due to Ostwald ripening, the number of moles of each
+species must be conserved. Specifically, moles leaving one bubble must enter another, keeping the total moles
+of each species constant. Recall the wetting phase in our theory has no storage capacity for dissolved solute.
+In Appendix D, we prove the theorem below, establishing a condition equivalent to mass conservation:
+
+Theorem 1. The following two expressions are equivalent, where Ω is the entire phase space:
+                 dntot
+                            Z                                 Z
+                    α     d                                      dnα,s
+                       =       nα,s g(s; t) ds = 0    ⇔                g(s; t) ds = 0                                      (31)
+                   dt     dt Ω                                 Ω dt
+
+In words, the left expression states that the total number of moles of species α is constant for all t.
+
+    Setting α = 1 and substituting Eq.15 for dn1,s /dt into the rightmost expression in Theorem 1, with dSsb /dt
+and dy1,s /dt given by Eq.18, we obtain:
+                                                                                           
+  Z                2
+                  X   D β                                        D 1      D2
+                           (yβ P b )mf − yβ,s Psb + Pw ρw Gs (y2             )(y mf − y1,s ) g(s; t) ds = 0
+                                                 
+      y1,s ρw Gs                   s                                + y1                                                  (32)
+    Ω                 Hβ                                         H1       H2 1
+                     β=1
+
+
+
+   3 We make two technical remarks about l
+                                             RR′ : (1) Eq.29 ignores any dependence on FR , the bubble occupancy of pores with
+
+size Rp . Hence, it lacks the necessary symmetry to be considered a “distance metric” for bubble spacing; (2) For all choices of
+Rp and Rp′ , the inequality lRR′ ≥ lt > l0 holds as can be verified from Eqs.20 and 29 and the fact that dRR′ ≥ lt .
+
+
+                                                                13
+Unfortunately, the (yα P b )mf
+                            s  and y1mf postulated by Eqs.28 and 30 in the previous section do not guarantee
+that Eq.32 is satisfied. Therefore, a correction to these mean-field properties is needed to conserve bubble
+mass. We propose the following multiplicative corrections:
+
+                                     (yα P b )mf,∗
+                                              s    = λ (yα P b )mf
+                                                                s ,               y1mf,∗ = γ y1mf                   (33)
+
+where the asterisk indicates a corrected mean-field property.
+   To compute the correction multiplier λ, we write an equation similar to Eq.32 for α = 2, add it to Eq.32,
+use the fact that y1,s + y2,s = 1 and y1mf + y2mf = 1, and substitute the corrected mean-field properties in
+Eq.33 into the resulting expression. After some algebra, this yields:
+                           Z         2                                  Z        2
+                                     X Dβ                                        X Dβ
+                      λ=        Gs              yβ,s Psb g(s; t) ds /       Gs              (yβ P b )mf
+                                                                                                     s g(s; t) ds   (34)
+                            Ω              Hβ                           Ω              Hβ
+                                     β=1                                         β=1
+
+Given λ from Eq.34, we can compute the second correction multiplier γ by substituting the corrected mean-
+field properties in Eq.33 into Eq.32 and solving for γ. This yields:
+                                                                                               
+          Z                                                   2
+                            D 1      D 2
+                                                             X   Dβ
+                                                                      λ (yβ P b )mf − yβ,s Psb  g(s; t) ds /
+                                                                                              
+      γ=     Pw ρw Gs (y2      + y1     ) y1,s − y1,s ρw Gs                     s
+           Ω                H1       H2                          Hβ
+                                                             β=1                                                    (35)
+                                                            Z                                    
+                                                                              D1        D2 mf
+                                                                 Pw ρw Gs (y2      + y1    ) y1     g(s; t) ds
+                                                              Ω               H1        H2
+
+To summarize, we first compute the uncorrected mean-field properties (yα P b )mf
+                                                                              s  and y1mf via Eqs.28 and 30,
+then correct them via Eqs.33-35. These corrected mean-field properties are used in Eq.18 to compute the
+phase-space velocities dSsb /dt and dy1,s /dt needed in the population balance equation Eq.10.
+   We close this section with a corollary to Theorem 1, which guarantees that bubbles converge to a physically
+meaningful equilibrium composition. The proof is provided in Appendix E.
+
+Corollary 1. The bulk (or mixture) composition of all bubbles in the population, defined as:
+                                      Z                        Z                                    2
+                                                                                                    X
+                           y1mix =         y1,s ns g(s; t) ds / ns g(s; t) ds ,              ns =         nα,s      (36)
+                                       s                         s                                  α=1
+
+
+remains constant for all t. Moreover, as t → ∞, the mean-field mole-fraction satisfies y1mf,∗ → y1mix .
+
+This result further supports our choice of the s-independent y1mf in Eq.30 and the reformulation of dy1,s /dt
+in Eq.18. By contrast, the precursor ODE in Eq.17 does not guarantee convergence to y1mix . In Appendix
+E, we also show γ → 1 as t → ∞, implying y1mf → y1mix . Finally, we offer the following remark about λ:
+
+Remark 1. While it is obvious that γ corrects the mean-field composition y1mf , the use of a single multiplier
+λ for both species α ∈ {1, 2} is equivalent to correcting the mean-field bubble curvature κmf
+                                                                                           s . To see this, note
+
+the mean-field operator (·)mf
+                           s  is linear, so by Henry’s law and the Young-Laplace equation H1 xmf        mf
+                                                                                              1,s + H2 x2,s =
+
+(y1 P b )mf
+         s  + (y2 P b )mf
+                       s  = Psb,mf = Pw + σκmf
+                                            s . This is why a single multiplier λ suffices for both species.
+
+
+
+                                                                 14
+5. Validation cases
+
+    We validate the theory in Section 4 against PNM simulations for both one- and two-component bubble
+populations. We consider pore networks with a 2D lattice topology but 3D pore and throat shapes. Pores
+are semi-cubic of size Rp , defined in Section 3, and throats are prisms with cross-sectional area At and length
+lt . Lattices are 50×50 arrays of pores. Three networks are considered: (1) homogeneous pore size (Hom),
+with Rp = 5 µm; (2) heterogeneous and spatially uncorrelated pore size (Unc), with Rp uniformly distributed
+between 5 µm and 20 µm; and (3) heterogeneous and spatially correlated pore size (Cor ), with Rp drawn from
+the same distribution as Unc but with correlation length 3 lt . Spatial correlation is established by creating a
+random Gaussian field Y ∼ N (µ, C(l)) with mean µ = 0 and covariance function C(l) = exp(−(l/lc )2 ), where
+l is the distance between pores. For each pore, Y is mapped to Rp via the probability integral transform
+Rp = FU−1 (FN (Y )), where FN is the cumulative distribution function (CDF) of N and FU is the CDF of the
+uniform distribution Rp ∈ [ 5, 20 ] µm. Throat lengths are lt = 10 µm in the Hom network and lt = 40 µm in
+the Unc and Cor networks. Throat areas are At = 19.6 µm2 . All networks are depicted in Fig.4.
+
+
+
+
+Figure 4: Pore networks used in PNM simulations to validate the proposed theory. Pores are depicted as red circles, with radii
+proportional to the pores’ sizes Rp . The heterogeneous uncorrelated network is generated by randomly assigning Rp ∈ [ 5, 20 ]
+µm to pores. The heterogeneous correlated network has the same pore sizes but with correlation length lc = 3 lt .
+
+
+    We validate our theory in two stages. In the first stage, we consider single-component bubbles composed
+of pure H2 . The goal is to demonstrate that our theory not only generalizes the formulation of [37], but also
+removes key limitations that enhance predictive accuracy. In the second stage, we consider two-component
+bubbles composed of H2 and CO2 . Table 1 lists the cases considered in each stage, which we detail next. We
+     b
+use Stot to denote the global bubble saturation in a network, which stands in contrast to local saturation S b
+in individual pores. Recall that y1mix is the global (or bulk) mole fraction of H2 of all bubbles combined.
+    In stage 1 of our validation, we consider cases in the top segment of Table 1, all taken from [37]. The first
+three correspond to pure H2 bubbles (y1 = 1) occupying all pores in the network at fixed local saturation
+S b . We label these Hom-One-Full, Unc-One-Full, and Cor-One-Full, depending on whether the network is
+Hom, Unc, or Cor. In Unc-One-Full and Cor-One-Full, local saturation S b is uniform across all pores (thus
+
+
+                                                              15
+Table 1: Validation set used to compare the theory to PNM. Pore networks consist of homogeneous, heterogeneous uncorrelated,
+and heterogeneous correlated pore sizes. Cases are divided into one- and two-component scenarios, each given a description and
+                                          b , and y mix denote correlation length, total bubble saturation in the network, and
+a code name for easy reference. The lc , Stot      1
+bulk composition of the bubble population, respectively. Pop 1–3, Random y1 , and Small-pore y1 are defined in the text.
+
+
+                                                                         b
+                        Description                          lc         Stot         y1mix      Code name
+
+                        Homogeneous, Fully occupied          ∞          30%            1        Hom-One-Full
+       One component
+
+
+
+
+                        Uncorrelated, Fully occupied          0         30%            1        Unc-One-Full
+
+                        Correlated, Fully occupied           3 lt       60%            1        Cor-One-Full
+
+                        Correlated, Partially occupied       3 lt       12%            1        Cor-One-Part
+
+                        Homogeneous, Pop 1, Random y1        ∞          60%          0.50       Hom-Pop1-yRand
+
+                        Homogeneous, Pop 2, Random y1        ∞          60%          0.75       Hom-Pop2-yRand
+
+                        Homogeneous, Pop 3, Random y1        ∞          40%          0.49       Hom-Pop3-yRand
+
+                        Uncorrelated, Pop 1, Random y1        0         60%          0.47       Unc-Pop1-yRand
+
+                        Uncorrelated, Pop 2, Random y1        0         60%          0.73       Unc-Pop2-yRand
+
+                        Uncorrelated, Pop 3, Random y1        0         39%          0.47       Unc-Pop3-yRand
+       Two components
+
+
+
+
+                        Correlated, Pop 1, Random y1         3 lt       60%          0.49       Cor-Pop1-yRand
+
+                        Correlated, Pop 2, Random y1         3 lt       60%          0.74       Cor-Pop2-yRand
+
+                        Correlated, Pop 3, Random y1         3 lt       39%          0.46       Cor-Pop3-yRand
+
+                        Uncorrelated, Pop 1, Small-pore y1    0         60%          0.49       Unc-Pop1-ySmall
+
+                        Uncorrelated, Pop 2, Small-pore y1    0         60%          0.74       Unc-Pop2-ySmall
+
+                        Uncorrelated, Pop 3, Small-pore y1    0         40%          0.48       Unc-Pop3-ySmall
+
+                        Correlated, Pop 1, Small-pore y1     3 lt       60%          0.49       Cor-Pop1-ySmall
+
+                        Correlated, Pop 2, Small-pore y1     3 lt       60%          0.74       Cor-Pop2-ySmall
+
+                        Correlated, Pop 3, Small-pore y1     3 lt       40%          0.48       Cor-Pop3-ySmall
+
+
+ b
+Stot = S b ), whereas in Hom-One-Full, S b is randomly drawn from [ 1, 5 ]%. These three cases correspond to
+the more difficult problems in [37], which we use to demonstrate that our theory reproduces those results.
+The fourth case, Cor-One-Part, corresponds to a scenario presented as a challenge in [37] (Section 7.2), whose
+ripening dynamics that theory could not capture due to large initial bubble spacing. We show our theory
+overcomes this limitation, thereby generalizing [37]. The setup places sub-critical bubbles in the largest 20%
+of pore sizes, with local saturation sampled uniformly from S b ∈ [ 5, 35 ]%, and super-critical bubbles in the
+smallest 20%, with S b sampled uniformly from [ 65, 95 ]%. Here too, all bubbles are composed of pure H2 .
+
+
+
+                                                             16
+   In stage 2 of the validation, we consider cases in segments 2–6 of Table 1. These comprise different
+combinations of network type (Hom, Unc, Cor ), bubble population (Pop1, Pop2, Pop3 ), and spatial distri-
+bution of y1 (yRand, ySmall ). Since network types were described above, we focus here on the three bubble
+populations: In Pop1, all pores contain bubbles at local saturation S b = 60%, with roughly half by volume
+being pure H2 and the other half pure CO2 . Pop2 is similar, but the pure CO2 bubbles are replaced by
+bubbles that are an equimolar H2 –CO2 mixture. In Pop3, roughly half of the bubbles by volume are pure H2
+at S b = 60%, and the other half are pure CO2 at S b = 30%. For each population, the labels yRand and ySmall
+specify how bubbles are assigned to pores. In yRand, pores are chosen at random, implying no correlation
+between pore size Rp and bubble composition y1 . In ySmall, the smallest pores are filled with H2 first, then
+the remaining pores are filled with other bubbles (pure CO2 in Pop1 and Pop3, equimolar mixture in Pop2 ).
+In the Cor network, ySmall produces spatial correlation in y1 , not just Rp . Hereafter, we refer to each of the
+resulting 15 cases by the code names listed in Table 1 (e.g., Cor-Pop2-yRand ).
+   The above initial conditions for two-component ripening are motivated by underground hydrogen storage.
+Cyclic injections of H2 are often preceded by a cushion gas like CO2 , which can mix with subsequent H2
+injections. In addition, cyclic injections can cause capillary trapping of bubbles within preferential flow paths
+(larger pores), diverting subsequent H2 into smaller pores. This motivates the equimolar mixture in Pop2
+and the ySmall placement. We note that placing H2 bubbles in larger pores would be a less challenging test
+of our theory, since early-stage mass transfer is exclusively from CO2 to H2 due to differences in solubility
+and diffusion coefficient, causing more bubble deformation when H2 resides in smaller pores.
+   In all cases, the temperature T is set to 333 K, wetting-phase pressure Pw to 108 dynes/cm2 , surface tension
+σ to 32 dynes/cm, molecular diffusion coefficients to D1 = 5.13 × 10−5 cm2 /s for H2 and D2 = 1.6 × 10−5
+cm2 /s for CO2 , and Henry’s constants to H1 = 7.1 × 1010 dynes/cm2 for H2 and H2 = 0.16 × 1010 dynes/cm2
+for CO2 . For each case in Table 1, the temporal evolution of the bubble population due to Ostwald ripening
+is predicted by the theory and compared to PNM simulation. The population balance Eq.10 is discretized
+over the phase space using the finite-volume method with a first-order upwind scheme. Although Eq.10 must
+be solved numerically, it is far more efficient than PNM because there is no limit to the number of bubbles
+that can be simulated. Moreover, networks with large correlation lengths in pore size require prohibitively
+large representative elementary volumes (REVs) in the PNM, which is not a limitation for the theory.
+
+
+6. Results
+
+6.1. One-component ripening
+
+   We begin by comparing the theory to PNM for the one-component ripening cases listed in Table 1.
+Focusing on Hom-One-Full, Fig.5 shows the theory successfully predicts the temporal evolution of g(s; t).
+Since the network is homogeneous with uniform Rp , and bubbles are composed of one component with y1 = 1,
+the phase space is one-dimensional, consisting of only the S b axis. Focusing next on Unc-One-Full and Cor-
+One-Full, Fig.6 compares the evolution of g(s; t) from the theory to the PNM, where good agreement is again
+
+
+                                                       17
+observed. The PNM is depited by a heat map, and the theory by white contour lines. Here, the phase space
+is two-dimensional with axes S b and Rp , because y1 = 1. At t = 0, g(s; t) is a vertical stripe since all bubbles
+have the same saturation. Over time, the higher curvature in smaller pores drives mass flux toward larger
+pores, causing g(s; t) to shift left (toward S b = 0) at small Rp and right at large Rp . At equilibrium, curvature
+is uniform across all bubbles, producing the oblique line in Fig.6. The results in Figs.5–6 for Hom-One-Full,
+Unc-One-Full, and Cor-One-Full were also successfully predicted by the theory of [37].
+
+
+
+
+Figure 5: Comparison of the bubble number density g(s; t) predicted by theory (white contours) and PNM (heat map). Since
+bubbles are single-component (y1 = 1) and network is homogeneous, the phase space is one-dimensional with S b axis. Snapshots
+are shown at t = 0, 0.1, 10 h, and equilibrium for the Hom-One-Full case in Table 1. The theory reproduces results from [37].
+
+
+
+
+Figure 6: Comparison of the bubble number density g(s; t) predicted by theory (white contours) and PNM (heat map). Since
+bubbles are single-component (y1 = 1), the phase space is two-dimensional with Rp and S b axes. Snapshots are shown at t = 0,
+10, 100 h, and equilibrium for the Unc-One-Full and Cor-One-Full cases in Table 1. The theory reproduces results from [37].
+
+
+    We now turn to Cor-One-Part, which was presented as a challenge in [37]. Fig.7 shows the complex initial
+
+
+                                                             18
+Figure 7: Comparison of the bubble number density g(s; t) predicted by theory (white contours) and PNM (heat map) for the
+Cor-One-Part case. Snapshots are at t = 0, 10, 100 h, and equilibrium. Top row: theory of [37], which predicts two groups
+evolving independently (unphysical). Bottom row: our theory, which captures interactions between distant bubbles accurately.
+
+
+
+
+Figure 8: Average bubble volume ⟨V b ⟩, mean curvature ⟨κ⟩, and survived bubble fraction Fs versus time for the one-component
+ripening cases in Table 1. The proposed theory (solid lines) shows good agreement with PNM (symbols). Predictions from [37]
+(dashed lines) are slightly worse for Hom-One-Full, Unc-One-Full, and Cor-One-Full, but completely off for Cor-One-Part.
+
+
+
+
+                                                             19
+condition of g(s; t) and its subsequent evolution in time. The top row corresponds to the theory of [37], which
+fails to predict this evolution, resulting in an isolated cluster of bubbles in the bottom-right of the phase
+space that remains disconnected or “unaware” of other bubbles in the population. This failure is due to the
+fundamental inability of that theory to capture interactions between bubbles that are multiple throats apart.
+Our theory in the bottom row of Fig.7 removes this limitation, and is therefore superior to that of [37].
+   Fig.8 shows the corresponding bulk properties of the above populations versus time. They consist of the
+average bubble volume ⟨V b ⟩, mean curvature ⟨κ⟩, and survived fraction of bubbles Fs (i.e., current number
+of bubbles divided by the number of bubbles at t = 0). These properties are readily computed from g(s; t):
+                   Z                               Z                                         Z
+               1                               1                           nb (t)
+    ⟨V b ⟩ =          Vsb g(s; t) ds , ⟨κ⟩ =          κs g(s; t) ds , Fs =        , nb (t) =    g(s; t) ds (37)
+             nb (t) Ω                        nb (t) Ω                      nb (0)             Ω
+
+Good agreement between our theory and PNM is observed in all cases. Fig.8 also includes predictions from
+[37], which are slightly worse for the first three cases (Hom-One-Full, Unc-One-Full, Cor-One-Full ) but
+completely off for Cor-One-Part. In summary, Figs.5–8 demonstrate that our theory not only successfully
+reproduces results from the theory of [37] for single-component ripening but also generalizes it by removing
+key limitations. The next section takes this further by capturing two-component ripening dynamics.
+
+
+6.2. Two-component ripening
+
+6.2.1. Homogeneous network, uncorrelated composition
+   We begin our comparison of the theory against PNM for two-component ripening by considering cases in
+the second segment of Table 1, namely, Hom-Pop1-yRand, Hom-Pop2-yRand, and Hom-Pop3-yRand. These
+correspond to the homogeneous network with random placement of bubbles at t = 0, i.e., no correlation
+between y1 and Rp . Fig.9 shows the evolution of bubble number density g(s; t) versus time, where we see
+good agreement between theory and PNM. Since Rp is uniform, the phase space is two-dimensional with y1
+and S b axes. At t = 0, H2 and CO2 bubbles in Pop1 have local saturation S b = 60%. Pop2 is the same,
+but instead of pure CO2 bubbles, we have equimolar H2 –CO2 bubbles. In Pop3, H2 bubbles have S b = 60%,
+while CO2 bubbles have S b = 30%. In all three cases, as bubbles evolve, g(s; t) approaches a horizontal line
+of constant y1 , corresponding to the equilibrium bubble composition. Due to differences in solubility and
+diffusion coefficient, mass transfer is initially directed from CO2 bubbles to H2 bubbles, causing the S b of H2
+bubbles to grow. This can lead to highly deformed bubbles during the initial stages of ripening.
+   Once bubble compositions have nearly homogenized—a stage called partitioning [38]—one group (initially
+pure H2 ) has high S b while the other (initially CO2 or equimolar mixture) has low S b . Thereafter, ripening
+is driven by curvature differences in a stage called coevolution [38], causing the two groups to approach each
+other along the constant-y1 line. At equilibrium, only one cluster remains, with all bubbles having the same
+composition and curvature (thus saturation, since Rp is uniform). In Fig.9, the difference in S b at equilibrium
+between the theory and PNM is 4–5%, and the difference in y1 is 0.5% for Pop1 and Pop2, but 14% for Pop3.
+The larger y1 discrepancy in Pop3 arises because its CO2 bubbles are sub-critical (S b = 30%) and reside in
+
+
+
+                                                      20
+Figure 9: Comparison of the bubble number density g(s; t) predicted by the theory (white contours) and PNM (heat map) for
+the two-component ripening cases Hom-Pop1-yRand, Hom-Pop2-yRand, and Hom-Pop3-yRand in Table 1. Since the network
+is homogeneous with uniform Rp , the phase space is 2D with y1 and S b axes. Snapshots are at t = 0, 0.1, 10 s, and equilibrium.
+
+
+
+
+Figure 10: Average bubble volume ⟨V b ⟩, mean curvature ⟨κ⟩, survived fraction Fs , and mean composition ⟨y1 ⟩ versus time
+for two-component ripening cases Hom-Pop1-yRand, Hom-Pop2-yRand, and Hom-Pop3-yRand in Table 1. Theory (solid lines)
+agrees with PNM (symbols) except for ⟨V b ⟩ at early times, and Fs and ⟨y1 ⟩ in Pop3. Deviations in ⟨V b ⟩ and ⟨y1 ⟩ arise because
+PNM accounts for solute storage in water, while the theory does not. Deviation in Fs reflects instability of sub-critical ripening.
+
+
+
+large pores, leaving substantial water volume that absorbs H2 during partitioning. The PNM captures this,
+lowering the equilibrium y1 predicted, whereas the theory does not as it assigns no storage capacity to water.
+
+
+                                                                21
+   Fig.10 shows bulk properties ⟨V b ⟩, ⟨κ⟩, Fs , and mean composition ⟨y1 ⟩ versus time, where ⟨y1 ⟩ is computed
+analogously to Eq.37. Note this is identical to y1mf in Eq.30. The agreement is decent except for early stages
+of ⟨V b ⟩, and late stages of Fs and ⟨y1 ⟩ for Pop3. Focusing on ⟨V b ⟩, we see a temporary sag in PNM that is
+present but much less pronounced in the theory. This sag in PNM has two causes: (1) The wetting phase
+can store dissolved solute, which introduces a lag in mass transfer between H2 and CO2 /mixture bubbles
+on account of differences in solubility and diffusion coefficient. This effect is not captured by the theory, as
+mass exchange between bubbles is instantaneous; (2) The rapid initial influx of mass into H2 bubbles causes
+them to grow and become deformed, resulting in the observed peak in ⟨κ⟩. Since bubbles are gaseous, their
+compressibility causes a temporary decrease in mean volume, before deformed bubbles relax back to lower
+curvatures. This effect is captured by our theory, which is why the spike in ⟨κ⟩ is predicted accurately.
+   Focusing next on Fs and ⟨y1 ⟩, we see good agreement for Pop1 and Pop2, but significant error for Pop3.
+The ⟨y1 ⟩ deviation in Pop3 occurs early (∼ 10−4 s), consistent with the water storage effect discussed above.
+The Fs deviation occurs later (∼ 100 s), after coevolution is complete, and reflects a different mechanism: in
+Pop3, CO2 bubbles are sub-critical (spherical) from the start and remain so as they shrink during partitioning.
+The subsequent curvature-driven ripening of such spherical bubbles is unstable [38], with survival depending
+on local neighborhood configuration. In the theory, sub-critical bubbles interact only with the mean field,
+through which they tend to lose mass to super-critical (deformed) bubbles. In PNM, sub-critical bubbles
+also exchange mass with neighboring sub-critical bubbles, some of which gain mass at the expense of others.
+This allows more bubbles to survive in PNM than in the theory, explaining why the theory underpredicts Fs .
+
+6.2.2. Heterogeneous uncorrelated network, uncorrelated composition
+   We now focus on cases in the third segment of Table 1, namely, Unc-Pop1-yRand, Unc-Pop2-yRand, and
+Unc-Pop3-yRand. These correspond to the heterogeneous and uncorrelated network with random placement
+of bubbles at t = 0, i.e., no correlation between y1 and Rp . Now, g(s; t) lives in a three-dimensional phase
+space. To visualize it, we consider three projections (or marginals) of g(s; t) onto the S b –y1 , Rp –S b , and
+Rp –y1 planes. The S b –y1 projection is shown in Fig.11 at t = 0, 1 s, 10 s, and equilibrium. The evolution of
+g(s; t) is very similar to Fig.9, where H2 and CO2 /mixture bubbles first approach a line of constant y1 , then
+approach each other whilst staying close to that line. One difference compared to the homogeneous network
+in the previous section is that the evolution here is slower. Another is that at equilibrium, bubbles attain
+different S b to ensure uniform curvature due to Rp variability. Overall, the theory is in good agreement with
+PNM. The largest discrepancy corresponds to Pop3 for reasons already discussed in Section 6.2.1.
+   The corresponding Rp –S b projection is shown in Fig.12. At t = 0, g(s; t) appears as a vertical stripe in
+Pop1 and Pop2 because S b = 60% is uniform across all bubbles, but as two stripes in Pop3 because S b = 60%
+holds for H2 bubbles and S b = 30% for CO2 bubbles. As time progresses, g(s; t) splits into two stripes
+corresponding to the CO2 /mixture (left) and H2 (right) bubbles, since each pore size is occupied by both
+bubble types at t = 0. Once bubble compositions have homogenized, the two stripes approach each other and
+merge into an oblique line similar to that in Fig.6. This is because for the same curvature, smaller pores
+
+
+                                                      22
+Figure 11: Projection of the bubble number density g(s; t) onto the S b –y1 plane, predicted by the theory (white contours) and
+PNM (heat map) for the two-component ripening cases Unc-Pop1-yRand, Unc-Pop2-yRand, and Unc-Pop3-yRand in Table 1.
+Network is heterogeneous and uncorrelated with random bubble placement. Snapshots are at t = 0, 1, 10 s, and equilibrium.
+
+
+
+require less bubble deformation, thus lower S b . Here too, the agreement between theory and PNM is good.
+The observations and takeaways remain similar for the Rp –y1 projection shown in Fig.13.
+    Finally, Fig.14 shows how bulk properties ⟨V b ⟩, ⟨κ⟩, Fs , and ⟨y1 ⟩ evolve with time. Overall, theory and
+PNM are in good agreement, with larger deviations observed in Pop3. Similar to Fig.10, the ⟨y1 ⟩ deviation in
+Pop3 arises because PNM accounts for solute storage in water, whereas the theory does not. The Fs deviation
+reflects instability of sub-critical bubble ripening. Namely, in Pop3, CO2 bubbles are spherical from the start
+and remain so during partitioning, after which their survival depends on local neighborhood configuration
+rather than interaction with the mean field. That said, Fs and ⟨y1 ⟩ are in slightly better agreement here
+than in the homogeneous network, since the variability in Rp likely provides some stabilization.
+
+6.2.3. Heterogeneous correlated network, uncorrelated composition
+    The results for the cases in the fourth segment of Table 1 are very similar to those from the previous
+section. These cases are Cor-Pop1-yRand, Cor-Pop2-yRand, and Cor-Pop3-yRand, corresponding to the
+
+
+                                                              23
+Figure 12: Projection of the bubble number density g(s; t) onto the Rp –S b plane, predicted by the theory (white contours) and
+PNM (heat map) for the two-component ripening cases Unc-Pop1-yRand, Unc-Pop2-yRand, and Unc-Pop3-yRand in Table 1.
+Network is heterogeneous and uncorrelated with random bubble placement. Snapshots are at t = 0, 1, 10 s, and equilibrium.
+
+
+
+heterogeneous and spatially correlated network with random bubble placement, i.e., no correlation between
+y1 and Rp . Due to this similarity with the uncorrelated network, we only present the bulk properties in
+Fig.15, which is nearly indistinguishable from Fig.14. The only difference is that late-time ripening dynamics
+are slightly slower in the correlated network (see Fs ). The likely explanation is that spatial correlations in
+Rp play little role in early ripening, which is driven primarily by gradients in bubble composition. What
+matters is which bubbles (H2 or CO2 /mixture) are initially neighbors—or equivalently, how y1 is arranged
+spatially. This arrangement is random both here and in the previous section, hence the small difference in
+results. At late times, however, when ripening is driven mainly by gradients in curvature, larger correlation
+entails smaller gradients in κ (since Rp controls κ through Eq.9), thus slower mass transfer between bubbles.
+
+
+6.2.4. Heterogeneous uncorrelated network, correlated composition
+    We now turn to cases in the fifth segment of Table 1, namely, Unc-Pop1-ySmall, Unc-Pop2-ySmall, and
+Unc-Pop3-ySmall. These correspond to the heterogeneous uncorrelated network with H2 bubbles placed in
+
+
+                                                              24
+Figure 13: Projection of the bubble number density g(s; t) onto the Rp –y1 plane, predicted by the theory (white contours) and
+PNM (heat map) for the two-component ripening cases Unc-Pop1-yRand, Unc-Pop2-yRand, and Unc-Pop3-yRand in Table 1.
+Network is heterogeneous and uncorrelated with random bubble placement. Snapshots are at t = 0, 1, 10 s, and equilibrium.
+
+
+
+
+Figure 14: Bulk properties ⟨V b ⟩, ⟨κ⟩, Fs , and ⟨y1 ⟩ versus time for the two-component ripening cases Unc-Pop1-yRand, Unc-
+Pop2-yRand, and Unc-Pop3-yRand in Table 1. The proposed theory (solid lines) shows good agreement with PNM (symbols).
+
+
+
+small pores and CO2 /mixture bubbles in large pores. Since the two bubble groups have equal bulk volume,
+H2 bubbles are more numerous. Similar to Section 6.2.2, we consider projections of g(s; t) onto the S b –y1 ,
+Rp –S b , and Rp –y1 planes. The S b –y1 projection is omitted because it is very similar to Fig.11. Figs.16–17
+
+
+
+                                                             25
+Figure 15: Bulk properties ⟨V b ⟩, ⟨κ⟩, Fs , and ⟨y1 ⟩ versus time for the two-component ripening cases Cor-Pop1-yRand, Cor-Pop2-
+yRand, and Cor-Pop3-yRand in Table 1. The network is correlated and bubble placement is random. The proposed theory (solid
+lines) shows good agreement with PNM (symbols). Results are nearly indistinguishable from Fig.14 for uncorrelated network.
+
+
+
+illustrate the remaining two projections, where we see qualitatively different evolution patterns compared to
+prior sections when the initial arrangement of y1 was spatially random. The agreement between theory and
+PNM is good, with errors larger in Pop3 due to reasons already discussed in Section 6.2.1.
+    Bulk properties are plotted in Fig.18. The main difference compared to Fig.14 concerns ⟨y1 ⟩: while
+roughly constant in Fig.14, it now decreases with time. Note that ⟨y1 ⟩, which equals y1mf by Eq.30, is not the
+same as y1mix . By Corollary 1, y1mix is constant over time in the theory, and only as t → ∞ does y1mf → y1mix .4
+The values of y1mix for each case are listed in Table 1. One can verify that the equilibrium values of ⟨y1 ⟩ in
+Fig.18 match the y1mix values in Table 1. The discrepancy in equilibrium ⟨y1 ⟩ for Pop3 arises because some
+H2 is absorbed by water in PNM—an effect not captured by the theory—resulting in lower ⟨y1 ⟩ predicted by
+PNM. The deviation in Fs reflects the instability of sub-critical ripening, as discussed in Section 6.2.1.
+
+
+6.2.5. Heterogeneous correlated network, correlated composition
+    We now examine the final segment of Table 1: Cor-Pop1-ySmall, Cor-Pop2-ySmall, and Cor-Pop3-
+ySmall, which correspond to the heterogeneous correlated network with H2 bubbles placed in small pores and
+CO2 /mixture bubbles in large pores. These cases are the most challenging because both Rp and y1 are spa-
+tially correlated. As in the previous section, we omit the S b –y1 projection of g(s; t) because it is very similar
+to Fig.11. The remaining two projections, Rp –S b and Rp –y1 , are shown in Figs.19–20. We see satisfactory
+agreement between theory and PNM, but errors are significantly larger than in previous sections. This is
+especially apparent in the equilibrium configurations of Pop1 and Pop3, and in the theory overestimating
+the speed of ripening. Fig.21 shows bulk properties versus time, with consistent observations.
+    The most likely explanation relates to two fundamental assumptions in the theory. First, bubbles at state
+s interact with a mean-field having composition y1mf and curvature κmf                   b mf        mf
+                                                                    s —equivalently (y1 P )s . Only κs
+
+accounts for spatial correlations through Eq.28, hence the subscript s. The mean-field composition y1mf ,
+computed via Eq.30, is s-independent and informed by all bubbles in the population, whether proximate or
+
+
+   4 From Appendix   E, γ → 1 as t → ∞. Therefore, both y1mf,∗ and y1mf converge to y1mix .
+
+
+
+                                                               26
+Figure 16: Projection of the bubble number density g(s; t) onto the Rp –S b plane, predicted by theory (white contours) and PNM
+(heat map) for two-component ripening cases Unc-Pop1-ySmall, Unc-Pop2-ySmall, and Unc-Pop3-ySmall in Table 1. Network
+is heterogeneous and uncorrelated with H2 bubbles placed in small pores. Snapshots are at t = 0, 1, 10 s, and equilibrium.
+
+
+
+distant relative to the s-bubble. This causes overestimation of the phase velocities through Eq.18b, directly
+impacting dy1,s /dt and indirectly impacting dSsb /dt through coupling terms, thus accelerating ripening. Sec-
+ond, spatial correlations accounted for in κmf
+                                            s  are of pore size Rp , not composition y1 . This assumption was
+necessary to render the computation of mean-field properties tractable via approximations made between
+Eqs.22 and 28. The errors in Figs.19–20 are the price we pay for these simplifications. The reason Pop2
+predictions are more accurate is that chemical-potential gradients between H2 and mixture bubbles are less
+than gradients between H2 and CO2 bubbles in Pop1 and Pop3, resulting in weaker disequilibrium.
+
+
+7. Discussion
+
+7.1. Limitations of the theory
+
+    This work presents the first theory for multicomponent ripening of bubbles in porous media, generalizing
+that of [37] for single-component ripening. It also simplifies the formulation and removes key limitations of
+
+
+                                                              27
+Figure 17: Projection of the bubble number density g(s; t) onto the Rp –y1 plane, predicted by theory (white contours) and PNM
+(heat map) for two-component ripening cases Unc-Pop1-ySmall, Unc-Pop2-ySmall, and Unc-Pop3-ySmall in Table 1. Network
+is heterogeneous and uncorrelated with H2 bubbles placed in small pores. Snapshots are at t = 0, 1, 10 s, and equilibrium.
+
+
+
+
+Figure 18: Bulk properties ⟨V b ⟩, ⟨κ⟩, Fs , and ⟨y1 ⟩ versus time for two-component ripening cases Unc-Pop1-ySmall, Unc-Pop2-
+ySmall, and Unc-Pop3-ySmall in Table 1. The proposed theory (solid lines) shows good agreement with PNM (symbols).
+
+
+
+that theory, as demonstrated in Section 6.1. While we focused on H2 and CO2 bubbles, other gases relevant to
+underground hydrogen storage (e.g., N2 , CH4 ) or otherwise could be used without loss of generality. Below,
+we discuss pending limitations of the theory to guide future research. They are divided into methodological,
+
+
+
+                                                              28
+Figure 19: Projection of the bubble number density g(s; t) onto the Rp –S b plane, predicted by theory (white contours) and PNM
+(heat map) for two-component ripening cases Cor-Pop1-ySmall, Cor-Pop2-ySmall, and Cor-Pop3-ySmall in Table 1. Network
+is heterogeneous and correlated with H2 bubbles placed in small pores. Snapshots are at t = 0, 1, 10 s, and equilibrium.
+
+
+
+which exist within the assumptions of the theory and may be addressed by reformulating certain parts, and
+foundational, which stem from core assumptions that may require a completely new formulation.
+
+
+7.1.1. Methodological limitations
+    Even under the assumptions of the theory, Section 6.2.5 showed that predicting ripening of bubble pop-
+ulations faces three remaining challenges: (1) capturing both kinetics and equilibrium state is difficult when
+composition is spatially correlated (Cor-ySmall ); (2) late-time predictions of bubble composition ⟨y1 ⟩ are
+overestimated when the wetting phase is preferentially undersaturated in one component at t = 0 (Pop3 ); (3)
+early-time predictions of bubble volume ⟨V b ⟩ exhibit a temporary sag whose magnitude is underestimated.
+    Addressing the first limitation requires alternative approximations to those in Eqs.22–28 and Eq.30. The
+former postulates dominant control of pore-size correlations over other spatial correlations, while the latter
+removes state-dependence from y1mf and replaces the closure Eq.17 with Eq.18 to avoid numerical difficulties
+and ensure convergence to equilibrium. The analysis in Appendix B shows this reformulation is necessary
+
+
+                                                              29
+Figure 20: Projection of the bubble number density g(s; t) onto the Rp –y1 plane, predicted by theory (white contours) and PNM
+(heat map) for two-component ripening cases Cor-Pop1-ySmall, Cor-Pop2-ySmall, and Cor-Pop3-ySmall in Table 1. Network
+is heterogeneous and correlated with H2 bubbles placed in small pores. Snapshots are at t = 0, 1, 10 s, and equilibrium.
+
+
+
+
+Figure 21: Bulk properties ⟨V b ⟩, ⟨κ⟩, Fs , and ⟨y1 ⟩ versus time for two-component ripening cases Cor-Pop1-ySmall, Cor-Pop2-
+ySmall, and Cor-Pop3-ySmall in Table 1. The proposed theory (solid lines) shows satisfactory agreement with PNM (symbols).
+
+
+
+for Eulerian (grid-based) approaches used to discretize and solve the population balance Eq.10 (e.g., finite
+volumes herein). A Lagrangian (particle-based) method could obviate such reformulation and use the more
+                                                                              mf
+accurate closure Eq.17 directly. This in turn would enable a state-dependent y1,s that accounts for spatial
+
+
+
+                                                              30
+correlations in composition. The second and third limitations arise because the wetting phase has no storage
+capacity for dissolved solute, rendering mass transfer between bubbles effectively instantaneous. This causes
+overprediction of ⟨y1 ⟩ and the inability to capture the sag in ⟨V b ⟩. One remedy is to augment Eq.18 with an
+auxiliary balance equation for dissolved solute in the wetting phase. These remedies are left as future work.
+   While the theory was tested for two-component bubbles, extension to multiple components is straightfor-
+ward: each new component adds another dimension to the phase space and an extra phase velocity to Eq.18.
+Finally, contact angle and pore shape can be generalized beyond those assumed here (zero contact angle,
+semi-cubic pores), as they enter the theory solely through the curvature-volume relation in Eq.9.
+
+
+7.1.2. Foundational limitations
+   Foundational limitations question the very choice of phase-space axes we have made for the theory, namely,
+Rp , S b , and y1 . The most significant is the assumption that each bubble occupies no more than one pore,
+which renders the use of pore size Rp as a state coordinate inappropriate. However, a clear alternative is
+not self-evident because even if a bubble occupies only two pores, it begs the question: which pores?—since
+their sizes matter. Let the bubble occupy three or more pores and the question grows with combinatorial
+complexity. Another limitation of the same type is when bubbles, even if confined to one pore, occupy
+pores with different shape or wettability (i.e., contact angle). Put differently, there is heterogeneity in the
+curvature-volume relation Eq.9, which the theory assumes to be uniform across all pores. Introducing a
+separate axis for each shape or contact angle would make the theory intractable. A viable option might be to
+parameterize the curvature-volume relation with contact angle and shape-controlling constants and add those
+as extra phase-space axes. Either way, an increase in dimensionality of the phase space seems unavoidable.
+
+7.2. Computational efficiency and upscaling
+
+   Since the population balance Eq.10 must be discretized and solved numerically (here using the finite-
+volume method), readers might wonder if there are true gains in computational cost over solving the problem
+spatially using PNM. The answer is an emphatic yes for two reasons: (1) there is no limit to the number of
+bubbles that can be simulated in the theory, whereas the cost of PNM scales with the number of bubbles;
+(2) when the correlation length lc of the porous medium is large, truly enormous pore networks are needed
+to ensure ripening predictions are representative of an REV, which is computationally prohibitive. The
+theory’s cost is independent of lc , enabling predictions out of reach with PNM or any other pore-scale model.
+For the results in Section 6, the theory was faster by a factor of 192 for homogeneous networks and 24 for
+heterogeneous networks. These speedups were achieved despite using a very fine mesh for the phase space,
+which from experience we have found unnecessary, meaning even higher acceleration is possible.
+
+
+7.3. Implications for underground hydrogen storage
+
+   The proposed theory has practical applications in underground hydrogen storage, where major concerns
+include: (1) inability to recover injected H2 due to capillary trapping; (2) loss of purity of recovered H2 ;
+
+
+                                                      31
+and (3) maintaining high storage capacity and injectivity (i.e., low flow resistance) across multiple injection-
+withdrawal cycles. The theory predicts which pore sizes are occupied by bubbles, their volumes, and compo-
+sitions at all times. When coupled to a permeability model like Carman-Kozeny [39, 40], where the porous
+medium is represented by a bundle of capillary tubes of radii Rp , predictions of g(s; t) can be translated into
+estimates of relative permeability evolution. This would enable prediction of storage capacity and injectivity
+versus time, and could be used to maximize H2 retrieval and minimize purity loss in cyclic injections.
+   The ySmall cases in Section 5 were motivated by the scenario where cushion gas (e.g., CO2 , CH4 , N2 ),
+possibly mixed with H2 , gets trapped in preferential flow paths (larger pores) during the first injection cycle
+as it is chased by H2 . The H2 injected in future cycles is diverted into secondary flow paths (smaller pores)
+not yet blocked by trapped bubbles. If this conceptualization is correct, maximizing H2 recovery would
+suggest choosing a cushion gas that feeds into H2 bubbles, causing them to grow and coalesce into mobile
+ganglia. CO2 would be such a candidate: Section 5 shows mass transfer is directed from CO2 to H2 bubbles
+within minutes. While this would promote mobilization, it would also entail H2 -purity loss. Alternatively,
+a cushion gas like CH4 would draw mass out of H2 bubbles, moving H2 from smaller pores into larger
+pores where CH4 resides. Recovery through these preferential flow paths would then encounter minimal flow
+resistance—though here too, purity loss is inevitable to relocate the H2 . Future work should determine initial
+conditions that arise from cyclic injections in a given microstructure to enable optimizing storage operations.
+
+
+8. Conclusion
+
+   We have presented the first kinetic theory for multicomponent Ostwald ripening of bubbles in porous
+media. The formulation describes a trapped bubble population with a number-density function g(s; t) in a
+three-dimensional statistical space of bubble states s. The coordinates of this space consist of the size of the
+occupied pore Rp , occupied fraction of the pore volume S b (bubble saturation), and bubble composition y1 .
+The theory predicts the evolution of g(s; t) in time through a population balance equation. Closure is achieved
+through mean-field approximations that embed the physics of ripening, account for spatial correlations in
+pore size, and ensure convergence to a physically meaningful equilibrium with provable mass conservation.
+   The theory generalizes that of [37] for single-component ripening, removing key limitations such as the
+inability to capture interactions between distant bubbles. Systematic validation against pore-network simu-
+lations across 19 cases—spanning homogeneous, heterogeneous, correlated, and uncorrelated networks with
+various bubble populations—shows good agreement with PNM in both the evolution of g(s; t) and bulk prop-
+erties of the population, without any adjustable parameters. The most challenging cases involve spatially
+correlated bubble composition, where errors arise due to methodological limitations of the theory discussed
+in Section 7.1.1. Unlike PNM, the theory allows for arbitrarily large bubble populations and arbitrary cor-
+relation lengths in pore size, enabling predictions beyond PNM’s reach. This makes the theory a practical
+tool for predicting Ostwald ripening in a variety of applications, including underground hydrogen storage.
+
+
+
+
+                                                      32
+Acknowledgments
+
+   This material is based upon work supported by the National Science Foundation, United States un-
+der Grant No. CBET-2348723. N.B. and L.A. gratefully acknowledge funding support from the William
+A. Fustos Family Professorship in Energy and Mineral Engineering at the Pennsylvania State University.
+We acknowledge the Institute for Computational and Data Sciences (ICDS) at Penn State University for
+computational resources.
+
+
+Declaration of interests
+
+   The authors declare that they have no known competing financial interests or personal relationships that
+could have appeared to influence the work reported in this paper.
+
+
+Appendix A. Derivation of areal porosity
+
+   We derive an expression for areal porosity ϕa in Eq.13 of a network with average coordination number z,
+tortuosity τ , throat cross-sectional area At , and throat length lt . Pick one pore and draw a cylinder (in 2D) or
+sphere (in 3D) of radius l centered at it. How many throats does the surface of this cylinder/sphere intersect?
+Denoting this number by zn , areal porosity ϕa can be estimated as the ratio of the total cross-sectional area
+of intersected throats AT = zn At to the surface area of the cylinder/sphere itself AS = 2πlh in 2D (h is
+network’s out-of-plane thickness) or AS = 4πl2 in 3D. Thus, all we need is an expression for zn . We proceed
+by estimating the number of pores within an annulus from radial distance l to l + lt as np = AS lt /(lt2 h) in 2D
+and np = AS lt /lt3 in 3D, where the denominator represents the bulk area/volume associated with each pore.
+From each of these np pores, roughly z/2 throats emanate out of the cylinder/sphere, and z/2 point inward.
+The latter are the ones intersected by the cylinder/sphere, resulting in zn = np z/2. Substituting for np and
+inserting zn into ϕa = zn At /AS from above, we get ϕa = CAt /lt with C = z/(2h) in 2D and C = z/(2lt ) in 3D.
+
+
+Appendix B. Rationale for reformulating Eq.17 into Eq.18
+
+   The phase-velocity expressions for dSsb /dt and dy1,s /dt in Eq.17 are numerically problematic when an
+Eulerian (grid-based) method (like finite volume herein) is used to solve the population balance Eq.10. Our
+goal is to demonstrate this difficulty with an example, and show why the reformulated expressions in Eq.18
+do not suffer from it. To begin, consider a bubble population residing in a homogeneous network (uniform
+Rp ) for simplicity. Furthermore, assume the majority of bubbles in the network (1 − ε fraction of them, where
+ε ≪ 1) have mutually equilibrated except a small minority (ε fraction) that are at state s∗ . For such a system,
+mean-field properties are close (arbitrarily as ε → 0) to the equilibrated majority’s state—we therefore do not
+distinguish between the majority and mean field and use the superscript (·)mf for both. Given this setup,
+let us now analyze how the s∗ -bubbles would evolve under Eq.17 to equilibrate with the mean field.
+
+
+
+                                                        33
+   At equilibrium, s∗ -bubbles will satisfy dSsb∗ /dt = 0 and dy1,s∗ /dt = 0, with s∗ corresponding to the mean-
+field state smf . This point, smf , is the intersection of two curves: one defined by dSsb /dt = 0 and the other by
+dy1,s /dt = 0—s here is a free index. Fig.B.1 visualizes this in the slightly altered phase space with coordinates
+(κ/κmf , y1 ), instead of (S b , y1 ). We pause to note that the majority of bubbles must be super-critical (non-
+spherical) because otherwise they would not be in equilibrium (contradiction); ripening of spherical bubbles
+is unstable to perturbations [20]. This makes the coordinate mapping S b 7→ κ/κmf well-posed, otherwise the
+map would not be injective (i.e., spherical and deformed bubbles with different S b could map onto the same
+κ). The left panel of Fig.B.1 depicts the dSsb /dt = 0 curve in red and the dy1,s /dt = 0 curve in black.
+   To see why dSsb /dt = 0 and dy1,s /dt = 0 correspond to curves, use them to set the LHS of Eq.17 to zero:
+
+                            D1                             D2
+                                  (y1 P b )mf − (y1 P b )s +      (y2 P b )mf − (y2 P b )s
+                                                                                           
+                        0=                                                                                       (B.1a)
+                            H1                                 H2
+                                 D1                                   D2
+                                      (y1 P b )mf − (y1 P b )s − y1,s      (y2 P b )mf − (y2 P b )s
+                                                                                                   
+                        0 = y2,s                                                                                 (B.1b)
+                                 H1                                   H2
+
+Substituting y2,s = 1 − y1,s and Psb = Pw + σκs , and recognizing (y1 P b )mf ≈ y1mf (P b )mf due to the population
+being in near equilibrium, the conclusion follows. Notice we have dropped the subscript s from (·)mf
+                                                                                                  s  because
+the mean field here does not depend on s. Now, we claim that regardless of where the s∗ -bubbles are located in
+the (κ/κmf , y1 ) plane, they will move towards smf depicted by the yellow dot in Fig.B.1. Moreover, if at any
+point during that movement s∗ falls inside the wedge defined by the space between the black and red curves
+in Fig.B.1 (left panel), then it will stay inside that wedge as it approaches smf . But since this movement
+forces s∗ through an ever narrowing corridor, at some point the gap between the two curves becomes smaller
+than the size of a single (finite-volume) grid used to discretize Eq.10. This is shown by the zoom-in inset in
+Fig.B.1. Because phase velocities on the faces of this grid point into the grid, as their centroids fall outside
+the wedge, the s∗ -bubbles become trapped within that grid and their progress towards smf gets halted.
+   To prove this claim, we examine the signs of dSsb /dt and dy1,s /dt everywhere on the (κ/κmf , y1 ) plane.
+Clearly, if dSsb /dt = 0 defines a curve (red), splitting the plane into two regions, either dSsb /dt > 0 or dSsb /dt < 0
+must hold in each region. To determine the sign of each region, it suffices to evaluate the sign of dSsb′ /dt at
+an arbitrary point s′ away from the red curve in Fig.B.1 (left panel). We pick this point to lie on the vertical
+line y1,s′ = y1mf above the yellow dot (smf ). Substituting this into the RHS of Eq.17a yields:
+
+                                      dSsb′
+                                            = C1 P b,mf − Psb′ = C1 κmf − κs′
+                                                                             
+                                                                                                                   (B.2)
+                                       dt
+
+where C1 > 0.5 The second equality follows from P b = Pw + σκ. Since κs′ > κmf at the point we have chosen,
+dSsb′ /dt < 0. Therefore, dSsb /dt < 0 must hold for all s in the region left of the red curve in Fig.B.1 (left panel),
+and dSsb /dt > 0 in the region to its right. An identical argument proves that dy1,s /dt > 0 must hold left of the
+black curve, and dy1,s /dt < 0 to its right. However, this time the arbitrary point is chosen on the horizontal
+
+
+  5 Because dκ ′ /dS b > 0 in Eq.17a on account of bubbles being super-critical.
+              s     s′
+
+
+
+
+                                                              34
+Figure B.1: (Left) Schematic of the curves defined by dSsb /dt = 0 and dy1,s /dt = 0 for Eq.17 in phase space for a homogeneous
+network. The phase space is 2D because pore size (Rp ) is uniform, with equivalent coordinates (κ/κmf , y1 ) instead of (S b , y1 ).
+The two curves form an ever narrowing corridor that bubbles must traverse to reach equilibrium (yellow dot). At some point,
+the corridor’s width is smaller than the grid used to discretize the population balance Eq.10, halting further progress towards
+the yellow dot. (Right) The reformulation in Eq.18 removes this drawback by repositioning the black line to widen the corridor.
+
+
+
+line κs′ = κmf , implying Psb′ = P b,mf . Substituting this into Eq.17b yields:
+
+                                                  dy1,s′                  
+                                                         = C2 y1mf − y1,s′                                                   (B.3)
+                                                   dt
+
+where C2 > 0, and the sign of each region is determined.
+    What we have shown above is that the vertical component of the phase velocity dSsb /dt, which is pro-
+portional to dκs /dt by Eq.9 and the chain rule, points down in the region left of the red curve and points
+up to the right of it. Similarly, the horizontal component of the phase velocity dy1,s /dt points right in the
+region left of the black curve and points left to the right of it. This means once s∗ -bubbles fall into the wedge
+between the red and black curves, they cannot escape it and the numerical problem above is inevitable.
+    The reformulation of Eq.17 into Eq.18 solves this problem by repositioning the black curve to the vertical
+line shown in the right panel of Fig.B.1. This broadens the wedge and prevents the gap between the red and
+black curves from becoming smaller than the grid size unless s∗ is very close to the yellow dot (equilibrium).
+Empirically, we observed the same problem in heterogeneous networks, which are far less tractable because the
+phase space is 3D. As discussed in Section 7.1.1, the reformulation of Eq.17, which comes with approximation
+errors, may be avoided if a Lagrangian (particle-based) method is used to solve the population balance Eq.10.
+
+
+Appendix C. Validating Eq.29 for bubble spacing
+
+    We validate the lRR′ computed from Eq.29 against direct computations from the PNM in Section 3. We
+consider heterogeneous correlated and uncorrelated networks corresponding to the SC-Cor and SC-Unc cases
+in Section 5, respectively. Since the exact position of all bubbles are known in the PNM, we can compute
+
+
+                                                                35
+Figure C.2: Inter-bubble spacing lRR′ predicted from Eq.29 in the theory (solid lines) versus PNM using Eq.C.1 (circles). For
+clarity, we use Rx → Ry to represent lRx Ry . Pore sizes are divided into n = 20 bins, where R1 is the smallest and Rn the largest.
+
+
+
+lRR′ directly using the following formula corresponding to the variable’s definition:
+
+                                                 lRR′ = ⟨ min
+                                                            ′
+                                                              |xR − xR′ | ⟩R                                                (C.1)
+                                                             R
+
+
+Namely, lRR′ is the average nearest distance from bubbles residing in pores of size Rp to bubbles in pores
+of size Rp′ . In Eq.C.1, xR and xR′ denote the positions of these bubbles. The minimum is taken over all
+bubble-occupied Rp′ and the average ⟨·⟩ over all bubble-occupied Rp . Incidentally, Eq.C.1 is also used to
+compute dRR′ in Eq.29 with the crucial difference that the minimum and average are taken over all pores in
+the network regardless of bubble occupancy. Fig.C.2 plots the lRR′ obtained from Eq.29 against that from
+Eq.C.1. The comparison is made by dividing pore sizes in the networks into n = 20 bins and focusing on the
+first R1 (smallest pores) and last Rn (largest pores) bins. This pick is motivated by the fact that R1 and Rn
+have the largest contrast among other pore sizes, thus are farthest apart spatially in the correlated network.
+This places the most stringent test on Eq.29. In Fig.C.2, we plot lRR′ for subscripts R and R′ taken from
+the set {R1 , Rn }. For clarity’s sake, we use the notation Rx → Ry in the legend of Fig.C.2 to denote lRx Ry .
+    For better visualization, instead of plotting lRR′ versus time, the x-axis of Fig.C.2 denotes the fraction of
+the smallest bubble-occupied pores in the network, i.e., FR1 . Since bubbles in R1 vanish the fastest during
+ripening, FR1 serves as a proxy for time. For lR1 R1 and lRn R1 , Eq.29 is an explicit function of FR1 . For lR1 Rn
+and lRn Rn , which depend explicitly on FRn , we convert to FR1 using the corresponding value from the PNM
+simulation. To improve visualization, we normalize the y-axis by dividing lRR′ by the lattice spacing of the
+network. Fig.C.2 shows acceptable agreement between Eq.29 and PNM, validating the former’s accuracy.
+
+
+
+
+                                                                 36
+Appendix D. Proof of Theorem 1
+
+   Beginning from the leftmost expression in Theorem 1, we can write:
+
+    dntot
+               Z                Z                    Z
+      α     d                           ∂gs
+          =       nα,s gs ds =     nα,s      ds = −     nα,s ∇ · (gs u) ds =
+     dt     dt Ω                 Ω      ∂t            Ω
+                Z                       Z                        Z                       Z                         (D.1)
+              −    ∇ · (nα,s gs u) ds +     gs u · ∇nα,s ds = −       nα,s gs u · ν dΓ +   gs u · ∇nα,s ds
+                    Ω                         Ω                              ∂Ω               Ω
+
+where we have used the abbreviated notation gs = g(s; t). The second equality follows from the Leibniz
+integral rule and the fact that neither Ω (the entire phase space) nor nα,s depend on time t. The third
+equality followed from using the population balance equation Eq.10 to substitute for ∂gs /∂t. The fourth is
+the consequence of applying the product rule, and the fifth follows from the divergence theorem where ν is
+the outward unit normal on ∂Ω. Noticing u · ∇nα,s = dnα,s /dt holds due to Eq.15, we arrive at:
+
+                             dntot
+                                        Z                      Z
+                                α                                    dnα,s
+                                   =−       nα,s gs u · ν dΓ +    gs       ds                                      (D.2)
+                               dt        ∂Ω                     Ω     dt
+
+   We must now show that the first integral on the RHS is zero, because then the theorem is proven. Recall
+from Section 4.1 that ∂Ω consists of six boundaries: Rp = 0, Rp = Rpmax , y1 = 0, y1 = 1, S b = 0, and S b = 1.
+The BCs at all these boundaries is gs = 0, except S b = 0. Therefore, the following holds:
+
+                                                                         dS b
+                               Z                           Z
+                                    nα,s gs u · ν dΓ = lim        nα,s gs s dΓ                                     (D.3)
+                                ∂Ω                     ϵ→0 S b =ϵ         dt
+
+where we have used the fact that u · ν = dSsb /dt holds on S b = ϵ for fixed ϵ > 0. We now show the integrand
+on the RHS goes to zero as ϵ → 0. More precisely, the integral can be bounded as:
+
+                              dS b                    dS b              dS b
+              Z                        Z                                      Z
+                       nα,s gs s dΓ ≤          nα,s gs s dΓ ≤ nα,s s                 | gs | dΓ                     (D.4)
+                S b =ϵ         dt       S b =ϵ         dt                dt ∞ S b =ϵ
+
+through a straightforward application of Hölder’s inequality. For brevity, we denote the portion of Ω where
+S b = ϵ (i.e., integration domain) by Γϵ . The rightmost integral of |gs | on Γϵ (L1 norm) is bounded since gs ≥ 0
+and the integral on Ω ⊃ Γϵ is bounded, equaling the number of bubbles in the population nb .
+   We thus focus on the L∞ norm of nα,s dSsb /dt over Γϵ in Eq.D.4. As ϵ → 0, it is evident Ssb → 0. In this
+limit, bubbles are circular/spherical in shape whose curvature scales like κs ∼ (Ssb )−1/d . We use the symbol
+a ∼ b to mean: there exist constants C1 and C2 such that C1 b ≤ a ≤ C2 b. From Psb = Pw + σκs , we have
+Psb ∼ (Ssb )−1/d . Since Vsb = Vp,s Ssb , we also have Vsb ∼ Ssb . From the ideal gas law, nα,s = yα,s Psb Vsb /RT holds,
+and because yα,s ∼ 1 we can write nα,s ∼ (Ssb )1−1/d . Recalling Eq.18a for dSsb /dt in Section 4.2:
+                                                    −1        2
+                        dSsb                Ssb dκs
+                                      
+                                1       b
+                                                              X   Dα
+                                                                      (yα P b )mf − yα,s Psb
+                                                                                             
+                             =         ρs +    σ        ρw Gs                  s                                   (D.5)
+                         dt    Vp,s         RT dSsb           α=1
+                                                                  H α
+
+
+we can now prove that dSsb /dt ≲ 1 holds, where the symbol a ≲ b means: there exists a constant C such that
+a ≤ Cb. To demonstrate, note that Ssb dκs /dSsb ∼ κs ∼ (Ssb )−1/d , which leads to the scaling:
+                                                                    −1
+                                                          Ssb dκs
+                                              
+                                        1
+                                                  ρbs +      σ            ρw Gs ∼ (Ssb )1/d                        (D.6)
+                                       Vp,s               RT dSsb
+
+                                                                37
+for the term before the summation in Eq.D.5. For the summation itself, we can write:
+     2                                2      2 !1/2 X 2
+                                                                                      !1/2
+    X   Dα                           X    D α                                       2
+            (yα P b )mf − yα,s Psb ≤                       (yα P b )mf − yα,s Psb          ≲ Psb ∼ (Ssb )−1/d
+                                                                                 
+                     s                                              s
+    α=1
+        Hα                           α=1
+                                          Hα           α=1
+                                                                                                          (D.7)
+The first inequality follows from Cauchy-Schwarz. The second is the result of applying |a−b| ≤ |a+b| ≤ |a|+|b|
+for a, b ≥ 0 to |(yα P b )mf
+                          s  − yα,s Psb | followed by using yα,s ∼ yαmf ∼ 1 and the fact that Psb,mf is bounded by
+Psb . The latter is because Psb dominates Psb,mf in the limit Ssb → 0. Hence, the summation in Eq.D.5 can be
+bounded from above by a term that scales like (Ssb )−1/d . Together with Eq.D.6, this proves dSsb /dt ≲ 1.
+   Given dSsb /dt ≲ 1 and nα,s ∼ (Ssb )1−1/d from the above analysis, we can write:
+
+                                              dSsb
+                                     nα,s                 ≲ (Ssb )1−1/d = ϵ1−1/d → 0                        (D.8)
+                                               dt    ∞
+
+The RHS follows from the fact that the norm is taken over Γϵ (S b = ϵ) and ϵ → 0. We have thus proven:
+                                         Z
+                                             nα,s gs u · ν dΓ = 0                                    (D.9)
+                                                     ∂Ω
+
+through Eq.D.3, which in turn proves Theorem 1 due to Eq.D.2.
+
+
+Appendix E. Proof of Corollary 1
+
+   A consequence of Theorem 1 is:
+                               Z                                 Z
+                                         nα,s g(s; t) ds =            nα,s g(s; 0) ds = Cα                  (E.1)
+                                     Ω                           Ω
+
+where Cα is a constant that depends on α but not time t. Summing Eq.E.1 over α ∈ {1, 2} yields:
+                                  Z                  Z
+                                     ns g(s; t) ds =   ns g(s; 0) ds = C                                    (E.2)
+                                         Ω                           Ω
+
+where
+                                                                 2
+                                                                 X
+                                                          ns =           nα,s                               (E.3)
+                                                                 α=1
+and C is a constant independent of α and t.
+   Substituting Eqs.E.1-E.2 into the definition of yαmix in Eq.36 and noting nα,s = yα,s ns , we get:
+                                    Z                     Z
+                            yαmix = yα,s ns g(s; t) ds / ns g(s; t) ds = Cα /C                              (E.4)
+                                          s                               s
+
+implying yαmix remains constant for all t. This prove the first assertion in Corollary 1.
+   To prove the second, notice at t → ∞ when the bubble population has reached equilibrium, all bubble
+compositions and curvatures must be identical. Namely, y1,s = y1mf and y1,s Psb = (y1 P b )mf
+                                                                                           s  (thus κs = κmf
+                                                                                                          s )
+
+must hold for all s. Otherwise, phase velocities dSsb /dt and/or dy1,s /dt computed from Eq.18 would be non-
+zero at some s, contradicting the fact that the population has reached steady-state equilibrium. Denoting
+these equilibrium properties by y1∞ and (y1 P b )∞ , it then follows:
+
+                   lim y1,s = lim y1mf = y1∞ ,               lim y1,s Psb = lim (y1 P b )mf
+                                                                                         s  = (y1 P b )∞    (E.5)
+                   t→∞         t→∞                          t→∞                 t→∞
+
+
+                                                                 38
+Using these relations, we now take the limit of Eq.35 at t → ∞, which yields γ → 1. Similarly, taking the limit
+of y1mix in Eq.36, we obtain y1mix → y1∞ . However, since we established that y1mix remains constant for all t,
+then y1mix = y1∞ must hold. Using γ → 1 and y1mf → y1mix in taking the limit of Eq.33 proves y1mf,∗ → y1mix .
+
+
+References
+
+ [1] A. G. Hanson, B. Kutchko, G. Lackey, D. Gulliver, B. R. Strazisar, K. A. Tinker, F. Haeri, R. Wright,
+    N. Huerta, S. Baek, et al., Subsurface hydrogen and natural gas storage: State of knowledge and research
+    recommendations report (2022).
+
+ [2] S. Bachu, Co2 storage in geological media: Role, means, status and barriers to deployment, Progress in
+    energy and combustion science 34 (2) (2008) 254–273.
+
+ [3] P. T. Imhoff, G. P. Thyrum, C. T. Miller, Dissolution fingering during the solubilization of nonaqueous
+    phase liquids in saturated porous media: 2. experimental observations, Water Resources Research 32 (7)
+    (1996) 1929–1942.
+
+ [4] Z. Lu, M. M. Daino, C. Rath, S. G. Kandlikar, Water management studies in pem fuel cells, part
+    iii: Dynamic breakthrough and intermittent drainage characteristics from gdls with and without mpls,
+    International Journal of Hydrogen Energy 35 (9) (2010) 4222–4233.
+
+ [5] J. K. Lee, C. Lee, K. F. Fahy, P. J. Kim, K. Krause, J. M. LaManna, E. Baltic, D. L. Jacobson,
+    D. S. Hussey, A. Bazylak, Accelerating bubble detachment in porous transport layers with patterned
+    through-pores, ACS Applied Energy Materials 3 (10) (2020) 9676–9684.
+
+ [6] J. Holocher, F. Peeters, W. Aeschbach-Hertig, W. Kinzelbach, R. Kipfer, Kinetic model of gas bubble
+    dissolution in groundwater and its implications for the dissolved gas composition, Environmental Science
+    & Technology 37 (7) (2003) 1337–1343.
+
+ [7] C. Garing, J. A. de Chalendar, M. Voltolini, J. B. Ajo-Franklin, S. M. Benson, Pore-scale capillary
+    pressure analysis using multi-scale x-ray micromotography, Advances in Water Resources 104 (2017)
+    223–241.
+
+ [8] W. Ostwald, Studien über die bildung und umwandlung fester körper, Zeitschrift für physikalische
+    Chemie 22 (1) (1897) 289–330.
+
+ [9] I. M. Lifshitz, V. V. Slyozov, The kinetics of precipitation from supersaturated solid solutions, Journal
+    of physics and chemistry of solids 19 (1-2) (1961) 35–50.
+
+[10] C. Wanger, Theorie der alterung von niederschlagen durch umlosen, Z. Elektrochem. 65 (1961) 581–591.
+
+[11] P. W. Voorhees, The theory of ostwald ripening, Journal of Statistical Physics 38 (1985) 231–252.
+
+
+
+                                                      39
+[12] P. W. Voorhees, Ostwald ripening of two-phase mixtures, Annual Reviews Material Science 22 (1992)
+    197–215.
+    URL www.annualreviews.org
+
+[13] A. J. Bray, Theory of phase-ordering kinetics, Advances in Physics 51 (2) (2002) 481–587.
+
+[14] J. Morral, G. Purdy, Particle coarsening in binary and multicomponent alloys, Scripta Metallurgica et
+    Materialia;(United States) 30 (7) (1994).
+
+[15] S. Kukushkin, V. Slyozov, Theory of the ostwald ripening in multicomponent systems under non-
+    isothermal conditions, Journal of Physics and Chemistry of Solids 57 (2) (1996) 195–204.
+
+[16] T. Philippe, P. W. Voorhees, Ostwald ripening in multicomponent alloys, Acta Materialia 61 (11) (2013)
+    4237–4244.
+
+[17] K. Kim, P. W. Voorhees, Ostwald ripening of spheroidal particles in multicomponent alloys, Acta Ma-
+    terialia 152 (2018) 327–337.
+
+[18] K. Xu, R. Bonnecaze, M. Balhoff, Egalitarianism among bubbles in porous media: an ostwald ripening
+    derived anticoarsening phenomenon, Physical review letters 119 (26) (2017) 264502.
+
+[19] J. A. de Chalendar, C. Garing, S. M. Benson, Pore-scale modelling of ostwald ripening, Journal of Fluid
+    Mechanics 835 (2018) 363–392.
+
+[20] Y. Mehmani, K. Xu, Pore-network modeling of ostwald ripening in porous media: How do trapped bub-
+    bles equilibrate?, Journal of Computational Physics 457 (5 2022). doi:10.1016/j.jcp.2022.111041.
+
+[21] Y. Mehmani, K. Xu, Capillary equilibration of trapped ganglia in porous media: A pore-network mod-
+    eling approach, Advances in Water Resources 166 (8 2022). doi:10.1016/j.advwatres.2022.104223.
+
+[22] N. Joewondo, V. Garbin, R. Pini, Nonuniform collective dissolution of bubbles in regular pore networks,
+    Transport in Porous Media 141 (3) (2022) 649–666.
+
+[23] D. Singh, H. A. Friis, E. Jettestuen, J. O. Helland, Ostwald ripening of gas bubbles in porous media:
+    Impact of pore geometry and spatial bubble distribution, Advances in Water Resources 187 (2024)
+    104688.
+
+[24] D. Singh, H. A. Friis, E. Jettestuen, J. O. Helland, Pore-scale ostwald ripening of gas bubbles in the
+    presence of oil and water in porous media, Journal of Colloid and Interface Science 647 (2023) 331–343.
+
+[25] N. Joewondo, V. Garbin, R. Pini, Experimental evidence of the effect of solute concentration on the
+    collective evolution of bubbles in a regular pore-network, Chemical Engineering Research and Design
+    192 (2023) 82–90.
+
+
+
+                                                    40
+[26] M. Salehpour, T. Lan, N. Bueno, M. Z. I. Laku, Y. Mehmani, B. Zhao, Ostwald ripening in underground
+    gas storage, arXiv preprint arXiv:2509.00044 (2025).
+
+[27] Y. Zhang, B. Bijeljic, Y. Gao, S. Goodarzi, S. Foroughi, M. J. Blunt, Pore-scale observations of hydrogen
+    trapping and migration in porous rock: Demonstrating the effect of ostwald ripening, Geophysical
+    Research Letters 50 (7) (2023) e2022GL102383.
+
+[28] R. Song, D. Feng, G. Hui, J. Liu, C. Yang, Visualized experiments on the hydrogen transports and
+    bubble ripening mechanism in porous reservoir of underground hydrogen storage, International Journal
+    of Hydrogen Energy 105 (2025) 326–344.
+
+[29] M. Boon, T. Rademaker, C. W. Winardhi, H. Hajibeygi, Multiscale experimental study of h/brine
+    multiphase flow in porous rock characterizing relative permeability hysteresis, hydrogen dissolution, and
+    ostwald ripening, Scientific Reports 14 (1) (2024) 30170.
+
+[30] Y. Li, C. Garing, S. M. Benson, A continuum-scale representation of ostwald ripening in heterogeneous
+    porous media, Journal of Fluid Mechanics 889 (2020) A14.
+
+[31] Y. Mehmani, K. Xu, A continuum theory of diffusive bubble depletion in porous media, Advances in
+    Water Resources 185 (2024) 104625.
+
+[32] K. Xu, Y. Mehmani, L. Shang, Q. Xiong, Gravity-induced bubble ripening in porous media and its
+    impact on capillary trapping stability, Geophysical Research Letters 46 (23) (2019) 13804–13813.
+
+[33] Y. Feng, C. Wang, X. Jin, K. Xu, Comprehensive darcy-scale analysis of ripening in porous media,
+    Transport in Porous Media 144 (1) (2022) 301–316.
+
+[34] M. J. Blunt, Ostwald ripening and gravitational equilibrium: Implications for long-term subsurface gas
+    storage, Physical Review E 106 (4) (2022) 045103.
+
+[35] Y. Li, F. M. Orr Jr, S. M. Benson, Long-term redistribution of residual gas due to non-convective
+    transport in the aqueous phase, Transport in Porous Media 141 (1) (2022) 231–253.
+
+[36] Y. Yu, C. Wang, J. Liu, S. Mao, Y. Mehmani, K. Xu, Bubble coarsening kinetics in porous media,
+    Geophysical Research Letters 50 (1) (2023) e2022GL100757.
+
+[37] N. Bueno, L. Ayala, Y. Mehmani, A generalized kinetic theory of ostwald ripening in porous media,
+    Advances in Water Resources 193 (2024). doi:10.1016/j.advwatres.2023.104826.
+
+[38] N. Bueno, L. Ayala, Y. Mehmani, Ostwald ripening of multi-component bubbles in porous media: A
+    theory and a pore-scale model of how bubble populations equilibrate, Advances in Water Resources 182
+    (2023). doi:10.1016/j.advwatres.2023.104581.
+
+
+
+
+                                                     41
+[39] J. Kozeny, Ueber kapillare leitung des wassers im boden, Sitzungsberichte der Akademie der Wis-
+    senschaften in Wien 136 (1927) 271.
+
+[40] P. C. Carman, Fluid flow through granular beds, Trans. Inst. Chem. Eng. London 15 (1937) 150–156.
+
+
+
+
+                                                  42
+

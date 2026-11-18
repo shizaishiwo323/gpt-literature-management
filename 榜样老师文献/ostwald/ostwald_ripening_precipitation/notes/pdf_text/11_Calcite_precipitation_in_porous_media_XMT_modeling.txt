@@ -1,0 +1,2549 @@
+Lawrence Berkeley National Laboratory
+Earth & Environmental Sciences
+
+Title
+Upscaling calcium carbonate precipitation rates from pore to continuum scale
+
+Permalink
+https://escholarship.org/uc/item/8272c5b5
+
+Journal
+Chemical Geology, 2012
+
+Author
+Noiriel, C.
+
+Publication Date
+2012-07-01
+
+
+Peer reviewed
+
+
+
+
+ eScholarship.org                                Powered by the California Digital Library
+                                                                 University of California
+Upscaling Calcium Carbonate Precipitation Rates from Pore to Continuum Scale
+
+Catherine Noiriel 1,2, Carl I. Steefel 2,*, Li Yang 2 , Jonathan Ajo-Franklin 2
+1
+    Géosciences Environnement Toulouse, UMR 5533 Université Paul Sabatier/CNRS/IRD/CNES, 31400
+
+Toulouse, France
+2
+    Earth Sciences Division, Lawrence Berkeley National Laboratory, Berkeley, CA 94720
+
+
+
+Catherine Noiriel
+
+Géosciences Environnement Toulouse
+
+UMR 5533 Université Paul Sabatier/CNRS/IRD/CNES
+
+14, avenue Edouard Belin
+
+31400 Toulouse, France catherine.noiriel@get.obs-mip.fr (Tel: +33 5 61 33 25 68; Fax +33 5 61 33 25
+
+60)
+
+
+
+
+Carl Steefel* (corresponding author)      CISteefel@lbl.gov
+
+Li Yang                                   lyang@lbl.gov
+
+Jonathan Ajo-Franklin                     JBAjo-Franklin@lbl.gov
+
+Earth Sciences Division
+
+Lawrence Berkeley National Laboratory
+
+1 Cyclotron Road, Mail Stop 90-1116, Berkeley, CA 94720.
+Abstract
+
+   The upscaling of calcite precipitation rates in porous media from the pore (micron) to continuum
+
+(centimeter) scale is evaluated with an integrated experimental and modeling approach. Experiments
+
+using cylindrical cores packed with glass beads and calcite (Iceland spar) crystals were injected over a
+
+period of 28 days with a supersaturated mixture of CaCl2 and NaHCO3 to induce calcite growth. Bulk
+
+rates of precipitation based on the change in aqueous chemistry over the length of the column are
+
+compared with spatially resolved determinations of carbonate precipitation using X-ray synchrotron
+
+microtomographic imaging at the micron scale. These data are supplemented by continuously-stirred
+
+reactor experiments using the same calcite seed material so as to minimize differences in the effects of
+
+reactive site density of the seed material, and to evaluate the rate of precipitation in the absence of
+
+transport or “porous medium” effects. Calcite precipitation rates determined in the stirred flowthrough
+
+reactor in this study are considerably slower than rates determined at similar supersaturation in unseeded
+
+batch experiments by Tang et al. [2008a], although these rates are compatible with those reported in
+
+Nehrke et al. [2007] for precipitation on Iceland spar when the same normalization to reactive surface
+
+area is used. The nearly linear dependence of the rates on supersaturation cannot be attributed to a
+
+diffusion control in the case of the stirred reactors and is likely the result of multi-sourced spiral growth.
+
+Integrated precipitation rates based on column effluent chemistry from a higher supersaturation
+
+experiment are in good agreement with determinations of total carbonate precipitated based on
+
+determination of pre- and post-experiment mass in the column using X-ray microtomography. Using the
+
+rates of precipitation determined in the well-stirred flowthrough reactors, it is possible to match the
+
+spatially-resolved microtomographic and aqueous data with a coarser resolution continuum model using
+
+volume-averaged flow and reactive surface area if the generation of new reactive surface area is
+
+accounted for. A nucleation or surface roughening event, which is most pronounced within two
+
+millimeters of the column inlet where the supersaturation is highest, is recorded by both BET analysis,
+which indicates an increase in specific surface area from 0.012 m2∙g-1 to a value of 0.21 m2∙g-1 for neo-
+
+formed calcium carbonate, and by X-ray microtomography. The best fit of the column X-ray
+
+microtomography data is provided by simulating calcite precipitation either as a single nearly linear rate
+
+for multi-sourced spiral growth, or as two parallel rates that include the spiral growth model and a 2D
+
+heterogeneous nucleation model modified by a partial diffusion control, although nucleation needs to be
+
+relatively minor on a mass basis in order to match the data. The combined experiments and modeling
+
+indicate that it is possible to develop upscaled quantitative models for porous media reactivity, but
+
+changes in such properties as the reactive surface area need to be accounted for.
+
+
+
+Keywords
+
+     Calcite precipitation kinetics, reactive surface area, reactive transport, modeling, carbon dioxide, X-
+
+ray microtomography.
+
+
+
+1.    Introduction
+
+
+     One of the most significant obstacles to understanding geochemical reactivity of natural subsurface
+
+environments stems from the multitude of spatial scales that have to be considered. Geochemical
+
+reactions like mineral precipitation take place ultimately at the molecular scale, but within pores that in
+
+aggregate make up the materials we call rocks, sediments, or soils. Certainly part of the reported
+
+discrepancy between laboratory-determined rates, which are typically measured on well defined mineral-
+
+water surfaces in the absence of transport effects, and field rates is likely due to the special properties of
+
+reactive porous media. Is it possible even to use laboratory-determined rates at all at the field scale? If it is
+
+possible, what kind of volume-averaging approach is needed to relate the single mineral experiments in
+
+the laboratory to the complex porous medium environment of the subsurface? Permeability is one very
+
+important parameter that has been shown to be scale dependent (Gelhar [1986], Dagan [1988]), but
+
+similar arguments can be made for mineral reactive surface area. The difficulty in characterizing volume-
+averaged parameters like reactive surface area then potentially translates to questions about the
+
+homogeneity of the reactive processes themselves. Does mineral precipitation take place uniformly within
+
+the porous medium, or do gradients in precipitation rate, and thus aqueous chemistry, develop? It is
+
+highly likely that they do, as demonstrated by such studies as those of Li et al. [2006]. Even at the single
+
+pore scale, gradients may develop under certain conditions, although Li et al. [2008] demonstrated that for
+
+typical groundwater flow rates, gradients within single pores were unlikely.
+
+   One of the most important current challenges, given the complexity and range of coupled thermal,
+
+hydrological, mechanical, and chemical processes involved, is to understand geochemical reactivity in the
+
+case of long-term sequestration of carbon dioxide (CO2) in subsurface geological formations. Massive
+
+injection of CO2 into subsurface reservoirs will perturb significantly the geochemical equilibrium between
+
+rock-forming minerals and formation water. Initially, the injection of CO2 and the resulting generation of
+
+an acidic brine phase will drive mineral dissolution primarily, but with addition of alkalinity and suitable
+
+cations from the formation water and the dissolution of primarily minerals, precipitation of carbonates is
+
+expected to occur.
+
+   Several models have been proposed to describe rate of calcite precipitation based on affinity models of
+
+surface-controlled crystallization (e.g. Aagaard and Helgeson [1982]). A general equation to describe the
+
+rate of calcite precipitation is (Lasaga [1981]):
+
+                                                                 n
+                             m ∆G  
+                                         n
+                                                    
+                                                        m
+                                                             
+                                   
+                 R ppt = k exp *  − 1 = k 
+                                               
+                                                 IAP  
+                                                      
+                                               K sp 
+                                                          − 1 = k Ω m − 1
+                                                             
+                                                                       (   n
+                                                                               )        (1)
+                             R T                      
+
+
+with k the rate constant (mol∙m-2∙s-1), ∆G the Gibbs free energy change of the overall reaction (J∙mol-1),
+
+Ω the saturation index ( Ω = IAP / K sp ), Ksp the solubility of calcite, IAP the ion activity product defined
+
+                                                                                   2−
+by IAP = a Ca 2 + a CO 2 − , with aCa 2+ and a CO 2 − the activities of Ca 2+ and CO3 , respectively, R* the gas
+                     3                       3
+
+
+
+
+constant (J∙K-1∙mol-1) and T the absolute temperature (K). The value of n and m are semi-empirical
+
+constants that depend on the kinetic behavior involved in the chemical reaction, although m can be
+interpreted as the Temkin coefficient relating the reaction stoichiometry in the rate limiting step to the
+
+reaction stoichiometry of the overall reaction (Aagaard and Helgeson [1982], Oelkers et al. [1994], Tang
+
+et al. [2008a]). For example, a value of n = 1 (linear rate law) has been attributed to crystallization limited
+
+by adsorption of lattice ion (Nielsen [1984]), although it may also be ascribed to a rate controlled by
+
+diffusion (e.g., Pokrovsky et al. [2005]) and in some cases to a multi-source spiral growth mechanism
+
+(Teng et al. [2000]). A second order equation (n = 2) may be used to describe growth at single screw
+
+dislocation by the spiral mechanism (Teng et al. [2000]), while high order dependences (n > 2) can be
+
+applied to growth both at screw and edge dislocation (Blum and Lasaga [1987]) or growth by 2D
+
+nucleation (Teng et al. [2000]). For example, Teng et al. [2000] observed on AFM images a transition
+
+from spiral growth mechanism (observed at log Ω = 0.17) to two-dimensional surface nucleation
+
+(observed at log Ω = 0.43 and log Ω = 0.69). Despite the different expressions that have been proposed,
+
+these formulations share the concept of linking growth mechanisms to the saturation index (log Ω),
+
+although Teng et al. [2000] provide a thoughtful commentary on the difficulties associated with linking
+
+the reaction order uniquely to a single mechanism.
+
+   Carbonate precipitation is important not only because it represents an important sequestration
+
+mechanism for CO2, but also because it can modify the physical and chemical properties of the subsurface
+
+medium. Pore clogging and the resulting reservoir injectivity decrease is certainly one such process that
+
+can take place, but changes in reactivity are also possible as either primary minerals are passivated due to
+
+coatings, or reactivity is enhanced as a result of the growth of new, high specific surface area reactive
+
+material. In addition, the newly precipitated material may have a higher reactive site density than was
+
+present on the original seed material. These effects, however, are presently poorly understood because of
+
+the lack of detailed investigations at the pore scale.
+
+   One possible approach to understanding the role of multi-scale processes in a complex enterprise like
+
+subsurface CO2 injection, and perhaps even to address the lab-field rate discrepancy (White and Brantley
+
+[2003]), is to investigate rates in an ideal system where physical and chemical heterogeneities, if present,
+are minor (Steefel et al. [2005]). In this study, we began with continuously-stirred reactor experiments
+
+using coarsely crystalline calcite (Iceland spar) to determine the rate of precipitation for this particular
+
+material as a function of supersaturation. A thorough study of calcite precipitation kinetics is not within
+
+the scope of this study, but it will likely be important to know the intrinsic reactivity of the material as
+
+compared to other possible calcite seeds that may have a different reactive site density. As an ideal
+
+representation of a porous medium, a column filled with a mixture of glass beads and Iceland spar grains
+
+was packed and injected with a CaCl2-NaHCO3 mixture that is supersaturated with respect to calcite. The
+
+bulk reactivity of grains in the column was evaluated through a combination of effluent chemistry and
+
+reactive transport modeling, and these data were compared with X-ray microtomography imaging (XMT)
+
+at the micron scale of pre- and post-experiment materials to quantify the mass of precipitate added to the
+
+column. Of particular interest is the spatial distribution of reaction products and whether these can be
+
+captured at the larger scale by a continuum model using volume-averaged rate constants.
+
+
+
+2.    Materials and methods
+
+
+2.1. Starting materials
+
+     The stirred reactor experiments were carried out using crushed calcite spar crystals and the plug-flow
+
+column experiments were conducted with the same crushed calcite spar crystals mixed with glass beads.
+
+Photomicrographs of the materials are presented in Figure 1 and chemical composition is given in Table
+
+1.
+
+     Glass beads are acid-washed soda-lime glass of density 2.5 g∙cm-3 in the range 425-600 µm (Sigma
+
+G8772). Calcite that began as centimeter-size crystals were crushed in an agate mortar and then sieved in
+
+the range 355-500 µm. The initial specific surface area determined by multipoint krypton adsorption BET
+
+method was 0.012 m2.g-1. Assuming an average grain size of about 425 µm for crushed calcite grains, a
+
+spherical geometry would result in a geometric surface area of 0.005 m2∙g-1. The difference between the
+
+spherical geometry and the measured value of 0.012 m2∙g-1 indicates a correction for geometry and
+  roughness of approximately 2.303. An assumption of a rhombohedral geometry would yield a higher
+
+  geometric estimate and therefore a value closer to the BET-determined surface area, but considering the
+
+  range of grain sizes and the observations with SEM of surface roughness, we use the factor of 2.303 based
+
+  on an ideal spherical geometry. All the materials were washed with deionized water, put into an ultrasonic
+
+  bath to clean the surface and eliminate fine particles, and then dried in an oven at 50°C for several hours
+
+  before being used in the experimental studies.
+
+
+  2.2. Experimental procedure
+
+
+  2.2.1. Continuously-stirred precipitation rate experiments
+
+     So as to provide a base case for the plug-flow column experiments, flow through experiments seeded
+
+  with the ground and sieved calcite spar crystals were conducted in continuously stirred reactors (CSTR)
+
+  to determine the rate of calcite precipitation under chemical conditions similar to those of the plug-flow
+
+  columns experiments, i.e. with a saturation index (log Ω) ranging from about 0.15 to 0.82.
+
+     The stirred reactor experiments were carried out in 70 ml reactors at a total flow of 0.5 ml∙h-1, with
+
+  separate streams of NaHCO3 and CaCl2 stock solutions pre-equilibrated with atmosphere and mixed
+
+  directly in the reactor through two separate injection ports. The chemistry of the mixed injection solution
+
+  was determined by collecting both streams in a sampling vessel while maintaining the same pump speed.
+
+  The reactors have a suspended Teflon-coated stirring rod operated at a constant stirring rate of 800 RPM.
+
+  Each of the experiments used an initial mass of calcite spar, minit, of 1 g as seed crystals.
+
+     The specific surface area of newly crystallized calcium carbonate was determined by measuring the
+
+  initial and final specific surface areas using a five point krypton gas BET method, with weighting based
+
+  on the relative masses of initial and new precipitate according to:
+
+
+                   minit                 m ppt
+=SSAfin                      SSAin +               SSAppt                     (2)
+               m ppt + minit         m ppt + minit
+where SSAin and SSAfin are the initial and final specific surface areas determined with the BET method and
+
+SSAppt is the specific surface area of the new precipitate calculated from Eq. 2 using the minit and mppt, the
+
+initial and newly precipitated calcite mass, respectively (Table 2). This approach does not take into
+
+account the details of the reactive site density and coverage of the surface, nor does it account for the fact
+
+that epitaxial growth will likely generate little new surface area (this is discussed below in the context of
+
+2D nucleation versus epitaxial growth). Thus, it simply represents an average of the surface area
+
+associated with newly formed calcite.
+
+   Calcium and sodium were determined in the injection solution and effluent by ICP-MS analysis after
+
+acidification with nitric acid (pH < 2). pH was determined with an Orion pH electrode. Dissolved
+
+Inorganic Carbon (DIC) was assumed to equal the sodium concentration in the injection solution, which
+
+was prepared using reagent grade NaHCO3. In the effluent, DIC was estimated by assuming that the
+
+stirred reactors behaved as closed systems in which calcium carbonate was the only phase precipitated
+
+such that ΔCa = ΔDIC (Table 2). Saturation indexes for the well-mixed effluent were calculated with the
+
+code CrunchFlow, which makes use of the EQ3 database (Wolery et al. [1990]). Activity coefficients are
+
+calculated with the extended Debye-Hückel equation. Thermodynamic parameters at 22°C are included in
+
+Table 3.
+
+   Precipitation rates, R (mol∙m-2∙s-1), are determined by the difference between the concentration of
+
+calcium determined in the effluent, Caout, and the well-mixed stock solution, Cain according to:
+
+                    Ca out − Ca in
+           R = −Q                                                           (3)
+                           A
+
+where Q is the volumetric flow rate (l∙s-1), and A is the total surface area (m2) in the reactor at steady state
+
+calculated using the final mass of calcium carbonate and specific surface area in the reactor based on BET
+
+measurement.
+2.2.2. Plug-flow column precipitation experiments
+
+   Three samples (REAC-0 to REAC-2) were prepared by packing different amounts of glass beads with
+
+or without calcite crystals in cylindrical plug-flow column reactors of 6.50 mm diameter and of
+
+approximately 12 mm length. The relative proportions of calcite spar and glass beads used in each of the
+
+experiments are given in Table 4.
+
+   The inlet fluid used in the experiment was a 50-50 % mixture of CaCl2 and NaHCO3 stock solutions
+
+prepared from reagent-grade salts dissolved in deionized water. The composition of the inlet solution for
+
+each reactor is given in Table 5. They correspond to a calcite saturation index, log Ω, of either 0.70 or
+
+1.42. Each reactor was injected with the stock solutions pre-equilibrated with atmosphere using a multi-
+
+channel syringe pump at a controlled flow rate of 0.25 cm3.h-1 for each channel (Q = 6.94 10-8 l∙s-1), and
+
+mixed through a T-valve at approximately 6 cm from the reactor inlet, as shown schematically in Figure
+
+2. Consequently, the flow rate within the plug-flow reactor was 0.5 cm3.h-1 (Q = 1.38 10-7 l∙s-1).
+
+   The combined calcite spar and glass beads resulted in a porosity of approximately 37 % in the packed
+
+columns based on microtomographic and gravimetric determinations. The residence time of fluid in the
+
+plug-flow column was approximately 20 min, while the residence time in the pre-mixing chamber was
+
+approximately 5.5 min. The experiments were conducted for 28 days at room temperature (22°C). Before
+
+the experiments, the samples were saturated with water under vacuum and injected with an acidic solution
+
+(deionised water + 0.001 M HCl, pH 4.01) at a flow rate of 20 ml.h-1 (Q = 5.56 10-9 m3∙s-1) for 5 h to
+
+further clean the mineral surfaces and eliminate fine particles.
+
+   The pH of both the inlet and outlet solutions was measured using an Orion pH electrode. In addition,
+
+major and minor elements were measured in solution by inductively coupled plasma mass spectroscopy
+
+(ICP-MS), after acidification with nitric acid (pH < 2). Aliquots of inlet and outlet solutions were also
+
+sampled with a capped vial under an N2 atmosphere to analyze the total inorganic carbonate content using
+
+a total inorganic carbon analyzer (TIC).
+3.    Characterization and analytical procedure regarding plug-flow experiments
+
+
+3.1. Analysis of 3D geometry of plug-flow columns with X-ray microtomography
+
+     The geometries of the three packed columns REAC-0 to REAC-2 were characterized by X-ray
+
+microtomography (XMT) at Beamline 8.3.2 at the Advanced Light Source of Lawrence Berkeley
+
+National Laboratory. The XMT method is based on a 3D reconstruction from a thousand 2D radiographs
+
+of the X-ray attenuation properties of the various materials forming the columns. As air, glass beads and
+
+carbonate minerals in the column reactors have different chemical compositions and densities, their
+
+attenuation properties are different. Therefore, they can be differentiated on the 3D images.
+
+     The optical system used in the experiment provides a spatial resolution of 4.46 µm (pixel size). Two
+
+data sets were collected, before (time t0) and after (t1) the experiment. As the camera field is shorter than
+
+the height of the sample, several scans were set up vertically and data were stitched together after
+
+reconstruction. Tomographic reconstruction was done with the software package Octopus (Dierick et al.
+
+[2004]) through use of the filtered back-projection algorithm. The reconstruction provides 3D images of
+
+the X-ray absorption by the different materials in the sample. Each data set is 1600 × 1600 × 3000 voxels.
+
+A voxel is defined as a pixel cubed and is represented as a volume of 4.46 × 4.46 × 4.46 µm3.
+
+     Image processing was carried out using the Avizo® software. By using an appropriate image
+
+processing procedure, it is possible to distinguish the different materials (e.g air, glass beads, and calcite)
+
+and accurately quantify parameters characterizing the sample geometry, i.e. porosity distribution, pore
+
+connectivity as well as geometric surface-area of the fluid-rock interface (Noiriel et al. [2004], Noiriel et
+
+al. [2005]). Each of these parameters is based on averaging of a single 4.46 micron slice through the
+
+column. To do this, the images were segmented; that is, the voxels belonging to the pore space were
+
+distinguished from those belonging to the solid matrix. As data are noisy and present phase contrast, a
+
+segmentation technique based on threshold values coupled with erosion-dilatation procedure was chosen
+
+to separate the different materials (Gonzales and Woods [1992]). Before the segmentation procedure, the
+data sets were normalized through a linear interpolation procedure to achieve consistency within a
+
+dynamic range of intensity values on the different images. The images were registered and the noise was
+
+reduced by running a 3D median filter. Then, the different parameters for segmentation were chosen by
+
+visual inspection of the grey-level histogram and of the segmented volumes by comparison with the grey-
+
+scale ones. At the end of the procedure, the pore space was separated from calcite and glass beads (Figure
+
+3).
+
+
+3.2. Quantitative determination of the extent of the reaction
+
+      The mass of calcite precipitated in the columns was determined by two different but complementary
+
+methods, i) chemical analysis of the effluent, and ii) XMT. The methods give complementary information
+
+at two different scales, the first recording the spatially integrated rate over the 12 mm length of the
+
+column, the second recording the time integrated rate within a single 4.46 µm slice through the column.
+
+      The volume of precipitated calcite as the porosity changes were estimated from the difference in Ca
+
+concentration between the sample inlet and outlet. Because only calcite has precipitated during the
+
+experiments (see discussion below), the volume of precipitated calcite at time ti is given by:
+
+                                         t =ti
+                             Q ×υcal ∫
+                  Vcal (ti ) =                    ∆Ca dt                                   (4)
+                                         t = to
+
+
+
+with Vcal the volume of calcite precipitated , Q the volumetric flow rate (m3∙s-1), υcal the molar volume of
+
+calcite (m3∙mol-1), and ∆Ca the change in calcium concentration between the inlet and the outlet of the
+
+sample (mol∙m-3). The spatially integrated porosity over the length of the columns at time ti is given by:
+
+                                                           t =ti
+                  φCa (ti ) = φ0 + ( Q ×υcal / VT ) ∫               ∆Ca dt                 (5)
+                                                           t = to
+
+
+
+
+where φCa is the porosity calculated from the change in Ca concentration across the column, and φ0 is the
+
+initial sample porosity (at t0). This calculation is essentially the same as the one used to determine the net
+reaction in the stirred reactor experiments described above, but with conversion from moles to volume
+
+using the molar volume value for calcite.
+
+   In samples REAC-0 and REAC-2, the volume of calcite precipitated was not sufficient to characterize
+
+with XMT. In contrast to these columns, the amount of calcite precipitated in column REAC-1 was
+
+significant enough to be followed and characterized using XMT. After segmentation of the XMT images,
+
+the total porosity of the sample φ is simply the ratio of the pore space to the total volume of the sample
+
+VT. The local porosity φ (z ) can also be calculated for each slice along the flow axis. It is also possible to
+
+calculate the volume of precipitated calcite by calculating the difference in the number of calcite voxels
+
+(or solid pixels) observed at the end (t1) and the beginning (t0) of the experiment:
+
+
+        Vcal' =   ∑ ( N (t ) − N (t ) ) ×V
+                  VT
+                       cal    1          cal   0      pix                          (6)
+
+
+
+with Ncal the number of calcite voxels in the image, the total volume of the sample, and Vpix the volume of
+
+a voxel (Vpix = 4.46×4.46×4.46 µm3). The surface-area (m2) of the calcite crystals is defined as the number
+
+of fluid-calcite edge voxels Ncal-fluid multiplied by the voxel surface-area (Spix = 4.46×4.46 µm2). The
+
+                                                            '
+geometric surface-area normalized to the mass of calcite, S geo (m2∙g-1), is defined by:
+
+
+           '
+         S geo=   ∑N
+                  VT
+                       cal − fluid   × S pix / ρcal × Vcal
+                                                        '
+                                                                                            (7)
+
+
+
+with ρ cal the density of calcite.
+
+
+3.3. Reactive transport modeling
+
+   Reactive transport modeling using the code CrunchFlow was used to interpret both the voxel-scale
+
+microtomography results and the effluent chemistry from the plug-flow column. The code CrunchFlow,
+
+or its predecessors, has been used for over 20 years to simulate mineral precipitation (and dissolution) in
+
+porous media (Steefel and Van Cappellen [1990], Steefel and Lasaga [1990], Steefel and Lasaga [1994],
+
+Steefel and Lichtner [1994], Maher et al. [2009]). The software solves a set of partial differential
+equations for the conservation of aqueous and solid mass, with treatment of fluid flow, molecular
+
+diffusion, and multicomponent reaction at the continuum scale:
+
+         ∂
+            (φ C ) + ∇ • ( −D∇(C ) + qC ) = −∑ν im Rm                                    (8)
+         ∂t                                     m
+
+
+
+where D is the dispersion tensor, including both kinematic dispersion and molecular diffusion, C is the
+
+concentration, q is the Darcy flux, Rm is the rate of reaction (precipitation or dissolution) of the mineral m,
+
+and νim is the stoichiometric coefficient that gives the number of moles of component i in mineral m. For a
+
+given mineral, multiple kinetic pathways can be considered that operate simultaneously:
+
+
+        Rm =   ∑R
+               p
+                    p                                                                               (9)
+
+
+
+where Rp is a parallel kinetic pathway. An example is the simultaneous inclusion of a 2D heterogeneous
+
+nucleation pathway operating at the same time as a spiral growth precipitation mechanism, as considered
+
+in this work. The principle application of the code CrunchFlow is to the upscaled continuum problem,
+
+which uses volume averaged values of the porosity and reactive surface area. While the porosity change
+
+associated with mineral precipitation is expected to modify the permeability as well, methods to measure
+
+the pressure gradient over the length of the short column were not available at the time of the experiment.
+
+Therefore, it is assumed that permeability remains constant over the time scale of the experiment in the
+
+modeling. Measurements of effluent fluid mass verify that the overall flow rate remained relatively
+
+constant using the syringe pumps.
+
+   For initial conditions, the mass of calcite added to the columns was assumed to be spread evenly over
+
+the length of the column, resulting in an average volume fraction of calcite spar of 20 %. To estimate the
+
+initial reactive surface area, we used the value of 0.012 m2∙g-1 determined by BET method. However, any
+
+new calcium carbonate formed was assumed to have a specific surface area of 0.21 m2∙g-1 based on the
+
+discussion below. The effect of using various rate laws and specific surface areas to match the observed
+distribution of reaction products in the columns can then be evaluated with the reactive transport
+
+modeling.
+
+   An advection-dominated flux based on the measured flow rate was used as an upstream Neumann
+
+boundary condition for the plug-flow column experiments. The chemistry of the injection solution is
+
+described in Table 5.
+
+   The 12 mm length of the column is discretized using a constant grid spacing of 0.1 mm, with the
+
+exception of a single grid cell of 3.645 mm corresponding to the mixing manifold at the inlet of the
+
+column. The grid cell corresponding to the mixing manifold is intended to match the approximately 5.5
+
+minute residence time of solution in this chamber just upstream from the packed column itself.
+
+   A detailed pore scale simulation of the plug-flow column is currently beyond the capabilities of
+
+CrunchFlow, although we do present the results of calculations that resolve 10-30 µm diffusion boundary
+
+layers next to reacting calcite grains so as to evaluate the potential for a diffusion control (partial or
+
+complete) on precipitation rates. For these calculations, a Dirichlet (fixed concentration) boundary
+
+condition is used at either 10 or 30 µm from the calcite surface. The 10 and 30 µm boundary layers were
+
+considered based on the discussions presented in Hintz and Johnson [1989] and Sugano [2008] working
+
+in the field of pharmaceutics. Hintz and Johnson [1989] presented a model for the width of the diffusion
+
+boundary layer in the case of a dispersion of grains within a stirred fluid medium. Their analysis, which
+
+was based on calibration to measured dissolution rates, determined an empirical maximum width of 30
+
+µm for the boundary layer as grain size increased. Sugano [2008] arrived at similar conclusions, but made
+
+use of a Fluid Dynamic (FD) model to incorporate more rigorously the effects of both stirring rate and
+
+grain size. Sugano [2008] showed that the width of the diffusion boundary layer, heff, affects the diffusion-
+
+controlled flux to the mineral surface according to:
+
+        ∂C           1
+           =
+           A ⋅ Deff      ( Cs − C B )                                             (10)
+        ∂t          heff
+where A is the mineral surface area, Deff is the effective diffusion coefficient, Cs is the concentration in the
+
+aqueous phase immediately adjacent to the mineral surface, and CB is the concentration of the reacting
+
+species in the bulk solution. In a strictly diffusion controlled regime, Cs would be the solubility, but a
+
+more general treatment is considered here in which Cs is computed based on dynamics of the boundary
+
+layer given appropriate boundary conditions for the bulk solution, reaction rate at the mineral surface, and
+
+diffusion rates for all of the reacting species. In other words, the full reactive transport equation (Eq. 8),
+
+with coupling of diffusion through the boundary layer and reaction at the mineral surface, is solved in the
+
+case presented here. This allows for a partial rather than complete control by diffusion, since the actual
+
+behavior depends on the ratio of the rate constant and diffusion coefficient for a given length scale. For a
+
+spherical particle, the width of the hydrodynamic diffusion layer, heff, is given by:
+
+          1    Sh
+             =                                                                      (11)
+         heff 2rp
+
+where Sh is the Sherwood number and rp is the particle radius (Sugano [2008]). The Sherwood number
+
+can be related to the Reynolds number:
+
+                 2r p v rel ,tot
+        Re p =                                                                      (12)
+                          v
+
+where vrel,tot is the total relative velocity of the particle against the fluid flow and ν is the kinematic
+
+viscosity, and the Schmidt number:
+
+                 ν
+        Sc =          .                                                             (13)
+               Deff
+
+   The Sherwood number can be estimated from the semi-empirical Ranz-Marshall correlation often used
+
+for a spherical particle (Ranz and Marshall [1952]):
+
+
+        Sh= 2 + 0.6 Re1/2
+                      p Sc
+                          1/3
+                              .                                                     (14)
+Based on this FD model, Sugano [2008] was able to estimate a hydrodynamic diffusion layer of about 30
+
+µm for large grains (250 µm radius) under largely stagnant conditions, in agreement with Hintz and
+
+Johnson [1989]. For a stirred solution, Sugano [2008] estimated a hydrodynamic diffusion layer thickness
+
+of approximately 10 µm. These values then were used to bracket the diffusion boundary layer calculations
+
+carried out with CrunchFlow.
+
+   The diffusion boundary layer calculations are carried out with a constant grid spacing of 100
+
+nanometers (0.1 µm), resulting in a total of either 100 or 300 grid cells depending on whether the 10 or 30
+
+µm boundary layer was considered. For surface area in Eq. 10, we used the geometric surface area for a
+
+420 µm diameter calcite grain (in the middle of the range of the sieved grain size), with an additional
+
+surface roughness factor of 2.303 based on BET measurements of the initial calcite spar crystals. In the
+
+CrunchFlow calculations, all of the reacting surface area is considered to be present within a single
+
+spherical geometry grid cell of 0.1 µm thickness, as in the calculations presented in Li et al. [2008]. The
+
+rest of the domain is solution only and mineral precipitation is not allowed. In practice, the calculation
+
+using CrunchFlow requires that a geometric surface area (with the addition of a surface roughness factor,
+
+where appropriate) relative to the grid spacing is provided. For the 0.1 µm grid cell with a volume of
+
+4.02×10-5 cm3, the geometric surface area of a 210 µm radius perfectly spherical grain is given by 107
+
+m2∙m-3. Adding the surface roughness factor indicated by the difference between the BET-determined
+
+value for the specific surface area and the ideal geometric estimate (see above), we arrive at a numerical
+
+grid-size dependent (0.1 µm spacing) value for the surface area immediately adjacent to the calcite grain
+
+of 2.304×107 m2∙m-3. Diffusion coefficients used in the calculation are given in Table 6. The
+
+multicomponent diffusion equation based on the Nernst-Planck equation is solved, which preserves
+
+electroneutrality while allowing for the different diffusion rates of the ions (Giambalvo et al. [2002],
+
+Steefel and Maher [2009]).
+4.    Results
+
+
+4.1. Rates of calcite precipitation in CSTR experiments
+
+     Rates of calcium carbonate precipitation determined from the Continuously Stirred Reactor (CSTR)
+
+experiments, and normalized to the physical surface area of calcite measured by BET measurement at the
+
+end of the experiment, are summarized in Table 2. The rates are plotted as a function of the saturation
+
+index (log Ω) in the reactor in Figure 4 and can be described by the expression:
+
+
+                                        [ (           ) ]
+                 R = 1.79 ± 0.28 × 10 −9 exp ∆G R *T − 1 1.12± 0.1       (15)
+
+
+     As discussed previously, the BET measurements of calcite physical surface area in the CSTR
+
+experiments were used to estimate an average specific surface area based on the mass weighted average
+
+of the BET surface area before and after the experiment. Final BET surface areas for experiments CS-1,
+
+CS-2, CS-3, and CS-4 were 0.013, 0.015, 0.013, and 0.016 m2∙g-1, respectively (each with a 10 %
+
+uncertainty in their value). These determinations lead to an estimate of the specific surface area of 0.21
+
+m2∙g-1 for calcium carbonate precipitated during the experiment, a value that is compatible with that
+
+determined by Tang et al. [2008a] of 0.26 m2∙g-1 at the end of their experiments.
+
+
+4.2. Solution chemistry from plug-flow column reactors
+
+     The chemical compositions of the inlet and outlet solutions show a decrease of calcium concentration
+
+over the length of the column (∆Ca>0) as a result of calcite precipitation (Figure 5). Decrease is on
+
+average higher for REAC-1 (∆Ca = 4.0 10-4 M) compared to REAC-2 (∆Ca= 4.0 10-5 M). The temporal
+
+evolution of the concentrations in the solutions during the precipitation experiments is presented in Figure
+
+5. Calcium concentration is almost constant with time, even if the outlet solution concentrations present a
+
+slight decrease with time for REAC-2. For REAC-1, fluctuations are attributed to slight changes of the
+
+flow rate of the pumps as Ca concentration is anti-correlated with Na concentration, which is used as a
+
+monitor of the mixing efficiency since it is conservative. The pH also slightly decreases during
+experiments. The outlet solutions remain highly oversaturated with respect to calcite; the saturation index
+
+of the outlet solution log Ω drops to 1.17 for REAC-1, and remains close to 0.70 for REAC-2.
+
+
+4.3. Determination of mineralogy of reaction products
+
+   Raman spectroscopy was used to determine the identity of the calcium carbonate precipitates from the
+
+plug-flow column.      Raman      spectra were     recorded    with a     LabRam HR800 Jobin-Yvon™
+
+microspectrometer using 532 nm (green) laser excitation. The data indicated a good match with calcite (as
+
+identified by its four absorption bands at 1088 (ν1-symmetric CO3 stretching), 714 (ν4-symmetric CO3
+
+deformation), 284 and 157 (Ca and CO3 bond vibration) cm-1), although purely based on this data, the
+
+initial formation of vaterite, which has a solubility about 0.58 log Ω units above that of calcite (De
+
+Visscher and Vanderdeelen [2003]), cannot be ruled out, since vaterite typically transforms to calcite over
+
+relatively short time scales. It should be pointed out, however, that that the precipitation rates determined
+
+in the well-stirred reactors (Figure 4) appear to be completely continuous across what would be the
+
+solubility limit of vaterite. It is highly unlikely that the curve for the rate would be continuous if two
+
+distinct reactive phases were involved.
+
+
+4.4. Calcite nucleation and growth
+
+   The volume of precipitated calcite Vcal over the length of the plug-flow columns calculated from the
+
+effluent chemistry is 4.94 and 0.57 mm3 for REAC-1 and REAC-2, respectively. The value for REAC-1 is
+
+very close to the volume obtained by XMT ( V ' cal = 5.03 mm3 for an initial amount of calcite in the
+
+sample equal to 63.86 mm3), which demonstrates the ability of XMT to accurately measure changes in
+
+calcite content given enough accumulation of precipitate.
+
+   Observations of the samples from REAC-1 and REAC-2 after the conclusion of the experiments
+
+indicate differences both in the crystal growth rate, amount and morphology that appear to depend on two
+
+main factors: the initial surface for calcite growth (i.e. glass bead or calcite spar) and the saturation index
+log Ω. The growth rates were highest close to the column inlets where the supersaturation was highest, as
+
+evidenced by the volume % of calcite precipitated (Figure 6). In particular, the first mm of column
+
+REAC-1 shows porosity decrease of up to 6.8 %. As the saturation index decreases, either between
+
+samples REAC-1 or REAC-2, or between inlet and outlet of sample REAC-1, the number of calcite
+
+crystals formed on glass bead surfaces decreases. This is also an expected outcome to the extent that the
+
+solution supersaturation falls below the 2D nucleation threshold (Teng et al. [2000]) within the column
+
+due to consumption of calcium and carbonate. In general, new calcite crystals grew preferentially on the
+
+calcite spar surfaces compared to the glass beads in the column (Figure 7a and 7b). Additional
+
+observations with SEM (Figure 8) show that the shape of new calcite crystals differs greatly according to
+
+the initial nucleation surface. The glass beads’ surface displays small, individual rhombohedral crystals
+
+(i.e. without any link to the spar surface). Conversely, the growth of calcium carbonate on spar is
+
+epitaxial, i.e. oriented on the single spar surfaces. Some 2D heterogeneous nuclei are visible as well.
+
+   By subtracting registered 3D volumes (Figure 7c), it is possible to follow the shift of the fluid-rock
+
+interface during the experiment. Figure 7c shows that the size of the crystals on glass beads or the
+
+thickness of the new precipitated calcite layer on spar are variable, indicating a spatial variability of the
+
+growth rates within the pores and/or different stages of calcite nucleation and growth. It is worth noting
+
+that precipitation of calcite was detected across the length of the plug-flow column on spar surfaces,
+
+whereas there is little evidence of precipitation on glass beads at distances greater than about 1-2 mm
+
+from the sample inlet.
+
+
+4.5. Surface area changes
+
+   Calcite growth resulted in an increase of the surface roughness of both the glass beads and original
+
+spar crystals (Figure 9). As a consequence, measurement of the geometric surface area and specific
+
+surface with XMT reveals an increase of the fluid-calcite interface area with time for REAC-1 over
+
+approximately the first 0.75 mm of the column length (Figure 10). Over this interval, the specific surface
+
+area increases from a value of about 0.0075 ± 0.0002 m2∙g-1 to an average value of approximately 0.024
+m2∙g-1, but locally with values as high as 0.058 m2∙g-1. The measurement of the specific surface area using
+
+this approach is limited by the resolution of the XMT technique, which cannot measure sub-micron
+
+features given the voxel size of 4.46 µm, but the observations are compatible with others based on the
+
+SEM images and the BET determinations. The background value of 0.0075 m2∙g-1 agrees fairly well with
+
+the estimate of 0.005 m2∙g-1 based on average grain size (425 µm) and an ideal spherical geometry. The
+
+values for specific surface area over the first 0.75 mm of the column are actually higher than those
+
+determined in the stirred cell experiments, suggesting a more prominent role for 2D heterogeneous
+
+nucleation in the higher supersaturation columns. The value for the specific surface area of 0.21 m2∙g-1 for
+
+the neo-formed calcium carbonate estimated from the BET analysis is higher, but this represents only the
+
+calcium carbonate precipitates, not the combination of precipitates and original calcite spar. Nonetheless,
+
+the XMT mapping of specific surface area makes it clear that a distinct surface roughening event that
+
+coincides with the greatest addition of calcium carbonate mass occurs over the first part of the column
+
+where the supersaturation is highest.
+
+
+
+5.    Discussion
+
+
+5.1. Interpretation of rates from stirred reactors
+
+     The primary objective of the stirred reactor experiments was to provide a baseline rate of calcium
+
+carbonate precipitation as a function of saturation state (log Ω) on the calcite spar seeds in the absence of
+
+“porous medium” effects. As Teng et al. [2000] made clear in their analysis of how the velocity of
+
+individual steps on the calcite surface relate to the overall supersaturation (and thus, to the applicability of
+
+overall “affinity-based” rate laws), the bulk rate depends on the range of mechanisms that are operative,
+
+as well as the density of individual reactive sites. This implies that not all materials may show the same
+
+bulk rates of precipitation given the potentially very different reactive site distributions per unit surface
+
+area of calcite. In addition, there may be issues even in the case of well-mixed stirred reactors to the
+
+extent that a diffusion boundary layer develops, since Pokrovsky et al. [2005] have shown that a diffusion
+control (or partial control) is possible for dissolution of calcite even at circumneutral pH. A partial
+
+diffusion control is also possible in a more nearly stagnant column experiment (no stirring), or in the case
+
+where the grains are large, as suggested by the analysis of Sugano [1998].
+
+   Figure 11 compares the rates of precipitation determined in this study with those determined by Tang
+
+et al. [2008a,b] at 25°C at similar supersaturation. Rates determined by Tang et al. [2008a] are close to an
+
+order of magnitude more rapid those measured in this study. Some of this may be related to the
+
+experimental approach outlined in Tang et al. [2008b] and used in Tang et al. [2008a], which made use of
+
+pH-stat batch reactors without seeds to determine the rate. In their study, one can observe significant
+
+changes in precipitation rate by as much as a factor of 7 over time, as for example with their samples 20,
+
+12, and 13, all measured at a saturation index of 1.11-1.12, but at times ranging from 9 to 14 to 59 min,
+
+respectively (Tang et al. [2008a]).
+
+   Tang et al [2008a,b] are not the only ones that report rates of precipitation higher than those observed
+
+in this study. The Shiraki and Brantley [1995] data, if extrapolated to 25°C using an activation energy of
+
+48 kJ∙mol-1 (Pokrovsky et al. [2005]), would yield a rate constant of about 10-6.33 mol∙m-2∙s-1, while the
+
+direct measurements of precipitation at 25°C by Nancollas and Reddy [1971] and Inskeep and Bloom
+
+[1985] yield rate constants of 10-6.86 and 10-6.41 mol∙m-2∙s-1, respectively. Some of these experiments were
+
+seeded, so the difference cannot be attributed completely to the presence or absence of a discrete
+
+nucleation event in the absence of seed material.
+
+   Comparing the rates of precipitation with calcite dissolution rates is more difficult, since the same
+
+mechanisms need not apply. Pokrovsky et al. [2005] determined a dissolution rate constant for calcite of
+
+10-6.44 mol∙m-2∙s-1. In addition, Li et al. [2008] found a good match for dissolution of the same calcite spar
+
+used in this study in a single pore using the rate law proposed by Chou et al. [1989], which contains a pH
+
+independent term of 10-6.18 mol∙m-2∙s-1. More recently, Hassenkam et al. [2011] found a rate of dissolution
+
+of Iceland spar calcite of 10-5.28 mol∙m-2∙s-1.
+   Another potential clue for the difference in results is suggested by the higher order dependence of the
+
+calcium carbonate precipitation rate on ΔG observed in the Tang et al [2008a,b] experiments. At higher
+
+temperature and/or supersaturation, 2D heterogeneous nucleation may be the dominant growth
+
+mechanism. Teng et al. [2000] reported that at log Ω of about 0.7, 2D heterogeneous nucleation
+
+dominated, while at superaturation as low as log Ω = 0.34, spiral growth and 2D heterogeneous
+
+nucleation may coexist. Without seeds in the Tang et al [2008a,b] experiments, nucleation was the only
+
+means by which calcite could be precipitated initially and evidently their data record such discrete
+
+nucleation events. This conclusion is further reinforced by the higher order dependence of the Tang data
+
+on supersaturation, with a best fit given using an exponent n = 3.2 as fitted in this study using only 25°C
+
+data from Tang et al. [2008a]. The data in this study, in contrast, show a best fit over the range of
+
+saturation states considered with n = 1.12 (Eq. 15). These compare with an exponent of 1.16 determined
+
+by Nancollas and Reddy [1971] at 25 °C and 1.09 by Shiraki and Brantley [1995] for some of their
+
+vigorously stirred batch experiments carried out at intermediate supersaturation at 100°C. Shiraki and
+
+Brantley [1995] attributed their linear data to a rate control by adsorption, but it seems more probable that
+
+in the experiments described in this study, a multi-sourced multiple spiral growth mechanism is operative
+
+(Teng et al. [2000]). Teng et al. [2000] show that the rate of a multi-sourced, multiple spiral growth
+
+mechanism is given by:
+
+
+        Rm =
+                               (   ) [exp(∆G R T ) − 1]
+               a e ω β m' k B T ∆G R *T )           *
+
+               8ωα + 2Λk T (∆G R T )  *
+                                                                                            (16)
+                           B
+
+
+
+where ae is is the equilibrium activity of the solute, β is the rate constant (in units of length over time), ω
+
+is the molar volume of the mineral, kB is the Boltzmann constant, T the absolute temperature, α is the step
+
+edge free energy (per unit length per unit height), m’ is the number of screw locations and Λ is the length
+
+of the line over which these m’ screw locations occur. In cases where the second term in the denominator
+
+of Eq. 16 dominates over the first, as in the case of surface imperfections, the ΔG terms in the numerator
+
+and denominator may cancel, resulting in a linear or nearly linear dependence on ΔG (Teng et al. [2000]).
+   Another possible source of the discrepancy between the experiments reported here and those in other
+
+studies may relate to a partial or complete control of the rate by molecular diffusion. The observation by
+
+Pokrovsky et al. [2005] that a partial diffusion control occurred even at circumneutral pH was based on
+
+the observed stirring rate dependence of the dissolution rate. Whether a partial or complete control by
+
+diffusion occurs depends on the relative rates of surface reaction versus diffusion. This effect can be
+
+investigated using numerical modeling if the size of the diffusion boundary layer, designated as heff above,
+
+can be estimated. Under stagnant conditions and a grain size averaging about 420 µm, the analysis of
+
+Hintz and Johnson [1989] and Sugano [2008] suggest a diffusion boundary layer of about 30 µm. If we
+
+assume that the rates determined by Tang et al. [2008a] are surface reaction-controlled rates, which seems
+
+reasonable given the stirring of their solutions and the small grain size (the width of the hydrodynamic
+
+boundary layer scales with the grain size and approaches the asymptotic molecular diffusion limit for
+
+crystals less than about 10 µm), we can calculate the rates for the large crystals used in this study
+
+assuming some potential mixture of surface reaction and diffusion control. This is done by solving for the
+
+surface reaction rate at the mineral surface using the Tang et al. [2008a] rates simultaneously with
+
+multicomponent diffusion across the width of the hydrodynamic diffusion layer, heff. The 30 µm boundary
+
+layer calculations can also be compared with the 10 µm boundary layer case, which is more likely for the
+
+well-stirred reactors. Figure 12 shows the saturation state (log Ω) in the boundary layer calculated as a
+
+function of distance from the crystal surface for these two cases. In each case, the surface reaction rate in
+
+the single grid cell containing the reactive calcite is taken from the study of Tang using a rate law of the
+
+form:
+
+
+                       [ (            ) ]
+        R = 1.40 × 10 −9 exp ∆G R *T − 1
+                                            3.2
+                                                                 (17)
+
+
+which is based on the fit of the Tang et al. [2008a] data shown in Figure 11. The high rate of precipitation
+
+at 25°C predicted by the Tang data, and as captured by Eq. 17, results in a flux at the mineral surface that
+
+exceeds what molecular diffusion can transport to and from the surface, so a gradient develops. The result
+
+is that the saturation state at the mineral surface, which is what actually determines the surface reaction
+rate, is less than it is in the bulk solution. If a complete diffusion control applied, the solution immediately
+
+adjacent to the crystal would be at equilibrium with calcite. The coupled diffusion-reaction calculations
+
+indicate, however, that the saturation state should be lower next to the crystal than it is in the bulk
+
+solution, but not at equilibrium for the 10 µm boundary layer, log Ω = 0.78, while for the 30 µm case, the
+
+saturation index decreases to approximately 0.73. These are compared to a log Ω value of just under 0.82
+
+for the bulk solution.
+
+   At steady state, the diffusive flux of reactants to and from the mineral surface must balance the rate of
+
+reaction at the mineral surface itself. Therefore, the lower rate of reaction associated with a partial
+
+diffusion control is captured by the surface reaction-controlled rate immediately adjacent to the mineral,
+
+which “sees” the lower saturation state of that microenvironment. Using the calculated lower saturation
+
+index from the diffusion boundary layer rather than the values of the saturation index from the bulk
+
+solution results in lower precipitation rates than would be predicted by a surface reaction rate control
+
+only. For example, in the case of the 30 µm hydrodynamic boundary layer, the calculated value of the
+
+saturation index immediately adjacent to the crystal surface of about 0.735 results in a prediction of the
+
+rate using Eq. 17 of 1.68×10-8 mol∙m-2∙s-1 as compared to a rate of 1.73×10-7 mol∙m-2∙s-1 if the bulk
+
+solution saturation index of 0.82 for experiment CS-4 from this study applied (i.e., as if no hydrodynamic
+
+boundary layer developed). In this way, assuming the Tang et al. [2008a] data describe the surface-
+
+reaction controlled rate accurately, one can systematically compute the lower rates that would occur with
+
+a 30 µm hydrodynamic boundary layer were present (Table 7 and Figure 13), a situation that likely
+
+applies in the case of the largely stagnant flow in the plug-flow column.
+
+   Despite the potentially important role of a partial rate control by molecular diffusion in controlling the
+
+rate of reactions where large crystals are present, from Figure 11 it is clear that this cannot explain all of
+
+the discrepancy between the rates determined in this study and those measured in other studies. The
+
+likeliest explanation for most of the discrepancy is that the surface of the calcite spar used in this study
+
+has a much lower reactive site density than the calcite seed used in the other studies. A study of calcite
+precipitation on Iceland spar conducted by Nehrke et al. [2007] made use of calcite that was essentially
+
+identical to that used in the experiments in this study. Nehrke et al. [2007] reported rates ranging from
+
+about 10-6 to 10-7 mol∙m-2∙s-1, or still 1-2 orders of magnitude faster than those reported here. However,
+
+their surface area normalization was based on grain geometry rather than a BET measurement, with the
+
+result that their reported specific surface area was about 1-2 orders of magnitude lower than that
+
+determined here. Since the Iceland spar used in their experiments is visually almost identical to that used
+
+in this study, it seems reasonable to recalculate their rates using the specific surface area determined here
+
+to see if this reconciles the apparent discrepancies. Their experiments are complicated by the fact that
+
+they considered a range of calcium to carbonate ion activities and their effect on the rate of calcite
+
+precipitation (Nehrke et al. [2007], Stack and Grantham [2010], Gebrehiwet et al. [2012]). In this study
+
+only a relatively narrow range of calcium to carbonate ion activities from 70-115 was considered [Table
+
+2]. Despite this additional effect, it is clear from Figure 14 that the Nehrke et al. [2007] rates are broadly
+
+compatible with those reported here. The reactive site density associated with the Iceland spar used in
+
+this and the Nehrke et al. [2007] study is evidently quite different from that of newly nucleated calcite,
+
+such as in the Tang et al. [2008a] study.
+
+
+5.2. Numerical modeling of calcite precipitation in the plug-flow reactor
+
+   Reactive transport modeling can be used to test the various rate expressions considered here for calcite
+
+precipitation. The objective is to match both the effluent chemistry, which gives the rate of precipitation
+
+integrated over the length of the column, and the X-ray microtomography data from column REAC-1.
+
+This is done in the simplest case by using the known injection (boundary) and initial conditions from the
+
+plug-flow column experiment and incorporating these into a reactive transport simulation that runs for 28
+
+days, the length of the experiment. As a base case, we use an average of 20 %vol calcite that is distributed
+
+evenly over the length of the column and we use the rate expression determined in the stirred reactor
+
+experiments (CS-1 to CS-4) and given in Eq. 15. In addition, we assume that the initial and final specific
+
+surface area is that of the calcite spar determined by BET method as 0.012 m2∙g-1.
+   The simulations demonstrate that the nearly linear rate law (n = 1.12) represented by Eq. 15 cannot
+
+match the observed distribution of calcium carbonate precipitate when the specific surface area of calcite
+
+is held constant at the initial value of 0.012 m2∙g-1 (Figure 15). Specifically, the modeling fails to capture
+
+the nonlinear increase in calcium carbonate mass within 1-2 mm of the column inlet.
+
+   Several possibilities to improve the match of the reactive transport simulations and the X-ray
+
+microtomography data present themselves. One possibility is that the higher specific surface area for
+
+newly precipitated calcium carbonate determined in the stirred cell experiments, 0.21 m2∙g-1, should be
+
+used. If the higher value is used, then the precipitation of new calcium carbonate in the zone within 1-2
+
+mm of the column inlet is magnified over time. The calcite precipitation profile effectively self-sharpens
+
+due to the positive feedback of the high specific surface area generation on the rate of precipitation.
+
+Alternatively, the nonlinear profile close to the column inlet might be attributed to the nonlinearity of the
+
+rate expressions themselves. In what follows, we first test the various rate expressions by carrying out
+
+simulations in which it is assumed that all of the new calcium carbonate has a specific surface area of 0.21
+
+m2∙g-1. In addition to being measured directly in the stirred cell experiments in this study, the higher
+
+specific surface value seems reasonable if the newly precipitated calcite consists in part of smaller
+
+crystals formed via heterogeneous nucleation.
+
+   The data of Tang et al. [2008a] provide a surface reaction controlled rate that can be extended to
+
+higher supersaturation than was considered in the stirred cell experiments in this study. If we want to
+
+apply this surface reaction controlled rate expression to the coarse crystals present in the plug-flow
+
+column experiments in this study, however, it is necessary to factor in the partial diffusion control that
+
+reduces those rates in the case of the large seed crystals of calcite and glass beads used in this study. To
+
+do this, we fit an effective rate expression to the partial diffusion controlled rates given in Table 7 - here
+
+the rate is parameterized in terms of the bulk saturation state (which is the only quantity calculated in this
+
+single continuum version of CrunchFlow), but reflects the lower supersaturation expected immediately
+
+adjacent to the crystal when a 30 µm hydrodynamic boundary layer is present.
+   This mixed rate control results in a lower order dependence on the saturation state of the solution,
+
+which can be described with the following expression:
+
+
+                        [ (           ) ]
+        R = 6.31 × 10 −9 exp ∆G R *T − 1 2.00                              (18)
+
+
+This effective rate expression can be used to calculate calcium carbonate precipitation rates in a plug-flow
+
+column assuming that a 30 µm hydrodynamic boundary layer is present every case surrounding the
+
+reacting calcite spar crystals. As discussed in the next section, this reduces the high rates of precipitation
+
+one would expect if only a surface reaction rate control were operative.
+
+   In Figure 16, a comparison of the reactive transport simulation fit with the X-ray microtomography
+
+results after 28 days is shown for three cases, all assuming a value for the specific surface area of newly
+
+precipitated calcium carbonate of 0.21 m2∙g-1: i) a profile based on Eq. 15, the best fit to the stirred cell
+
+data from this study, with n = 1.12, ii) a profile based on the Tang et al. [2008a] data as represented by
+
+Eq. 17, with n = 3.20, and iii) a profile based on a partial diffusion control in which a 30 µm
+
+hydrodynamic boundary layer (HBL) is assumed, thus lowering both the rate and the reaction order (n =
+
+2.00, Eq. 18). Neither of the Tang et al. [2008a] based simulations (Figure 16b and c) match the XMT
+
+data, as they predict too high a nonlinearity in the profile close to the column inlet. The best match is
+
+actually provided by the nearly linear rate expression (Eq. 15) determined from the stirred cell
+
+experiments in this study.
+
+   Alternatively, it is possible to match the XMT profiles by assuming a constant initial specific surface
+
+area of 0.012 m2∙g-1, or if there is a specific surface area increase, it is much closer to the value suggested
+
+by the XMT characterization (e.g., 0.025 m2∙g-1). Neither of these scenarios seems reasonable, however,
+
+since a higher specific surface area was measured even in the stirred cell experiments (CS-1 to CS-4) that
+
+were carried out at lower supersaturation than was achieved near the plug-flow column inlet. The higher
+
+value of 0.21 m2∙g-1 seems reasonable given the other measurements of newly precipitated calcite specific
+
+surface area in the literature, which range from about 0.19 m2∙g-1 determined by Shiraki and Brantley
+[1995] to 0.26 m2∙g-1 determined by Tang et al. [2008a]. Moreover, the higher order dependence on ΔG in
+
+the Tang et al. [2008a] study suggests a nucleation mechanism, which implies the rapid generation of new
+
+surface area (Steefel and Van Cappellen [1990]), an event that is incompatible with the assumption of a
+
+constant and low specific surface area of 0.012 m2∙g-1.
+
+   Another possibility that can be tested is whether two calcite precipitation mechanisms operating in
+
+parallel can provide a better description of the XMT data. The stirred cell reactor experiments document a
+
+linear or nearly linear dependence on Ω that cannot be attributed to even a partial diffusion control, since
+
+the surface reaction controlled rates are too slow according to the calculations. A spiral growth
+
+mechanism involving multi-source multiple spirals seems most likely, with the overall rate remaining low
+
+due to the relative paucity of reactive sites on the spar surface. However, these experiments did not test
+
+the entire range of Ω encountered in the REAC-1 experiment that has been the focus of the X-ray
+
+microtomography in this study, so it seems reasonable to postulate that more than a single precipitation
+
+mechanism was involved in the case of the REAC-1 column, in contrast to the stirred reactor experiments
+
+carried out at lower supersaturation. It is postulated that, while a linear or nearly spiral growth mechanism
+
+may operate at lower supersaturations, a 2D heterogeneous nucleation mechanism is more important at
+
+higher supersaturation. The suggestion of a 2D heterogeneous nucleation mechanism, presumably with a
+
+higher order dependence on supersaturation, is reinforced by the observations in Figure 8e and 8f of small
+
+2D nuclei formed on the calcite spar surface, as well as the local growth of calcite crystals directly on
+
+glass beads. In addition, the XMT records an increase in specific surface area over the first 1 mm of the
+
+column, suggesting that a nucleation event was operative at the higher supersaturations close to the
+
+column inlet. To test this hypothesis, we consider a reactive transport simulation in which the higher order
+
+nucleation mechanism suggested by the data of Tang et al. [2008a], but modified to include a partial
+
+diffusion control according to Eq. 18, is combined with a parallel, nearly linear reaction based on a multi-
+
+step spiral growth and described by Eq. 15. When both reaction pathways are included, however, a match
+
+with the XMT data is only possible when the diffusion-modified Tang rate constant in Eq. 18 is reduced
+to about 2.5×10-10 mol∙m-2∙s-1. Using this value, one obtains the spatial profile shown in Figure 17a, which
+
+is in reasonable agreement with the data. The postulated field of dominance of the two mechanisms can
+
+be represented by plotting the two parallel rates versus saturation index (log Ω) (Figure 17b).
+
+     These simulations results suggest that 2D heterogeneous nucleation, while suggested by direct
+
+observation of newly formed crystals and nuclei on both glass bead and calcite spar surfaces and the
+
+determination of an increase in specific surface area by both BET and XMT methods, was suppressed in
+
+the column relative to what was predicted from the seedless batch experiments of Tang et al. [2008a]. The
+
+seedless batch experiments of Tang et al. [2008a] presumably involve a highly transient nucleation stage
+
+followed by crystal growth, an interpretation further supported by the observation of a significant
+
+decrease in calcite precipitation rates over time in their experiments (Steefel and Van Cappellen [1990]).
+
+Both the well stirred and plug-flow reactor experiments in this study are carried out much closer to steady
+
+state conditions. A possible conclusion is that while 2D heterogeneous nucleation occurs in the column
+
+experiments in particular, it is not a large effect on a mass (or volume) basis.
+
+
+
+6.    Conclusions
+
+     This experimental study highlights the effects of calcite growth on a porous network representing a
+
+very simple analogue of sandstone. Both crystal shape and growth rate are strongly dependent on the
+
+saturation index and mineral surface nucleation process. Stirred reactor experiments used to provide
+
+baseline rates for the coarsely crystalline calcite spar seed material show precipitation rates for calcite
+
+with a nearly linear dependence on saturation state, Ω, and at significantly slower rates than measured
+
+elsewhere using either no or different seed material. The nearly linear dependence on saturation
+
+determined in this study over the range of saturation, log Ω, of 0.15 to 0.82, is likely due to a multiple,
+
+multi-sourced spiral growth mechanism (Teng et al. [2000]). Some reconciliation of the Tang et al.
+
+[2008a] data with the rates determined in this study is possible by taking into account the partial diffusion
+
+control expected for the large seed crystals considered here, which has the effect of suppressing
+nucleation to the extent that the supersaturation immediately adjacent to the crystal is lowered. The partial
+
+diffusion control is expected to be more important in the case of the more nearly stagnant plug-flow
+
+columns, but a discrepancy with the Tang et al. [2008a] batch data persists there as well. However, a good
+
+match is obtained with the data in Nehrke et al. [2007], who used seed material essentially identical to
+
+that used in this study, if the BET-determined specific surface area determined in this study is used in
+
+place of the geometric estimate. The best match with the XMT data, which agrees remarkably well with
+
+the spatially integrated rates determined from effluent chemistry in the case of column REAC-1, is
+
+provided by either the nearly linear rate law determined in the stirred cell experiments (n = 1.12), or with
+
+a combination of nearly linear (multi-sourced spiral growth) and 2D heterogeneous nucleation rate in
+
+which the nucleation mechanism is minor on a mass (or volume) basis.
+
+   The study indicates that upscaling of calcite precipitation rates to porous samples is possible using data
+
+from well-stirred reactor experiments, although it is necessary to account for the evolution of reactivity.
+
+The positive feedback between the reactive surface area evolution and the reaction rate results in
+
+nonlinear, time-dependent mineral precipitation profile. We expect that upscaling is likely more difficult
+
+for natural sub-surface sandstone with hierarchical physical and geochemical heterogeneity structures.
+
+
+
+Acknowledgments
+
+   This research was supported by the Center for Nanoscale Control of Geologic CO2, an Energy Frontier
+
+Research Center funded by the U.S. Department of Energy, Office of Science, Office of Basic Energy
+
+Sciences under Award Number DE-AC02-05CH11231. Synchrotron XMT work was performed at the
+
+Advanced Light Source, Beamline 8.3.2. Joern Larsen (ESD/LBNL), Alastair MacDowell (ALS/LBNL),
+
+Philippe Recourt, Sandra Ventalon and Sylvie Regnier (Université de Lille 1) are thanked for their
+
+assistance with ICP-MS, XMT acquisition, SEM, Raman, and preparation of thin sections, respectively.
+   References
+
+
+
+
+   Aagaard, P. and Helgeson, H.C., 1982. Thermodynamic and kinetic constrains on reaction-rates
+
+among minerals and aqueous solutions 1. Theoretical considerations. American Journal of Science,
+
+282(3): 237-285.
+
+   Blum, A.E. and Lasaga, A.C., 1987. Monte Carlo simulations of surface reaction rate laws. In: W.
+
+Stumm (Editor), Aquatic Surface Chemistry: Chemical Processes at the Particle-Water Interface. John
+
+Wiley & Sons, New York, pp. 255-292.
+
+   Chou, L., Garrels, R.M. and Wollast, R., 1989. Comparative study of the kinetics and mechanisms of
+
+dissolution of carbonate minerals. Chemical Geology, 78: 269-282.
+
+   Dagan G., 1988. Time-dependent macrodispersion for solute transport in anisotropic heterogeneous
+
+aquifers. Water Resources Research, 24: 1491-1500
+
+   De Visscher, A. and Vanderdeelen, J., 2003. Estimation of the solubility constant of calcite, aragonite,
+
+vaterite, at 25°C based on primary data using the Pitzer ion interaction approach. Chemical Monthly, 134:
+
+769-775.
+
+   Dierick, M., Masschaele, B. and Van Hoorebeke, L., 2004. Octopus, a fast and user-friendly
+
+tomographic reconstruction package developed in LabView (R). Measurement Science & Technology,
+
+15(7): 1366-1370.
+
+   Giambalvo, E.R., Steefel, C.I., Fisher, A.T., Rosenberg, N.D. and Wheat, C.G., 2002. Effect of fluid-
+
+sediment reaction on hydrothermal fluxes of major elements, eastern flank of the Juan de Fuca Ridge.
+
+Geochimica Et Cosmochimica Acta, 66(10): 1739-1757.
+      Gebrehiwet, T.A., Redden, G.D., Fujita, Y., Belg, M.S., Smith, R.W., 2012. The effects of the CO32- to
+
+Ca2+ ion activity ratio on calcite precipitation kinetics and Sr2+ partitioning. Geochemical Transactions,
+
+13: 1, doi:10.1186/1467-4866-13-1.
+
+      Gelhar, L.W., 1986. Stochastic subsurface hydrology from theory to applications. Water Resources
+
+Research, 22: 135S-145S
+
+      Gonzales, R.C. and Woods, R.E., 1992. Digital image processing. Addison-Wesley Publishing
+
+Compagny, Reading, Massachusetts, 716 pp.
+
+      Hassenkam, T., Johnsson, A., Bechgaard, K. and Stipp, S.L.S., 2011. Tracking single coccolith
+
+dissolution with picogram resolution and implications for CO(2) sequestration and ocean acidification.
+
+Proceedings of the National Academy of Sciences of the United States of America, 108(21): 8571-8576.
+
+      Hintz, R.J. and Johnson, K.C., 1989. The effect of particle size distribution on dissolution rate and oral
+
+absorption. International Journal of Pharmaceutics, 51(1): 9-17.
+
+      Inskeep, W.P. and Bloom, P.R., 1985. An evaluation of rate-equations for calcite precipitation kinetics
+
+at PCO2 less than 0.01atm and pH greater than 8. Geochimica Et Cosmochimica Acta, 49(10): 2165-
+
+2180.
+
+      Lasaga, A.C., 1998. Kinetic theory in the earth sciences. Princeton University Press, New Jersey, 811
+
+pp.
+
+      Lasaga, A.C., 1981. Rate laws in chemical reactions. In Kinetics of Geochemical Processes. Vol 8,
+
+A.C. Lasaga and R.J. Kirkpatrick (eds). Mineralogical Society of America, 135-169.
+
+      Li, L., Peters, C.A. and Celia, M.A., 2006. Upscaling geochemical reaction rates using pore-scale
+
+network modeling. Advances in Water Resources, 29(9): 1351-1370.
+
+      Li, L., Steefel, C.I. and Yang, L., 2008. Scale dependence of mineral dissolution rates within single
+
+pores and fractures. Geochimica et Cosmochimica Acta, 72(2): 360-377.
+   Maher, K., Steefel, C.I., White, A.F. and Stonestrom, D.A., 2009. The role of reaction affinity and
+
+secondary minerals in regulating chemical weathering rates at the Santa Cruz Soil Chronosequence,
+
+California. Geochimica Et Cosmochimica Acta, 73(10): 2804-2831.
+
+   Nancollas, G. and Reddy, M.M., 1971. Crytallization of calcium carbonate 2. Calcite growth
+
+mechanism. Journal of Colloid and Interface Science, 37(4): 824-830.
+
+   Nehrke, G., Reichart, G.J., Van Cappellen, P., Meile, C., Bijma, J., 2007. Dependence of calcite
+
+growth rate and Sr partitioning on solution stoichiometry: Non-Kossel crystal growth. Geochimica Et
+
+Cosmochimica Acta, 71: 2240-2249.
+
+   Nielsen, A.E., 1984. Electrolyte crystal-growth mechanisms. Journal of Crystal Growth, 67(2): 289-
+
+310.
+
+   Noiriel, C., Bernard, D., Gouze, P. and Thibaut, X., 2005. Hydraulic properties and microgeometry
+
+evolution in the course of limestone dissolution by CO2-enriched water. Oil & Gas Science and
+
+Technology, 60(1): 177-192.
+
+   Noiriel, C., Gouze, P. and Bernard, D., 2004. Investigation of porosity and permeability effects from
+
+microstructure changes during limestone dissolution. Geophysical Research Letters, 31(24): L24603,
+
+doi:10.1029/2004GL021572.
+
+   Oelkers, E.H., Schott, J. and Devidal, J.L., 1994. The effect of aluminium, pH, and chemical affinity
+
+on the rates of aluminosilicate dissolution reactions. Geochimica Et Cosmochimica Acta, 58(9): 2011-
+
+2024.
+
+   Pokrovsky, O.S., Golubev, S.V. and Schott, J., 2005. Dissolution kinetics of calcite, dolomite and
+
+magnesite at 25 degrees C and 0 to 50 atm pCO(2). Chemical Geology, 217(3-4): 239-255.
+
+   Ranz, W.E. and Marshall, W.R., 1952. Evaporation from drops 1. Chemical Engineering Progress,
+
+48(3): 141-146.
+   Shiraki, R. and Brantley, S.L., 1995. Kinetics of near-equilibrium calcite precipitation at 100°C - An
+
+evaluation of elementary reaction-based and affinity-based rate laws. Geochimica Et Cosmochimica Acta,
+
+59(8): 1457-1471.
+
+   Stack, A.G. and Grantham, M.C., 2010. Growth rate of calcite steps as a function of aqueous calcium-
+
+to-carbonate ratio: Independent attachment and detachment of calcium and carbonate ions. Crystal
+
+Growth and Design, 10: 1409-1413.
+
+   Steefel, C.I., DePaolo, D.J. and Lichtner, P.C., 2005. Reactive transport modeling: An essential tool
+
+and a new research approach for the Earth sciences. Earth and Planetary Science Letters, 240(3-4): 539-
+
+558.
+
+   Steefel, C.I. and Lasaga, A.C., 1990. Evolution of dissolution patterns: Permeability change due to
+
+coupled flow and reaction. In: D. Melchior and R.L. Bassett (Editors), Chemical Modeling of Aqueous
+
+Systems II. American Chemical Society, Washington DC, pp. 212-225.
+
+   Steefel, C.I. and Lasaga, A.C., 1994. A coupled model for transport of multiple chemical species and
+
+kinetic precipitation/dissolution reactions with application to reactive flow in single phase hydrothermal
+
+systems. . American Journal of Science 294: 529-592.
+
+   Steefel, C.I. and Lichtner, P.C., 1994. Diffusion and reaction in rock matrix bordering a hyperalkaline
+
+fluid-filled fracture. Geochimica et Cosmochimica Acta, 58(17): 3595-3612.
+
+   Steefel, C.I. and Maher, K., 2009. Fluid-Rock Interaction: A Reactive Transport Approach. In: E.H.
+
+Oelkers and J. Schott (Editors), Thermodynamics and Kinetics of Water-Rock Interaction. Reviews in
+
+Mineralogy & Geochemistry. Mineralogical Soc Amer, Chantilly, pp. 485-532.
+
+   Steefel, C.I. and Van Cappellen, P., 1990. A new kinetic approach to modeling water-rock interaction
+
+- The role of nulceation, precursors, and Ostwald ripening. Geochimica Et Cosmochimica Acta, 54(10):
+
+2657-2677.
+   Sugano, K., 2008. Theoretical comparison of hydrodynamic diffusion layer models used for
+
+dissolution simulation in drug discovery and development. International Journal of Pharmaceutics, 363(1-
+
+2): 73-77.
+
+   Tang, J.W., Dietzel, M., Bohm, F., Kohler, S.J. and Eisenhauer, A., 2008a. Sr(2+)/Ca(2+) and
+
+(44)Ca/(40)Ca fractionation during inorganic calcite formation: II. Ca isotopes. Geochimica Et
+
+Cosmochimica Acta, 72(15): 3733-3745.
+
+   Tang, J.W., Kohler, S.J. and Dietzel, M., 2008b. Sr2+/Ca2+ and Ca-44/Ca-40 fractionation during
+
+inorganic calcite formation: I. Sr incorporation. Geochimica Et Cosmochimica Acta, 72(15): 3718-3732.
+
+   Teng, H.H., Dove, P.M. and De Yoreo, J.J., 2000. Kinetics of calcite growth: Surface processes and
+
+relationships to macroscopic rate laws. Geochimica Et Cosmochimica Acta, 64(13): 2255-2266.
+
+   White, A.F. and Brantley, S.L., 2003. The effect of time on the weathering of silicate minerals: why
+
+do weathering rates differ in the laboratory and field? Chemical Geology, 202: 479-506.
+
+   Wolery, T.J. et al., 1990. Current status of the EQ3/6 software package for geochemical modeling. Acs
+
+Symposium Series, 416: 104-116.
+Figure Captions
+
+
+
+
+Figure 1. Scanning electron microscope (SEM) images of (a) glass beads and (b) and (c) calcite
+
+crystal before experiments.
+
+
+
+
+Figure 2. Schematic of the plug-flow column experimental setup.
+
+
+
+
+Figure 3. XMT cross-section (256×256 pixels) of the sample REAC-1 (a) Initial 256-grey levels
+
+image and (b) image after segmentation, identifying porosity (black), calcite (grey) and glass bead
+
+(white).
+
+
+
+
+Figure 4. Saturation index (log Ω) versus rate for the stirred cell experiments in this study.
+
+
+
+
+Figure 5. Changes in effluent Ca (a) and pH (b) for columns REAC-0, REAC-1, and REAC-2.
+
+
+
+
+Figure 6. Calcium carbonate precipitated within REAC-1 column after 28 days based on XMT. The
+
+column inlet is on the left, the exit on the right.
+
+
+
+
+Figure 7. XMT small 3D volumes (256×256×128 pixels) of the sample REAC-1 showing the
+
+precipitation of calcite and the shift of the fluid-rock interface. (a) Sample before experiment,
+
+showing glass beads (royal blue) and calcite (sky blue). (b), Sample after experiment, (c) Sample
+after experiment, showing the displacement of the fluid-rock interface during experiment. White
+
+and yellow lines correspond to the position of the fluid-rock interface (in the foreground slice) at t0
+
+and t1, respectively. Note that the interface mismatch for the right-bottom glass bead is due to bead
+
+displacement during experiment.
+
+
+
+
+Figure 8. SEM pictures of sample REAC-1 after experiment. Calcite crystals grew on glass bead
+
+surface (a) and (b), calcite spar surface close to the sample inlet (c) and (d), and close to the sample
+
+outlet (e) and (f).
+
+
+
+
+Figure 9. XMT cross-sections of sample REAC-1 before and after experiment showing roughness
+
+increase
+
+
+
+
+Figure 10. Specific surface area changes in REAC-1 based on XMT (spatial resolution of 4.46 µm).
+
+
+
+
+Figure 11. Comparison of calcite precipitation rates from this study and that of Tang et al. [2008a]
+
+
+
+
+Figure 12. 10 and 30 µm boundary layers for the case of CS-4 with a bulk saturation index of 0.82.
+
+The modeling assumes that the Tang et al. [2008a] rate applies at the mineral surface. The gradient
+
+indicates a partial diffusion control. See text for further explanation.
+
+
+
+
+Figure 13. Tang rates recalculated for a partial diffusion control assuming a 30 µm thick
+
+hydrodynamic boundary layer.
+Figure 14: Comparison of calcite growth rate data from Nehrke et al. [2007] (blue symbols) and
+
+this study (red symbols and fitted curve). Nehrke et al. [2007] considered a broad range of calcium
+
+to carbonate ion activity ratios (unlike this study), which accounts for some of the spread in their
+
+data when plotted versus log Ω alone.
+
+
+
+
+Figure 15. Fit of XMT data with the nearly linear rate expression (n = 1.12) determined in stirred
+
+cell reactor experiments from this study and using a constant initial specific surface area of 0.012
+
+m2∙g-1.
+
+
+
+
+Figure 16. Reactive transport simulation matching of XMT profiles (red data points) of newly
+
+precipitated calcium carbonate with a specific surface area of 0.21 m2∙g-1. Plug-flow column inlet is
+
+on the left. (a) Simulated profile (dark blue solid line) with n = 1.12 using Eq. 15, (b) simulated
+
+profile (dark blue solid line) with model fit to Tang et al. [2008a] data, n = 3.20 (Eq. 17), and (c)
+
+simulated profile (dark blue solid line) with model fit to Tang data adjusted for a partial diffusion
+
+control based on a 30 µm hydrodynamic boundary layer (Eq. 18).
+
+
+
+
+Figure 17. (a) Comparison of simulated profile of newly precipitated calcium carbonate with XMT
+
+data when two parallel rate laws are combined: 1) a partially diffusion controlled modification of
+
+the higher order rate expression suggested by Tang et al. [2008a] data, and 2) the nearly linear
+
+(n=1.12) multi-sourced spiral growth mechanism suggested by the stirred cell experiments in this
+
+study. The rates fromTang et al. [2008a], however, need to be slowed even beyond the modification
+
+imposed by a partial diffusion control in order to result in a reasonable match with the data. (b)
+Postulated precipitation rate regimes based on plug-flow column experiments: spiral growth
+
+controlled (dark solid line) vs nucleation control (grey solid line).
+Table 1. Chemical composition of initial calcite material.
+
+        Element             [Ca]     [Mg] [Sr] [Ba]        [K] [Na] [Si]   [Al] [Rb]
+
+
+Concentration (% weight) 39.33       0.14 0.02 0.27 0.08 0.03 1.52 0.03 0.02
+
+
+
+
+Table 2. Summary of the continuously-stirred precipitation experiments
+
+     Experiment         SC-1       SC-2    SC-3    SC-4
+
+
+         pHin            8.16      8.41    8.25    8.20
+
+
+        pHout            7.97      7.99    8.032   7.89
+
+
+   DICina (mmol∙l-1)    2.120      4.077   2.987   6.278
+
+
+   DICout (mmol∙l-1)    1.987      3.509   2.709   4.942
+
+
+   Cainc (mmol∙l-1)     1.071      2.043   1.436   4.000
+
+
+   Caoutd (mmol∙l-1)    0.938      1.475   1.158   2.664
+
+
+    ΔCa (mmol∙l-1)      0.133      0.568   0.278   1.336
+
+
+    Calcite Ppt (g)     0.0046 0.0143 0.0033 0.0192
+
+
+Calcite SSAfinf (m2∙g-1) 0.013     0.015   0.013   0.016
+
+
+    aCa 2+ / aCO32−      94.9      74.7    70.9    115
+
+
+       Log Ωe            0.15      0.57    0.42    0.82
+
+
+  Log R (mol∙m-2∙s-1)   -8.89      -8.26   -8.49   -7.91
+a. DIC in well-mixed stock solution based on average of 3 Na analyses by ICP-MS, with assumption that
+
+total Na = total Dissolved Inorganic Carbonate (DIC).
+
+
+b. DIC from effluent not measured directly, but estimated by subtracting the Ca precipitated in the reactor
+
+(ΔCa = ΔDIC) from the DIC in the well-mixed stock solution.
+
+
+c. Average of 3-4 ICP-MS measurements of total Ca in well mixed stock.
+
+
+d. Average of 5-15 Ca values determined by ICP-MS at steady state
+
+
+e. Calculated with CrunchFlow using the EQ3 database (Wolery et al. [1990]). Makes use of the extended
+
+Debye-Huckel model for activity corrections. Thermodynamic data at 22°C given in Table 3.
+
+
+f. Final surface area calculated from the weighted fraction of original Iceland spar (1.0 g) and the new
+
+calcite precipitate using a multipoint krypton gas BET method.
+Table 3. Thermodynamic data at 22°C used in simulations. Note that the primary species used in
+
+the calculation are Ca2+ and CO32-.
+
+        Species                    Log K                 Species                Log K
+
+
+        HCO3-                     -10.352                 CO2(aq)              -16.712
+
+
+        CaCl+                     0.70339               CaCO3(aq)              -3.2881
+
+
+       CaCl2(aq)                  0.64203               CaHCO3+                -11.393
+
+
+        HCl(aq)                   -0.69908               NaCO3-                -0.54579
+
+
+        NaCl(aq)                  0.79087               NaHCO3(aq)             -10.532
+
+
+       NaOH(aq)                   14.894                  Calcite              -8.4521
+
+
+         OH-                      14.091                 Vaterite               -7.927
+
+
+
+
+Table 4. Composition of the plug-flow columns.
+
+    Sample name          REAC-0        REAC-1    REAC-2
+
+
+       mass (g)          0.5767        0.6300    0.6541
+
+
+     calcite (%w)           0               25     25
+
+
+   glass beads (%w)        100              75     75
+Table 5. Composition of the inlet fluid after mixing for the plug-flow column experiments
+
+    Sample name         REAC-0        REAC-1         REAC-2
+
+
+    CaCl2 (mM)         2.0 ± 0.1      2.0 ± 0.1      1.0 ± 0.1
+
+
+   NaHCO3 (mM)         4.0 ± 0.1      4.0 ± 0.1      2.0 ± 0.1
+
+
+       Log Ω              1.44          1.44           0.69
+
+
+        pHin              8.70          8.70           8.45
+
+
+
+
+Table 6. Diffusion coefficients used in reactive transport modelling
+
+      Ion         Di (×105 cm2∙s-1)         Ion           Di (×105 cm2∙s-1)
+
+
+      H+               9.31*               OH-                   5.27*
+
+
+     Na+               1.33*                Cl-                  2.03*
+
+
+     Ca2+             0.793*              HCO3-                  1.18*
+
+
+    CO2(aq)             1.00              CO32-                  0.955*
+
+
+    CaCl2+              1.00             CaCl2(aq)                1.00
+
+
+   CaCO3(aq)            1.00            CaHCO3+                   1.00
+
+
+    NaCO3-              1.00           NaHCO3(aq)                 1.00
+
+
+*Data from Lasaga [1998]; otherwise a value is assumed.
+Table 7. 25°C calcite precipitation rates from Tang et al. [2008a] recalculated for a partial diffusion
+
+control assuming a 30 µm thick hydrodynamic boundary layer.
+               a
+                   log Ω (at   b
+                                   log Ω (bulk   c
+                                                     Crystal surface    d
+                                                                         Bulk rate     log crystal surface   log bulk rate
+
+            crystal surface)       solution)     rate (mol∙m-2∙s-1)    (mol∙m-2∙s-1)   rate (mol∙m-2∙s-1)    (mol∙m-2∙s-1)
+
+
+ Tang-11            0.963            1.192            1.156×10-6       7.330×10-6            -5.937             -5.135
+
+
+ Tang-12            0.922            1.095            8.260×10-7       3.396×10-6            -6.083             -5.469
+
+
+ Tang-13            0.928            1.108            8.649×10-7       3.771×10-6            -6.063             -5.424
+
+
+ Tang-14            0.836            0.931            3.986×10-7       8.868×10-7            -6.399             -6.052
+
+
+ Tang-15            0.638            0.660            6.630×10-8       8.171×10-8            -7.178             -7.088
+
+
+ Tang-16            0.806            0.882            3.059×10-7       5.882×10-7            -6.514             -6.230
+
+
+ Tang-17            0.630            0.651            6.146×10-8       7.490×10-8            -7.211             -7.126
+
+
+ Tang-18            0.655            0.680            7.794×10-8       9.837×10-8            -7.108             -7.007
+
+
+ Tang-19            0.965            1.200            1.182×10-6       7.806×10-6            -5.927             -5.108
+
+
+ Tang-20            0.929            1.111            8.707×10-7       3.844×10-6            -6.060             -5.415
+
+
+ Tang-21            0.977            1.233            1.302×10-6       1.010×10-5            -5.885             -4.995
+
+
+ Tang-22            0.912            1.073            7.551×10-7       2.834×10-6            -6.122             -5.548
+
+
+ Tang-23            0.735            0.780            1.630×10-7       2.443×10-7            -6.788             -6.612
+
+
+   a. Saturation index calculated with the Tang et al [2008a] surface reaction rate (Eq. 17) and
+
+       multicomponent diffusion across a 30 μm hydrodynamic boundary layer using coefficients in
+
+       Table 6.
+b. Saturation index calculated with the Tang et al [2008a] surface reaction rate (Eq. 17) assuming
+
+   the bulk solution is present immediately adjacent to the calcite crystal (no hydrodynamic
+
+   boundary layer).
+
+c. Rate calculated from Eq. 17 assuming the saturation state immediately adjacent to the calcite
+
+   surface is given by the log Ω values given in Column a.
+
+d. Rate calculated from Eq. 17 assuming that the bulk solution (Column b) is immediately adjacent
+
+   to the calcite surface.
+                                500μm                                         400μm                                          100μm
+(a)                                             (b)                                            (c)
+
+
+      Figure 1. Scanning electron microscope (SEM) images of (a) glass beads and (b) and (c) calcite crystal before experiments.
+                                       pH meter
+                Sample
+
+    Syringe pump
+NaHCO3                               Valve cap
+CaCl2                                 T-valve
+
+
+
+Figure 2. Schematic of the plug-flow column experimental setup
+(a)                                                  (b)
+
+
+Figure 3. XMT cross-section (256×256 pixels) of the sample REAC-1 (a) Initial 256-grey levels image and
+(b) image after segmentation, identifying porosity (black), calcite (grey) and glass bead (white).
+                                               -8
+                                      1.4 10
+
+
+                                               -8
+                                      1.2 10
+   Precipitation Rate (mol.m-2.s-1)
+
+                                               -8
+                                       1 10
+
+
+                                               -9
+                                       8 10
+
+
+                                               -9
+                                       6 10
+
+
+                                               -9
+                                       4 10
+
+
+                                               -9
+                                       2 10
+
+
+                                               0
+                                                    0   0.2   0.4     0.6   0.8   1
+
+                                                              Log Ω
+
+Figure 4. Saturation index (log Ω) versus rate for the stirred cell experiments in this study
+                                                      Effluent Ca                                                             Effluent pH
+                          2.5                                                                     9.5
+                                    (a)                                      REAC-0                         (b)                                   REAC-0
+                                                                             REAC-1                                                               REAC-1
+Concentration (×10-3 M)
+
+
+
+
+                                                                             REAC-2                                                               REAC-2
+                                    Inlet REAC-0 and REAC-1
+                           2                                                                        9
+
+                                                                                                              Inlet REAC-0 and REAC-1
+
+
+
+
+                                                                                             pH
+                                                                                                                                             Inlet REAC-2
+                          1.5                                                                     8.5
+
+
+
+                                    Inlet REAC-2
+                           1                                                                        8
+
+
+
+
+                          0.5                                                                     7.5
+                                0         100   200     300    400     500     600     700              0         100   200    300   400    500   600   700
+                                                        Time (h)                                                              Time (h)
+
+
+                                    Figure 5. Changes in effluent Ca (a) and pH (b) for columns REAC-0, REAC-1, and REAC-2.
+                                 8
+
+
+                                 7
+                                              Column Inlet
+                                 6
+Volume % Calcite Precipitated
+
+
+
+
+                                 5
+
+
+                                 4
+
+
+                                 3
+
+
+                                 2
+
+
+                                 1
+
+
+                                 0
+                                     0    2       4          6    8   10     12
+                                                    s
+                                                  Distance (mm)
+
+                                Figure 6. Calcium carbonate precipitated within REAC-1 column after 28 days based on XMT. The column inlet
+                                is on the left, the exit on the right.
+ a)                                              b)                                               c)
+
+
+Figure 7. XMT small 3D volumes (256×256×128 pixels) of the sample REAC-1 showing the precipitation of
+calcite and the shift of the fluid-rock interface. (a) Sample before experiment, showing glass beads (royal blue)
+and calcite (sky blue). (b), Sample after experiment, (c) Sample after experiment, showing the displacement of
+the fluid-rock interface during experiment. White and yellow lines correspond to the position of the fluid-rock
+interface (in the foreground slice) at t0 and t1, respectively. Note that the interface mismatch for the right-bottom
+glass bead is due to bead displacement during experiment.
+    (a)                      150 μm        (b)                       50 μm
+
+
+
+
+    (c)                       150 μm      (d)                       50 μm
+
+
+
+
+                                                                  spiral
+                                                                  growth
+
+
+
+
+    (e)                        5 μm        (f)                        2 μm
+
+
+Figure 8. SEM pictures of sample REAC-1 after experiment. Calcite crystals grew on glass bead surface (a) and
+(b), calcite spar surface close to the sample inlet (c) and (d), and close to the sample outlet (e) and (f).
+  (a)                                1 mm          (b)
+
+
+Figure 9. XMT cross-sections of sample REAC-1 before and after experiment showing roughness increase
+                                  0.06
+
+
+
+                                  0.05
+Sprecific Surface Area (m2.g-1)
+
+
+
+                                  0.04                 Final Surface Area
+
+
+                                  0.03
+
+
+
+                                  0.02                                 Initial Surface Area
+
+                                  0.01
+
+
+
+                                    0
+                                         0   0.5   1       1.5          2        2.5         3         3.5           4
+                                                          Distance (mm)
+
+                  Figure 10. Specific surface area changes in REAC-1 based on XMT (spatial resolution of 4.46 μm).
+                              -7
+                      3 10
+
+
+                              -7
+                     2.5 10
+                                                                                         Tang et al.,
+                                                                                            2008
+Rate (mol.m-2.s-1)
+
+
+
+
+                              -7
+                      2 10
+
+
+                              -7
+                     1.5 10
+
+
+                              -7
+                      1 10
+
+
+                              -8
+                      5 10
+
+                                                                                                       This Study
+                              0
+                                   0                0.2                  0.4                  0.6                0.8
+                                                       Saturation index (log Ω)
+
+                     Figure 11. of calcite precipitation rates from this study and that of Tang et al. [2008a]
+                           0.82
+
+
+                                               10 μm
+                            0.8            boundary layer
+Saturation index (log Ω)
+
+
+
+
+                           0.78
+
+
+
+
+                           0.76
+
+
+                                            30 μm boundary layer
+                           0.74
+
+
+
+
+                           0.72
+                               210   215         220            225            230             235            240
+
+                                                    Distance (μm)
+
+      Figure 12. 10 and 30 μm boundary layers for the case of CS-4 with a bulk saturation index of 0.82.
+      The modeling assumes that the Tang et al. [2008a] rate applies at the mineral surface. The gradient indicates
+      a partial diffusion control. See text for further explanation.
+                            -5
+                     1 10
+
+
+
+
+                     8 10
+                            -6
+                                       Surface reaction controlled
+Rate (mol.m-2.s-1)
+
+
+
+
+                            -6
+                     6 10
+
+
+
+                            -6
+                     4 10
+                                         Partial diffusion control
+                                              (30 μm HDL)
+                            -6
+                     2 10
+                                     This Study
+
+                            0
+                                 0    0.2          0.4         0.6          0.8           1          1.2          1.4
+                                                   Saturation index (log Ω)
+
+
+              Figure 13. Tang rates recalculated for a partial diffusion control assuming a 30 μm thick hydrodynamic boundary layer.
+                            -8
+                     8 10
+
+                     7 10
+                            -8
+                                           Nerhke et al. [2007]
+                                           Data - This study
+                            -8
+                     6 10                  Fit - This study
+Rate (mol.m-2.s-1)
+
+
+
+
+                            -8
+                     5 10
+
+                            -8
+                     4 10
+
+                            -8
+                     3 10
+
+                            -8
+                     2 10
+
+                            -8
+                     1 10
+
+                            0
+                                 0   0.2       0.4    0.6       0.8   1   1.2   1.4
+                                                        log Ω
+
+
+Figure 14. Comparison of calcite growth rate data from Nehrke et al. [2007] (blue symbols)
+and this study (red symbols and fitted curve). Nehrke et al. [2007] considered a broad range of
+calcium to carbonate ion activity ratios (unlike this study), which accounts for some of the
+spread in their data when plotted versus log Ω alone.
+                                              8
+
+
+                                              7
+
+
+              Volume % Calcite Precipitated   6
+
+
+                                              5           XMT data
+
+                                              4
+
+                                                             Model fit with constant
+                                              3
+                                                                0.012 m2.g-1 SSA
+
+                                              2
+
+
+                                              1
+
+
+                                              0
+                                                  0   2        4        6       8      10   12
+                                                                Distance (mm)
+
+
+
+
+Figure 15. Fit of XMT data with the nearly linear rate expression (n = 1.12) determined in stirred cell reactor
+experiments from this study and using a constant initial specific surface area of 0.012 m2∙g-1.
+                                8                                                         8                                               8
+
+                                                                               (a)                                             (b)                                             (c)
+                                7                 n = 1.12                                7           n = 3.20                            7               n = 2.00
+                                6                                                         6                                               6
+Volume % Calcite Precipitated
+
+
+
+
+                                5                                                         5                                               5
+
+
+                                4                                                         4                                               4
+
+
+                                3                                                         3                                               3
+
+
+                                2                                                         2                                               2
+
+
+                                1                                                         1                                               1
+
+
+                                0                                                         0                                               0
+                                    0      2      4         6         8   10         12       0   2   4     6         8   10         12       0   2   4         6         8   10     12
+                                                      Distance (mm)                                   Distance (mm)                                       Distance (mm)
+
+
+
+
+                                        Figure 16. Reactive transport simulation matching of XMT profiles (red data points) of newly precipitated calcium
+                                        carbonate with a specific surface area of 0.21 m2∙g-1. Plug flow column inlet is on the left. (a) Simulated profile
+                                        (dark blue solid line) with n = 1.12 using Eq. 15, (b) simulated profile (dark blue solid line) with model fit to Tang et al. [2008a]
+                                        data, n = 3.20 (Eq. 17), and (c) simulated profile (dark blue solid line) with model fit to Tang data adjusted for a partial diffusion
+                                        control based on a 30 µm hydrodynamic boundary layer (Eq. 18).
+                                                                                                                                               Spiral Growth               Nucleation
+                                                                                                                          -8
+                                                                                                                                                Controlled                 Controlled
+                                8                                                                                  5 10
+                                        (a)                                                                                        (b)
+                                7
+                                                                                                                          -8
+                                                                                                                   4 10
+Volume % Calcite Precipitated
+
+
+
+
+                                6
+
+
+
+
+                                                                                Precipitation rate (mol.m-2.s-1)
+                                5                                                                                         -8
+                                                                                                                   3 10
+
+                                4
+
+                                                                                                                   2 10
+                                                                                                                          -8                                                 2D Heterogeneous
+                                3
+                                                                                                                                   Multi-Sourced
+                                2                                                                                                  Spiral Growth
+                                                                                                                          -8
+                                                                                                                   1 10
+                                1
+
+
+                                0                                                                                         0
+                                    0         2   4      6        8   10   12                                                  0         0.2    0.4   0.6      0.8   1       1.2    1.4
+                                                  Distance (mm)                                                                                 Saturation index (loggΩ)
+
+
+
+             Figure 17. (a) Comparison of simulated profile of newly precipitated calcium carbonate with XMT data when two parallel rate laws
+             are combined: 1) a partially diffusion controlled modification of the higher order rate expression suggested by Tang et al. [2008a] data,
+             and 2) the nearly linear (n=1.12) multi-sourced spiral growth mechanism suggested by the stirred cell experiments in this study.
+             The rates fromTang et al. [2008a], however, need to be slowed even beyond the modification imposed by a partial diffusion control
+             in order to result in a reasonable match with the data. (b) Postulated precipitation rate regimes based on plug flow column experiments:
+             spiral growth controlled (dark solid line) vs nucleation control (grey solid line).
+DISCLAIMER
+
+This document was prepared as an account of work sponsored by the United States
+Government. While this document is believed to contain correct information, neither the
+United States Government nor any agency thereof, nor The Regents of the University of
+California, nor any of their employees, makes any warranty, express or implied, or
+assumes any legal responsibility for the accuracy, completeness, or usefulness of any
+information, apparatus, product, or process disclosed, or represents that its use would not
+infringe privately owned rights. Reference herein to any specific commercial product,
+process, or service by its trade name, trademark, manufacturer, or otherwise, does not
+necessarily constitute or imply its endorsement, recommendation, or favoring by the
+United States Government or any agency thereof, or The Regents of the University of
+California. The views and opinions of authors expressed herein do not necessarily state or
+reflect those of the United States Government or any agency thereof or The Regents of
+the University of California.
+
+Ernest Orlando Lawrence Berkeley National Laboratory is an equal opportunity
+employer.
+
