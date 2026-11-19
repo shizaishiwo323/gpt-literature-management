@@ -1,6 +1,6 @@
 # precipitation 文献（孔隙尺度混合诱导碳酸钙沉淀与溶解）
 
-Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia 的 Yoon 等）关于孔隙尺度混合诱导 CaCO3 沉淀/溶解的实验和模拟论文，按"论文名称 → 我的印象"整理。两篇是一组：Zhang et al. (2010) 是微流控实验，Yoon et al. (2012) 是对标这组实验的孔隙尺度模拟。
+Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia 的 Yoon 等）关于孔隙尺度混合诱导 CaCO3 沉淀/溶解的实验和模拟论文，按"论文名称 → 我的印象"整理。前两篇是一组：Zhang et al. (2010) 是微流控实验，Yoon et al. (2012) 是对标这组实验的孔隙尺度模拟。第三篇 Yoon et al. (2019) 是同一套微模型几何上的沉淀 + 溶解实验，引用了前两篇作对比。
 
 ## 一览
 
@@ -8,6 +8,7 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
 |---|---|---|---|---|
 | Pore-scale study of transverse mixing induced CaCO3 precipitation and permeability reduction in a model subsurface sedimentary system | 2010, ES&T | 微流控 CaCO3 沉淀实验的早期研究；有三维形貌表征方法（激光共聚焦）；可作为微流控实验来源的参考 | [PDF](./Environmental%20Science%20and%20Technology%20-%202010%20-%20Zhang%20-%20Pore-scale%20study%20of%20transverse%20mixing%20induced%20CaCO3%20precipitation%20and%20permeability%20reduction.pdf) | [SI](./SI%20-%20Environmental%20Science%20and%20Technology%20-%202010%20-%20Zhang%20-%20Pore-scale%20study%20of%20transverse%20mixing%20induced%20CaCO3%20precipitation%20and%20permeability%20reduction.pdf) |
 | Pore-scale simulation of mixing-induced calcium carbonate precipitation and dissolution in a microfluidic pore network | 2012, WRR | 结构严谨、论证详实的 CaCO3 沉淀模拟；写作引用、复现、学习写作三方面的强参考 | [PDF](./Water%20Resources%20Research%20-%202012%20-%20Yoon%20-%20Pore-scale%20simulation%20of%20mixing-induced%20calcium%20carbonate%20precipitation%20and.pdf) | 无 |
+| Pore-scale analysis of calcium carbonate precipitation and dissolution kinetics in a microfluidic device | 2019, ES&T | 微流控 CaCO3 沉淀 + 溶解实验；模拟部分不完整，只是工作量补充；实验解释重点偏向反应表面积和反应速率 | [PDF](./Environmental%20Science%20and%20Technology%20-%202019%20-%20Yoon%20-%20Pore-scale%20analysis%20of%20calcium%20carbonate%20precipitation%20and%20dissolution%20kinetics%20in%20a%20microfluidic%20device.pdf) | [SI](./SI%20-%20Environmental%20Science%20and%20Technology%20-%202019%20-%20Yoon%20-%20Pore-scale%20analysis%20of%20calcium%20carbonate%20precipitation%20and%20dissolution%20kinetics%20in%20a%20microfluidic%20device.pdf) |
 
 ## 逐篇说明
 
@@ -78,6 +79,40 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
     - 方法逐条列出假设，每个参数都给出取值依据或标定范围。
     - 结果按"一个候选原因一个小节"组织（4.2 扩散、4.3 速率常数、4.4 溶解因子），先排除再确认。
     - 结论如实区分"已解释"和"未解释"，主动承认局限并给出文献支撑的推测。
+
+### 3. Pore-scale analysis of calcium carbonate precipitation and dissolution kinetics in a microfluidic device
+
+- 作者：Hongkyu Yoon, Kirsten N. Chojnicki, Mario J. Martinez（Sandia National Laboratories）
+- 出处：Environmental Science & Technology 53(24), 14233–14242 (2019)，doi:10.1021/acs.est.9b01634
+- 文件：`Environmental Science and Technology - 2019 - Yoon - Pore-scale analysis of calcium carbonate precipitation and dissolution kinetics in a microfluidic device.pdf`
+- 支持材料（SI）：`SI - Environmental Science and Technology - 2019 - Yoon - ....pdf`，共 15 页：
+  - Section S1：拉曼方法（Horiba LabRAM HR Evolution，532 nm，0–1200 cm⁻¹；方解石、文石、球霰石特征峰）；
+  - Fig. S1–S12：微模型示意、全景图、三种共聚焦分辨率、分割流程、多孔/单孔高分辨率图、拉曼谱、2-D/3-D 对比、共聚焦切片；
+  - Table S1：共聚焦成像参数（0.63/0.31/0.20 µm/pixel）；
+  - Table S2：上、中、下游的 A2D 与 RSA 随时间变化（第二组列的表头印成了"Effective reaction rate"，从量级看应为 RSA，单位 µm²）；
+  - 另有 Fig. S2、S5 高分辨率 pptx（未放入本目录）。
+- 被引：Crossref 80 次（2026-11 查询）。
+- **我的印象**：
+  1. 做的是**微流控碳酸钙沉淀 + 溶解实验**；
+  2. **模拟部分不完整，只是工作量的补充**：只在溶解 24 h 的固定几何上算一个快照（不更新矿物含量，原文 "without updating mineral contents"），用来定性解释溶解羽流，没有模拟溶解过程的时间演化，也没有和实测面积/速率做定量对比；
+  3. 碳酸钙沉淀实验的**解释重点偏向反应表面积和反应速率**（几何 RSA vs 有效 RSA、有效速率 I_m 随时间的变化）。
+- 要点：
+  - 微模型：与 Zhang et al. (2010) 同一几何（2 cm × 1 cm，圆柱 300 µm，孔体 180 µm，孔喉 40 µm，孔隙度约 0.39），但深度 10 µm；Fig. S1 示意图标注 200 mm × 100 mm，应以正文 2 cm × 1 cm 为准。
+  - 实验：CaCl2 与 Na2CO3 各 10 mM（pH 约 6 / 11），每个入口 50 µL/h（达西速度 1.67 cm/min）；出口另注 pH < 2 水防堵；沉淀阶段 75 h，然后两入口注 pH 4 水溶解约 150 h。
+  - 成像：1 µm/pixel 光学拼图（多孔区域，插值到 0.2 µm 分析）；LSCM（Zeiss LSM510）单孔 3-D，竖向 1 µm 间隔，0.20 µm/pixel；拉曼鉴定 ACC、文石、方解石（本实验未见球霰石）。
+  - 量化：总速率 = A2D × 10 µm / V_mol / dt（V_mol 按方解石 36.94 cm³/mol）；RSA = 周长 × 10 µm（只算竖向面）；有效速率 I_m = 总速率 / RSA 平均值。分割可重复性约 ±5%。
+  - 结果：
+    - 沉淀沿中线横向混合线生成，向下游展宽；上游孔隙堵塞后横向混合消失，中游混合线上移。
+    - 分辨率：1 µm 图像明显低估 A2D 和 RSA，前人约 2–3 µm 的分析只能算定性。
+    - 3-D：RSA3D/RSA2D 在位置 i 约 1.73、位置 v 约 1.06；体积 2-D 与 3-D 相近。
+    - 速率：1.8 h 时 I_m = 1.4–3.0 × 10⁻⁵ mol/m²/s，与 k_r(1−SR) 量级一致，此时几何 RSA 可视为有效 RSA；3.1–75 h 间 RSA 变化在 ±24% 以内，下游 I_m 却降了约 2 个数量级，说明只有部分表面参与反应、反应受运移控制。
+    - 溶解：上游 24 h 溶解速率 2.27 × 10⁻⁷ mol/m²/s，比文献方解石值高一个数量级，归因于不稳定晶型（文石、ACC）；上游溶解的离子在中下游再沉淀；溶解羽流出现在离沉淀物 2–3 个孔体处。
+  - 模拟：沿用 Yoon et al. (2012) 的 LBM（Palabos）+ FVM 框架、Chou et al. (1989) 速率律；域 3.78 mm × 2.89 mm，1 µm 网格；三个情景：RSA × 2 + 方解石 K_sp、× 100 + 方解石、× 100 + 文石；只有第三个能复现沉淀线上方的溶解羽流。乘数 100 引自 Yoon et al. (2012)，本文没有独立标定，本质上是调参（注：本目录第 2 篇 README 记录的溶解因子是 d_f = 300，与这里说的 100 不同，引用时需核对）。
+  - 作者承认的局限：洁净微模型早期生成 ACC，难以定量估算早期沉淀速率；建议改用方解石芯片（calcite chip）等表面矿物可控的装置。
+- 作为参考的用法：
+  - **写作引用**：几何反应表面积 ≠ 有效反应表面积、反应–水动力反馈、溶解羽流作为反应示踪剂、图像分辨率对孔隙尺度定量的影响。
+  - **实验数据**：Table 1（总速率、有效速率）和 Table S2（A2D、RSA）给出了三个区域的时间序列，可直接用于模型对比。
+  - **注意**：原文有几处不一致（Fig. 1c 写 130 h，Fig. S5 写 89 h；溶解速率正负号正文与 Table 1 相反；SI 中有"Figure SX"），引用数值时以表格为准。
 
 ## 相关文献（未放 PDF）
 
