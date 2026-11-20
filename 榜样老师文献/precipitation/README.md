@@ -1,6 +1,6 @@
 # precipitation 文献（孔隙尺度混合诱导碳酸钙沉淀与溶解）
 
-Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia 的 Yoon 等）关于孔隙尺度混合诱导 CaCO3 沉淀/溶解的实验和模拟论文，按"论文名称 → 我的印象"整理。前两篇是一组：Zhang et al. (2010) 是微流控实验，Yoon et al. (2012) 是对标这组实验的孔隙尺度模拟。第三篇 Yoon et al. (2019) 是同一套微模型几何上的沉淀 + 溶解实验，引用了前两篇作对比。
+Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia 的 Yoon 等）关于孔隙尺度混合诱导 CaCO3 沉淀/溶解的实验和模拟论文，按"论文名称 → 我的印象"整理。前两篇是一组：Zhang et al. (2010) 是微流控实验，Yoon et al. (2012) 是对标这组实验的孔隙尺度模拟。第三篇 Yoon et al. (2019) 是同一套微模型几何上的沉淀 + 溶解实验，引用了前两篇作对比。第四篇 Bate et al. (2026)（浙江大学团队）把同类横向混合沉淀的微流控实验与频谱激发极化（SIP）监测结合起来，引用了第 1、3 篇。
 
 ## 一览
 
@@ -9,6 +9,7 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
 | Pore-scale study of transverse mixing induced CaCO3 precipitation and permeability reduction in a model subsurface sedimentary system | 2010, ES&T | 微流控 CaCO3 沉淀实验的早期研究；有三维形貌表征方法（激光共聚焦）；可作为微流控实验来源的参考也是yoon2012实验来源 | [PDF](./Environmental%20Science%20and%20Technology%20-%202010%20-%20Zhang%20-%20Pore-scale%20study%20of%20transverse%20mixing%20induced%20CaCO3%20precipitation%20and%20permeability%20reduction.pdf) | [SI](./SI%20-%20Environmental%20Science%20and%20Technology%20-%202010%20-%20Zhang%20-%20Pore-scale%20study%20of%20transverse%20mixing%20induced%20CaCO3%20precipitation%20and%20permeability%20reduction.pdf) |
 | Pore-scale simulation of mixing-induced calcium carbonate precipitation and dissolution in a microfluidic pore network | 2012, WRR | 结构严谨、论证详实的 CaCO3 沉淀模拟；写作引用、复现、学习写作三方面的强参考 | [PDF](./Water%20Resources%20Research%20-%202012%20-%20Yoon%20-%20Pore-scale%20simulation%20of%20mixing-induced%20calcium%20carbonate%20precipitation%20and.pdf) | 无 |
 | Pore-scale analysis of calcium carbonate precipitation and dissolution kinetics in a microfluidic device | 2019, ES&T | 微流控 CaCO3 沉淀 + 溶解实验；模拟部分不完整，只是工作量补充；实验解释重点偏向反应表面积和反应速率 | [PDF](./Environmental%20Science%20and%20Technology%20-%202019%20-%20Yoon%20-%20Pore-scale%20analysis%20of%20calcium%20carbonate%20precipitation%20and%20dissolution%20kinetics%20in%20a%20microfluidic%20device.pdf) | [SI](./SI%20-%20Environmental%20Science%20and%20Technology%20-%202019%20-%20Yoon%20-%20Pore-scale%20analysis%20of%20calcium%20carbonate%20precipitation%20and%20dissolution%20kinetics%20in%20a%20microfluidic%20device.pdf) |
+| Calcium carbonate precipitation visualization on a lab-on-a-chip model with spectral induced polarization monitoring | 2026, JGR Solid Earth | 微流控 CaCO3 沉淀实验 + SIP 监测；较好地解释了如何用 SIP 信号解读沉淀过程；与以往研究不同，除了熟化现象，还展示了后面的再沉淀堵塞过程 | [PDF](./JGR%20Solid%20Earth%20-%202026%20-%20Bate%20-%20Calcium%20Carbonate%20Precipitation%20Visualization%20on%20a%20Lab-on-a-Chip%20Model%20With%20Spectral.pdf) | 待补 |
 
 ## 逐篇说明
 
@@ -113,6 +114,49 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
   - **写作引用**：几何反应表面积 ≠ 有效反应表面积、反应–水动力反馈、溶解羽流作为反应示踪剂、图像分辨率对孔隙尺度定量的影响。
   - **实验数据**：Table 1（总速率、有效速率）和 Table S2（A2D、RSA）给出了三个区域的时间序列，可直接用于模型对比。
   - **注意**：原文有几处不一致（Fig. 1c 写 130 h，Fig. S5 写 89 h；溶解速率正负号正文与 Table 1 相反；SI 中有"Figure SX"），引用数值时以表格为准。
+
+### 4. Calcium carbonate precipitation visualization on a lab-on-a-chip model with spectral induced polarization monitoring
+
+- 作者：Bate Bate, Lin-Han Wang, Yi-Xin Yang, Ke-Xin Chen, Long-Long Meng, Chi Zhang, Yun-Ming Chen, Sheng Zhou（浙江大学超重力研究中心、岩土工程研究所；维也纳大学）
+- 出处：Journal of Geophysical Research: Solid Earth 131, e2026JB034544 (2026)，doi:10.1029/2026JB034544（2026-04 收稿，2026-09 接收）
+- 文件：`JGR Solid Earth - 2026 - Bate - Calcium Carbonate Precipitation Visualization on a Lab-on-a-Chip Model With Spectral.pdf`
+- 支持材料（SI）：Supporting Information S1，**尚未放入本目录（待补）**。正文引用了 Fig. S1–S10（S5 未被引用）：
+  - Fig. S1：芯片孔隙度约 45%；
+  - Fig. S2、S3：图像分割去噪；
+  - Fig. S4：COMSOL 计算的几何因子 K = 5,152 m⁻¹；
+  - Fig. S6：控制实验，排除电极极化和寄生电容伪影；
+  - Fig. S7：相位谱演化；
+  - Fig. S8、S9：m_n2 的 bootstrap 不确定性及其在堵塞阶段上移；
+  - Fig. S10：天然介质中充电率与比表面积 S_por 的关系。
+- 被引：2026 年新发表，暂未统计。
+- 数据公开情况：原始数据和 MATLAB 图像处理脚本已公开在 Zenodo（doi:10.5281/zenodo.19520305）。
+- **我的印象**：
+  1. 做了**微流控碳酸钙沉淀实验，与 SIP 监测**同步进行；
+  2. 论文**较好地解释了如何用 SIP 的信号去解读沉淀过程**（σ₀ 看导电通道是否被堵，m_n 看可接触的矿物–流体界面多少，τ 看极化单元尺度）；
+  3. 与以往研究不同的点：**除了展示熟化现象，还展示了后面的再沉淀堵塞过程**，并把两个阶段分别对应到 SIP 参数的变化上。
+- 要点：
+  - 芯片：PDMS 软光刻，外形 60 × 25 × 2 mm，观察通道 35 × 10 × 0.2 mm；圆柱直径 600 µm，柱心距 800 µm，孔隙度约 45%；孔体积 31.5 µL。
+  - 电极：芯片底部 4 块 150 nm 厚 Au 膜，ABMN 四电极，圆盘形接触；SIP 仪器 Ontash & Ermac；频率名义 0.1–10,000 Hz，1 Hz 以下数据因孔隙液化学非稳态而剔除。
+  - 实验：先饱和 50 mM CaCl2，再从两个入口分别注入 50 mM CaCl2 与 50 mM Na2CO3，各 0.05 µL/min；1 PV = 315 min，共约 6 PV（约 31.5 h）；倒置显微镜 Nikon Eclipse Ti2，20× 物镜，延时拍摄后拼图。
+  - 图像处理：MATLAB，0.6 µm/pixel；灰度化 → 增强去噪 → 反相 → 对比度拉伸 → 自适应阈值 → 形态学滤波与孔洞填充，去掉小于 2 像素的目标。
+  - SIP 解释：双 Cole-Cole 模型（高频分量 1、低频分量 2），pyGIMLi 拟合，残差 bootstrap 评估不确定性；归一化充电率 m_n = σ₀·m/(1 − m)；Schwartz 关系 τ = d²/(8D) = 1/(2πf)。
+  - 结果：
+    - 熟化阶段（0–2 PV）：细小圆颗粒（类球霰石）与菱面体（类方解石）共存，细颗粒逐渐消失，菱面体长大（最大粒径约 10 → 30 µm），周围出现环状无沉淀带；m_n1 升高、τ₁ 增大、σ₀ 缓慢下降。
+    - 堵塞阶段（2–6 PV）：流动和反应物输运重新分配，细颗粒二次成核、聚集，形成致密沉淀带（面积占比 2.8 PV 约 32% → 6.0 PV 约 54%）；σ₀ 骤降后稳定在约 2,000 µS/cm，m_n1 与 CaCO3 含量解耦而下降，m_n2 升高。
+    - σ′₁Hz 分四阶段：2,830 → 2,588（Stage I）→ 2,556（Stage II）→ 急降（Stage III）→ 约 2,000 µS/cm 平台（Stage IV）。
+    - σ″ 弛豫峰在 300–600 Hz；σ″_peak 由 7.2 升到约 29.0 µS/cm，再降到 17.6 µS/cm；f_peak 由 562 降到 312 Hz。
+    - 汇总文献数据：m_n = 16904φ（R² = 0.85）优于 m = 6.31φ（R² = 0.57），也优于基于 S_por 的关系（不同方法估算的比表面积不代表电学有效界面）。
+    - Schwartz 关系 τ = r²/(4.20 × 10⁻⁹)（R² = 0.84）适用于分散晶体；聚集体、胶结板、沉淀壁和其他介质偏离预测带。
+  - 作者承认的局限：
+    - 晶型（类球霰石、类方解石）只按形态、饱和度和多晶型路径推断，没有 XRD、FTIR 或 Raman 鉴定；
+    - 残余电极极化、杂散电容和仪器相位误差不能完全排除，尤其是低频和约 1 kHz 以上的 σ″；
+    - m_n2 不确定性大，只能作唯象指标，不能定量表示特征长度；
+    - 缺少 ACC、球霰石的 Stern 层电荷密度数据，各晶型的极化强度按相同处理。
+- 作为参考的用法：
+  - **实验来源**：微流控 + SIP 联测的芯片设计、电极布置、几何因子标定和低频数据取舍。
+  - **SIP 解释**：双 Cole-Cole 参数的物理意义，哪些可以定量（分散阶段的 m_n1、τ₁）、哪些只能定性（m_n2）；堵塞阶段可能叠加膜极化和 Maxwell-Wagner 极化，Cole-Cole 能拟合但参数不能再按颗粒极化解读。
+  - **数据对比**：Fig. 5 汇总了大量文献的 σ″_peak 时间曲线、m–φ、m–S_por 和 τ–r 数据。
+  - **与本目录对照**：本文引用了第 1 篇 Zhang et al. (2010) 和第 3 篇 Yoon et al. (2019)（环状无沉淀带的解释）。混合线沉淀堵塞在 Zhang et al. (2010) 中已经观察到，本文的新意在于把熟化和再成核堵塞两个阶段对应到 SIP 信号上，并解释了 σ″ 先升后降的形态原因。
 
 ## 相关文献（未放 PDF）
 
