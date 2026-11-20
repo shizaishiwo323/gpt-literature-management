@@ -1,6 +1,6 @@
 # precipitation 文献（孔隙尺度混合诱导碳酸钙沉淀与溶解）
 
-Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia 的 Yoon 等）关于孔隙尺度混合诱导 CaCO3 沉淀/溶解的实验和模拟论文，按"论文名称 → 我的印象"整理。前两篇是一组：Zhang et al. (2010) 是微流控实验，Yoon et al. (2012) 是对标这组实验的孔隙尺度模拟。第三篇 Yoon et al. (2019) 是同一套微模型几何上的沉淀 + 溶解实验，引用了前两篇作对比。第四篇 Bate et al. (2026)（浙江大学团队）把同类横向混合沉淀的微流控实验与频谱激发极化（SIP）监测结合起来，引用了第 1、3 篇。
+Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia 的 Yoon 等）关于孔隙尺度混合诱导 CaCO3 沉淀/溶解的实验和模拟论文，按"论文名称 → 我的印象"整理。前两篇是一组：Zhang et al. (2010) 是微流控实验，Yoon et al. (2012) 是对标这组实验的孔隙尺度模拟。第三篇 Yoon et al. (2019) 是同一套微模型几何上的沉淀 + 溶解实验，引用了前两篇作对比。第四篇 Bate et al. (2026)（浙江大学团队）把同类横向混合沉淀的微流控实验与频谱激发极化（SIP）监测结合起来，引用了第 1、3 篇。第五篇 Peng et al. (2026)（瑞士 PSI 团队）不属于横向混合体系：硅胶毛细管反向扩散实验 + 三维 LBM 与神经网络形态计算，模拟 ACC 溶解与方解石/球霰石生长的耦合，引用了第 2、3 篇作为前人孔隙尺度模型和实验。
 
 ## 一览
 
@@ -10,6 +10,7 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
 | Pore-scale simulation of mixing-induced calcium carbonate precipitation and dissolution in a microfluidic pore network | 2012, WRR | 结构严谨、论证详实的 CaCO3 沉淀模拟；写作引用、复现、学习写作三方面的强参考 | [PDF](./Water%20Resources%20Research%20-%202012%20-%20Yoon%20-%20Pore-scale%20simulation%20of%20mixing-induced%20calcium%20carbonate%20precipitation%20and.pdf) | 无 |
 | Pore-scale analysis of calcium carbonate precipitation and dissolution kinetics in a microfluidic device | 2019, ES&T | 微流控 CaCO3 沉淀 + 溶解实验；模拟部分不完整，只是工作量补充；实验解释重点偏向反应表面积和反应速率 | [PDF](./Environmental%20Science%20and%20Technology%20-%202019%20-%20Yoon%20-%20Pore-scale%20analysis%20of%20calcium%20carbonate%20precipitation%20and%20dissolution%20kinetics%20in%20a%20microfluidic%20device.pdf) | [SI](./SI%20-%20Environmental%20Science%20and%20Technology%20-%202019%20-%20Yoon%20-%20Pore-scale%20analysis%20of%20calcium%20carbonate%20precipitation%20and%20dissolution%20kinetics%20in%20a%20microfluidic%20device.pdf) |
 | Calcium carbonate precipitation visualization on a lab-on-a-chip model with spectral induced polarization monitoring | 2026, JGR Solid Earth | 微流控 CaCO3 沉淀实验 + SIP 监测；较好地解释了如何用 SIP 信号解读沉淀过程；与以往研究不同，除了熟化现象，还展示了后面的再沉淀堵塞过程 | [PDF](./JGR%20Solid%20Earth%20-%202026%20-%20Bate%20-%20Calcium%20Carbonate%20Precipitation%20Visualization%20on%20a%20Lab-on-a-Chip%20Model%20With%20Spectral.pdf) | 待补 |
+| Bridging in-situ chemical imaging and pore-scale reactive transport modelling: mechanistic insight into CaCO3 polymorph dynamics | 2026, GCA | 研究碳酸钙熟化（ACC → 方解石/球霰石）的模拟；做了三维模拟；用 LBM + 神经网络求解地球化学 | [PDF](./Geochimica%20et%20Cosmochimica%20Acta%20-%202026%20-%20Peng%20-%20Bridging%20in-situ%20chemical%20imaging%20and%20pore-scale%20reactive%20transport%20modelling.pdf) | [SI](./SI%20-%20Geochimica%20et%20Cosmochimica%20Acta%20-%202026%20-%20Peng%20-%20Bridging%20in-situ%20chemical%20imaging%20and%20pore-scale%20reactive%20transport%20modelling.pdf) |
 
 ## 逐篇说明
 
@@ -158,8 +159,63 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
   - **数据对比**：Fig. 5 汇总了大量文献的 σ″_peak 时间曲线、m–φ、m–S_por 和 τ–r 数据。
   - **与本目录对照**：本文引用了第 1 篇 Zhang et al. (2010) 和第 3 篇 Yoon et al. (2019)（环状无沉淀带的解释）。混合线沉淀堵塞在 Zhang et al. (2010) 中已经观察到，本文的新意在于把熟化和再成核堵塞两个阶段对应到 SIP 信号上，并解释了 σ″ 先升后降的形态原因。
 
+### 5. Bridging in-situ chemical imaging and pore-scale reactive transport modelling: mechanistic insight into CaCO3 polymorph dynamics
+
+- 作者：Haonan Peng（彭浩楠，一作兼通讯）, Ashish Rajyaguru, Enzo Curti, Daniel Grolimund, Sergey V. Churakov, Nikolaos I. Prasianakis（瑞士 PSI 放射性废物管理实验室 LES、瑞士光源 SLS；伯尔尼大学地质科学研究所）
+- 出处：Geochimica et Cosmochimica Acta 418, 35–49 (2026)，doi:10.1016/j.gca.2026.02.029（2025-07 收稿，2026-02 接收；CC BY 开放获取）
+- 文件：`Geochimica et Cosmochimica Acta - 2026 - Peng - Bridging in-situ chemical imaging and pore-scale reactive transport modelling.pdf`
+- 支持材料（SI）：`SI - Geochimica et Cosmochimica Acta - 2026 - Peng - ....pdf`，共 4 页（第 4 页空白）：
+  - Text S1：引导平衡（guided-equilibrium）D3Q27 LBM 的演化方程（式 S1），反应源项按格子权重分配 R_i = ω_i·Q_j（式 S2），浓度取零阶矩（式 S3）；
+  - Text S2 + Fig. S1：155、156、157 h 时粗网格全域模拟与细网格子域模拟的 CaCl2/Na2CO3 浓度剖面对比（纯扩散），用来证明从粗网格提取的时变边界条件可用。
+- 被引：OpenAlex 3 次、Semantic Scholar 2 次（2026-11 查询）；相关的只有 InterPore Journal 2026 的评述《Crystal Growth in Porous Media》（doi:10.69631/9kd53x06）。
+- 数据公开情况：数据在 Mendeley Data（doi:10.17632/cp9tbz7cnz.2）；LBM 代码是 PSI 自编的 CUDA/C++ + MPI 程序，未开源。
+- **我的印象**：
+  1. 研究**碳酸钙熟化**的模拟（ACC → 方解石/球霰石）；
+  2. 做了**三维模拟**；
+  3. 用的是 **LBM + 神经网络求解地球化学**的方法。
+- 对印象的补充说明（核对原文后）：
+  - "熟化"要按广义理解：文中模拟的是 157.4–162.4 h 这 5 h 内 **ACC 溶解 → 释放 Ca²⁺/CO₃²⁻ → 扩散到邻近方解石、球霰石表面并使其继续生长**，即溶解–再沉淀式的晶型转化；**不包含同一晶相内部大颗粒吞并小颗粒的 Ostwald 熟化**，也不包含成核（晶体位置和初始形状直接取自实验）。球霰石 → 方解石的转化在这个时间窗口内也没有发生。
+  - "三维"指的是三维 LBM 计算域（细网格 1400 × 32 × 32，0.01 mm），而实验数据是二维 X 射线吸收投影（像素 15 µm）；模型与实验对比的是投影图像和晶体体积。
+  - "神经网络求解地球化学"具体是：前馈神经网络（3 层 × 12 神经元）替代 GEMS 做形态计算，输入 Na2CO3、CaCl2 浓度，输出 pH、a(Ca²⁺)、a(CO₃²⁻)；动力学速率仍用经验速率律另算，神经网络只管平衡形态。
+- 要点：
+  - 实验：硅胶充填玻璃毛细管（长约 80 mm、直径约 300 µm），两端储液池分别为 0.3 M CaCl2 + 0.1 M NaCl 和 0.3 M Na2CO3 + 0.1 M NaCl，反向扩散；在 SLS 做一周共 28 次 X 射线吸收扫描（平均间隔约 1.7 h），吸收信号按 CaCO3 线衰减系数（μ = 1.977 × 10⁻³ µm⁻¹，18.2 keV）换算成晶体体积；μ-XRD 定晶型（#1–5 为球霰石，#6 为方解石），μ-XRF 测元素分布。
+  - 研究窗口：T_exp = 157.4–162.4 h（记为 T_sim = 0–5 h），重点是 #5（球霰石）、#6（方解石）和周围的 ACC。
+  - 输运：D3Q27 引导平衡 LBM，纯扩散（u = 0）；表观扩散系数 D_a = δεD_w / [τ²(ε + ρ_b K_d)]，ε = 0.5、δ = 1.0、τ = 1.5、ρ_b = 1.02 g/cm³；K_d 按 pH 分段（pH < 6 为 0，6–8 为 10^(pH−10.1) 或 10^(pH−11.4)，> 8 为平台值 0.002 / 0.00073），取自 Peng et al. (2025, WRR) 的标定。
+  - 化学：FNN 替代 xGEMS；训练集 153,664 个平衡计算点（浓度 10⁻¹⁰–0.3 M 对数网格），训练/验证/测试 = 80/10/10，MSE = 7.7 × 10⁻⁷；体系 pH 约 9.7–11，假设 CO₃²⁻ 代表全部碳的输运。
+  - 动力学：Arvidson & Morse (2013) 通式 r± = A_s·k±·[±(1 − Ω)]^n，三相分别反演（Table 1）：方解石 k = 2.725 × 10⁻⁷ mol/m²/s、n = 1.34；球霰石 k = 6.23 × 10⁻⁸、n = 0.93；ACC 溶解 k = −2.90 × 10⁻⁶、n = 2.00。方解石 k 比 Busenberg & Plummer (1987) 的 (0.5–3.0) × 10⁻⁶ 低约一个数量级，作者用本体系 pCO₂ 极低（约 10⁻³·⁴ bar）解释（Fig. 7）。
+  - 固相处理：方解石和球霰石按体素体积分数 φ_s 更新、只在固液界面生长；ACC 作为"半透、不堵塞"的相与溶液共存于同一体素，只降低局部扩散系数，不计入 φ_s。
+  - 两级网格：粗网格全毛细管 2100 × 62 × 62（0.05 mm，约 8 × 10⁶ 体素）只算纯扩散，给细网格子域（x = −14–0 mm，1400 × 32 × 32，0.01 mm）提供时变边界条件。
+  - 初始化三步：纯扩散算到 155.8 h → 放入实验重建的 157.4 h 固相，固定几何预跑到 157.4 h → 开启全耦合。
+  - 结果：
+    - 方解石和球霰石的体积、生长速率与实验吻合很好；ACC 在后期溶解偏快（Fig. 10）。
+    - 机理（Fig. 11–13）：晶体快速生长消耗离子，使局部对 ACC 不饱和（方解石附近 SI_ACC 约 −1.0 到 −0.5），ACC 溶解释放的离子又扩散回去维持晶体生长，形成反馈。
+    - 方解石旁的 ACC 先耗尽：162.4 h 时方解石沉淀速率降到约 2.0–4.0 × 10⁻⁵ mol/L/s（比峰值约 4.5 × 10⁻⁴ 低十倍以上），周围 pH 从约 10.5 降到约 9.8；球霰石左侧的 ACC 持续溶解起缓冲作用（pH 约 10.5，SI_VAT 约 2.5–3.0），所以球霰石朝 ACC 方向持续定向生长。
+  - 计算效率：每个时间步的形态计算从约 0.4 h（GEMS 单核，约 143 万网格点）降到不到 1 s，提速超过 1400 倍；5 h 实验窗口在 CSCS Alps 上用 5 块 GPU 不到 40 min 算完。
+  - 作者承认的局限：
+    - ACC 溶解借用晶体的速率形式反演，只能算硅胶限域条件下的表观参数，不能直接和其他数据集比；
+    - 初始浓度场是近似的，没有计入此前沉淀造成的离子耗竭；
+    - 不包含成核，只能从实验给出的晶体位置开始（随机成核见 Peng et al. 2025 WRR）；
+    - 后期 ACC 耗尽速率偏快，可能和孔隙度、局部输运的简化以及理想化的动力学有关。
+- 我读时的疑点：
+  - 细网格边界来自无反应的粗网格，反应造成的离子耗竭不会反馈到边界上；
+  - 只用了两颗晶体和一个 5 h 窗口，而动力学参数又是用同一套数据反演的，"吻合"更接近拟合效果，不是独立预测；
+  - 方解石附近 pH 降到约 9.8 时，HCO₃⁻ 的比例不小（pKa₂ ≈ 10.3），只用 CO₃²⁻ 代表碳的输运值得推敲；
+  - 三维晶体和 ACC 几何如何由二维投影重建，正文交代得比较简略。
+- 作为参考的用法：
+  - **写作引用**：限域多孔介质中 ACC 作为溶质库驱动晶体生长、晶型特异性动力学、机器学习替代地球化学求解器、"数字孪生"辅助实验。
+  - **方法参考**：两级网格（粗网格给边界）、预模拟初始化、FNN 替代形态计算的训练设置、用原位成像的体积时间序列反演速率参数。
+  - **与本目录对照**：本文把第 2 篇 Yoon et al. (2012) 和第 3 篇 Yoon et al. (2019) 当作"二维、单一晶相、空间平均速率"的前人模型来对比。前四篇都是对流主导的横向混合沉淀，本文是纯扩散的反向扩散体系，而且明确区分 ACC、球霰石、方解石三相。第 2 篇推测的"球霰石 → 方解石重结晶、Ostwald 熟化加速溶解"，本文也没有直接模拟。
+  - **同一团队的系列**：Peng et al. (2025, J. Hydrol.) 做输运反演和数字孪生 → Peng et al. (2025, WRR) 做成核 → 本文做成核之后的溶解–生长耦合。
+
 ## 相关文献（未放 PDF）
 
 | 论文 | 出处 | 说明 |
 |---|---|---|
 | Yoon, Kang & Valocchi, Lattice Boltzmann-based approaches for pore-scale reactive transport | Rev. Mineral. Geochem. 80, 393–431 (2015) | 同一团队的 LBM 反应输运综述，重写代码时可参考 |
+| Peng et al., Machine learning-enhanced modeling of calcium carbonate nucleation in porous media under counter-diffusion conditions | Water Resour. Res. 61(11), e2025WR040484 (2025)，doi:10.1029/2025WR040484 | 第 5 篇的前篇，同一套反向扩散实验的成核阶段（经典 + 非经典成核、随机诱导期） |
+| Peng et al., Towards digital twin of an in-situ experiment: a physics-enhanced machine-learning framework for inverse modelling of mass transport processes | J. Hydrol. 664, 134437 (2026)，doi:10.1016/j.jhydrol.2025.134437 | 第 5 篇的输运反演和数字孪生框架 |
+| Prasianakis et al., Neural network based process coupling and parameter upscaling in reactive transport simulations | Geochim. Cosmochim. Acta 291 (2020)，doi:10.1016/j.gca.2020.07.019 | 第 5 篇神经网络替代形态计算的来源 |
+| Bots et al., Mechanistic insights into the crystallization of amorphous calcium carbonate (ACC) | Cryst. Growth Des. 12(7) (2012)，doi:10.1021/cg300676b | 原位 SAXS/WAXS；ACC → 球霰石三阶段，第三阶段为球霰石 Ostwald 熟化（第 5 篇引用） |
+| Rodriguez-Blanco et al., The kinetics and mechanisms of amorphous calcium carbonate (ACC) crystallization to calcite, via vaterite | Nanoscale 3(1) (2011)，doi:10.1039/c0nr00589d | 原位 ED-XRD；ACC → 球霰石 → 方解石，第二步为溶解–再沉淀（第 5 篇引用） |
+| Shen et al., Properties of amorphous calcium carbonate and the template action of vaterite spheres | J. Phys. Chem. B 110(7) (2006)，doi:10.1021/jp055063o | CaCl2 + Na2CO3 快速混合生成 ACC，再转化为球霰石/方解石（第 5 篇引用） |
+| Gebauer et al., Stable prenucleation calcium carbonate clusters | Science 322 (2008)，doi:10.1126/science.1164271 | 预成核团簇，非经典成核的经典文献（第 5 篇引用） |
