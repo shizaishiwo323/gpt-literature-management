@@ -1,6 +1,6 @@
 # precipitation 文献（孔隙尺度混合诱导碳酸钙沉淀与溶解）
 
-Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia 的 Yoon 等）关于孔隙尺度混合诱导 CaCO3 沉淀/溶解的实验和模拟论文，按"论文名称 → 我的印象"整理。前两篇是一组：Zhang et al. (2010) 是微流控实验，Yoon et al. (2012) 是对标这组实验的孔隙尺度模拟。第三篇 Yoon et al. (2019) 是同一套微模型几何上的沉淀 + 溶解实验，引用了前两篇作对比。第四篇 Bate et al. (2026)（浙江大学团队）把同类横向混合沉淀的微流控实验与频谱激发极化（SIP）监测结合起来，引用了第 1、3 篇。第五篇 Peng et al. (2026)（瑞士 PSI 团队）不属于横向混合体系：硅胶毛细管反向扩散实验 + 三维 LBM 与神经网络形态计算，模拟 ACC 溶解与方解石/球霰石生长的耦合，引用了第 2、3 篇作为前人孔隙尺度模型和实验。第六篇 Rodriguez-Blanco et al. (2011)（利兹大学 Benning 团队）是均匀溶液中的批次结晶实验，不涉及孔隙介质：给出 ACC → 球霰石 → 方解石两阶段转化的动力学参数和机理，被第 5 篇引用，可作为本目录模拟工作的参数和机理来源。
+Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia 的 Yoon 等）关于孔隙尺度混合诱导 CaCO3 沉淀/溶解的实验和模拟论文，按"论文名称 → 我的印象"整理。前两篇是一组：Zhang et al. (2010) 是微流控实验，Yoon et al. (2012) 是对标这组实验的孔隙尺度模拟。第三篇 Yoon et al. (2019) 是同一套微模型几何上的沉淀 + 溶解实验，引用了前两篇作对比。第四篇 Bate et al. (2026)（浙江大学团队）把同类横向混合沉淀的微流控实验与频谱激发极化（SIP）监测结合起来，引用了第 1、3 篇。第五篇 Peng et al. (2026)（瑞士 PSI 团队）不属于横向混合体系：硅胶毛细管反向扩散实验 + 三维 LBM 与神经网络形态计算，模拟 ACC 溶解与方解石/球霰石生长的耦合，引用了第 2、3 篇作为前人孔隙尺度模型和实验。第六篇 Rodriguez-Blanco et al. (2011)（利兹大学 Benning 团队）是均匀溶液中的批次结晶实验，不涉及孔隙介质：给出 ACC → 球霰石 → 方解石两阶段转化的动力学参数和机理，被第 5 篇引用，可作为本目录模拟工作的参数和机理来源。第七篇 Gebauer et al. (2008)（马普胶体与界面研究所 Cölfen 团队）也是均匀稀溶液中的实验，讲的是成核之前：碳酸钙在成核前就形成稳定团簇，团簇结合强度随 pH 变化，并与后续析出的 ACC 种类和最终晶型相对应；被第 5 篇引用，是非经典成核路线的源头文献。
 
 ## 一览
 
@@ -12,6 +12,7 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
 | Calcium carbonate precipitation visualization on a lab-on-a-chip model with spectral induced polarization monitoring | 2026, JGR Solid Earth | 微流控 CaCO3 沉淀实验 + SIP 监测；较好地解释了如何用 SIP 信号解读沉淀过程；与以往研究不同，除了熟化现象，还展示了后面的再沉淀堵塞过程 | [PDF](./JGR%20Solid%20Earth%20-%202026%20-%20Bate%20-%20Calcium%20Carbonate%20Precipitation%20Visualization%20on%20a%20Lab-on-a-Chip%20Model%20With%20Spectral.pdf) | 待补 |
 | Bridging in-situ chemical imaging and pore-scale reactive transport modelling: mechanistic insight into CaCO3 polymorph dynamics | 2026, GCA | 研究碳酸钙熟化（ACC → 方解石/球霰石）的模拟；做了三维模拟；用 LBM + 神经网络求解地球化学 | [PDF](./Geochimica%20et%20Cosmochimica%20Acta%20-%202026%20-%20Peng%20-%20Bridging%20in-situ%20chemical%20imaging%20and%20pore-scale%20reactive%20transport%20modelling.pdf) | [SI](./SI%20-%20Geochimica%20et%20Cosmochimica%20Acta%20-%202026%20-%20Peng%20-%20Bridging%20in-situ%20chemical%20imaging%20and%20pore-scale%20reactive%20transport%20modelling.pdf) |
 | The kinetics and mechanisms of amorphous calcium carbonate (ACC) crystallization to calcite, via vaterite | 2011, Nanoscale | 碳酸钙多晶型转变实验，实验数据详细、具体；有详细的动力学实验参数；提出了理论预测模型；可作为数值模拟的参数来源和机理解释来源 | [PDF](./Nanoscale%20-%202011%20-%20Rodriguez-Blanco%20-%20The%20kinetics%20and%20mechanisms%20of%20amorphous%20calcium%20carbonate%20(ACC)%20crystallization%20to%20calcite%2C%20via%20vaterite.pdf) | 无（原文无 ESI） |
+| Stable Prenucleation Calcium Carbonate Clusters | 2008, Science | 非经典成核理论的奠基之作；做了非常基础的化学分析，讲清碳酸钙成核之前发生的故事；成核与 pH 紧密相关，不同 pH 对应最终产物的机制有待研究 | [PDF](./Science%20-%202008%20-%20Gebauer%20-%20Stable%20Prenucleation%20Calcium%20Carbonate%20Clusters.pdf) | [SI](./SI%20-%20Science%20-%202008%20-%20Gebauer%20-%20Stable%20Prenucleation%20Calcium%20Carbonate%20Clusters.pdf) |
 
 ## 逐篇说明
 
@@ -259,6 +260,55 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
   - **机理解释**：ACC 脱水原位转化为球霰石、球霰石溶解–再沉淀为方解石、生长速率受方解石表面积控制，可用来解释模拟中的多晶型演化和速率自加速。
   - **与本目录对照**：第 5 篇 Peng et al. (2026) 引用了本文，并在模拟中区分 ACC、球霰石、方解石三相；第 1 篇 Zhang et al. (2010) 观察到以球霰石为主、伴有方解石；第 2 篇 Yoon et al. (2012) 推测的"球霰石 → 方解石重结晶"可以用本文的溶解–再沉淀机理和时间尺度来对照。需要注意，本文是 1 M 高浓度、搅拌、均匀溶液的批次实验，用到孔隙尺度、低浓度、输运控制的体系时要考虑条件差异。
 
+### 7. Stable Prenucleation Calcium Carbonate Clusters
+
+- 作者：Denis Gebauer（一作）, Antje Völkel, Helmut Cölfen（通讯，coelfen@mpikg.mpg.de）（德国马普胶体与界面研究所，Potsdam-Golm）
+- 出处：Science 322(5909), 1819–1822 (2008)，doi:10.1126/science.1164271（2008-08 收稿，2008-11 接收）
+- 文件：`Science - 2008 - Gebauer - Stable Prenucleation Calcium Carbonate Clusters.pdf`
+  - 注意：这是从 science.org 下载的期刊版面，共 5 页：第 1 页上半部分是前一篇论文的参考文献，第 4 页下半部分是下一篇论文（Knudson et al., Shock-Wave Exploration of the High-Pressure Phases of Carbon）的开头，第 5 页是下载封面。本文正文在第 1–4 页。
+- 支持材料（SI）：`SI - Science - 2008 - Gebauer - Stable Prenucleation Calcium Carbonate Clusters.pdf`，共 34 页：
+  - Section 1：材料与方法（Metrohm Titrando 809 / 800 Dosino 恒 pH 滴定系统，钙离子选择电极 6.0508.110，电极校准，实验条件）；
+  - Section 2.1：由恒 pH 滴定的 NaOH 用量换算结合碳酸根（式 [1]–[10]）；
+  - Section 2.2：结合钙与结合碳酸根对比（团簇平均 1:1、电中性）；
+  - Section 2.3：分析超速离心（AUC）检测团簇；
+  - Section 2.4：多重结合模型（式 [13]–[19]，参数 x、K、K′）；
+  - Section 2.5–2.7：离子积、计入团簇后的过饱和比、草酸钙与磷酸钙的对照实验；
+  - Fig. S1–S15 和 Table S1（AUC 中三种团簇的 s、D 和粒径）。
+- 被引：OpenAlex 1830 次（2026-11 查询）。
+- 数据公开情况：没有数据可用性声明，曲线需要从图中数字化；结合参数（x、K）、溶度积和 AUC 结果在 SI 正文和 Table S1 中直接给出。
+- **我的印象**：
+  1. **非经典成核理论的奠基之作**；
+  2. 做了**非常基础的化学分析**（钙离子选择电极 + 恒 pH 滴定 + 质量守恒），讲清了**碳酸钙在成核之前发生的故事**；
+  3. 碳酸钙的**成核与 pH 紧密相关**，其中**不同 pH 对应最终产物（的机制）有待研究**。
+- 对印象的补充说明（核对原文后）：
+  - "不同 pH 对应什么产物"本文其实已经给出了观测：pH 9.00–9.50（团簇内结合强）析出 ACC I，最终以方解石为主；pH 9.75–10.0（结合弱）析出 ACC II，最终以球霰石为主；没有检出文石（Fig. 3、Fig. S11、S13）。**有待研究的是机理**：团簇结构如何决定 ACC 种类、ACC 与晶型的选择受热力学还是动力学控制，原文明确说"仍然未知"。
+  - "非经典成核"的图景在本文之后一直有争论（团簇是否真为稳定物种、能否用液–液分相或经典理论解释），引用时宜写作"提出了成核前稳定团簇的观点"，不要写成定论。
+- 要点：
+  - 实验：25 mL、10 mM 碳酸盐缓冲液（pH 9.00、9.25、9.50、9.75、10.0），(24 ± 1) °C，以 10 µL/min 滴入 10 mM CaCl2（即 0.1 µmol/min）；10 mM NaOH 恒 pH 滴定；钙电极测游离 Ca²⁺；每个 pH 三次重复（Fig. S1、S2）。
+  - 结合钙 = 加入量 − 游离量。成核前（包括欠饱和阶段）就有钙被结合：pH 9.00 约 35%（缓冲液中 CO₃²⁻ 约 4%），pH 10.0 约 75%（CO₃²⁻ 约 25%）（Fig. 1）。
+  - 成核前游离钙随时间线性上升，成核后停在溶解度水平；作者据此认为团簇是溶质（活度不为 1），按平衡热力学形成，是热力学稳定的，而不是经典理论中的亚稳团簇（Fig. 2 为示意，能量低谷深度和成核势垒高度未知）。
+  - 结合碳酸根与结合钙在实验精度内相等，团簇平均为中性的 1:1（Fig. S4、S5；碳酸根曲线做了偏移和斜率校正）。
+  - AUC（pH 9.00）：过饱和和接近成核时检出 cluster I（约 2 nm，约 70 个离子），统计显著性较低的 cluster II（约 4 nm），成核后早期有 cluster III（约 5–6 nm）。作者推测成核是团簇聚集（Fig. S6、Table S1）。
+  - 多重结合模型（Fig. S7、S8、S10）：x 为一个碳酸根平均结合的钙数，K 为单个结合的平衡常数；pH 9.00：x = 1.05，K = 1350 M⁻¹；pH 10.0：x = 1.47，K = 713 M⁻¹。宏观结合常数 K′ = x·K，Δ_RG° = −RT ln K′，约 −17 到 −18.5 kJ/mol（Fig. S11）。
+  - 两种 ACC：溶度积约 3.1 × 10⁻⁸ M²（ACC I）和约 3.8 × 10⁻⁸ M²（ACC II），分界在 pH 9.50 与 9.75 之间（Fig. 3）；偏光显微镜确认最先析出的是无定形相（Fig. S12）；WAXS 确认最终晶型（Fig. S13）。
+  - 忽略团簇时，过饱和比被高估约 40%（pH 9.00）到约 75%（pH 10.0）（Fig. S14）。
+  - 在 pH 8.0 的磷酸钙、草酸钙体系中定性看到同样的成核前钙结合（Fig. S15）。
+- 作者承认的局限：
+  - 团簇的尺寸分布、结构、能量低谷深度和成核势垒高度都未知；
+  - 成核是团簇聚集还是单离子附着生长，未定（作者倾向于聚集）；
+  - K′ 不描述整个团簇 z·Ca²⁺ + z·CO₃²⁻ ⇌ {CaCO₃}_z 的平衡，团簇浓度和 z 无法得到；
+  - 多重结合模型假设所有结合位点等同且独立，只适用于成核前；
+  - AUC 在欠饱和阶段测不到团簇，成核后小团簇测不到也可能只是浓度太低；
+  - 熵驱动的溶剂（水合）效应只是推测（原文用 "speculatively"）。
+- 我读时的疑点：
+  - pH 9.50 与 9.75 按拟合点算出的 K′ 几乎相同（约 1112 与 1121 M⁻¹），却分属 ACC I 和 ACC II，分组更多依赖插值曲线；
+  - 碳酸根曲线的斜率校正是按成核后 1:1 定的，所以成核后的 1:1 是前提而不是结果；
+  - SOM 2.4 末段写"示于 Figure S10"，按内容应为 Fig. S11。
+- 作为参考的用法：
+  - **写作引用**：成核前稳定团簇、非经典成核路径、ACC 作为前驱相、pH 对多晶型选择的影响；计入团簇后成核驱动力（过饱和度）被高估的问题。
+  - **机理解释**：模拟或实验中出现 ACC、球霰石、方解石共存或随 pH 变化时，可用本文的"团簇结合强度 → ACC I/II → 方解石/球霰石"对应关系作背景。
+  - **与本目录对照**：第 5 篇 Peng et al. (2026) 引用了本文，并在其前篇（Peng et al. 2025 WRR）中考虑了非经典成核；第 6 篇 Rodriguez-Blanco et al. (2011) 讲的是本文之后的阶段（ACC → 球霰石 → 方解石的转化动力学）。本文是 10 mM 稀溶液、pH 9–10、缓慢加钙的均匀体系，用到孔隙尺度混合沉淀（第 1–4 篇为 6.5–50 mM 的 CaCl2 与 Na2CO3 两股溶液直接混合）时要注意条件差异。
+
 ## 相关文献（未放 PDF）
 
 | 论文 | 出处 | 说明 |
@@ -269,4 +319,3 @@ Werth（UIUC）、Valocchi 团队及其合作者（PNNL 的 Zhang 等，Sandia �
 | Prasianakis et al., Neural network based process coupling and parameter upscaling in reactive transport simulations | Geochim. Cosmochim. Acta 291 (2020)，doi:10.1016/j.gca.2020.07.019 | 第 5 篇神经网络替代形态计算的来源 |
 | Bots et al., Mechanistic insights into the crystallization of amorphous calcium carbonate (ACC) | Cryst. Growth Des. 12(7) (2012)，doi:10.1021/cg300676b | 原位 SAXS/WAXS；ACC → 球霰石三阶段，第三阶段为球霰石 Ostwald 熟化（第 5 篇引用） |
 | Shen et al., Properties of amorphous calcium carbonate and the template action of vaterite spheres | J. Phys. Chem. B 110(7) (2006)，doi:10.1021/jp055063o | CaCl2 + Na2CO3 快速混合生成 ACC，再转化为球霰石/方解石（第 5 篇引用） |
-| Gebauer et al., Stable prenucleation calcium carbonate clusters | Science 322 (2008)，doi:10.1126/science.1164271 | 预成核团簇，非经典成核的经典文献（第 5 篇引用） |
